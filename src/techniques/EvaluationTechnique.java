@@ -19,7 +19,7 @@ import org.encog.neural.data.basic.BasicNeuralDataSet;
 public abstract class EvaluationTechnique {
 
 	protected EnsembleDataSet trainingSet;
-	private EnsembleDataSet selectionSet;
+	protected EnsembleDataSet selectionSet;
 	protected EnsembleMLMethodFactory mlMethod;
 	protected EnsembleTrainFactory trainFactory;
 	protected EnsembleAggregator aggregator;
