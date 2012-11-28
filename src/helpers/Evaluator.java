@@ -44,7 +44,7 @@ public class Evaluator {
 		int outputs = dataSet.getIdealSize();
 		for (int output = 0; output < outputs; output ++)
 		{
-			System.out.println(prefix + "," + type + "," + "for-class-" + dataMapper.getClassLabel(output) + 
+			System.out.println(prefix.get(technique.getCurrentSize()) + "," + type + "," + "for-class-" + dataMapper.getClassLabel(output) + 
 				"," + perf.getTP(output) + 
 				"," + perf.getTN(output) +
 				"," + perf.getFP(output) +
