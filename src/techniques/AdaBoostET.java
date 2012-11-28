@@ -26,7 +26,7 @@ public class AdaBoostET extends EvaluationTechnique {
 	public void init(DataLoader dataLoader) {
 		ensemble = new AdaBoost(T,dataSetSize,mlMethod,trainFactory,aggregator);
 		setTrainingSet(dataLoader.getTrainingSet());
-		setTestSet(dataLoader.getTestSet());
+		setSelectionSet(dataLoader.getTestSet());
 		ensemble.setTrainingData(trainingSet);
 	}
 

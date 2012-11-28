@@ -19,7 +19,7 @@ import org.encog.neural.data.basic.BasicNeuralDataSet;
 public abstract class EvaluationTechnique {
 
 	protected EnsembleDataSet trainingSet;
-	private EnsembleDataSet testSet;
+	private EnsembleDataSet selectionSet;
 	protected EnsembleMLMethodFactory mlMethod;
 	protected EnsembleTrainFactory trainFactory;
 	protected EnsembleAggregator aggregator;
@@ -56,7 +56,7 @@ public abstract class EvaluationTechnique {
 	}
 	
 	public void train(double trainToError, double selectionError, boolean verbose) {
-		ensemble.train(trainToError,selectionError,(EnsembleDataSet) testSet,verbose);
+		ensemble.train(trainToError,selectionError,(EnsembleDataSet) selectionSet,verbose);
 	}
 
 	public void trainStep() {		
@@ -67,7 +67,7 @@ public abstract class EvaluationTechnique {
 	}
 	
 	public double testError() {
-		return ensemble.getMember(0).getError(testSet);
+		return ensemble.getMember(0).getError(selectionSet);
 	}	
 	
 	public abstract void init(DataLoader dataLoader);
@@ -81,15 +81,15 @@ public abstract class EvaluationTechnique {
 	}
 
 	public MLDataSet getTestSet() {
-		return testSet;
+		return selectionSet;
 	}
 
 	public void setTrainingSet(MLDataSet trainingSet) {
 		this.trainingSet = new EnsembleDataSet(trainingSet);
 	}
 
-	public void setTestSet(MLDataSet testSet) {
-		this.testSet = new EnsembleDataSet(testSet);
+	public void setSelectionSet(MLDataSet testSet) {
+		this.selectionSet = new EnsembleDataSet(testSet);
 	}
 	
 	public MLData compute(MLData input) {

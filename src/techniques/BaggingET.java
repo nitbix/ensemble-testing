@@ -27,7 +27,7 @@ public class BaggingET extends EvaluationTechnique {
 	public void init(DataLoader dataLoader) {
 		ensemble = new Bagging(splits,dataSetSize,mlMethod,trainFactory,aggregator);
 		setTrainingSet(dataLoader.getTrainingSet());
-		setTestSet(dataLoader.getTestSet());
+		setSelectionSet(dataLoader.getTestSet());
 		ensemble.setTrainingData(trainingSet);
 	}
 
