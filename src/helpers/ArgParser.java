@@ -153,13 +153,13 @@ public class ArgParser {
 		}
 	}
 
-	public static EvaluationTechnique technique(String etType, Integer size,
-			Integer dataSetSize, String fullLabel, EnsembleMLMethodFactory mlf,
+	public static EvaluationTechnique technique(String etType, List<Integer> sizes,
+			Integer dataSetSize, Labeler fullLabel, EnsembleMLMethodFactory mlf,
 			EnsembleTrainFactory etf, EnsembleAggregator agg) throws BadArgument {
 		switch (Techniques.valueOf(etType.toUpperCase())) {
-			case BAGGING: return new BaggingET(size,dataSetSize,fullLabel,mlf,etf,agg);
-			case ADABOOST: return new AdaBoostET(size,dataSetSize,fullLabel,mlf,etf,agg);
-			case STACKING: return new StackingET(size,dataSetSize,fullLabel,mlf,etf,agg);
+			case BAGGING: return new BaggingET(sizes,dataSetSize,fullLabel,mlf,etf,agg);
+			case ADABOOST: return new AdaBoostET(sizes,dataSetSize,fullLabel,mlf,etf,agg);
+			case STACKING: return new StackingET(sizes,dataSetSize,fullLabel,mlf,etf,agg);
 			default: throw new BadArgument();
 		}
 	}

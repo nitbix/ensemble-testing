@@ -1,5 +1,6 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.encog.ensemble.EnsembleAggregator;
@@ -13,6 +14,7 @@ import helpers.ArgParser.BadArgument;
 import helpers.DataLoader;
 import helpers.DataMapper;
 import helpers.Evaluator;
+import helpers.Labeler;
 import helpers.ProblemDescription;
 
 public class TrainingCurves {
@@ -30,11 +32,14 @@ public class TrainingCurves {
 	private static int maxIterations;
 	
 	public static void loop() {
+		List<Integer> one = new ArrayList<Integer>();
+		one.add(1);
 		for(EnsembleMLMethodFactory mlf: mlfs)
 		{
+			Labeler labeler = new Labeler("", "", "", "", "", 0);
 			EvaluationTechnique et = null;
 			try {
-				et = ArgParser.technique(etType,1,trainingSetSize,"",mlf,etf,agg);
+				et = ArgParser.technique(etType,one,trainingSetSize,labeler,mlf,etf,agg);
 			} catch (BadArgument e) {
 				help();
 			}

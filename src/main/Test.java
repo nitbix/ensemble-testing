@@ -10,6 +10,7 @@ import helpers.ArgParser;
 import helpers.ArgParser.BadArgument;
 import helpers.DataLoader;
 import helpers.Evaluator;
+import helpers.Labeler;
 import helpers.ProblemDescription;
 
 public class Test {
@@ -18,7 +19,7 @@ public class Test {
 	static DataLoader dataLoader;
 	static ProblemDescription problem;
 	
-	private static Integer size;
+	private static List<Integer> sizes;
 	private static List<Integer> dataSetSizes;
 	private static List<Double> trainingErrors;
 	private static int trainingSetSize;
@@ -34,17 +35,17 @@ public class Test {
 		for(Integer dataSetSize : dataSetSizes)
 		for(EnsembleMLMethodFactory mlf: mlfs)
 		{
-			String fullLabel = problem.getLabel() + "," +etType + "," + etf.getLabel() + "," 
-							 + mlf.getLabel() + "," + agg.getLabel() + "," + size + "," + dataSetSize;
+
 			EvaluationTechnique et = null;
+			Labeler fullLabel = new Labeler(problem.getLabel(),etType,etf.getLabel(),mlf.getLabel(),agg.getLabel(),dataSetSize);
 			try {
-				et = ArgParser.technique(etType,size,dataSetSize,fullLabel,mlf,etf,agg);
+				et = ArgParser.technique(etType,sizes,dataSetSize,fullLabel,mlf,etf,agg);
 			} catch (BadArgument e) {
 				help();
 			}
 			for (double te: trainingErrors) {
 				Evaluator ev = new Evaluator(et, dataLoader, te, selectionError, verbose);
-				ev.getResults(fullLabel+","+te);
+				ev.getResults(fullLabel,te);
 			}
 		}
 	}
@@ -56,7 +57,7 @@ public class Test {
 		try {
 			etType = args[0];
 			problem = ArgParser.problem(args[1]);
-			size = ArgParser.intSingle(args[2]);
+			sizes = ArgParser.intList(args[2]);
 			dataSetSizes = ArgParser.intList(args[3]);
 			trainingErrors = ArgParser.doubleList(args[4]);
 			trainingSetSize = ArgParser.intSingle(args[5]);

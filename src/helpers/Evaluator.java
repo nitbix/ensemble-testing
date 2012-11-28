@@ -14,20 +14,22 @@ public class Evaluator {
 		dataLoader = new DataLoader(mapper,inputCols,inputs,trainingSetSize,inputsReversed);
 		dataLoader.readData(dataFile);
 		this.technique.init(dataLoader);
-		this.technique.train(targetTrainingError, selectionError, false);
+		this.technique.setParams(targetTrainingError, selectionError);
+		this.technique.train(false);
 	}
 	
 	public Evaluator(EvaluationTechnique technique, DataLoader dataLoader, double targetTrainingError, double selectionError, boolean verbose) {
 		this.setTechnique(technique);
 		this.dataLoader = dataLoader;
 		this.technique.init(dataLoader);
-		this.technique.train(targetTrainingError, selectionError, verbose);
+		this.technique.setParams(targetTrainingError, selectionError);
+		this.technique.train(verbose);
 	}
 	
-	public void makeLine(String type, String prefix, BasicNeuralDataSet dataSet) {
+	public void makeLine(String type, double te, Labeler prefix, BasicNeuralDataSet dataSet) {
 		DataMapper dataMapper = dataLoader.getMapper();
 		PerfResults perf = this.technique.testPerformance(dataSet, dataMapper,false);
-		System.out.println(type + "," + prefix + "," +
+		System.out.println(type + "," + prefix.get(technique.getCurrentSize()) + "," + te + "," +
 				(this.technique.getMisclassification(dataSet,dataMapper)) + "," +
 				(perf.getAccuracy(PerfResults.AveragingMethod.MICRO)) + "," +
 				(perf.getPrecision(PerfResults.AveragingMethod.MICRO)) + "," +
@@ -51,9 +53,12 @@ public class Evaluator {
 		}
 	}
 	
-	public void getResults (String prefix) {
-		makeLine("train",prefix,this.dataLoader.getTrainingSet());
-		makeLine("test",prefix,this.dataLoader.getTestSet());
+	public void getResults (Labeler prefix, double te) {
+		while(technique.hasStepsLeft()) {
+			makeLine("train",te,prefix,this.dataLoader.getTrainingSet());
+			makeLine("test",te,prefix,this.dataLoader.getTestSet());
+			technique.step(false);
+		}
 	}
 
 	public EvaluationTechnique getTechnique() {

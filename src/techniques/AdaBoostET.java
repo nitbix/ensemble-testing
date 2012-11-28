@@ -1,5 +1,7 @@
 package techniques;
 
+import java.util.List;
+
 import org.encog.ensemble.EnsembleAggregator;
 import org.encog.ensemble.EnsembleMLMethodFactory;
 import org.encog.ensemble.EnsembleTrainFactory;
@@ -7,16 +9,16 @@ import org.encog.ensemble.adaboost.AdaBoost;
 import org.encog.ml.data.MLData;
 
 import helpers.DataLoader;
+import helpers.Labeler;
 
 public class AdaBoostET extends EvaluationTechnique {
 
-	private int T;
 	private int dataSetSize;
 
-	public AdaBoostET(int T, int dataSetSize, String label, EnsembleMLMethodFactory mlMethod, EnsembleTrainFactory trainFactory, EnsembleAggregator aggregator) {
-		this.T = T;
+	public AdaBoostET(List<Integer> sizes, int dataSetSize, Labeler fullLabel, EnsembleMLMethodFactory mlMethod, EnsembleTrainFactory trainFactory, EnsembleAggregator aggregator) {
+		this.sizes = sizes;
 		this.dataSetSize = dataSetSize;
-		this.label = label;
+		this.label = fullLabel;
 		this.mlMethod = mlMethod;
 		this.trainFactory = trainFactory;
 		this.aggregator = aggregator;
@@ -24,7 +26,7 @@ public class AdaBoostET extends EvaluationTechnique {
 
 	@Override
 	public void init(DataLoader dataLoader) {
-		ensemble = new AdaBoost(T,dataSetSize,mlMethod,trainFactory,aggregator);
+		ensemble = new AdaBoost(sizes.get(currentSizeIndex),dataSetSize,mlMethod,trainFactory,aggregator);
 		setTrainingSet(dataLoader.getTrainingSet());
 		setSelectionSet(dataLoader.getTestSet());
 		ensemble.setTrainingData(trainingSet);
@@ -43,6 +45,12 @@ public class AdaBoostET extends EvaluationTechnique {
 	@Override
 	public double trainError() {
 		return 0;
+	}
+
+	@Override
+	public void step(boolean verbose) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

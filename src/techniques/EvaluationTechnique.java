@@ -2,9 +2,11 @@ package techniques;
 
 import helpers.DataLoader;
 import helpers.DataMapper;
+import helpers.Labeler;
 import helpers.PerfResults;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.encog.ensemble.Ensemble;
 import org.encog.ensemble.EnsembleAggregator;
@@ -24,7 +26,12 @@ public abstract class EvaluationTechnique {
 	protected EnsembleTrainFactory trainFactory;
 	protected EnsembleAggregator aggregator;
 	protected Ensemble ensemble;
-	protected String label;
+	protected Labeler label;
+	protected List<Integer> sizes;
+	protected int currentSizeIndex = 0;
+	protected double trainToError;
+	protected double selectionError;
+	protected boolean hasStepsLeft = true;
 	
 	public double getMisclassification(BasicNeuralDataSet evalSet, DataMapper dataMapper) {
 		int bad = 0;
@@ -55,12 +62,19 @@ public abstract class EvaluationTechnique {
 		return bad;
 	}
 	
-	public void train(double trainToError, double selectionError, boolean verbose) {
+	public void setParams(double trainToError, double selectionError) {
+		this.trainToError = trainToError;
+		this.selectionError = selectionError;
+	}
+	
+	public void train(boolean verbose) {
 		ensemble.train(trainToError,selectionError,(EnsembleDataSet) selectionSet,verbose);
 	}
 
 	public void trainStep() {		
 	}
+	
+	public abstract void step(boolean verbose);
 	
 	public double trainError() {
 		return ensemble.getMember(0).getError(trainingSet);
@@ -73,7 +87,7 @@ public abstract class EvaluationTechnique {
 	public abstract void init(DataLoader dataLoader);
 	
 	public String getLabel() {
-		return label;
+		return label.get(sizes.get(currentSizeIndex));
 	}
 	
 	public MLDataSet getTrainingSet() {
@@ -128,5 +142,13 @@ public abstract class EvaluationTechnique {
 			}
 		}
 		return new PerfResults(tp,fp,tn,fn,outputs);
+	}
+
+	public boolean hasStepsLeft() {
+		return hasStepsLeft;
+	}
+
+	public int getCurrentSize() {
+		return sizes.get(currentSizeIndex);
 	}	
 }
