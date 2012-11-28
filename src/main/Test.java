@@ -1,4 +1,4 @@
-package ensembles;
+package main;
 
 import java.util.List;
 
