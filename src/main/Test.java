@@ -22,7 +22,7 @@ public class Test {
 	private static List<Integer> sizes;
 	private static List<Integer> dataSetSizes;
 	private static List<Double> trainingErrors;
-	private static int trainingSetSize;
+	private static int nFolds;
 	private static double activationThreshold;
 	private static EnsembleTrainFactory etf;
 	private static List<EnsembleMLMethodFactory> mlfs;
@@ -33,6 +33,7 @@ public class Test {
 	
 	public static void loop() {
 		for(Integer dataSetSize : dataSetSizes)
+		for (int fold=0; fold < nFolds; fold++)
 		for(EnsembleMLMethodFactory mlf: mlfs)
 		{
 
@@ -44,8 +45,8 @@ public class Test {
 				help();
 			}
 			for (double te: trainingErrors) {
-				Evaluator ev = new Evaluator(et, dataLoader, te, selectionError, verbose);
-				ev.getResults(fullLabel,te);
+				Evaluator ev = new Evaluator(et, dataLoader, te, selectionError, verbose,fold);
+				ev.getResults(fullLabel,te,fold);
 			}
 		}
 	}
@@ -60,7 +61,7 @@ public class Test {
 			sizes = ArgParser.intList(args[2]);
 			dataSetSizes = ArgParser.intList(args[3]);
 			trainingErrors = ArgParser.doubleList(args[4]);
-			trainingSetSize = ArgParser.intSingle(args[5]);
+			nFolds = ArgParser.intSingle(args[5]);
 			activationThreshold = ArgParser.doubleSingle(args[6]);
 			etf = ArgParser.ETF(args[7]);
 			mlfs = ArgParser.MLFS(args[8]);
@@ -72,7 +73,7 @@ public class Test {
 		}
 		
 		try {
-			dataLoader = problem.getDataLoader(activationThreshold,trainingSetSize);
+			dataLoader = problem.getDataLoader(activationThreshold,nFolds);
 		} catch (helpers.ProblemDescriptionLoader.BadArgument e) {
 			System.err.println("Could not create dataLoader - perhaps the mapper_type property is wrong");
 			e.printStackTrace();
@@ -82,7 +83,7 @@ public class Test {
 	}
 
 	private static void help() {
-		System.err.println("Usage: Test <technique> <problem> <sizes> <dataSetSizes> <trainingErrors> <trainingSetSize> <activationThreshold> <training> <membertypes> <aggregator> <verbose> <selectionError>");
+		System.err.println("Usage: Test <technique> <problem> <sizes> <dataSetSizes> <trainingErrors> <nFolds> <activationThreshold> <training> <membertypes> <aggregator> <verbose> <selectionError>");
 		System.exit(2);
 	}
 }

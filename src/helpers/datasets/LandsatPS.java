@@ -13,8 +13,8 @@ public class LandsatPS implements ProblemDescription {
 	private static String inputFile = "data/landsat.data";
 	
 	@Override
-	public DataLoader getDataLoader(double activationThreshold, int trainingSetSize) {
-		DataLoader dataLoader = new DataLoader(new IntMapper(outputs,activationThreshold),trainingSetSize,readInputs,inputs,inputsReversed);
+	public DataLoader getDataLoader(double activationThreshold, int nFolds) {
+		DataLoader dataLoader = new DataLoader(new IntMapper(outputs,activationThreshold),readInputs,inputs,inputsReversed,nFolds);
 		dataLoader.readData(inputFile);
 		return dataLoader;
 	}

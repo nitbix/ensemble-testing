@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.encog.NullStatusReportable;
 import org.encog.ml.data.MLData;
+import org.encog.ml.data.MLDataPair;
 import org.encog.neural.data.basic.BasicNeuralData;
 import org.encog.neural.data.basic.BasicNeuralDataSet;
 import org.encog.util.csv.ReadCSV;
@@ -15,29 +16,30 @@ import org.encog.util.normalize.target.NormalizationStorageNeuralDataSet;
 
 public class DataLoader {
 	
-	private static BasicNeuralDataSet _trainingSet;
-	private static BasicNeuralDataSet _testSet;
+	private static ArrayList<BasicNeuralDataSet> folds;
+	private static BasicNeuralDataSet _completeSet;
 	private static boolean _inputsReversed;
 	private static DataMapper _dataMapper;
 	private static int _inputs;
 	private static int _readinputs;
-	private static int _trainingSetSize;
+	private static int nFolds;
 
-	public DataLoader(DataMapper dataMapper, int trainingSetSize, int readInputs, int inputs, boolean inputsReversed) {
+	public DataLoader(DataMapper dataMapper, int readInputs, int inputs, boolean inputsReversed, int nFolds) {
 		_dataMapper = dataMapper;
 		_readinputs = readInputs;
 		_inputs = inputs;
 		_inputsReversed = inputsReversed;
-		_trainingSetSize = trainingSetSize;
+		this.nFolds = nFolds;
+		folds = new ArrayList<BasicNeuralDataSet>();
+		for (int i = 0; i < nFolds; i++)
+			folds.add(new BasicNeuralDataSet());
 	}
 	
 	public int readData(String inputFile) {
 		int total=0;
 		//System.out.println("importing dataset");
 		ReadCSV csv = new ReadCSV(inputFile,false,',');
-		_trainingSet = new BasicNeuralDataSet();
-		_testSet = new BasicNeuralDataSet();
-		BasicNeuralDataSet _totalSet = new BasicNeuralDataSet();
+		BasicNeuralDataSet _completeSet = new BasicNeuralDataSet();
 		while(csv.next())
 		{
 			BasicNeuralData inputData = new BasicNeuralData(getInputs());
@@ -58,7 +60,7 @@ public class DataLoader {
 					inputData.setData(j,csv.getDouble(j + getReadInputs()));
 				}
 			}
-			_totalSet.add(inputData,idealData);
+			_completeSet.add(inputData,idealData);
 			total++;
 		}
 		BasicNeuralDataSet _normSet = new BasicNeuralDataSet();
@@ -67,16 +69,13 @@ public class DataLoader {
 		normalizer.setTarget(new NormalizationStorageNeuralDataSet(_normSet));
 		InputField[] a = new InputField[getInputs()];
 		for(int j = 0; j < getInputs(); j++) {
-			normalizer.addInputField(a[j] = new InputFieldMLDataSet(false,_totalSet,j));
+			normalizer.addInputField(a[j] = new InputFieldMLDataSet(false,_completeSet,j));
 			normalizer.addOutputField(new OutputFieldRangeMapped(a[j],0.0,1.0));
 		}
 		normalizer.process();
 		for (int i = 0; i < total; i++)
 		{
-			if (i < _trainingSetSize) 
-				_trainingSet.add(_normSet.get(i).getInput(),_totalSet.get(i).getIdeal());
-			else
-				_testSet.add(_normSet.get(i).getInput(),_totalSet.get(i).getIdeal());
+			folds.get(i % nFolds).add(_normSet.get(i).getInput(),_completeSet.get(i).getIdeal());
 		}
 		csv.close();
 		return total;
@@ -95,8 +94,8 @@ public class DataLoader {
 		DataLoader._inputs = _inputs;
 	}
 
-	public BasicNeuralDataSet getTestSet() {
-		return _testSet;
+	public BasicNeuralDataSet getTestSet(int fold) {
+		return folds.get(fold);
 	}
 
 	public static int getReadInputs() {
@@ -107,7 +106,14 @@ public class DataLoader {
 		DataLoader._readinputs = _readinputs;
 	}
 
-	public BasicNeuralDataSet getTrainingSet() {
-		return _trainingSet;
+	public BasicNeuralDataSet getTrainingSet(int fold) {
+		BasicNeuralDataSet trainingSet = new BasicNeuralDataSet();
+		for (int i = 0; i < nFolds; i++)
+			if (i != fold) {
+				for (MLDataPair k : folds.get(i)) {
+					trainingSet.add(k);
+				}
+			}
+		return trainingSet;
 	}
 }

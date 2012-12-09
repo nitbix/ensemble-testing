@@ -14,8 +14,8 @@ public class LetterRecognitionPS implements ProblemDescription {
 	private static double lowBound = 0.0;
 
 	@Override
-	public DataLoader getDataLoader(double activationThreshold, int trainingSetSize) {
-		DataLoader dataLoader = new DataLoader(new LetterMapper(outputs,activationThreshold,lowBound),trainingSetSize,readInputs,inputs,inputsReversed);
+	public DataLoader getDataLoader(double activationThreshold, int nFolds) {
+		DataLoader dataLoader = new DataLoader(new LetterMapper(outputs,activationThreshold,lowBound),readInputs,inputs,inputsReversed,nFolds);
 		dataLoader.readData(inputFile);
 		return dataLoader;
 	}

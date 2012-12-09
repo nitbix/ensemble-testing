@@ -66,10 +66,10 @@ public class ProblemDescriptionLoader implements ProblemDescription {
 	}
 	
 	@Override
-	public DataLoader getDataLoader(double activationThreshold, int trainingSetSize) throws BadArgument {
+	public DataLoader getDataLoader(double activationThreshold, int nFolds) throws BadArgument {
 		if (! loaded)
 			throw new BadArgument();
-		DataLoader dataLoader = new DataLoader(makeMapper(mapperType,activationThreshold),trainingSetSize,readInputs,inputs,inputsReversed);
+		DataLoader dataLoader = new DataLoader(makeMapper(mapperType,activationThreshold),readInputs,inputs,inputsReversed,nFolds);
 		dataLoader.readData(inputFile);
 		return dataLoader;
 	}

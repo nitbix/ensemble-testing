@@ -9,19 +9,19 @@ public class Evaluator {
 	private EvaluationTechnique technique;
 	private DataLoader dataLoader;
 	
-	Evaluator(EvaluationTechnique technique, DataMapper mapper, int inputCols, int inputs, String dataFile, boolean inputsReversed, int trainingSetSize, double targetTrainingError, double selectionError) {
+	Evaluator(EvaluationTechnique technique, DataMapper mapper, int inputCols, int inputs, String dataFile, boolean inputsReversed, int nFolds, double targetTrainingError, double selectionError, int fold) {
 		this.setTechnique(technique);
-		dataLoader = new DataLoader(mapper,inputCols,inputs,trainingSetSize,inputsReversed);
+		dataLoader = new DataLoader(mapper,inputCols,inputs,inputsReversed,nFolds);
 		dataLoader.readData(dataFile);
-		this.technique.init(dataLoader);
+		this.technique.init(dataLoader,fold);
 		this.technique.setParams(targetTrainingError, selectionError);
 		this.technique.train(false);
 	}
 	
-	public Evaluator(EvaluationTechnique technique, DataLoader dataLoader, double targetTrainingError, double selectionError, boolean verbose) {
+	public Evaluator(EvaluationTechnique technique, DataLoader dataLoader, double targetTrainingError, double selectionError, boolean verbose, int fold) {
 		this.setTechnique(technique);
 		this.dataLoader = dataLoader;
-		this.technique.init(dataLoader);
+		this.technique.init(dataLoader,fold);
 		this.technique.setParams(targetTrainingError, selectionError);
 		this.technique.train(verbose);
 	}
@@ -53,10 +53,10 @@ public class Evaluator {
 		}
 	}
 	
-	public void getResults (Labeler prefix, double te) {
+	public void getResults (Labeler prefix, double te, int fold) {
 		while(technique.hasStepsLeft()) {
-			makeLine("train",te,prefix,this.dataLoader.getTrainingSet());
-			makeLine("test",te,prefix,this.dataLoader.getTestSet());
+			makeLine("train",te,prefix,this.dataLoader.getTrainingSet(fold));
+			makeLine("test",te,prefix,this.dataLoader.getTestSet(fold));
 			technique.step(false);
 		}
 	}

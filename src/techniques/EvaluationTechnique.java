@@ -84,7 +84,7 @@ public abstract class EvaluationTechnique {
 		return ensemble.getMember(0).getError(selectionSet);
 	}	
 	
-	public abstract void init(DataLoader dataLoader);
+	public abstract void init(DataLoader dataLoader, int fold);
 	
 	public String getLabel() {
 		return label.get(sizes.get(currentSizeIndex));
