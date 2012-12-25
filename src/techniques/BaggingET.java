@@ -24,7 +24,6 @@ public class BaggingET extends EvaluationTechnique {
 		this.aggregator = aggregator;
 	}
 
-
 	@Override
 	public void init(DataLoader dataLoader,int fold) {
 		ensemble = new Bagging(sizes.get(currentSizeIndex),dataSetSize,mlMethod,trainFactory,aggregator);
@@ -59,5 +58,5 @@ public class BaggingET extends EvaluationTechnique {
 			this.hasStepsLeft = false;
 		}
 	}
-	
+
 }
