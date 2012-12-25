@@ -1,0 +1,5 @@
+dataset,generation,aggregation,sizes,simulations,
+ionosphere,bagging,averaging,1-100,1000
+ionosphere,dng-10:30:100,averaging,1-100,1000
+ionosphere,boosting,averaging,1-100,1000
+ionosphere,stacking,metaclassifier-mlp:30:rprop,1-100,1000

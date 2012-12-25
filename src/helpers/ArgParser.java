@@ -54,12 +54,6 @@ public class ArgParser {
 		METACLASSIFIER,
 	}
 	
-	public enum Problems {
-		UCI_HABERMAN,
-		UCI_LETTERRECOGNITION,
-		STATLOG_LANDSAT,
-	}
-	
 	public enum Techniques {
 		BAGGING,
 		ADABOOST,
