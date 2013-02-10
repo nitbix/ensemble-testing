@@ -68,6 +68,7 @@ public class Test {
 			agg = ArgParser.AGG(args[9]);
 			verbose = Boolean.parseBoolean(args[10]);
 			selectionError = ArgParser.doubleSingle(args[11]);
+			if (nFolds < 2) {throw new BadArgument()};
 		} catch (BadArgument e) {
 			help();
 		}
@@ -84,6 +85,7 @@ public class Test {
 
 	private static void help() {
 		System.err.println("Usage: Test <technique> <problem> <sizes> <dataSetSizes> <trainingErrors> <nFolds> <activationThreshold> <training> <membertypes> <aggregator> <verbose> <selectionError>");
+		System.err.println("nFolds must be > 1");
 		System.exit(2);
 	}
 }

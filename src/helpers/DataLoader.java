@@ -109,7 +109,7 @@ public class DataLoader {
 	public BasicNeuralDataSet getTrainingSet(int fold) {
 		BasicNeuralDataSet trainingSet = new BasicNeuralDataSet();
 		for (int i = 0; i < nFolds; i++)
-			if (i != fold) {
+			if ((i != fold) && (nFolds > 1)){
 				for (MLDataPair k : folds.get(i)) {
 					trainingSet.add(k);
 				}
