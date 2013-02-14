@@ -68,7 +68,7 @@ public class Test {
 			agg = ArgParser.AGG(args[9]);
 			verbose = Boolean.parseBoolean(args[10]);
 			selectionError = ArgParser.doubleSingle(args[11]);
-			if (nFolds < 2) {throw new BadArgument()};
+			if (nFolds < 2) {throw new BadArgument();};
 		} catch (BadArgument e) {
 			help();
 		}
