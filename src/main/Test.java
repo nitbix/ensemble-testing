@@ -12,6 +12,9 @@ import helpers.DataLoader;
 import helpers.Evaluator;
 import helpers.Labeler;
 import helpers.ProblemDescription;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Test {
 
@@ -31,7 +34,11 @@ public class Test {
 	private static boolean verbose;
 	private static double selectionError;
 	
-	public static void loop() {
+	private static Connection sqlConnection;
+	
+	public static void loop() throws SQLException
+	{
+		Statement statement = sqlConnection.createStatement();
 		for(Integer dataSetSize : dataSetSizes)
 		for (int fold=0; fold < nFolds; fold++)
 		for(EnsembleMLMethodFactory mlf: mlfs)
@@ -39,23 +46,29 @@ public class Test {
 
 			EvaluationTechnique et = null;
 			Labeler fullLabel = new Labeler(problem.getLabel(),etType,etf.getLabel(),mlf.getLabel(),agg.getLabel(),dataSetSize);
-			try {
+			try
+			{
 				et = ArgParser.technique(etType,sizes,dataSetSize,fullLabel,mlf,etf,agg);
-			} catch (BadArgument e) {
+			} catch (BadArgument e)
+			{
 				help();
 			}
-			for (double te: trainingErrors) {
+			for (double te: trainingErrors)
+			{
 				Evaluator ev = new Evaluator(et, dataLoader, te, selectionError, verbose,fold);
 				ev.getResults(fullLabel,te,fold);
 			}
 		}
 	}
 	
-	public static void main(String[] args) {
-		if (args.length != 12) {
+	public static void main(String[] args)
+	{
+		if (args.length != 12) 
+		{
 			help();
 		} 
-		try {
+		try 
+		{
 			etType = args[0];
 			problem = ArgParser.problem(args[1]);
 			sizes = ArgParser.intList(args[2]);
@@ -69,21 +82,50 @@ public class Test {
 			verbose = Boolean.parseBoolean(args[10]);
 			selectionError = ArgParser.doubleSingle(args[11]);
 			if (nFolds < 2) {throw new BadArgument();};
-		} catch (BadArgument e) {
+		} catch (BadArgument e) 
+		{
 			help();
 		}
 		
-		try {
+		try 
+		{
 			dataLoader = problem.getDataLoader(activationThreshold,nFolds);
-		} catch (helpers.ProblemDescriptionLoader.BadArgument e) {
+		} catch (helpers.ProblemDescriptionLoader.BadArgument e) 
+		{
 			System.err.println("Could not create dataLoader - perhaps the mapper_type property is wrong");
 			e.printStackTrace();
 		}
-		loop();
+		try 
+		{
+			Class.forName("org.sqlite.JDBC");
+		} catch (ClassNotFoundException e) 
+		{
+			System.err.println("Could not find SQLite JDBC driver!");
+		}
+		try
+		{
+			loop();
+		} catch(SQLException e)
+	    {
+	      System.err.println(e.getMessage());
+	    }
+	    finally
+	    {
+	      try
+	      {
+	        if(sqlConnection != null)
+	          sqlConnection.close();
+	      }
+	      catch(SQLException e)
+	      {
+	        System.err.println(e);
+	      }
+	    }
 		System.exit(0);
 	}
 
-	private static void help() {
+	private static void help()
+	{
 		System.err.println("Usage: Test <technique> <problem> <sizes> <dataSetSizes> <trainingErrors> <nFolds> <activationThreshold> <training> <membertypes> <aggregator> <verbose> <selectionError>");
 		System.err.println("nFolds must be > 1");
 		System.exit(2);
