@@ -9,13 +9,13 @@ import org.encog.ensemble.bagging.Bagging;
 import org.encog.ml.data.MLData;
 
 import helpers.DataLoader;
-import helpers.Labeler;
+import helpers.ChainParams;
 
 public class BaggingET extends EvaluationTechnique {
 
 	private int dataSetSize;
 
-	public BaggingET(List<Integer> sizes, int dataSetSize, Labeler fullLabel, EnsembleMLMethodFactory mlMethod, EnsembleTrainFactory trainFactory, EnsembleAggregator aggregator) {
+	public BaggingET(List<Integer> sizes, int dataSetSize, ChainParams fullLabel, EnsembleMLMethodFactory mlMethod, EnsembleTrainFactory trainFactory, EnsembleAggregator aggregator) {
 		this.sizes = sizes;
 		this.dataSetSize = dataSetSize;
 		this.label = fullLabel;

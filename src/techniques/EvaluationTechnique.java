@@ -2,7 +2,7 @@ package techniques;
 
 import helpers.DataLoader;
 import helpers.DataMapper;
-import helpers.Labeler;
+import helpers.ChainParams;
 import helpers.PerfResults;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public abstract class EvaluationTechnique {
 	protected EnsembleTrainFactory trainFactory;
 	protected EnsembleAggregator aggregator;
 	protected Ensemble ensemble;
-	protected Labeler label;
+	protected ChainParams label;
 	protected List<Integer> sizes;
 	protected int currentSizeIndex = 0;
 	protected double trainToError;

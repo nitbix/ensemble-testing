@@ -1,5 +1,9 @@
 package helpers;
 
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Calendar;
+
 import org.encog.neural.data.basic.BasicNeuralDataSet;
 
 import techniques.EvaluationTechnique;
@@ -26,37 +30,50 @@ public class Evaluator {
 		this.technique.train(verbose);
 	}
 	
-	public void makeLine(String type, double te, Labeler prefix, BasicNeuralDataSet dataSet) {
+	public void makeLine(boolean isTest, double training_error, ChainParams chainPars, BasicNeuralDataSet dataSet, Statement sqlStatement, long chainId) throws SQLException {
 		DataMapper dataMapper = dataLoader.getMapper();
 		PerfResults perf = this.technique.testPerformance(dataSet, dataMapper,false);
-		System.out.println(type + "," + prefix.get(technique.getCurrentSize()) + "," + te + "," +
-				(this.technique.getMisclassification(dataSet,dataMapper)) + "," +
-				(perf.getAccuracy(PerfResults.AveragingMethod.MICRO)) + "," +
-				(perf.getPrecision(PerfResults.AveragingMethod.MICRO)) + "," +
-				(perf.getRecall(PerfResults.AveragingMethod.MICRO)) + "," +
-				(perf.FScore(1.0, PerfResults.AveragingMethod.MICRO)) + "," +
-				(perf.getAccuracy(PerfResults.AveragingMethod.MACRO)) + "," +
-				(perf.getPrecision(PerfResults.AveragingMethod.MACRO)) + "," +
-				(perf.getRecall(PerfResults.AveragingMethod.MACRO)) + "," +
-				(perf.FScore(1.0, PerfResults.AveragingMethod.MACRO)) + "," +
-				(this.technique.getMisclassificationCount(dataSet,dataMapper))
+		Calendar cal = Calendar.getInstance();
+		long runId = cal.getTimeInMillis();
+		sqlStatement.executeUpdate("INSERT INTO runs SET chain = " + chainId +
+				", ml_technique = " + chainPars.getMLF() +
+				", training_error = " + training_error +
+				", dataset_size = " +
+				", misclassified_samples = " + this.technique.getMisclassificationCount(dataSet,dataMapper) +
+				", is_test = " + Boolean.toString(isTest) +
+				", macro_accuracy = " + perf.getAccuracy(PerfResults.AveragingMethod.MACRO) +
+				", macro_precision = " + perf.getPrecision(PerfResults.AveragingMethod.MACRO) +
+				", macro_recall = " + perf.getRecall(PerfResults.AveragingMethod.MACRO) +
+				", macro_f1 = " + perf.FScore(1.0, PerfResults.AveragingMethod.MACRO) +
+				", micro_accuracy = " + perf.getAccuracy(PerfResults.AveragingMethod.MICRO) +
+				", micro_precision = " + perf.getPrecision(PerfResults.AveragingMethod.MICRO) +
+				", micro_recall = " + perf.getRecall(PerfResults.AveragingMethod.MICRO) +
+				", micro_f1 = " + perf.FScore(1.0, PerfResults.AveragingMethod.MICRO) +
+				", misclassification = " + this.technique.getMisclassification(dataSet,dataMapper) +
+				", ensemble_size = " + technique.getCurrentSize() +
+				", id = " + runId +
+				", chain = " + chainId +
+				";"
 		);
 		int outputs = dataSet.getIdealSize();
 		for (int output = 0; output < outputs; output ++)
 		{
-			System.out.println(prefix.get(technique.getCurrentSize()) + "," + type + "," + "for-class-" + dataMapper.getClassLabel(output) + 
-				"," + perf.getTP(output) + 
-				"," + perf.getTN(output) +
-				"," + perf.getFP(output) +
-				"," + perf.getFN(output) 
+			sqlStatement.executeUpdate("INSERT INTO class_details SET run = " + runId +
+					", class = " + dataMapper.getClassLabel(output) +
+					", is_test = " + Boolean.toString(isTest) +
+					", tp = " + perf.getTP(output) + 
+					", tn = " + perf.getTN(output) +
+					", fp = " + perf.getFP(output) +
+					", fn = " + perf.getFN(output) +
+					";"
 			);
 		}
 	}
 	
-	public void getResults (Labeler prefix, double te, int fold) {
+	public void getResults (ChainParams prefix, double te, int fold, Statement sqlStatement, long chainId) throws SQLException {
 		while(technique.hasStepsLeft()) {
-			makeLine("train",te,prefix,this.dataLoader.getTrainingSet(fold));
-			makeLine("test",te,prefix,this.dataLoader.getTestSet(fold));
+			makeLine(false,te,prefix,this.dataLoader.getTrainingSet(fold), sqlStatement, chainId);
+			makeLine(true,te,prefix,this.dataLoader.getTestSet(fold), sqlStatement, chainId);
 			technique.step(false);
 		}
 	}

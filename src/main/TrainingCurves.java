@@ -14,7 +14,7 @@ import helpers.ArgParser.BadArgument;
 import helpers.DataLoader;
 import helpers.DataMapper;
 import helpers.Evaluator;
-import helpers.Labeler;
+import helpers.ChainParams;
 import helpers.ProblemDescription;
 
 public class TrainingCurves {
@@ -36,7 +36,7 @@ public class TrainingCurves {
 		one.add(1);
 		for(EnsembleMLMethodFactory mlf: mlfs)
 		{
-			Labeler labeler = new Labeler("", "", "", "", "", 0);
+			ChainParams labeler = new ChainParams("", "", "", "", "", 0);
 			EvaluationTechnique et = null;
 			try {
 				et = ArgParser.technique(etType,one,trainingSetSize,labeler,mlf,etf,agg);

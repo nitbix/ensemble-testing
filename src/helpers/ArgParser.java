@@ -148,7 +148,7 @@ public class ArgParser {
 	}
 
 	public static EvaluationTechnique technique(String etType, List<Integer> sizes,
-			Integer dataSetSize, Labeler fullLabel, EnsembleMLMethodFactory mlf,
+			Integer dataSetSize, ChainParams fullLabel, EnsembleMLMethodFactory mlf,
 			EnsembleTrainFactory etf, EnsembleAggregator agg) throws BadArgument {
 		switch (Techniques.valueOf(etType.toUpperCase())) {
 			case BAGGING: return new BaggingET(sizes,dataSetSize,fullLabel,mlf,etf,agg);

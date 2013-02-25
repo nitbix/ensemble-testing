@@ -1,5 +1,8 @@
 package main;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import org.encog.ensemble.EnsembleAggregator;
@@ -10,7 +13,7 @@ import helpers.ArgParser;
 import helpers.ArgParser.BadArgument;
 import helpers.DataLoader;
 import helpers.Evaluator;
-import helpers.Labeler;
+import helpers.ChainParams;
 import helpers.ProblemDescription;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -38,14 +41,27 @@ public class Test {
 	
 	public static void loop() throws SQLException
 	{
+		DateFormat sqlDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Calendar cal = Calendar.getInstance();
 		Statement statement = sqlConnection.createStatement();
-		for(Integer dataSetSize : dataSetSizes)
+		long chainId = cal.getTimeInMillis();
+		statement.setQueryTimeout(30);
+		statement.executeUpdate("INSERT INTO chains SET folds = " + nFolds + 
+				                ", aggregation = " + agg.getLabel() + 
+				                ", problem = " + problem.getLabel() +
+				                ", techinque = " + etf.getLabel() +
+				                ", start = " + sqlDateFormat.format(cal.getTime()) +
+				                ", ensemble_training = " + etf.getLabel() +
+				                ", id = " + chainId + 
+				                ", invalidated = TRUE" +
+				                ";");
+		for (Integer dataSetSize : dataSetSizes)
 		for (int fold=0; fold < nFolds; fold++)
-		for(EnsembleMLMethodFactory mlf: mlfs)
+		for (EnsembleMLMethodFactory mlf: mlfs)
 		{
 
 			EvaluationTechnique et = null;
-			Labeler fullLabel = new Labeler(problem.getLabel(),etType,etf.getLabel(),mlf.getLabel(),agg.getLabel(),dataSetSize);
+			ChainParams fullLabel = new ChainParams(problem.getLabel(),etType,etf.getLabel(),mlf.getLabel(),agg.getLabel(),dataSetSize);
 			try
 			{
 				et = ArgParser.technique(etType,sizes,dataSetSize,fullLabel,mlf,etf,agg);
@@ -56,9 +72,10 @@ public class Test {
 			for (double te: trainingErrors)
 			{
 				Evaluator ev = new Evaluator(et, dataLoader, te, selectionError, verbose,fold);
-				ev.getResults(fullLabel,te,fold);
+				ev.getResults(fullLabel,te,fold,statement,chainId);
 			}
 		}
+		statement.executeUpdate("UPDATE chains SET invalidated = false, end = " + sqlDateFormat.format(cal.getTime()) + " WHERE id = " + chainId);
 	}
 	
 	public static void main(String[] args)

@@ -8,13 +8,13 @@ import org.encog.ensemble.EnsembleTrainFactory;
 import org.encog.ensemble.stacking.Stacking;
 
 import helpers.DataLoader;
-import helpers.Labeler;
+import helpers.ChainParams;
 
 public class StackingET extends EvaluationTechnique {
 
 	private int dataSetSize;
 
-	public StackingET(List<Integer> sizes, int dataSetSize, Labeler fullLabel, EnsembleMLMethodFactory mlMethod, EnsembleTrainFactory trainFactory, EnsembleAggregator aggregator) {
+	public StackingET(List<Integer> sizes, int dataSetSize, ChainParams fullLabel, EnsembleMLMethodFactory mlMethod, EnsembleTrainFactory trainFactory, EnsembleAggregator aggregator) {
 		this.sizes = sizes;
 		this.dataSetSize = dataSetSize;
 		this.label = fullLabel;

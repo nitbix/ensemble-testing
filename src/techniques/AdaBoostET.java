@@ -9,13 +9,13 @@ import org.encog.ensemble.adaboost.AdaBoost;
 import org.encog.ml.data.MLData;
 
 import helpers.DataLoader;
-import helpers.Labeler;
+import helpers.ChainParams;
 
 public class AdaBoostET extends EvaluationTechnique {
 
 	private int dataSetSize;
 
-	public AdaBoostET(List<Integer> sizes, int dataSetSize, Labeler fullLabel, EnsembleMLMethodFactory mlMethod, EnsembleTrainFactory trainFactory, EnsembleAggregator aggregator) {
+	public AdaBoostET(List<Integer> sizes, int dataSetSize, ChainParams fullLabel, EnsembleMLMethodFactory mlMethod, EnsembleTrainFactory trainFactory, EnsembleAggregator aggregator) {
 		this.sizes = sizes;
 		this.dataSetSize = dataSetSize;
 		this.label = fullLabel;
