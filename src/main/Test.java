@@ -16,6 +16,7 @@ import helpers.Evaluator;
 import helpers.ChainParams;
 import helpers.ProblemDescription;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -86,6 +87,7 @@ public class Test {
 		} 
 		try 
 		{
+			//TODO: a lot of these should be in a properties file
 			etType = args[0];
 			problem = ArgParser.problem(args[1]);
 			sizes = ArgParser.intList(args[2]);
@@ -121,6 +123,8 @@ public class Test {
 		}
 		try
 		{
+			//TODO: this shold be in a property somewhere
+			sqlConnection = DriverManager.getConnection("jdbc:sqlite:v3-20130225.db");
 			loop();
 		} catch(SQLException e)
 	    {
