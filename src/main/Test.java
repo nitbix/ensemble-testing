@@ -50,7 +50,7 @@ public class Test {
 				                ", aggregation = " + agg.getLabel() + 
 				                ", problem = " + problem.getLabel() +
 				                ", techinque = " + etf.getLabel() +
-				                ", start = " + sqlDateFormat.format(cal.getTime()) +
+				                ", start = '" + sqlDateFormat.format(cal.getTime()) + "' " +
 				                ", ensemble_training = " + etf.getLabel() +
 				                ", id = " + chainId + 
 				                ", invalidated = TRUE" +
@@ -75,7 +75,7 @@ public class Test {
 				ev.getResults(fullLabel,te,fold,statement,chainId);
 			}
 		}
-		statement.executeUpdate("UPDATE chains SET invalidated = false, end = " + sqlDateFormat.format(cal.getTime()) + " WHERE id = " + chainId);
+		statement.executeUpdate("UPDATE chains SET invalidated = false, end = '" + sqlDateFormat.format(cal.getTime()) + "' WHERE id = " + chainId);
 	}
 	
 	public static void main(String[] args)
