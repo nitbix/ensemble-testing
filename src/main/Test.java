@@ -47,14 +47,14 @@ public class Test {
 		Statement statement = sqlConnection.createStatement();
 		long chainId = cal.getTimeInMillis();
 		statement.setQueryTimeout(30);
-		statement.executeUpdate("INSERT INTO chains SET folds = " + nFolds + 
-				                ", aggregation = " + agg.getLabel() + 
-				                ", problem = " + problem.getLabel() +
-				                ", techinque = " + etf.getLabel() +
-				                ", start = '" + sqlDateFormat.format(cal.getTime()) + "' " +
-				                ", ensemble_training = " + etf.getLabel() +
-				                ", id = " + chainId + 
-				                ", invalidated = TRUE" +
+		statement.executeUpdate("INSERT INTO chains (folds,aggregation,problem,technique,start,ensemble_training,id,invalidated) VALUES (" + nFolds + 
+				                ", " + agg.getLabel() + 
+				                ", " + problem.getLabel() +
+				                ", " + etf.getLabel() +
+				                ", '" + sqlDateFormat.format(cal.getTime()) + "' " +
+				                ", " + etf.getLabel() +
+				                ", " + chainId + 
+				                ", TRUE)" +
 				                ";");
 		for (Integer dataSetSize : dataSetSizes)
 		for (int fold=0; fold < nFolds; fold++)
