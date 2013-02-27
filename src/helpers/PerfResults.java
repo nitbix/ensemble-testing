@@ -36,7 +36,12 @@ public class PerfResults {
 	}
 	
 	public double FScore(double beta, AveragingMethod avg) {
-		return ((1 + beta * beta) * getPrecision(avg) * getRecall(avg)) / ( beta * beta * getPrecision(avg) + getRecall(avg));
+		double prec = getPrecision(avg);
+		double recl = getRecall(avg);
+		if((prec + recl) == 0) 
+			return 0;
+		else
+			return ((1.0 + beta * beta) * prec * recl) / ( beta * beta * prec + recl);
 	}
 
 	public double getPrecision(AveragingMethod avg) {
@@ -53,7 +58,11 @@ public class PerfResults {
 				stp += tp[i];
 				sfp += fp[i];
 			}
-			return stp / (stp + sfp);
+			if((stp + sfp) < 0.01) {
+				return 0;
+			} else {
+				return stp / (stp + sfp);
+			}
 		}
 	}
 
@@ -71,7 +80,11 @@ public class PerfResults {
 				stp += tp[i];
 				sfn += fn[i];
 			}
-			return stp / (stp + sfn);
+			if((stp + sfn) < 0.01) {
+				return 0;
+			} else {
+				return stp / (stp + sfn);
+			}
 		}
 	}
 	

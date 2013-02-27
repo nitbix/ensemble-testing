@@ -48,13 +48,13 @@ public class Test {
 		long chainId = cal.getTimeInMillis();
 		statement.setQueryTimeout(30);
 		statement.executeUpdate("INSERT INTO chains (folds,aggregation,problem,technique,start,ensemble_training,id,invalidated) VALUES (" + nFolds + 
-				                ", " + agg.getLabel() + 
-				                ", " + problem.getLabel() +
-				                ", " + etf.getLabel() +
+				                ", '" + agg.getLabel() + "'" + 
+				                ", '" + problem.getLabel() + "'" +
+				                ", '" + etf.getLabel() + "'" +
 				                ", '" + sqlDateFormat.format(cal.getTime()) + "' " +
-				                ", " + etf.getLabel() +
+				                ", '" + etf.getLabel() + "'" +
 				                ", " + chainId + 
-				                ", TRUE)" +
+				                ", 1)" +
 				                ";");
 		for (Integer dataSetSize : dataSetSizes)
 		for (int fold=0; fold < nFolds; fold++)
@@ -76,7 +76,7 @@ public class Test {
 				ev.getResults(fullLabel,te,fold,statement,chainId);
 			}
 		}
-		statement.executeUpdate("UPDATE chains SET invalidated = false, end = '" + sqlDateFormat.format(cal.getTime()) + "' WHERE id = " + chainId);
+		statement.executeUpdate("UPDATE chains SET invalidated = 0, end = '" + sqlDateFormat.format(cal.getTime()) + "' WHERE id = " + chainId);
 	}
 	
 	public static void main(String[] args)
@@ -129,6 +129,7 @@ public class Test {
 		} catch(SQLException e)
 	    {
 	      System.err.println(e.getMessage());
+	      e.printStackTrace();
 	    }
 	    finally
 	    {

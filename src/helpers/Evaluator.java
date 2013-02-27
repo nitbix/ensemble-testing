@@ -36,13 +36,13 @@ public class Evaluator {
 		Calendar cal = Calendar.getInstance();
 		long runId = cal.getTimeInMillis();
 		sqlStatement.executeUpdate("INSERT INTO runs (chain, ml_technique, training_error, dataset_size, misclassified_samples," +
-				"is_test, macro_accuracy, macro_precision, macro_recall, macro_f1, micro_accuracy, micro_precision" +
-				"micro_recall, micro_f1, misclassification, ensemble_size, id, chain) VALUES (" + chainId +
-				", " + chainPars.getMLF() +
+				"is_test, macro_accuracy, macro_precision, macro_recall, macro_f1, micro_accuracy, micro_precision," +
+				"micro_recall, micro_f1, misclassification, ensemble_size, id) VALUES (" + chainId +
+				", '" + chainPars.getMLF() + "'" +
 				", " + training_error +
 				", " + this.technique.getTrainingSet().size() +
 				", " + this.technique.getMisclassificationCount(dataSet,dataMapper) +
-				", " + Boolean.toString(isTest) +
+				", " + (isTest ? 1 : 0) +
 				", " + perf.getAccuracy(PerfResults.AveragingMethod.MACRO) +
 				", " + perf.getPrecision(PerfResults.AveragingMethod.MACRO) +
 				", " + perf.getRecall(PerfResults.AveragingMethod.MACRO) +
@@ -54,7 +54,6 @@ public class Evaluator {
 				", " + this.technique.getMisclassification(dataSet,dataMapper) +
 				", " + technique.getCurrentSize() +
 				", " + runId +
-				", " + chainId +
 				");"
 		);
 		int outputs = dataSet.getIdealSize();
@@ -62,7 +61,7 @@ public class Evaluator {
 		{
 			sqlStatement.executeUpdate("INSERT INTO class_details (run, class, is_test, tp, tn, fp, fn) VALUES (" + runId +
 					", " + dataMapper.getClassLabel(output) +
-					", " + Boolean.toString(isTest) +
+					", " + (isTest ? 1 : 0) +
 					", " + perf.getTP(output) + 
 					", " + perf.getTN(output) +
 					", " + perf.getFP(output) +
