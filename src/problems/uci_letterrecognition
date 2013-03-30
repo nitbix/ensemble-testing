@@ -1,5 +1,5 @@
 #UCI Letter Recognition problem
-label="letterrecognition"
+label=letterrecognition
 outputs=26
 inputs=16
 read_inputs=1
