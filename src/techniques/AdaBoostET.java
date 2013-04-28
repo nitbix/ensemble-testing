@@ -44,13 +44,16 @@ public class AdaBoostET extends EvaluationTechnique {
 
 	@Override
 	public double trainError() {
-		return 0;
+		return ensemble.getMember(0).getTraining().getError();
 	}
 
 	@Override
 	public void step(boolean verbose) {
-		// TODO Auto-generated method stub
-		
+		if (currentSizeIndex < sizes.size() -1) {
+			this.train(false);
+		} else {
+			this.hasStepsLeft = false;
+		}
 	}
 	
 }
