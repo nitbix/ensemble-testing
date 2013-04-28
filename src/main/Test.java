@@ -45,7 +45,7 @@ public class Test {
 		DateFormat sqlDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Calendar cal = Calendar.getInstance();
 		Statement statement = sqlConnection.createStatement();
-		long chainId = cal.getTimeInMillis();
+		long chainId = cal.getTimeInMillis() * 1000 + (int) Math.random() * 1000;
 		statement.setQueryTimeout(30);
 		statement.executeUpdate("INSERT INTO chains (folds,aggregation,problem,technique,start,ensemble_training,id,invalidated) VALUES (" + nFolds + 
 				                ", '" + agg.getLabel() + "'" + 
