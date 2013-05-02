@@ -116,21 +116,31 @@ public class Test {
 		}
 		try 
 		{
-			Class.forName("org.sqlite.JDBC");
+			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) 
 		{
 			System.err.println("Could not find SQLite JDBC driver!");
 		}
 		try
 		{
-			//TODO: this shold be in a property somewhere
-			sqlConnection = DriverManager.getConnection("jdbc:sqlite:v3-20130225.db");
+            Properties prop = new Properties();
+            prop.load(new FileInputStream("config.properties");
+            string dbhost = prop.getProperty("dbhost");
+            string dbuser = prop.getProperty("dbuser");
+            string dbpass = prop.getProperty("dbpass");
+            string dbport = prop.getProperty("dbport");
+            string dbname = prop.getProperty("dbname");
+            string dbconn = "jdbc:mysql://" + dbhost + ":" dbport + "/" + dbname; 
+			sqlConnection = DriverManager.getConnection(dbconn, dbuser, dbpass);
 			loop();
 		} catch(SQLException e)
 	    {
 	      System.err.println(e.getMessage());
 	      e.printStackTrace();
-	    }
+	    } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
 	    finally
 	    {
 	      try
