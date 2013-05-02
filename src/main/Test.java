@@ -123,7 +123,7 @@ public class Test {
 		}
 		try
 		{
-			//TODO: this shold be in a property somewhere
+			//TODO: this should be in a property somewhere
 			sqlConnection = DriverManager.getConnection("jdbc:sqlite:v3-20130225.db");
 			loop();
 		} catch(SQLException e)
