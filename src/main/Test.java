@@ -103,6 +103,8 @@ public class Test {
 		{
 			System.err.println("Could not create dataLoader - perhaps the mapper_type property is wrong");
 			e.printStackTrace();
+		} catch (BadArgument e) {
+			help();
 		}
 		try 
 		{
