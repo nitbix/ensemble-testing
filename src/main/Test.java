@@ -111,7 +111,7 @@ public class Test {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) 
 		{
-			System.err.println("Could not find SQLite JDBC driver!");
+			System.err.println("Could not find MySQL JDBC driver!");
 		}
 		try
 		{
