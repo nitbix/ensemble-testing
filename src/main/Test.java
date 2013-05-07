@@ -99,6 +99,13 @@ public class Test {
 			trainingErrors = ArgParser.doubleList(args[4]);
 			nFolds = ArgParser.intSingle(args[5]);
 			dataLoader = problem.getDataLoader(activationThreshold,nFolds);
+			activationThreshold = ArgParser.doubleSingle(args[6]);
+			etf = ArgParser.ETF(args[7]);
+			mlfs = ArgParser.MLFS(args[8]);
+			agg = ArgParser.AGG(args[9]);
+			verbose = Boolean.parseBoolean(args[10]);
+			selectionError = ArgParser.doubleSingle(args[11]);
+			if (nFolds < 2) {throw new BadArgument();};
 		} catch (helpers.ProblemDescriptionLoader.BadArgument e) 
 		{
 			System.err.println("Could not create dataLoader - perhaps the mapper_type property is wrong");
