@@ -1,5 +1,6 @@
 package helpers;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Calendar;
@@ -33,7 +34,6 @@ public class Evaluator {
 	public void makeLine(boolean isTest, double training_error, ChainParams chainPars, BasicNeuralDataSet dataSet, Statement sqlStatement, long chainId) throws SQLException {
 		DataMapper dataMapper = dataLoader.getMapper();
 		PerfResults perf = this.technique.testPerformance(dataSet, dataMapper,false);
-		Calendar cal = Calendar.getInstance();
 		sqlStatement.executeUpdate("INSERT INTO runs (chain, ml_technique, training_error, dataset_size, misclassified_samples," +
 				"is_test, macro_accuracy, macro_precision, macro_recall, macro_f1, micro_accuracy, micro_precision," +
 				"micro_recall, micro_f1, misclassification, ensemble_size) VALUES (" + chainId +
@@ -55,7 +55,12 @@ public class Evaluator {
 				");"
 				, Statement.RETURN_GENERATED_KEYS
 		);
-		long runId = sqlStatement.getGeneratedKeys().getLong(1);
+		ResultSet rs = sqlStatement.getGeneratedKeys();
+		long runId = 0;
+		if(rs.next()) {
+			runId = rs.getLong(1);
+		}
+		rs.close();
 		int outputs = dataSet.getIdealSize();
 		for (int output = 0; output < outputs; output ++)
 		{

@@ -20,6 +20,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
@@ -58,7 +59,12 @@ public class Test {
 				                ", '" + etf.getLabel() + "'" +
 				                ", 1)" +
 				                ";", Statement.RETURN_GENERATED_KEYS);
-		long chainId = statement.getGeneratedKeys().getLong(1);
+		ResultSet rs = statement.getGeneratedKeys();
+		long chainId = 0;
+		if(rs.next()) {
+			chainId = rs.getLong(1);
+		}
+		rs.close();
 		for (Integer dataSetSize : dataSetSizes)
 		for (int fold=0; fold < nFolds; fold++)
 		for (EnsembleMLMethodFactory mlf: mlfs)
