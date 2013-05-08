@@ -49,17 +49,16 @@ public class Test {
 		DateFormat sqlDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Calendar cal = Calendar.getInstance();
 		Statement statement = sqlConnection.createStatement();
-		long chainId = cal.getTimeInMillis() * 1000 + (int) Math.random() * 1000;
 		statement.setQueryTimeout(30);
-		statement.executeUpdate("INSERT INTO chains (folds,aggregation,problem,technique,start,ensemble_training,id,invalidated) VALUES (" + nFolds + 
+		statement.executeUpdate("INSERT INTO chains (folds,aggregation,problem,technique,start,ensemble_training,invalidated) VALUES (" + nFolds + 
 				                ", '" + agg.getLabel() + "'" + 
 				                ", '" + problem.getLabel() + "'" +
 				                ", '" + etType + "'" +
 				                ", '" + sqlDateFormat.format(cal.getTime()) + "' " +
 				                ", '" + etf.getLabel() + "'" +
-				                ", " + chainId + 
 				                ", 1)" +
-				                ";");
+				                ";", Statement.RETURN_GENERATED_KEYS);
+		long chainId = statement.getGeneratedKeys().getLong(1);
 		for (Integer dataSetSize : dataSetSizes)
 		for (int fold=0; fold < nFolds; fold++)
 		for (EnsembleMLMethodFactory mlf: mlfs)

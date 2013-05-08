@@ -34,10 +34,9 @@ public class Evaluator {
 		DataMapper dataMapper = dataLoader.getMapper();
 		PerfResults perf = this.technique.testPerformance(dataSet, dataMapper,false);
 		Calendar cal = Calendar.getInstance();
-		long runId = cal.getTimeInMillis();
 		sqlStatement.executeUpdate("INSERT INTO runs (chain, ml_technique, training_error, dataset_size, misclassified_samples," +
 				"is_test, macro_accuracy, macro_precision, macro_recall, macro_f1, micro_accuracy, micro_precision," +
-				"micro_recall, micro_f1, misclassification, ensemble_size, id) VALUES (" + chainId +
+				"micro_recall, micro_f1, misclassification, ensemble_size) VALUES (" + chainId +
 				", '" + chainPars.getMLF() + "'" +
 				", " + training_error +
 				", " + this.technique.getTrainingSet().size() +
@@ -53,9 +52,10 @@ public class Evaluator {
 				", " + perf.FScore(1.0, PerfResults.AveragingMethod.MICRO) +
 				", " + this.technique.getMisclassification(dataSet,dataMapper) +
 				", " + technique.getCurrentSize() +
-				", " + runId +
 				");"
+				, Statement.RETURN_GENERATED_KEYS
 		);
+		long runId = sqlStatement.getGeneratedKeys().getLong(1);
 		int outputs = dataSet.getIdealSize();
 		for (int output = 0; output < outputs; output ++)
 		{
