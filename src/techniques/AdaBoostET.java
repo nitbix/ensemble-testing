@@ -14,6 +14,8 @@ import helpers.ChainParams;
 public class AdaBoostET extends EvaluationTechnique {
 
 	private int dataSetSize;
+	private DataLoader dataLoader;
+	private int fold;
 
 	public AdaBoostET(List<Integer> sizes, int dataSetSize, ChainParams fullLabel, EnsembleMLMethodFactory mlMethod, EnsembleTrainFactory trainFactory, EnsembleAggregator aggregator) {
 		this.sizes = sizes;
@@ -26,6 +28,12 @@ public class AdaBoostET extends EvaluationTechnique {
 
 	@Override
 	public void init(DataLoader dataLoader, int fold) {
+		this.dataLoader = dataLoader;
+		this.fold = fold;
+		this.restart();
+	}
+	
+	private void restart() {
 		ensemble = new AdaBoost(sizes.get(currentSizeIndex),dataSetSize,mlMethod,trainFactory,aggregator);
 		setTrainingSet(dataLoader.getTrainingSet(fold));
 		setSelectionSet(dataLoader.getTestSet(fold));
@@ -39,7 +47,7 @@ public class AdaBoostET extends EvaluationTechnique {
 
 	@Override
 	public void trainStep() {
-		System.err.println("Can't to this in Boosting");
+		System.err.println("Can't to this in AdaBoost");
 	}
 
 	@Override
@@ -49,7 +57,9 @@ public class AdaBoostET extends EvaluationTechnique {
 
 	@Override
 	public void step(boolean verbose) {
-		if (currentSizeIndex < sizes.size() -1) {
+		currentSizeIndex++;
+		if (currentSizeIndex < sizes.size()) {
+			this.restart();
 			this.train(false);
 		} else {
 			this.hasStepsLeft = false;
