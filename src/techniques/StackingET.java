@@ -5,7 +5,9 @@ import java.util.List;
 import org.encog.ensemble.EnsembleAggregator;
 import org.encog.ensemble.EnsembleMLMethodFactory;
 import org.encog.ensemble.EnsembleTrainFactory;
+import org.encog.ensemble.bagging.Bagging;
 import org.encog.ensemble.stacking.Stacking;
+import org.encog.ml.data.MLData;
 
 import helpers.DataLoader;
 import helpers.ChainParams;
@@ -29,12 +31,29 @@ public class StackingET extends EvaluationTechnique {
 		setTrainingSet(dataLoader.getTrainingSet(fold));
 		setSelectionSet(dataLoader.getTestSet(fold));
 		ensemble.setTrainingData(trainingSet);
+	}	
+	
+	@Override
+	public void trainStep() {
+		((Bagging) ensemble).trainStep();
 	}
 
 	@Override
+	public MLData compute(MLData input) {
+		return ensemble.compute(input);
+	}
+	
+	@Override
 	public void step(boolean verbose) {
-		// TODO Auto-generated method stub
-		
+		if (currentSizeIndex < sizes.size() -1) {
+			for (int i = sizes.get(currentSizeIndex++); i < sizes.get(currentSizeIndex); i++) {
+				ensemble.addNewMember();
+				ensemble.trainMember(i, trainToError, selectionError, selectionSet, verbose);
+			}
+			ensemble.getAggregator().train();
+		} else {
+			this.hasStepsLeft = false;
+		}
 	}
 	
 }

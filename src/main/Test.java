@@ -15,10 +15,15 @@ import helpers.DataLoader;
 import helpers.Evaluator;
 import helpers.ChainParams;
 import helpers.ProblemDescription;
+
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 
 public class Test {
 
@@ -45,17 +50,21 @@ public class Test {
 		DateFormat sqlDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Calendar cal = Calendar.getInstance();
 		Statement statement = sqlConnection.createStatement();
-		long chainId = cal.getTimeInMillis();
 		statement.setQueryTimeout(30);
-		statement.executeUpdate("INSERT INTO chains (folds,aggregation,problem,technique,start,ensemble_training,id,invalidated) VALUES (" + nFolds + 
+		statement.executeUpdate("INSERT INTO chains (folds,aggregation,problem,technique,start,ensemble_training,invalidated) VALUES (" + nFolds + 
 				                ", '" + agg.getLabel() + "'" + 
 				                ", '" + problem.getLabel() + "'" +
 				                ", '" + etType + "'" +
 				                ", '" + sqlDateFormat.format(cal.getTime()) + "' " +
 				                ", '" + etf.getLabel() + "'" +
-				                ", " + chainId + 
 				                ", 1)" +
-				                ";");
+				                ";", Statement.RETURN_GENERATED_KEYS);
+		ResultSet rs = statement.getGeneratedKeys();
+		long chainId = 0;
+		if(rs.next()) {
+			chainId = rs.getLong(1);
+		}
+		rs.close();
 		for (Integer dataSetSize : dataSetSizes)
 		for (int fold=0; fold < nFolds; fold++)
 		for (EnsembleMLMethodFactory mlf: mlfs)
@@ -94,6 +103,7 @@ public class Test {
 			dataSetSizes = ArgParser.intList(args[3]);
 			trainingErrors = ArgParser.doubleList(args[4]);
 			nFolds = ArgParser.intSingle(args[5]);
+			dataLoader = problem.getDataLoader(activationThreshold,nFolds);
 			activationThreshold = ArgParser.doubleSingle(args[6]);
 			etf = ArgParser.ETF(args[7]);
 			mlfs = ArgParser.MLFS(args[8]);
@@ -101,36 +111,40 @@ public class Test {
 			verbose = Boolean.parseBoolean(args[10]);
 			selectionError = ArgParser.doubleSingle(args[11]);
 			if (nFolds < 2) {throw new BadArgument();};
-		} catch (BadArgument e) 
-		{
-			help();
-		}
-		
-		try 
-		{
-			dataLoader = problem.getDataLoader(activationThreshold,nFolds);
 		} catch (helpers.ProblemDescriptionLoader.BadArgument e) 
 		{
 			System.err.println("Could not create dataLoader - perhaps the mapper_type property is wrong");
 			e.printStackTrace();
+		} catch (BadArgument e) {
+			help();
 		}
 		try 
 		{
-			Class.forName("org.sqlite.JDBC");
+			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) 
 		{
-			System.err.println("Could not find SQLite JDBC driver!");
+			System.err.println("Could not find MySQL JDBC driver!");
 		}
 		try
 		{
-			//TODO: this shold be in a property somewhere
-			sqlConnection = DriverManager.getConnection("jdbc:sqlite:v3-20130225.db");
+            Properties prop = new Properties();
+            prop.load(new FileInputStream("config.properties"));
+            String dbhost = prop.getProperty("dbhost");
+            String dbuser = prop.getProperty("dbuser");
+            String dbpass = prop.getProperty("dbpass");
+            String dbport = prop.getProperty("dbport");
+            String dbname = prop.getProperty("dbname");
+            String dbconn = "jdbc:mysql://" + dbhost + ":" + dbport + "/" + dbname;             
+			sqlConnection = DriverManager.getConnection(dbconn, dbuser, dbpass);
 			loop();
 		} catch(SQLException e)
 	    {
 	      System.err.println(e.getMessage());
 	      e.printStackTrace();
-	    }
+	    } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
 	    finally
 	    {
 	      try
