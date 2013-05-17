@@ -6,6 +6,7 @@ import org.encog.ensemble.EnsembleAggregator;
 import org.encog.ensemble.EnsembleMLMethodFactory;
 import org.encog.ensemble.EnsembleTrainFactory;
 import org.encog.ensemble.adaboost.AdaBoost;
+import org.encog.ensemble.data.EnsembleDataSet;
 import org.encog.ml.data.MLData;
 
 import helpers.DataLoader;
@@ -30,16 +31,12 @@ public class AdaBoostET extends EvaluationTechnique {
 	public void init(DataLoader dataLoader, int fold) {
 		this.dataLoader = dataLoader;
 		this.fold = fold;
-		this.restart();
-	}
-	
-	private void restart() {
 		ensemble = new AdaBoost(sizes.get(currentSizeIndex),dataSetSize,mlMethod,trainFactory,aggregator);
 		setTrainingSet(dataLoader.getTrainingSet(fold));
 		setSelectionSet(dataLoader.getTestSet(fold));
 		ensemble.setTrainingData(trainingSet);
 	}
-
+	
 	@Override
 	public MLData compute(MLData input) {
 		return ensemble.compute(input);
@@ -55,12 +52,15 @@ public class AdaBoostET extends EvaluationTechnique {
 		return ensemble.getMember(0).getTraining().getError();
 	}
 
+	private void resize(int size, boolean verbose) {
+		((AdaBoost)ensemble).resize(size,trainToError,selectionError,(EnsembleDataSet) selectionSet,verbose);
+	}
+	
 	@Override
 	public void step(boolean verbose) {
 		currentSizeIndex++;
 		if (currentSizeIndex < sizes.size()) {
-			this.restart();
-			this.train(false);
+			this.resize(sizes.get(currentSizeIndex),false);
 		} else {
 			this.hasStepsLeft = false;
 		}
