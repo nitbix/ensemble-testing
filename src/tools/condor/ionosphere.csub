@@ -1,0 +1,35 @@
+################################
+#
+# Condor submit file
+#
+#
+################################
+
+Universe = vanilla
+Executable = ionosphere.bat 
+Output = logs/out/ionosphere$(Cluster).$(Process).out
+Error = logs/err/ionosphere$(Cluster).$(Process).err
+Log = logs/log/ionosphere$(Cluster).$(Process).log
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = data,problems,config.properties,org,main,techniques,helpers,perceptron,mysql-connector-java-5.1.25-bin.jar
+Requirements = (Opsys == "WINDOWS")
+periodic_remove = (CommittedTime - CommittedSuspensionTime) > 43200
+
+arguments = bagging majorityvoting
+queue 100
+
+arguments = bagging averaging 
+queue 100
+
+arguments = adaboost majorityvoting
+queue 100
+
+arguments = adaboost averaging 
+queue 100
+
+#arguments = stacking metaclassifier-0.1-mlp:30:sigmoid-rprop
+#queue 10
+
+#arguments = stacking metaclassifier-0.1-mlp:30:sigmoid-rprop
+#queue 10
