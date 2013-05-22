@@ -28,8 +28,5 @@ queue 100
 arguments = adaboost averaging 
 queue 100
 
-#arguments = stacking metaclassifier-0.1-mlp:30:sigmoid-rprop
-#queue 10
-
-#arguments = stacking metaclassifier-0.1-mlp:30:sigmoid-rprop
-#queue 10
+arguments = stacking metaclassifier-mlp:30:sigmoid-0.1-rprop
+queue 10
