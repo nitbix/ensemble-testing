@@ -21,6 +21,7 @@ import org.encog.ensemble.training.ScaledConjugateGradientFactory;
 import techniques.AdaBoostET;
 import techniques.BaggingET;
 import techniques.EvaluationTechnique;
+import techniques.SingleET;
 import techniques.StackingET;
 
 public class ArgParser {
@@ -89,7 +90,9 @@ public class ArgParser {
 		String values[] = string.split("-");
 		switch (TrainFactories.valueOf(values[0].toUpperCase())) {
 			case BACKPROP: return new BackpropagationFactory();
-			case RPROP: return new ResilientPropagationFactory();
+			case RPROP: ResilientPropagationFactory rpf = new ResilientPropagationFactory();
+				if(values.length > 1)
+					rpf.setDropoutRate(doubleSingle(values[1]));
 			case SCG: return new ScaledConjugateGradientFactory();
 			case MANHATTAN:
 				ManhattanPropagationFactory mpf = new ManhattanPropagationFactory();
@@ -154,6 +157,7 @@ public class ArgParser {
 			case BAGGING: return new BaggingET(sizes,dataSetSize,fullLabel,mlf,etf,agg);
 			case ADABOOST: return new AdaBoostET(sizes,dataSetSize,fullLabel,mlf,etf,agg);
 			case STACKING: return new StackingET(sizes,dataSetSize,fullLabel,mlf,etf,agg);
+			case SINGLE: return new SingleET(dataSetSize,fullLabel,mlf,etf,agg);
 			default: throw new BadArgument();
 		}
 	}
