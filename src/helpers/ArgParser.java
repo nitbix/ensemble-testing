@@ -21,7 +21,7 @@ import org.encog.ensemble.training.ScaledConjugateGradientFactory;
 import techniques.AdaBoostET;
 import techniques.BaggingET;
 import techniques.EvaluationTechnique;
-import techniques.SingleET;
+import techniques.DropoutET;
 import techniques.StackingET;
 
 public class ArgParser {
@@ -59,7 +59,7 @@ public class ArgParser {
 		BAGGING,
 		ADABOOST,
 		STACKING,
-		SINGLE
+		DROPOUT
 	}
 
 	public static List<Integer> intList(String string) {
@@ -153,12 +153,12 @@ public class ArgParser {
 
 	public static EvaluationTechnique technique(String etType, List<Integer> sizes,
 			Integer dataSetSize, ChainParams fullLabel, EnsembleMLMethodFactory mlf,
-			EnsembleTrainFactory etf, EnsembleAggregator agg) throws BadArgument {
+			EnsembleTrainFactory etf, EnsembleAggregator agg, DataLoader dataLoader) throws BadArgument {
 		switch (Techniques.valueOf(etType.toUpperCase())) {
 			case BAGGING: return new BaggingET(sizes,dataSetSize,fullLabel,mlf,etf,agg);
 			case ADABOOST: return new AdaBoostET(sizes,dataSetSize,fullLabel,mlf,etf,agg);
 			case STACKING: return new StackingET(sizes,dataSetSize,fullLabel,mlf,etf,agg);
-			case SINGLE: return new SingleET(dataSetSize,fullLabel,mlf,etf,agg);
+			case DROPOUT: return new DropoutET(dataLoader.size(),fullLabel,mlf,etf,agg);
 			default: throw new BadArgument();
 		}
 	}

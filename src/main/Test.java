@@ -74,7 +74,7 @@ public class Test {
 			ChainParams fullLabel = new ChainParams(problem.getLabel(),etType,etf.getLabel(),mlf.getLabel(),agg.getLabel(),dataSetSize);
 			try
 			{
-				et = ArgParser.technique(etType,sizes,dataSetSize,fullLabel,mlf,etf,agg);
+				et = ArgParser.technique(etType,sizes,dataSetSize,fullLabel,mlf,etf,agg,dataLoader);
 			} catch (BadArgument e)
 			{
 				help();

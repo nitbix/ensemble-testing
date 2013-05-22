@@ -11,11 +11,11 @@ import org.encog.ensemble.stacking.Stacking;
 import helpers.ChainParams;
 import helpers.DataLoader;
 
-public class SingleET extends EvaluationTechnique {
+public class DropoutET extends EvaluationTechnique {
 
 	private int dataSetSize;
 
-	public SingleET(int dataSetSize, ChainParams fullLabel, EnsembleMLMethodFactory mlMethod, EnsembleTrainFactory trainFactory, EnsembleAggregator aggregator) {
+	public DropoutET(int dataSetSize, ChainParams fullLabel, EnsembleMLMethodFactory mlMethod, EnsembleTrainFactory trainFactory, EnsembleAggregator aggregator) {
 		this.dataSetSize = dataSetSize;
 		this.label = fullLabel;
 		this.mlMethod = mlMethod;

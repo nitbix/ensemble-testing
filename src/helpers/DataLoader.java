@@ -16,13 +16,13 @@ import org.encog.util.normalize.target.NormalizationStorageNeuralDataSet;
 
 public class DataLoader {
 	
-	private static ArrayList<BasicNeuralDataSet> folds;
-	private static BasicNeuralDataSet _completeSet;
-	private static boolean _inputsReversed;
-	private static DataMapper _dataMapper;
-	private static int _inputs;
-	private static int _readinputs;
-	private static int nFolds;
+	private ArrayList<BasicNeuralDataSet> folds;
+	private BasicNeuralDataSet _completeSet;
+	private boolean _inputsReversed;
+	private DataMapper _dataMapper;
+	private int _inputs;
+	private int _readinputs;
+	private int nFolds;
 
 	public DataLoader(DataMapper dataMapper, int readInputs, int inputs, boolean inputsReversed, int nFolds) {
 		_dataMapper = dataMapper;
@@ -86,26 +86,29 @@ public class DataLoader {
 		return _dataMapper;
 	}
 
-	private static int getInputs() {
+	private int getInputs() {
 		return _inputs;
 	}
 
-	public static void setInputs(int _inputs) {
-		DataLoader._inputs = _inputs;
+	public void setInputs(int _inputs) {
+		this._inputs = _inputs;
 	}
 
 	public BasicNeuralDataSet getTestSet(int fold) {
 		return folds.get(fold);
 	}
 
-	public static int getReadInputs() {
+	public int getReadInputs() {
 		return _readinputs;
 	}
 
-	public static void setReadInputs(int _readinputs) {
-		DataLoader._readinputs = _readinputs;
+	public void setReadInputs(int _readinputs) {
+		this._readinputs = _readinputs;
 	}
 
+	public int size() {
+		return _completeSet.size();
+	}
 	public BasicNeuralDataSet getTrainingSet(int fold) {
 		BasicNeuralDataSet trainingSet = new BasicNeuralDataSet();
 		for (int i = 0; i < nFolds; i++)
