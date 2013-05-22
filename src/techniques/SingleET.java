@@ -1,5 +1,7 @@
 package techniques;
 
+import java.util.ArrayList;
+
 import org.encog.ensemble.EnsembleAggregator;
 import org.encog.ensemble.EnsembleMLMethodFactory;
 import org.encog.ensemble.EnsembleTrainFactory;
@@ -18,6 +20,8 @@ public class SingleET extends EvaluationTechnique {
 		this.mlMethod = mlMethod;
 		this.trainFactory = trainFactory;
 		this.aggregator = aggregator;
+		this.sizes = new ArrayList<Integer>();
+		this.sizes.add(1);
 	}
 
 	@Override
