@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import org.encog.ensemble.EnsembleAggregator;
 import org.encog.ensemble.EnsembleMLMethodFactory;
 import org.encog.ensemble.EnsembleTrainFactory;
-import org.encog.ensemble.bagging.Bagging;
+import org.encog.ensemble.aggregator.MajorityVoting;
+import org.encog.ensemble.stacking.Stacking;
 
 import helpers.ChainParams;
 import helpers.DataLoader;
@@ -19,14 +20,12 @@ public class SingleET extends EvaluationTechnique {
 		this.label = fullLabel;
 		this.mlMethod = mlMethod;
 		this.trainFactory = trainFactory;
-		this.aggregator = aggregator;
 		this.sizes = new ArrayList<Integer>();
 		this.sizes.add(1);
 	}
 
 	@Override
 	public void step(boolean verbose) {
-		System.out.println("training!");
 		if(this.hasStepsLeft) {
 			ensemble.trainMember(0,trainToError, selectionError, selectionSet, verbose);
 		}
@@ -35,7 +34,7 @@ public class SingleET extends EvaluationTechnique {
 
 	@Override
 	public void init(DataLoader dataLoader, int fold) {
-		ensemble = new Bagging(1,dataSetSize,mlMethod,trainFactory,aggregator);
+		ensemble = new Stacking(1,dataSetSize,mlMethod,trainFactory,new MajorityVoting());
 		setTrainingSet(dataLoader.getTrainingSet(fold));
 		setSelectionSet(dataLoader.getTestSet(fold));
 		ensemble.setTrainingData(trainingSet);
