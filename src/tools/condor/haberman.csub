@@ -28,8 +28,5 @@ periodic_remove = (CommittedTime - CommittedSuspensionTime) > 43200
 #arguments = adaboost averaging 
 #queue 100
 
-arguments = stacking metaclassifier-0.05-mlp:30:sigmoid-rprop
-queue 10
-
-arguments = stacking metaclassifier-0.05-mlp:30:sigmoid-rprop
-queue 10
+arguments = stacking metaclassifier-mlp:30:sigmoid-0.05-rprop
+queue 100
