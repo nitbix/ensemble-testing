@@ -93,6 +93,7 @@ public class ArgParser {
 			case RPROP: ResilientPropagationFactory rpf = new ResilientPropagationFactory();
 				if(values.length > 1)
 					rpf.setDropoutRate(doubleSingle(values[1]));
+				return rpf;
 			case SCG: return new ScaledConjugateGradientFactory();
 			case MANHATTAN:
 				ManhattanPropagationFactory mpf = new ManhattanPropagationFactory();
