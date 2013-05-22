@@ -35,7 +35,7 @@ public class StackingET extends EvaluationTechnique {
 	
 	@Override
 	public void trainStep() {
-		((Bagging) ensemble).trainStep();
+		((Stacking) ensemble).trainStep();
 	}
 
 	@Override
@@ -50,7 +50,7 @@ public class StackingET extends EvaluationTechnique {
 				ensemble.addNewMember();
 				ensemble.trainMember(i, trainToError, selectionError, selectionSet, verbose);
 			}
-			ensemble.getAggregator().train();
+			ensemble.retrainAggregator();
 		} else {
 			this.hasStepsLeft = false;
 		}

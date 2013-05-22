@@ -65,7 +65,7 @@ public class Evaluator {
 		for (int output = 0; output < outputs; output ++)
 		{
 			sqlStatement.executeUpdate("INSERT INTO class_details (run, class, is_test, tp, tn, fp, fn) VALUES (" + runId +
-					", " + dataMapper.getClassLabel(output) +
+					", '" + dataMapper.getClassLabel(output) + "'" + 
 					", " + (isTest ? 1 : 0) +
 					", " + perf.getTP(output) + 
 					", " + perf.getTN(output) +
