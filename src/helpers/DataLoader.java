@@ -39,7 +39,7 @@ public class DataLoader {
 		int total=0;
 		//System.out.println("importing dataset");
 		ReadCSV csv = new ReadCSV(inputFile,false,',');
-		BasicNeuralDataSet _completeSet = new BasicNeuralDataSet();
+		_completeSet = new BasicNeuralDataSet();
 		while(csv.next())
 		{
 			BasicNeuralData inputData = new BasicNeuralData(getInputs());

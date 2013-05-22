@@ -90,10 +90,7 @@ public class ArgParser {
 		String values[] = string.split("-");
 		switch (TrainFactories.valueOf(values[0].toUpperCase())) {
 			case BACKPROP: return new BackpropagationFactory();
-			case RPROP: ResilientPropagationFactory rpf = new ResilientPropagationFactory();
-				if(values.length > 1)
-					rpf.setDropoutRate(doubleSingle(values[1]));
-				return rpf;
+			case RPROP: return new ResilientPropagationFactory();
 			case SCG: return new ScaledConjugateGradientFactory();
 			case MANHATTAN:
 				ManhattanPropagationFactory mpf = new ManhattanPropagationFactory();
@@ -154,11 +151,12 @@ public class ArgParser {
 	public static EvaluationTechnique technique(String etType, List<Integer> sizes,
 			Integer dataSetSize, ChainParams fullLabel, EnsembleMLMethodFactory mlf,
 			EnsembleTrainFactory etf, EnsembleAggregator agg, DataLoader dataLoader) throws BadArgument {
-		switch (Techniques.valueOf(etType.toUpperCase())) {
+		String values[] = etType.split("-");
+		switch (Techniques.valueOf(values[0].toUpperCase())) {
 			case BAGGING: return new BaggingET(sizes,dataSetSize,fullLabel,mlf,etf,agg);
 			case ADABOOST: return new AdaBoostET(sizes,dataSetSize,fullLabel,mlf,etf,agg);
 			case STACKING: return new StackingET(sizes,dataSetSize,fullLabel,mlf,etf,agg);
-			case DROPOUT: return new DropoutET(dataLoader.size(),fullLabel,mlf,etf,agg);
+			case DROPOUT: return new DropoutET(dataLoader.size(),fullLabel,mlf,etf,agg,doubleSingle(values[1]));
 			default: throw new BadArgument();
 		}
 	}
