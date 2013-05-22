@@ -26,6 +26,7 @@ public class SingleET extends EvaluationTechnique {
 
 	@Override
 	public void step(boolean verbose) {
+		System.out.println("training!");
 		if(this.hasStepsLeft) {
 			ensemble.trainMember(0,trainToError, selectionError, selectionSet, verbose);
 		}
