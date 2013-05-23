@@ -46,13 +46,13 @@ foreach my $technique (@{$techniques}) {
 #			set xlabel "Ensemble Size"
 #			set ylabel "Error"
 			set out "${out_file}-misclass.eps"
-			plot "${out_file}.dat" using 1:3 smooth csplines lw 2 title "Misclassification"
+			plot "${out_file}.dat" using 1:3 smooth sbezier lw 2 title "Misclassification"
 			set terminal png
 			set out "${out_file}-misclass.png"
 			replot
 			set terminal postscript eps enhanced color size 4,2.5			
 			set out "${out_file}-precrec.eps"
-			plot "${out_file}.dat" using 1:4 smooth csplines lw 2 title "Precision", "${out_file}.dat" using 1:5 with lines lw 2 title "Recall"
+			plot "${out_file}.dat" using 1:4 smooth sbezier lw 2 title "Precision", "${out_file}.dat" using 1:5 smooth sbezier lw 2 title "Recall"
 			set terminal png
 			set out "${out_file}-precrec.png"
 			replot
