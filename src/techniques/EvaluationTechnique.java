@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.encog.ensemble.Ensemble;
+import org.encog.ensemble.Ensemble.TrainingAborted;
 import org.encog.ensemble.EnsembleAggregator;
 import org.encog.ensemble.EnsembleMLMethodFactory;
 import org.encog.ensemble.EnsembleTrainFactory;
@@ -68,7 +69,11 @@ public abstract class EvaluationTechnique {
 	}
 	
 	public void train(boolean verbose) {
-		ensemble.train(trainToError,selectionError,(EnsembleDataSet) selectionSet,verbose);
+		try {
+			ensemble.train(trainToError,selectionError,(EnsembleDataSet) selectionSet,verbose);
+		} catch (TrainingAborted e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void trainStep() {		

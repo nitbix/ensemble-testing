@@ -156,7 +156,7 @@ public class ArgParser {
 			case BAGGING: return new BaggingET(sizes,dataSetSize,fullLabel,mlf,etf,agg);
 			case ADABOOST: return new AdaBoostET(sizes,dataSetSize,fullLabel,mlf,etf,agg);
 			case STACKING: return new StackingET(sizes,dataSetSize,fullLabel,mlf,etf,agg);
-			case DROPOUT: return new DropoutET(dataLoader.size(),fullLabel,mlf,etf,agg,doubleSingle(values[1]));
+			case DROPOUT: return new DropoutET(dataSetSize,fullLabel,mlf,etf,agg,doubleSingle(values[1]));
 			default: throw new BadArgument();
 		}
 	}
