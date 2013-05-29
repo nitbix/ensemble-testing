@@ -6,7 +6,7 @@ import org.encog.ensemble.EnsembleAggregator;
 import org.encog.ensemble.EnsembleMLMethodFactory;
 import org.encog.ensemble.EnsembleTrainFactory;
 import org.encog.ensemble.aggregator.MajorityVoting;
-import org.encog.ensemble.stacking.Stacking;
+import org.encog.ensemble.dropout.Dropout;
 
 import helpers.ChainParams;
 import helpers.DataLoader;
@@ -35,7 +35,7 @@ public class DropoutET extends EvaluationTechnique {
 
 	@Override
 	public void init(DataLoader dataLoader, int fold) {
-		ensemble = new Stacking(1,dataSetSize,mlMethod,trainFactory,new MajorityVoting());
+		ensemble = new Dropout(1,dataSetSize,mlMethod,trainFactory,new MajorityVoting());
 		setTrainingSet(dataLoader.getTrainingSet(fold));
 		setSelectionSet(dataLoader.getTestSet(fold));
 		ensemble.setTrainingData(trainingSet);
