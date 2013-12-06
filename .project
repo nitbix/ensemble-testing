@@ -3,6 +3,7 @@
 	<name>ensemble-testing</name>
 	<comment></comment>
 	<projects>
+		<project>encog-core</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
