@@ -27,6 +27,7 @@ import java.util.Properties;
 
 public class Test {
 
+	private final static int EXPERIMENT = 2;
 	Evaluator ev;
 	static DataLoader dataLoader;
 	static ProblemDescription problem;
@@ -59,6 +60,7 @@ public class Test {
 				+ "AND problem = '" + problem.getLabel() + "'"
 				+ "AND etType = '" + etType + "'"
 				+ "AND ensemble_training = '" + etf.getLabel() + "'"
+				+ "AND experiment = " + EXPERIMENT
 				+ "AND invalidated = 0"
 				);
 		int alreadyDone = r.getInt("count");
@@ -66,7 +68,7 @@ public class Test {
 			System.out.println("Already reached run limit, not starting chain");
 			System.exit(1);
 		}
-		statement.executeUpdate("INSERT INTO chains (experiment,folds,aggregation,problem,technique,start,ensemble_training,invalidated) VALUES (2," + nFolds + 
+		statement.executeUpdate("INSERT INTO chains (experiment,folds,aggregation,problem,technique,start,ensemble_training,invalidated) VALUES (" + EXPERIMENT + ", " + nFolds + 
 				                ", '" + agg.getLabel() + "'" + 
 				                ", '" + problem.getLabel() + "'" +
 				                ", '" + etType + "'" +
