@@ -55,13 +55,13 @@ public class Test {
 		Statement statement = sqlConnection.createStatement();
 		statement.setQueryTimeout(30);
 		ResultSet r = statement.executeQuery("SELECT COUNT(*) AS count FROM chains "
-				+ "WHERE folds = " + nFolds
-				+ "AND aggregation = '" + agg.getLabel() + "'"
-				+ "AND problem = '" + problem.getLabel() + "'"
-				+ "AND technique = '" + etType + "'"
-				+ "AND ensemble_training = '" + etf.getLabel() + "'"
-				+ "AND experiment = " + EXPERIMENT
-				+ "AND invalidated = 0"
+				+ " WHERE folds = " + nFolds
+				+ " AND aggregation = '" + agg.getLabel() + "'"
+				+ " AND problem = '" + problem.getLabel() + "'"
+				+ " AND technique = '" + etType + "'"
+				+ " AND ensemble_training = '" + etf.getLabel() + "'"
+				+ " AND experiment = " + EXPERIMENT
+				+ " AND invalidated = 0"
 				);
 		int alreadyDone = r.getInt("count");
 		if (targetRunCount == 0 || alreadyDone >= targetRunCount) {
