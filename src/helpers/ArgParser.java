@@ -90,7 +90,13 @@ public class ArgParser {
 		String values[] = string.split("-");
 		switch (TrainFactories.valueOf(values[0].toUpperCase())) {
 			case BACKPROP: return new BackpropagationFactory();
-			case RPROP: return new ResilientPropagationFactory();
+			case RPROP: 
+				ResilientPropagationFactory rpf = new ResilientPropagationFactory();
+				if(!values[1].isEmpty())
+				{
+					rpf.setDropoutRate(doubleSingle(values[1]));
+				}
+				return rpf;
 			case SCG: return new ScaledConjugateGradientFactory();
 			case MANHATTAN:
 				ManhattanPropagationFactory mpf = new ManhattanPropagationFactory();
