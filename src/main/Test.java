@@ -107,7 +107,7 @@ public class Test {
 	
 	public static void main(String[] args)
 	{
-		if (args.length != 12) 
+		if (args.length < 12 || args.length > 13) 
 		{
 			help();
 		} 
