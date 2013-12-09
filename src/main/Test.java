@@ -54,11 +54,11 @@ public class Test {
 		Calendar cal = Calendar.getInstance();
 		Statement statement = sqlConnection.createStatement();
 		statement.setQueryTimeout(30);
-		ResultSet r = statement.executeQuery("SELECT COUNT(*) AS count FROM chains"
+		ResultSet r = statement.executeQuery("SELECT COUNT(*) AS count FROM chains "
 				+ "WHERE folds = " + nFolds
 				+ "AND aggregation = '" + agg.getLabel() + "'"
 				+ "AND problem = '" + problem.getLabel() + "'"
-				+ "AND etType = '" + etType + "'"
+				+ "AND technique = '" + etType + "'"
 				+ "AND ensemble_training = '" + etf.getLabel() + "'"
 				+ "AND experiment = " + EXPERIMENT
 				+ "AND invalidated = 0"
