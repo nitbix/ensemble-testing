@@ -63,10 +63,16 @@ public class Test {
 				+ " AND experiment = " + EXPERIMENT
 				+ " AND invalidated = 0"
 				);
-		int alreadyDone = r.getInt("count");
-		if (targetRunCount == 0 || alreadyDone >= targetRunCount) {
-			System.out.println("Already reached run limit, not starting chain");
-			System.exit(1);
+		if(r.next()) {
+			int alreadyDone = r.getInt("count");
+			if (targetRunCount == 0 || alreadyDone >= targetRunCount) {
+				System.out.println("Already reached run limit, not starting chain");
+				System.exit(1);
+			}
+		}
+		else
+		{
+			throw new SQLException("count(*) query returned 0 rows");
 		}
 		statement.executeUpdate("INSERT INTO chains (experiment,folds,aggregation,problem,technique,start,ensemble_training,invalidated) VALUES (" + EXPERIMENT + ", " + nFolds + 
 				                ", '" + agg.getLabel() + "'" + 
@@ -75,7 +81,7 @@ public class Test {
 				                ", '" + sqlDateFormat.format(cal.getTime()) + "' " +
 				                ", '" + etf.getLabel() + "'" +
 				                ", 1)" +
-				                ";", Statement.RETURN_GENERATED_KEYS);
+				                ";", Statement.RETURN_GENERATED_KEYS);	
 		ResultSet rs = statement.getGeneratedKeys();
 		long chainId = 0;
 		if(rs.next()) {
