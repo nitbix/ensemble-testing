@@ -1,8 +1,11 @@
 package helpers;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Connection;
 import java.util.Calendar;
 
 import org.encog.neural.data.basic.BasicNeuralDataSet;
@@ -76,10 +79,13 @@ public class Evaluator {
 		}
 	}
 	
-	public void getResults (ChainParams prefix, double te, int fold, Statement sqlStatement, long chainId) throws SQLException {
+	public void getResults (ChainParams prefix, double te, int fold, DBConnect reconnect, long chainId) throws SQLException, FileNotFoundException, IOException {
 		while(technique.hasStepsLeft()) {
+			Connection sqlConnection = reconnect.connect();
+			Statement sqlStatement = sqlConnection.createStatement();
 			makeLine(false,te,prefix,this.dataLoader.getTrainingSet(fold), sqlStatement, chainId);
 			makeLine(true,te,prefix,this.dataLoader.getTestSet(fold), sqlStatement, chainId);
+			sqlConnection.close();
 			technique.step(false);
 		}
 	}

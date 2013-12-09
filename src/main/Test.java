@@ -8,15 +8,18 @@ import java.util.List;
 import org.encog.ensemble.EnsembleAggregator;
 import org.encog.ensemble.EnsembleMLMethodFactory;
 import org.encog.ensemble.EnsembleTrainFactory;
+
 import techniques.EvaluationTechnique;
 import helpers.ArgParser;
 import helpers.ArgParser.BadArgument;
+import helpers.DBConnect;
 import helpers.DataLoader;
 import helpers.Evaluator;
 import helpers.ChainParams;
 import helpers.ProblemDescription;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -47,8 +50,9 @@ public class Test {
 	private static int targetRunCount = 0;
 	
 	private static Connection sqlConnection;
+	private static DBConnect reconnectCallback;
 	
-	public static void loop() throws SQLException
+	public static void loop() throws SQLException, FileNotFoundException, IOException
 	{
 		DateFormat sqlDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Calendar cal = Calendar.getInstance();
@@ -74,6 +78,7 @@ public class Test {
 		{
 			throw new SQLException("count(*) query returned 0 rows");
 		}
+		r.close();
 		statement.executeUpdate("INSERT INTO chains (experiment,folds,aggregation,problem,technique,start,ensemble_training,invalidated) VALUES (" + EXPERIMENT + ", " + nFolds + 
 				                ", '" + agg.getLabel() + "'" + 
 				                ", '" + problem.getLabel() + "'" +
@@ -88,6 +93,7 @@ public class Test {
 			chainId = rs.getLong(1);
 		}
 		rs.close();
+		sqlConnection.close();
 		for (Integer dataSetSize : dataSetSizes)
 		for (int fold=0; fold < nFolds; fold++)
 		for (EnsembleMLMethodFactory mlf: mlfs)
@@ -105,9 +111,10 @@ public class Test {
 			for (double te: trainingErrors)
 			{
 				Evaluator ev = new Evaluator(et, dataLoader, te, selectionError, verbose,fold);
-				ev.getResults(fullLabel,te,fold,statement,chainId);
+				ev.getResults(fullLabel,te,fold,reconnectCallback,chainId);
 			}
 		}
+		sqlConnection = reconnectCallback.connect();
 		statement.executeUpdate("UPDATE chains SET invalidated = 0, end = '" + sqlDateFormat.format(cal.getTime()) + "' WHERE id = " + chainId);
 	}
 	
@@ -151,15 +158,21 @@ public class Test {
 		}
 		try
 		{
-            Properties prop = new Properties();
-            prop.load(new FileInputStream("config.properties"));
-            String dbhost = prop.getProperty("dbhost");
-            String dbuser = prop.getProperty("dbuser");
-            String dbpass = prop.getProperty("dbpass");
-            String dbport = prop.getProperty("dbport");
-            String dbname = prop.getProperty("dbname");
-            String dbconn = "jdbc:mysql://" + dbhost + ":" + dbport + "/" + dbname;             
-			sqlConnection = DriverManager.getConnection(dbconn, dbuser, dbpass);
+			reconnectCallback = new DBConnect() {
+				public Connection connect() throws FileNotFoundException, IOException, SQLException {
+		            Properties prop = new Properties();
+		            prop.load(new FileInputStream("config.properties"));
+		            String dbhost = prop.getProperty("dbhost");
+		            String dbuser = prop.getProperty("dbuser");
+		            String dbpass = prop.getProperty("dbpass");
+		            String dbport = prop.getProperty("dbport");
+		            String dbname = prop.getProperty("dbname");
+		            String dbconn = "jdbc:mysql://" + dbhost + ":" + dbport + "/" + dbname;             
+					return DriverManager.getConnection(dbconn, dbuser, dbpass);
+				}
+			};
+			
+			sqlConnection = reconnectCallback.connect();
 			loop();
 		} catch(SQLException e)
 	    {
