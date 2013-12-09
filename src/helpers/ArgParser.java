@@ -139,9 +139,15 @@ public class ArgParser {
 		switch (Aggregators.valueOf(values[0].toUpperCase())) {
 			case AVERAGING: return new Averaging();
 			case MAJORITYVOTING: return new MajorityVoting();
-			case METACLASSIFIER: 
-				if (values.length != 4) throw new BadArgument();
-				return new MetaClassifier(doubleSingle(values[2]),MLF(values[1]), ETF(values[3]));
+			case METACLASSIFIER:
+				switch (values.length)
+				{
+					case 4:
+						return new MetaClassifier(doubleSingle(values[2]),MLF(values[1]), ETF(values[3]));
+					case 5:
+						return new MetaClassifier(doubleSingle(values[2]),MLF(values[1]), ETF(values[3] + "-" + values[4]));
+					default: throw new BadArgument();
+				}
 			default: throw new BadArgument();
 		}
 	}
