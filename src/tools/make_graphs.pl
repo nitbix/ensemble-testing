@@ -67,11 +67,13 @@ foreach my $technique (@{$techniques}) {
 				set terminal png
 				set out "${out_file}-precrec.png"
 				replot
+				set terminal postscript eps enhanced color size 4,2.5			
 				set out "${out_file}-prec.eps"
 				plot "${out_file}.dat" using 1:4 smooth sbezier lw 2 title "Precision", "${out_file}.dat" using 1:4:7:10 with errorbars title ""
 				set terminal png
 				set out "${out_file}-prec.png"
 				replot
+				set terminal postscript eps enhanced color size 4,2.5			
 				set out "${out_file}-rec.eps"
 				plot "${out_file}.dat" using 1:5 smooth sbezier lw 2 title "Recall", "${out_file}.dat" using 1:5:8:11 with errorbars title ""
 				set terminal png
@@ -110,6 +112,7 @@ sub make_comparison {
 	};
 	close GNUPLOT;
 }
+
 foreach my $technique_a (@{$techniques}) {
 foreach my $technique_b (@{$techniques}) {
 	my $problems = $db->selectall_arrayref("select problem, count(*) from chains where invalidated = 0 and (technique = '$technique_a' or technique = '$technique_b') group by problem");
@@ -126,10 +129,10 @@ foreach my $technique_b (@{$techniques}) {
 			my $size_ab = -f "$file_ab.dat" ? `wc -l $file_ab.dat | awk '{print \$1}'` : 0;
 			my $size_ba = -f "$file_ba.dat" ? `wc -l $file_ba.dat | awk '{print \$1}'` : 0;
 			my $size_bb = -f "$file_bb.dat" ? `wc -l $file_bb.dat | awk '{print \$1}'` : 0;
-			make_comparison($file_aa,$file_ab, "output/${technique_a}-${aggregation_a}-${aggregation_b}", "${aggregation_a}", "${aggregation_b}") if $size_aa and $size_ab;
-			make_comparison($file_ba,$file_bb, "output/${technique_b}-${aggregation_a}-${aggregation_b}", "${aggregation_a}", "${aggregation_b}") if $size_ba and $size_bb;
-			make_comparison($file_aa,$file_ba, "output/${aggregation_a}-${technique_a}-${technique_b}", "${technique_a}", "${technique_b}") if $size_aa and $size_ba;
-			make_comparison($file_ab,$file_bb, "output/${aggregation_b}-${technique_a}-${technique_b}", "${technique_a}", "${technique_b}") if $size_ab and $size_bb;
+			make_comparison($file_aa,$file_ab, "output/${problem_name}-${technique_a}-${aggregation_a}-${aggregation_b}", "${aggregation_a}", "${aggregation_b}") if $size_aa and $size_ab and $aggregation_a ne $aggregation_b;
+			make_comparison($file_ba,$file_bb, "output/${problem_name}-${technique_b}-${aggregation_a}-${aggregation_b}", "${aggregation_a}", "${aggregation_b}") if $size_ba and $size_bb and $aggregation_a ne $aggregation_b;
+			make_comparison($file_aa,$file_ba, "output/${problem_name}-${aggregation_a}-${technique_a}-${technique_b}", "${technique_a}", "${technique_b}") if $size_aa and $size_ba and $technique_a ne $technique_b;
+			make_comparison($file_ab,$file_bb, "output/${problem_name}-${aggregation_b}-${technique_a}-${technique_b}", "${technique_a}", "${technique_b}") if $size_ab and $size_bb and $technique_a ne $technique_b;
 		}
 		}
 	}
