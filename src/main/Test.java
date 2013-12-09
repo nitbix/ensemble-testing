@@ -42,6 +42,8 @@ public class Test {
 	private static String etType;
 	private static boolean verbose;
 	private static double selectionError;
+	//default is no limit
+	private static int targetRunCount = 0;
 	
 	private static Connection sqlConnection;
 	
@@ -51,6 +53,19 @@ public class Test {
 		Calendar cal = Calendar.getInstance();
 		Statement statement = sqlConnection.createStatement();
 		statement.setQueryTimeout(30);
+		ResultSet r = statement.executeQuery("SELECT COUNT(*) AS count FROM chains"
+				+ "WHERE folds = " + nFolds
+				+ "AND aggregation = '" + agg.getLabel() + "'"
+				+ "AND problem = '" + problem.getLabel() + "'"
+				+ "AND etType = '" + etType + "'"
+				+ "AND ensemble_training = '" + etf.getLabel() + "'"
+				+ "AND invalidated = 0"
+				);
+		int alreadyDone = r.getInt("count");
+		if (targetRunCount == 0 || alreadyDone >= targetRunCount) {
+			System.out.println("Already reached run limit, not starting chain");
+			System.exit(1);
+		}
 		statement.executeUpdate("INSERT INTO chains (folds,aggregation,problem,technique,start,ensemble_training,invalidated) VALUES (" + nFolds + 
 				                ", '" + agg.getLabel() + "'" + 
 				                ", '" + problem.getLabel() + "'" +
@@ -111,6 +126,7 @@ public class Test {
 			selectionError = ArgParser.doubleSingle(args[11]);
 			if (nFolds < 2) {throw new BadArgument();};
 			dataLoader = problem.getDataLoader(activationThreshold,nFolds);
+			targetRunCount = ArgParser.intSingle(args[12]);
 		} catch (helpers.ProblemDescriptionLoader.BadArgument e) 
 		{
 			System.err.println("Could not create dataLoader - perhaps the mapper_type property is wrong");
@@ -162,7 +178,7 @@ public class Test {
 
 	private static void help()
 	{
-		System.err.println("Usage: Test <technique> <problem> <sizes> <dataSetSizes> <trainingErrors> <nFolds> <activationThreshold> <training> <membertypes> <aggregator> <verbose> <selectionError>");
+		System.err.println("Usage: Test <technique> <problem> <sizes> <dataSetSizes> <trainingErrors> <nFolds> <activationThreshold> <training> <membertypes> <aggregator> <verbose> <selectionError> <runsPerType>");
 		System.err.println("nFolds must be > 1");
 		System.exit(2);
 	}
