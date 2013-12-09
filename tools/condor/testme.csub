@@ -1,0 +1,18 @@
+################################
+#
+# Condor submit file
+#
+#
+################################
+
+Universe = vanilla
+Executable = testme.bat
+Output = testme.out
+Error = testme.err
+Log = testme.log
+#transfer_input_files = HelloWorld.class, whoami.exe
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+
+Requirements = Arch=="X86_64" 
+queue
