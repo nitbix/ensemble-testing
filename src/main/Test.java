@@ -66,7 +66,7 @@ public class Test {
 			System.out.println("Already reached run limit, not starting chain");
 			System.exit(1);
 		}
-		statement.executeUpdate("INSERT INTO chains (folds,aggregation,problem,technique,start,ensemble_training,invalidated) VALUES (" + nFolds + 
+		statement.executeUpdate("INSERT INTO chains (experiment,folds,aggregation,problem,technique,start,ensemble_training,invalidated) VALUES (2," + nFolds + 
 				                ", '" + agg.getLabel() + "'" + 
 				                ", '" + problem.getLabel() + "'" +
 				                ", '" + etType + "'" +
