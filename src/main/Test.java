@@ -115,6 +115,7 @@ public class Test {
 			}
 		}
 		sqlConnection = reconnectCallback.connect();
+		statement = sqlConnection.createStatement();
 		statement.executeUpdate("UPDATE chains SET invalidated = 0, end = '" + sqlDateFormat.format(cal.getTime()) + "' WHERE id = " + chainId);
 	}
 	
