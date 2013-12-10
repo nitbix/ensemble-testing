@@ -70,7 +70,7 @@ public class TrainingCurves {
 			activationThreshold = ArgParser.doubleSingle(args[3]);
 			etf = ArgParser.ETF(args[4]);
 			mlfs = ArgParser.MLFS(args[5]);
-			agg = ArgParser.AGG("averaging");
+			agg = ArgParser.AGG(args[7]);
 			maxIterations = ArgParser.intSingle(args[6]);
 		} catch (BadArgument e) {
 			help();
@@ -87,7 +87,7 @@ public class TrainingCurves {
 	}
 
 	private static void help() {
-		System.err.println("Usage: TrainingCurves <technique> <problem> <trainingSetSize> <activationThreshold> <training> <membertypes> <maxIterations>");
+		System.err.println("Usage: TrainingCurves <technique> <problem> <trainingSetSize> <activationThreshold> <training> <membertypes> <maxIterations> <aggregation>");
 		System.exit(2);
 	}
 }
