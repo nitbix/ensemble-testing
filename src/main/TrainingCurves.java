@@ -60,7 +60,7 @@ public class TrainingCurves {
 	}
 	
 	public static void main(String[] args) {
-		if (args.length != 7) {
+		if (args.length != 8) {
 			help();
 		} 
 		try {
