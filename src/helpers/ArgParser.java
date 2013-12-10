@@ -92,7 +92,7 @@ public class ArgParser {
 			case BACKPROP: return new BackpropagationFactory();
 			case RPROP: 
 				ResilientPropagationFactory rpf = new ResilientPropagationFactory();
-				if(!values[1].isEmpty())
+				if(values.length > 1 && !values[1].isEmpty())
 				{
 					rpf.setDropoutRate(doubleSingle(values[1]));
 				}
