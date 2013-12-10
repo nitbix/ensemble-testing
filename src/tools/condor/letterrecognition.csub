@@ -6,7 +6,7 @@
 ################################
 
 Universe = vanilla
-Executable = letterrecognition.bat 
+Executable = letterrecognition-customerror.bat 
 Output = logs/out/letterrecognition$(Cluster).$(Process).out
 Error = logs/err/letterrecognition$(Cluster).$(Process).err
 Log = logs/log/letterrecognition$(Cluster).$(Process).log

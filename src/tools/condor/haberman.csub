@@ -6,7 +6,7 @@
 ################################
 
 Universe = vanilla
-Executable = haberman.bat 
+Executable = haberman-customerror.bat 
 Output = logs/out/haberman$(Cluster).$(Process).out
 Error = logs/err/haberman$(Cluster).$(Process).err
 Log = logs/log/haberman$(Cluster).$(Process).log

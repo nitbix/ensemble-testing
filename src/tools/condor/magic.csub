@@ -6,7 +6,7 @@
 ################################
 
 Universe = vanilla
-Executable = magic.bat 
+Executable = magic-customerror.bat 
 Output = logs/out/magic$(Cluster).$(Process).out
 Error = logs/err/magic$(Cluster).$(Process).err
 Log = logs/log/magic$(Cluster).$(Process).log

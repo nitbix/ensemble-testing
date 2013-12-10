@@ -6,7 +6,7 @@
 ################################
 
 Universe = vanilla
-Executable = ionosphere.bat 
+Executable = ionosphere-customerror.bat 
 Output = logs/out/ionosphere$(Cluster).$(Process).out
 Error = logs/err/ionosphere$(Cluster).$(Process).err
 Log = logs/log/ionosphere$(Cluster).$(Process).log
@@ -37,6 +37,6 @@ queue 100
 arguments = stacking metaclassifier-mlp:30:sigmoid-0.01-rprop 2000 -0.5
 queue 100
 
-#Executable = ionosphere-dropout.bat
+#Executable = ionosphere-dropout-customerror.bat
 #arguments = dropout-0.5 2000
 #queue 100

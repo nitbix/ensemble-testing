@@ -6,7 +6,7 @@
 ################################
 
 Universe = vanilla
-Executable = landsat.bat 
+Executable = landsat-customerror.bat 
 Output = logs/out/landsat$(Cluster).$(Process).out
 Error = logs/err/landsat$(Cluster).$(Process).err
 Log = logs/log/landsat$(Cluster).$(Process).log
