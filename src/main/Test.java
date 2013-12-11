@@ -48,6 +48,7 @@ public class Test {
 	private static double selectionError;
 	//default is no limit
 	private static int targetRunCount = 0;
+	private static int maxIterations;
 	
 	private static Connection sqlConnection;
 	private static DBConnect reconnectCallback;
@@ -103,7 +104,7 @@ public class Test {
 			ChainParams fullLabel = new ChainParams(problem.getLabel(),etType,etf.getLabel(),mlf.getLabel(),agg.getLabel(),dataSetSize);
 			try
 			{
-				et = ArgParser.technique(etType,sizes,dataSetSize,fullLabel,mlf,etf,agg,dataLoader);
+				et = ArgParser.technique(etType,sizes,dataSetSize,fullLabel,mlf,etf,agg,dataLoader,maxIterations);
 			} catch (BadArgument e)
 			{
 				help();
@@ -121,7 +122,7 @@ public class Test {
 	
 	public static void main(String[] args)
 	{
-		if (args.length < 12 || args.length > 13) 
+		if (args.length < 13 || args.length > 14) 
 		{
 			help();
 		} 
@@ -143,6 +144,7 @@ public class Test {
 			if (nFolds < 2) {throw new BadArgument();};
 			dataLoader = problem.getDataLoader(activationThreshold,nFolds);
 			targetRunCount = ArgParser.intSingle(args[12]);
+			maxIterations = ArgParser.intSingle(args[13]);
 		} catch (helpers.ProblemDescriptionLoader.BadArgument e) 
 		{
 			System.err.println("Could not create dataLoader - perhaps the mapper_type property is wrong");
@@ -200,7 +202,7 @@ public class Test {
 
 	private static void help()
 	{
-		System.err.println("Usage: Test <technique> <problem> <sizes> <dataSetSizes> <trainingErrors> <nFolds> <activationThreshold> <training> <membertypes> <aggregator> <verbose> <selectionError> <runsPerType>");
+		System.err.println("Usage: Test <technique> <problem> <sizes> <dataSetSizes> <trainingErrors> <nFolds> <activationThreshold> <training> <membertypes> <aggregator> <verbose> <selectionError> <runsPerType?> <maxIterations>");
 		System.err.println("nFolds must be > 1");
 		System.exit(2);
 	}

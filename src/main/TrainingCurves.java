@@ -39,7 +39,7 @@ public class TrainingCurves {
 			ChainParams labeler = new ChainParams("", "", "", "", "", 0);
 			EvaluationTechnique et = null;
 			try {
-				et = ArgParser.technique(etType,one,trainingSetSize,labeler,mlf,etf,agg,dataLoader);
+				et = ArgParser.technique(etType,one,trainingSetSize,labeler,mlf,etf,agg,dataLoader,maxIterations);
 			} catch (BadArgument e) {
 				help();
 			}

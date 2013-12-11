@@ -15,7 +15,7 @@ public class DropoutET extends EvaluationTechnique {
 
 	private int dataSetSize;
 
-	public DropoutET(int dataSetSize, ChainParams fullLabel, EnsembleMLMethodFactory mlMethod, EnsembleTrainFactory trainFactory, EnsembleAggregator aggregator, double dropoutRate) {
+	public DropoutET(int dataSetSize, ChainParams fullLabel, int maxIterations, EnsembleMLMethodFactory mlMethod, EnsembleTrainFactory trainFactory, EnsembleAggregator aggregator, double dropoutRate) {
 		this.dataSetSize = dataSetSize;
 		this.label = fullLabel;
 		this.mlMethod = mlMethod;
@@ -23,6 +23,7 @@ public class DropoutET extends EvaluationTechnique {
 		this.trainFactory.setDropoutRate(dropoutRate);
 		this.sizes = new ArrayList<Integer>();
 		this.sizes.add(1);
+		this.maxIterations = maxIterations;
 	}
 
 	@Override

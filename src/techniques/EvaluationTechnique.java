@@ -33,6 +33,7 @@ public abstract class EvaluationTechnique {
 	protected double trainToError;
 	protected double selectionError;
 	protected boolean hasStepsLeft = true;
+	protected int maxIterations = 2000;
 	
 	public double getMisclassification(BasicNeuralDataSet evalSet, DataMapper dataMapper) {
 		int bad = 0;
@@ -70,7 +71,7 @@ public abstract class EvaluationTechnique {
 	
 	public void train(boolean verbose) {
 		try {
-			ensemble.train(trainToError,selectionError,(EnsembleDataSet) selectionSet,verbose);
+			ensemble.train(trainToError, selectionError, maxIterations, (EnsembleDataSet) selectionSet,verbose);
 		} catch (TrainingAborted e) {
 			e.printStackTrace();
 		}
