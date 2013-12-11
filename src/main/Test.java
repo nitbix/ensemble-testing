@@ -213,7 +213,7 @@ public class Test {
 	{
 		System.err.println("Usage: Test <propfile>");
 		System.err.println("<propfile> should contain, for example:\n"
-						+ "	technique = {bagging,boosting,stacking,dropout}\n"
+						+ "	ensemble_method = {bagging,boosting,stacking,dropout}\n"
 						+ " problem = problems/uci_haberman\n"
 						+ " ensemble_sizes = 1,2,n...\n"
 						+ " dataset_sizes = 100,200,n...\n"
@@ -226,7 +226,7 @@ public class Test {
 						+ " verbose = {true,false}\n"
 						+ " selection_error = 0.25\n"
 						+ " max_runs = 3000\n"
-						+ " maxIterations = 1000\n"
+						+ " max_training_iterations = 1000\n"
 						+ " experiment_id = 2\n");
 		System.err.println("nFolds must be > 1");
 		System.exit(2);
