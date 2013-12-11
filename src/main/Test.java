@@ -30,7 +30,7 @@ import java.util.Properties;
 
 public class Test {
 
-	private final static int EXPERIMENT = 2;
+	private static int EXPERIMENT = 2;
 	Evaluator ev;
 	static DataLoader dataLoader;
 	static ProblemDescription problem;
@@ -153,6 +153,7 @@ public class Test {
 			dataLoader = problem.getDataLoader(activationThreshold,nFolds);
 			targetRunCount = ArgParser.intSingle(problemPropFile.getProperty("max_runs"));
 			maxIterations = ArgParser.intSingle(problemPropFile.getProperty("max_training_iterations"));
+			EXPERIMENT = ArgParser.intSingle(problemPropFile.getProperty("experiment_id"));
 		} catch (helpers.ProblemDescriptionLoader.BadArgument e) 
 		{
 			System.err.println("Could not create dataLoader - perhaps the mapper_type property is wrong");
@@ -220,12 +221,13 @@ public class Test {
 						+ " folds = n\n"
 						+ " activation_threshold = 0.1\n"
 						+ " ensemble_training = rprop{-0.5}\n"
-						+ " membertypes = mlp:n:sigmoid\n"
+						+ " member_types = mlp:n:sigmoid\n"
 						+ " aggregator = {averaging, majorityvoting, metaclassifier-mlp:n:sigmoid-rprop[0.5]}\n"
 						+ " verbose = {true,false}\n"
 						+ " selection_error = 0.25\n"
-						+ " runsPerType = 3000\n"
-						+ " maxIterations = 1000\n");
+						+ " max_runs = 3000\n"
+						+ " maxIterations = 1000\n"
+						+ " experiment_id = 2\n");
 		System.err.println("nFolds must be > 1");
 		System.exit(2);
 	}
