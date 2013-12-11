@@ -122,29 +122,37 @@ public class Test {
 	
 	public static void main(String[] args)
 	{
-		if (args.length < 13 || args.length > 14) 
+		if (args.length != 1) 
 		{
 			help();
 		} 
 		try 
 		{
-			//TODO: a lot of these should be in a properties file
-			problem = ArgParser.problem(args[1]);
-			nFolds = ArgParser.intSingle(args[5]);
-			activationThreshold = ArgParser.doubleSingle(args[6]);
-			etType = args[0];
-			sizes = ArgParser.intList(args[2]);
-			dataSetSizes = ArgParser.intList(args[3]);
-			trainingErrors = ArgParser.doubleList(args[4]);
-			etf = ArgParser.ETF(args[7]);
-			mlfs = ArgParser.MLFS(args[8]);
-			agg = ArgParser.AGG(args[9]);
-			verbose = Boolean.parseBoolean(args[10]);
-			selectionError = ArgParser.doubleSingle(args[11]);
+			Properties problemPropFile = new Properties();
+			try {
+				problemPropFile.load(new FileInputStream(args[0]));
+			} catch (FileNotFoundException e) {
+				System.out.println("Could not find" + args[0]);
+				help();
+			} catch (IOException e) {
+				help();
+			}
+			problem = ArgParser.problem(problemPropFile.getProperty("problem"));
+			nFolds = ArgParser.intSingle(problemPropFile.getProperty("folds"));
+			activationThreshold = ArgParser.doubleSingle(problemPropFile.getProperty("activation_threshold"));
+			etType = problemPropFile.getProperty("ensemble_method");
+			sizes = ArgParser.intList(problemPropFile.getProperty("ensemble_sizes"));
+			dataSetSizes = ArgParser.intList(problemPropFile.getProperty("dataset_sizes"));
+			trainingErrors = ArgParser.doubleList(problemPropFile.getProperty("training_errors"));
+			etf = ArgParser.ETF(problemPropFile.getProperty("ensemble_training"));
+			mlfs = ArgParser.MLFS(problemPropFile.getProperty("member_types"));
+			agg = ArgParser.AGG(problemPropFile.getProperty("aggregator"));
+			verbose = Boolean.parseBoolean(problemPropFile.getProperty("verbose"));
+			selectionError = ArgParser.doubleSingle(problemPropFile.getProperty("selection_error"));
 			if (nFolds < 2) {throw new BadArgument();};
 			dataLoader = problem.getDataLoader(activationThreshold,nFolds);
-			targetRunCount = ArgParser.intSingle(args[12]);
-			maxIterations = ArgParser.intSingle(args[13]);
+			targetRunCount = ArgParser.intSingle(problemPropFile.getProperty("max_runs"));
+			maxIterations = ArgParser.intSingle(problemPropFile.getProperty("max_training_iterations"));
 		} catch (helpers.ProblemDescriptionLoader.BadArgument e) 
 		{
 			System.err.println("Could not create dataLoader - perhaps the mapper_type property is wrong");
@@ -202,7 +210,22 @@ public class Test {
 
 	private static void help()
 	{
-		System.err.println("Usage: Test <technique> <problem> <sizes> <dataSetSizes> <trainingErrors> <nFolds> <activationThreshold> <training> <membertypes> <aggregator> <verbose> <selectionError> <runsPerType?> <maxIterations>");
+		System.err.println("Usage: Test <propfile>");
+		System.err.println("<propfile> should contain, for example:\n"
+						+ "	technique = {bagging,boosting,stacking,dropout}\n"
+						+ " problem = problems/uci_haberman\n"
+						+ " ensemble_sizes = 1,2,n...\n"
+						+ " dataset_sizes = 100,200,n...\n"
+						+ " training_errors = 0.1,0.05,n...\n"
+						+ " folds = n\n"
+						+ " activation_threshold = 0.1\n"
+						+ " ensemble_training = rprop{-0.5}\n"
+						+ " membertypes = mlp:n:sigmoid\n"
+						+ " aggregator = {averaging, majorityvoting, metaclassifier-mlp:n:sigmoid-rprop[0.5]}\n"
+						+ " verbose = {true,false}\n"
+						+ " selection_error = 0.25\n"
+						+ " runsPerType = 3000\n"
+						+ " maxIterations = 1000\n");
 		System.err.println("nFolds must be > 1");
 		System.exit(2);
 	}
