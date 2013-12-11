@@ -6,7 +6,7 @@
 ################################
 
 Universe = vanilla
-Executable = haberman-customerror.bat 
+Executable = haberman-prop.bat 
 Output = logs/out/haberman$(Cluster).$(Process).out
 Error = logs/err/haberman$(Cluster).$(Process).err
 Log = logs/log/haberman$(Cluster).$(Process).log
@@ -16,23 +16,23 @@ transfer_input_files = data,problems,config.properties,org,main,techniques,helpe
 Requirements = (TARGET.Opsys == "WINDOWS")
 periodic_remove = (CommittedTime - CommittedSuspensionTime) > 43200
 
-arguments = bagging majorityvoting 0.11 0.2 2000 -0.5
+arguments = 2 bagging-averaging
 queue 100
 
-arguments = bagging averaging 0.11 0.2 2000 -0.5
+arguments = 2 bagging-majorityvoting
 queue 100
 
-arguments = adaboost majorityvoting 0.11 0.2 2000 -0.5
+arguments = 2 adaboost-majorityvoting
 queue 100
 
-arguments = adaboost averaging 0.11 0.2 2000 -0.5
+arguments = 2 adaboost-averaging
 queue 100
 
-arguments = stacking metaclassifier-mlp:30:sigmoid-0.001-rprop 2000 -0.5
+arguments = 2 stacking-dropout
 queue 100
 
-arguments = stacking metaclassifier-mlp:30:sigmoid-0.001-rprop-0.5 2000 -0.5
+arguments = 2 dropstacking-dropout
 queue 100
 
-arguments = stacking metaclassifier-mlp:30:sigmoid-0.001-rprop 2000 -0.5
+arguments = 2 dropstacking
 queue 100

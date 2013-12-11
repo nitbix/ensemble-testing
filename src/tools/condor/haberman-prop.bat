@@ -1,1 +1,1 @@
-java -cp .;mysql-connector-java-5.1.25-bin.jar main/Test experiments/%1/haberman.prop
+java -cp .;mysql-connector-java-5.1.25-bin.jar main/Test experiments/%1/haberman-%2.prop
