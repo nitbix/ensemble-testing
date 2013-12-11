@@ -2,6 +2,7 @@ package techniques;
 
 import java.util.List;
 
+import org.encog.ensemble.Ensemble.TrainingAborted;
 import org.encog.ensemble.EnsembleAggregator;
 import org.encog.ensemble.EnsembleMLMethodFactory;
 import org.encog.ensemble.EnsembleTrainFactory;
@@ -50,7 +51,7 @@ public class BaggingET extends EvaluationTechnique {
 	}
 	
 	@Override
-	public void step(boolean verbose) {
+	public void step(boolean verbose) throws TrainingAborted {
 		if (currentSizeIndex < sizes.size() -1) {
 			for (int i = sizes.get(currentSizeIndex++); i < sizes.get(currentSizeIndex); i++) {
 				ensemble.addNewMember();

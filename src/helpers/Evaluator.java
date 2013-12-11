@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.sql.Connection;
 import java.util.Calendar;
 
+import org.encog.ensemble.Ensemble.TrainingAborted;
 import org.encog.neural.data.basic.BasicNeuralDataSet;
 
 import techniques.EvaluationTechnique;
@@ -86,7 +87,12 @@ public class Evaluator {
 			makeLine(false,te,prefix,this.dataLoader.getTrainingSet(fold), sqlStatement, chainId);
 			makeLine(true,te,prefix,this.dataLoader.getTestSet(fold), sqlStatement, chainId);
 			sqlConnection.close();
-			technique.step(false);
+			try {
+				technique.step(false);
+			}
+			catch (TrainingAborted e) {
+				System.out.println("Training aborted on E_t = " + te + ", fold = " + fold + " in chain" + chainId);
+			}
 		}
 	}
 

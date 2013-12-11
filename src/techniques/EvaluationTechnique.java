@@ -80,7 +80,7 @@ public abstract class EvaluationTechnique {
 	public void trainStep() {		
 	}
 	
-	public abstract void step(boolean verbose);
+	public abstract void step(boolean verbose) throws TrainingAborted;
 	
 	public double trainError() {
 		return ensemble.getMember(0).getError(trainingSet);

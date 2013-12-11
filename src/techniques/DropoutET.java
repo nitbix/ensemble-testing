@@ -2,6 +2,7 @@ package techniques;
 
 import java.util.ArrayList;
 
+import org.encog.ensemble.Ensemble.TrainingAborted;
 import org.encog.ensemble.EnsembleAggregator;
 import org.encog.ensemble.EnsembleMLMethodFactory;
 import org.encog.ensemble.EnsembleTrainFactory;
@@ -27,7 +28,7 @@ public class DropoutET extends EvaluationTechnique {
 	}
 
 	@Override
-	public void step(boolean verbose) {
+	public void step(boolean verbose) throws TrainingAborted {
 		if(this.hasStepsLeft) {
 			ensemble.trainMember(0,trainToError, selectionError, selectionSet, verbose);
 		}
