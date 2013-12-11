@@ -6,6 +6,7 @@ git pull -u
 cd ~/ensemble-testing
 cp ~/git/ensemble-testing/src/tools/condor/*.csub .
 cp ~/git/ensemble-testing/src/tools/condor/*.bat .
+cp ~/git/ensemble-testing/src/tools/condor/experiments .
 #forced rebuild of all ensemble code
 for target in `find ~/git/encog-java-core/src/main/java/org/encog/ensemble -type d`; do
 	javac -d ~/ensemble-testing -implicit:class -sourcepath ~/git/ensemble-testing/src:~/git/encog-java-core/src/main/java $target/*.java
