@@ -10,5 +10,6 @@ aggregator = averaging
 verbose = false
 selection_error = 0.25
 max_runs = 3000
-maxIterations = 3000
+max_training_iterations = 3000
 experiment_id = 2
+ensemble_method = bagging
