@@ -226,7 +226,7 @@ public class Test {
 						+ " verbose = {true,false}\n"
 						+ " selection_error = 0.25\n"
 						+ " max_runs = 3000\n"
-						+ " maxIterations = 1000\n"
+						+ " max_training_iterations = 1000\n"
 						+ " experiment_id = 2\n");
 		System.err.println("nFolds must be > 1");
 		System.exit(2);
