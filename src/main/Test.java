@@ -213,7 +213,7 @@ public class Test {
 	{
 		System.err.println("Usage: Test <propfile>");
 		System.err.println("<propfile> should contain, for example:\n"
-						+ "	technique = {bagging,boosting,stacking,dropout}\n"
+						+ "	ensemble_method = {bagging,boosting,stacking,dropout}\n"
 						+ " problem = problems/uci_haberman\n"
 						+ " ensemble_sizes = 1,2,n...\n"
 						+ " dataset_sizes = 100,200,n...\n"
