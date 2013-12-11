@@ -16,16 +16,16 @@ transfer_input_files = data,problems,config.properties,org,main,techniques,helpe
 Requirements = (TARGET.Opsys == "WINDOWS")
 periodic_remove = (CommittedTime - CommittedSuspensionTime) > 43200
 
-arguments = bagging majorityvoting 2000 -0.5
+arguments = bagging majorityvoting 0.11 0.2 2000 -0.5
 queue 100
 
-arguments = bagging averaging 2000 -0.5
+arguments = bagging averaging 0.11 0.2 2000 -0.5
 queue 100
 
-arguments = adaboost majorityvoting 2000 -0.5
+arguments = adaboost majorityvoting 0.11 0.2 2000 -0.5
 queue 100
 
-arguments = adaboost averaging 2000 -0.5
+arguments = adaboost averaging 0.11 0.2 2000 -0.5
 queue 100
 
 arguments = stacking metaclassifier-mlp:30:sigmoid-0.001-rprop 2000 -0.5
