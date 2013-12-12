@@ -51,11 +51,16 @@ public class BaggingET extends EvaluationTechnique {
 	}
 	
 	@Override
-	public void step(boolean verbose) throws TrainingAborted {
+	public void step(boolean verbose) throws TrainingAborted{
 		if (currentSizeIndex < sizes.size() -1) {
 			for (int i = sizes.get(currentSizeIndex++); i < sizes.get(currentSizeIndex); i++) {
 				ensemble.addNewMember();
-				ensemble.trainMember(i, trainToError, selectionError, selectionSet, verbose);
+				try {
+					ensemble.trainMember(i, trainToError, selectionError, selectionSet, verbose);
+				}
+				catch (TrainingAborted e) {
+					System.out.println("Training aborted on E_t = " + trainToError + ", member no " + i);
+				}
 			}
 		} else {
 			this.hasStepsLeft = false;

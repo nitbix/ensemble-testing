@@ -73,7 +73,7 @@ public abstract class EvaluationTechnique {
 		try {
 			ensemble.train(trainToError, selectionError, maxIterations, (EnsembleDataSet) selectionSet,verbose);
 		} catch (TrainingAborted e) {
-			e.printStackTrace();
+			System.out.println("Reached training iterations limit on E_t = " + trainToError);
 		}
 	}
 

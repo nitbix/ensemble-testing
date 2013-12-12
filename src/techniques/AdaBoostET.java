@@ -54,7 +54,7 @@ public class AdaBoostET extends EvaluationTechnique {
 	}
 
 	private void resize(int size, boolean verbose) {
-		((AdaBoost)ensemble).resize(size,trainToError,selectionError,(EnsembleDataSet) selectionSet,verbose);
+		((AdaBoost)ensemble).resize(size,trainToError,selectionError,maxIterations,(EnsembleDataSet) selectionSet,verbose);
 	}
 	
 	@Override
