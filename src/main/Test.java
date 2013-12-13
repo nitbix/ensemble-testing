@@ -117,6 +117,7 @@ public class Test {
 		}
 		sqlConnection = reconnectCallback.connect();
 		statement = sqlConnection.createStatement();
+		cal = Calendar.getInstance();
 		statement.executeUpdate("UPDATE chains SET invalidated = 0, end = '" + sqlDateFormat.format(cal.getTime()) + "' WHERE id = " + chainId);
 	}
 	
