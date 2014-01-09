@@ -133,7 +133,7 @@ public class Test {
 			try {
 				problemPropFile.load(new FileInputStream(args[0]));
 			} catch (FileNotFoundException e) {
-				System.out.println("Could not find" + args[0]);
+				System.err.println("Could not find " + args[0]);
 				help();
 			} catch (IOException e) {
 				help();
