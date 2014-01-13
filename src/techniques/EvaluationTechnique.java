@@ -69,6 +69,10 @@ public abstract class EvaluationTechnique {
 		this.selectionError = selectionError;
 	}
 	
+	public double getSelectionError() {
+		return selectionError;
+	}
+
 	public void train(boolean verbose) {
 		try {
 			ensemble.train(trainToError, selectionError, maxIterations, (EnsembleDataSet) selectionSet,verbose);

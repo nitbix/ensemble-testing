@@ -43,7 +43,7 @@ public class Evaluator {
 				"micro_recall, micro_f1, misclassification, ensemble_size) VALUES (" + chainId +
 				", '" + chainPars.getMLF() + "'" +
 				", " + trainingError +
-				", " + this.technique.selectionError +
+				", " + this.technique.getSelectionError +
 				", " + this.technique.getTrainingSet().size() +
 				", " + this.technique.getMisclassificationCount(dataSet,dataMapper) +
 				", " + (isTest ? 1 : 0) +
