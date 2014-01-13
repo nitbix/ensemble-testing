@@ -35,14 +35,15 @@ public class Evaluator {
 		this.technique.train(verbose);
 	}
 	
-	public void makeLine(boolean isTest, double training_error, ChainParams chainPars, BasicNeuralDataSet dataSet, Statement sqlStatement, long chainId) throws SQLException {
+	public void makeLine(boolean isTest, double trainingError, ChainParams chainPars, BasicNeuralDataSet dataSet, Statement sqlStatement, long chainId) throws SQLException {
 		DataMapper dataMapper = dataLoader.getMapper();
 		PerfResults perf = this.technique.testPerformance(dataSet, dataMapper,false);
-		sqlStatement.executeUpdate("INSERT INTO runs (chain, ml_technique, training_error, dataset_size, misclassified_samples," +
+		sqlStatement.executeUpdate("INSERT INTO runs (chain, ml_technique, training_error, selection_error, dataset_size, misclassified_samples," +
 				"is_test, macro_accuracy, macro_precision, macro_recall, macro_f1, micro_accuracy, micro_precision," +
 				"micro_recall, micro_f1, misclassification, ensemble_size) VALUES (" + chainId +
 				", '" + chainPars.getMLF() + "'" +
-				", " + training_error +
+				", " + trainingError +
+				", " + this.technique.selectionError +
 				", " + this.technique.getTrainingSet().size() +
 				", " + this.technique.getMisclassificationCount(dataSet,dataMapper) +
 				", " + (isTest ? 1 : 0) +
