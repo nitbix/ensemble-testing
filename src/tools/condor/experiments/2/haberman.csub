@@ -6,7 +6,7 @@
 ################################
 
 Universe = vanilla
-Executable = haberman-prop.bat 
+Executable = run-prop.bat 
 Output = logs/out/haberman$(Cluster).$(Process).out
 Error = logs/err/haberman$(Cluster).$(Process).err
 Log = logs/log/haberman$(Cluster).$(Process).log
@@ -16,39 +16,39 @@ transfer_input_files = data,problems,config.properties,org,main,techniques,helpe
 Requirements = (TARGET.Opsys == "WINDOWS")
 periodic_remove = (CommittedTime - CommittedSuspensionTime) > 43200
 
-arguments = 2 bagging-averaging-nodrop
+arguments = 2 haberman bagging-averaging-nodrop
 queue 100
 
-arguments = 2 bagging-majorityvoting-nodrop
+arguments = 2 haberman bagging-majorityvoting-nodrop
 queue 100
 
-arguments = 2 adaboost-majorityvoting-nodrop
+arguments = 2 haberman adaboost-majorityvoting-nodrop
 queue 100
 
-arguments = 2 adaboost-averaging-nodrop
+arguments = 2 haberman adaboost-averaging-nodrop
 queue 100
 
-arguments = 2 bagging-averaging
+arguments = 2 haberman bagging-averaging
 queue 100
 
-arguments = 2 bagging-majorityvoting
+arguments = 2 haberman bagging-majorityvoting
 queue 100
 
-arguments = 2 adaboost-majorityvoting
+arguments = 2 haberman adaboost-majorityvoting
 queue 100
 
-arguments = 2 adaboost-averaging
+arguments = 2 haberman adaboost-averaging
 queue 100
 
-arguments = 2 stacking
+arguments = 2 haberman stacking
 queue 100
 
-arguments = 2 stacking-dropout
+arguments = 2 haberman stacking-dropout
 queue 100
 
-arguments = 2 dropstacking-dropout
+arguments = 2 haberman dropstacking-dropout
 queue 100
 
-arguments = 2 dropstacking
+arguments = 2 haberman dropstacking
 queue 100
 
