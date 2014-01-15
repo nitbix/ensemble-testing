@@ -16,6 +16,18 @@ transfer_input_files = data,problems,config.properties,org,main,techniques,helpe
 Requirements = (TARGET.Opsys == "WINDOWS")
 periodic_remove = (CommittedTime - CommittedSuspensionTime) > 43200
 
+arguments = 2 bagging-averaging-nodrop
+queue 100
+
+arguments = 2 bagging-majorityvoting-nodrop
+queue 100
+
+arguments = 2 adaboost-majorityvoting-nodrop
+queue 100
+
+arguments = 2 adaboost-averaging-nodrop
+queue 100
+
 arguments = 2 bagging-averaging
 queue 100
 
