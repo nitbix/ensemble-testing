@@ -28,6 +28,9 @@ queue 100
 arguments = 2 adaboost-averaging
 queue 100
 
+arguments = 2 stacking
+queue 100
+
 arguments = 2 stacking-dropout
 queue 100
 
