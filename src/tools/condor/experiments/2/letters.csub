@@ -1,0 +1,54 @@
+################################
+#
+# Condor submit file
+#
+#
+################################
+
+Universe = vanilla
+Executable = run-prop.bat 
+Output = logs/out/letters$(Cluster).$(Process).out
+Error = logs/err/letters$(Cluster).$(Process).err
+Log = logs/log/letters$(Cluster).$(Process).log
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = data,problems,config.properties,org,main,techniques,helpers,perceptron,mysql-connector-java-5.1.25-bin.jar,experiments
+Requirements = (TARGET.Opsys == "WINDOWS")
+periodic_remove = (CommittedTime - CommittedSuspensionTime) > 43200
+
+arguments = 2 letter-recognition bagging-averaging-nodrop
+queue 100
+
+arguments = 2 letter-recognition bagging-majorityvoting-nodrop
+queue 100
+
+arguments = 2 letter-recognition adaboost-majorityvoting-nodrop
+queue 100
+
+arguments = 2 letter-recognition adaboost-averaging-nodrop
+queue 100
+
+arguments = 2 letter-recognition bagging-averaging
+queue 100
+
+arguments = 2 letter-recognition bagging-majorityvoting
+queue 100
+
+arguments = 2 letter-recognition adaboost-majorityvoting
+queue 100
+
+arguments = 2 letter-recognition adaboost-averaging
+queue 100
+
+arguments = 2 letter-recognition stacking
+queue 100
+
+arguments = 2 letter-recognition stacking-dropout
+queue 100
+
+arguments = 2 letter-recognition dropstacking-dropout
+queue 100
+
+arguments = 2 letter-recognition dropstacking
+queue 100
+
