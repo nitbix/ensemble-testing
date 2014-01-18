@@ -4,5 +4,6 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/encog-core"/>
 	<classpathentry exported="true" kind="lib" path="mysql-connector-java-5.1.25-bin.jar"/>
+	<classpathentry kind="lib" path="commons-cli-1.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -51,7 +51,8 @@ public class BaggingET extends EvaluationTechnique {
 	}
 	
 	@Override
-	public void step(boolean verbose) throws TrainingAborted{
+	public void step(boolean verbose) throws TrainingAborted
+	{
 		if (currentSizeIndex < sizes.size() -1) {
 			for (int i = sizes.get(currentSizeIndex++); i < sizes.get(currentSizeIndex); i++) {
 				ensemble.addNewMember();
