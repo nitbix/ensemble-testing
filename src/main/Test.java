@@ -183,7 +183,12 @@ public class Test {
 			targetRunCount = ArgParser.intSingle(problemPropFile.getProperty("max_runs"));
 			maxIterations = ArgParser.intSingle(problemPropFile.getProperty("max_training_iterations"));
 			EXPERIMENT = ArgParser.intSingle(problemPropFile.getProperty("experiment_id"));
-		} catch (helpers.ProblemDescriptionLoader.BadArgument e) 
+		}
+		catch (FileNotFoundException e)
+		{
+			System.err.println("Could not create dataLoader - data file not found");
+		}
+		catch (helpers.ProblemDescriptionLoader.BadArgument e) 
 		{
 			System.err.println("Could not create dataLoader - perhaps the mapper_type property is wrong");
 			e.printStackTrace();

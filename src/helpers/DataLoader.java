@@ -1,5 +1,6 @@
 package helpers;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import org.encog.NullStatusReportable;
@@ -35,10 +36,11 @@ public class DataLoader {
 			folds.add(new BasicNeuralDataSet());
 	}
 	
-	public int readData(String inputFile) {
+	public int readData(String inputFile) throws FileNotFoundException {
+		FileLoader fileLoader = new FileLoader();
 		int total=0;
 		//System.out.println("importing dataset");
-		ReadCSV csv = new ReadCSV(inputFile,false,',');
+		ReadCSV csv = new ReadCSV(fileLoader.openOrFind(inputFile),false,',');
 		_completeSet = new BasicNeuralDataSet();
 		while(csv.next())
 		{

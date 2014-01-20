@@ -17,7 +17,7 @@ public class Evaluator
 	private EvaluationTechnique technique;
 	private DataLoader dataLoader;
 	
-	Evaluator(EvaluationTechnique technique, DataMapper mapper, int inputCols, int inputs, String dataFile, boolean inputsReversed, int nFolds, double targetTrainingError, double selectionError, int fold)
+	Evaluator(EvaluationTechnique technique, DataMapper mapper, int inputCols, int inputs, String dataFile, boolean inputsReversed, int nFolds, double targetTrainingError, double selectionError, int fold) throws FileNotFoundException
 	{
 		this.setTechnique(technique);
 		dataLoader = new DataLoader(mapper,inputCols,inputs,inputsReversed,nFolds);
