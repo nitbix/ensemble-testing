@@ -10,4 +10,4 @@ cp -r ~/git/ensemble-testing/src/tools/condor/experiments .
 cd ~/git/ensemble-testing/src
 ant build
 ant dist
-cp ensemble-testing.jar ~/ensemble-testing
+cp ../ensemble-testing.jar ~/ensemble-testing
