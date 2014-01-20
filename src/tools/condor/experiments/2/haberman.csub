@@ -12,7 +12,7 @@ Error = logs/err/haberman$(Cluster).$(Process).err
 Log = logs/log/haberman$(Cluster).$(Process).log
 should_transfer_files = YES
 when_to_transfer_output = ON_EXIT
-transfer_input_files = data/haberman.data,problems,config.properties,ensemble-testing.jar,experiments
+transfer_input_files = ensemble-testing.jar
 Requirements = (TARGET.Opsys == "WINDOWS")
 periodic_remove = (CommittedTime - CommittedSuspensionTime) > 43200
 

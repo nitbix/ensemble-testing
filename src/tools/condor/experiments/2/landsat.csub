@@ -12,7 +12,7 @@ Error = logs/err/landsat$(Cluster).$(Process).err
 Log = logs/log/landsat$(Cluster).$(Process).log
 should_transfer_files = YES
 when_to_transfer_output = ON_EXIT
-transfer_input_files = data/landsat.data,problems,config.properties,ensemble-testing.jar,experiments
+transfer_input_files = ensemble-testing.jar
 Requirements = (TARGET.Opsys == "WINDOWS")
 periodic_remove = (CommittedTime - CommittedSuspensionTime) > 43200
 
