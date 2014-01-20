@@ -17,6 +17,6 @@ public class FileLoader {
 		is = this.getClass().getResourceAsStream(filename);
 		if(is != null)
 			return is;
-		throw new FileNotFoundException();
+		throw new FileNotFoundException("could not find " + filename);
 	}
 }
