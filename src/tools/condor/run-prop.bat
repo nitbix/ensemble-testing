@@ -1,1 +1,1 @@
-java -cp .;mysql-connector-java-5.1.25-bin.jar main/Test experiments/%1/%2/%3.prop
+java -jar ensemble-testing.jar experiments/%1/%2/%3.prop
