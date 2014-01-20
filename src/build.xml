@@ -31,9 +31,10 @@
 		<jar jarfile="../ensemble-testing.jar" basedir="build">
 			<manifest>
 			    <attribute name="Main-Class" value="main/Test"/>
-			    <attribute name="Class-Path" value="${jar.class.path}"/>
+<!--			    <attribute name="Class-Path" value="${jar.class.path}"/>-->
 			</manifest>
 			<fileset dir="build" includes="**/*.class"/>            
+			<zipgroupfileset includes="*.jar" dir="build/lib"/>
 		</jar>
 	</target>
 </project>
