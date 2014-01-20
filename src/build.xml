@@ -33,7 +33,11 @@
 			    <attribute name="Main-Class" value="main/Test"/>
 <!--			    <attribute name="Class-Path" value="${jar.class.path}"/>-->
 			</manifest>
-			<fileset dir="build" includes="**/*.class"/>            
+			<fileset dir="build" includes="**/*.class"/>
+			<fileset dir="tools/condor" includes="experiments/**"/>
+			<fileset dir="." includes="problems/**"/>
+			<fileset dir="." includes="data/**"/>
+			<fileset dir="." includes="config.properties"/>
 			<zipgroupfileset includes="*.jar" dir="build/lib"/>
 		</jar>
 	</target>
