@@ -17,17 +17,21 @@ import helpers.DBConnect;
 import helpers.DataLoader;
 import helpers.Evaluator;
 import helpers.ChainParams;
+import helpers.FileLoader;
 import helpers.ProblemDescription;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
+
 import org.apache.commons.cli.*;
 
 public class Test {
@@ -134,6 +138,7 @@ public class Test {
 	
 	public static void main(String[] args)
 	{
+		FileLoader fileLoader = new FileLoader();
 		Options options = new Options();
 		CommandLineParser parser = new BasicParser();
 		options.addOption("o", "stdout", false, "output to stdout rather than SQL");
@@ -154,7 +159,7 @@ public class Test {
 		{
 			Properties problemPropFile = new Properties();
 			try {
-				problemPropFile.load(new FileInputStream(parsedArgs[0]));
+				problemPropFile.load(fileLoader.openOrFind(parsedArgs[0]));
 			} catch (FileNotFoundException e) {
 				System.err.println("Could not find " + parsedArgs[0]);
 				help();
@@ -199,7 +204,7 @@ public class Test {
 		try
 		{
             Properties prop = new Properties();
-            prop.load(new FileInputStream("config.properties"));
+            prop.load(fileLoader.openOrFind("config.properties"));
             String dbhost = prop.getProperty("dbhost");
             dbuser = prop.getProperty("dbuser");
             dbpass = prop.getProperty("dbpass");

@@ -36,8 +36,9 @@ public class ProblemDescriptionLoader implements ProblemDescription {
 	
 	public void fromProblemDescriptionFile(String file) throws BadArgument {
 		Properties descFile = new Properties();
+		FileLoader fileLoader = new FileLoader();
 		try {
-			descFile.load(this.getClass().getClassLoader().getResourceAsStream(file));
+			descFile.load(fileLoader.openOrFind(file));
 			outputs=Integer.parseInt(descFile.getProperty("outputs"));
 			inputs=Integer.parseInt(descFile.getProperty("inputs"));
 			readInputs=Integer.parseInt(descFile.getProperty("read_inputs"));
