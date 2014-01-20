@@ -1,12 +1,13 @@
 <project>
-	<property name="jar.class.path" value="lib/commons-cli-1.2.jar lib/mysql-connector-java-5.1.25-bin.jar"/>
 	<path id="project.class.path">
-		<pathelement location="build"/>
 		<fileset dir="build/lib">
 			<include name="commons-cli-1.2.jar"/>
 			<include name="mysql-connector-java-5.1.25-bin.jar"/>
 		</fileset>
 	</path>
+	<manifestclasspath property="jar.class.path" jarfile="../ensemble-testing.jar">
+	    <classpath refid="project.class.path"/>
+	</manifestclasspath>
 	<path id="build-classpath">
 	</path>
 	<target name="clean">
@@ -17,7 +18,8 @@
 		<mkdir dir="build/lib"/>
 		<copy todir="build/lib">
 		    <fileset dir="..">
-			<include name="**/*.jar"/>
+			<include name="commons-cli-1.2.jar"/>
+			<include name="mysql-connector-java-5.1.25-bin.jar"/>
 		    </fileset>
 		</copy>
 		<javac srcdir=".:../../encog-java-core/src/main/java" destdir="build">
@@ -26,12 +28,13 @@
 	</target>
 	<target name="dist">
 		<mkdir dir="build"/>
-		<jar jarfile="ensemble-testing.jar" basedir="build">
+		<jar jarfile="../ensemble-testing.jar" basedir="build">
 			<manifest>
 			    <attribute name="Main-Class" value="main/Test"/>
-			    <attribute name="Class-Path" value="${jar.class.path}"/>
+<!--			    <attribute name="Class-Path" value="${jar.class.path}"/>-->
 			</manifest>
 			<fileset dir="build" includes="**/*.class"/>            
+			<zipgroupfileset includes="*.jar" dir="build/lib"/>
 		</jar>
 	</target>
 </project>
