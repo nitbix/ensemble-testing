@@ -204,7 +204,7 @@ public class Test {
 		try
 		{
             Properties prop = new Properties();
-            prop.load(new FileInputStream("config.properties"));
+            prop.load(fileLoader.openOrFind("config.properties"));
             String dbhost = prop.getProperty("dbhost");
             dbuser = prop.getProperty("dbuser");
             dbpass = prop.getProperty("dbpass");
