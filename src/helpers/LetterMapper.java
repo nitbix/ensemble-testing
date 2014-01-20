@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.encog.ml.data.MLData;
 import org.encog.ml.data.basic.BasicMLData;
-import org.encog.neural.data.basic.BasicNeuralData;
 
 public class LetterMapper implements DataMapper {
 	

@@ -11,7 +11,12 @@ public class FileLoader {
 		File f= new File(filename);
 		if(f.exists())
 			return new FileInputStream(filename);
-		else
-			return this.getClass().getResourceAsStream("/" + filename);
+		InputStream is = this.getClass().getResourceAsStream("/" + filename);
+		if(is != null)
+			return is;
+		is = this.getClass().getResourceAsStream(filename);
+		if(is != null)
+			return is;
+		throw new FileNotFoundException();
 	}
 }
