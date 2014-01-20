@@ -1,11 +1,38 @@
 <project>
+	<property name="jar.class.path" value="lib/commons-cli-1.2.jar lib/mysql-connector-java-5.1.25-bin.jar"/>
+	<path id="project.class.path">
+		<pathelement location="build"/>
+		<fileset dir="build/lib">
+			<include name="commons-cli-1.2.jar"/>
+			<include name="mysql-connector-java-5.1.25-bin.jar"/>
+		</fileset>
+	</path>
+	<path id="build-classpath">
+	</path>
 	<target name="clean">
-		<delete dir="build/classes"/>
+		<delete dir="build"/>
 	</target>
 	<target name="build">
-		<mkdir dir="build/classes"/>
-		<symlink link="build/classes/data" resource="../../data" overwrite="true"/>
-		<symlink link="build/classes/problems" resource="../../problems" overwrite="true"/>
-		<javac srcdir=".:../main/java" destdir="build/classes"/>
+		<mkdir dir="build"/>
+		<mkdir dir="build/lib"/>
+		<copy todir="build/lib">
+		    <fileset dir="..">
+			<include name="**/*.jar"/>
+		    </fileset>
+		</copy>
+		<javac srcdir=".:../../encog-java-core/src/main/java" destdir="build">
+			<classpath refid="project.class.path"/>
+		</javac>
+	</target>
+	<target name="dist">
+		<mkdir dir="build"/>
+		<jar jarfile="build/jar/ensemble-testing.jar" basedir="build">
+			<manifest>
+			    <attribute name="Main-Class" value="main/Test"/>
+			    <attribute name="Class-Path" value="${jar.class.path}"/>
+			</manifest>
+			<fileset dir="build" includes="**/*.class"/>            
+			<fileset dir="build/lib" includes="**/*.jar"/>            
+		</jar>
 	</target>
 </project>
