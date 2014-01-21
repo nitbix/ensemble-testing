@@ -17,38 +17,37 @@ Requirements = (TARGET.Opsys == "WINDOWS")
 periodic_remove = (CommittedTime - CommittedSuspensionTime) > 43200
 
 arguments = 2 letter-recognition bagging-averaging-nodrop
-queue 100
+queue 10
 
 arguments = 2 letter-recognition bagging-majorityvoting-nodrop
-queue 100
+queue 10
 
 arguments = 2 letter-recognition adaboost-majorityvoting-nodrop
-queue 100
+queue 10
 
 arguments = 2 letter-recognition adaboost-averaging-nodrop
-queue 100
+queue 10
 
 arguments = 2 letter-recognition bagging-averaging
-queue 100
+queue 10
 
 arguments = 2 letter-recognition bagging-majorityvoting
-queue 100
+queue 10
 
 arguments = 2 letter-recognition adaboost-majorityvoting
-queue 100
+queue 10
 
 arguments = 2 letter-recognition adaboost-averaging
-queue 100
+queue 10
 
 arguments = 2 letter-recognition stacking
-queue 100
+queue 10
 
 arguments = 2 letter-recognition stacking-dropout
-queue 100
+queue 10
 
 arguments = 2 letter-recognition dropstacking-dropout
-queue 100
+queue 10
 
 arguments = 2 letter-recognition dropstacking
-queue 100
-
+queue 10

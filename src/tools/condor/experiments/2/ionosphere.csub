@@ -17,38 +17,37 @@ Requirements = (TARGET.Opsys == "WINDOWS")
 periodic_remove = (CommittedTime - CommittedSuspensionTime) > 43200
 
 arguments = 2 ionosphere bagging-averaging-nodrop
-queue 100
+queue 10
 
 arguments = 2 ionosphere bagging-majorityvoting-nodrop
-queue 100
+queue 10
 
 arguments = 2 ionosphere adaboost-majorityvoting-nodrop
-queue 100
+queue 10
 
 arguments = 2 ionosphere adaboost-averaging-nodrop
-queue 100
+queue 10
 
 arguments = 2 ionosphere bagging-averaging
-queue 100
+queue 10
 
 arguments = 2 ionosphere bagging-majorityvoting
-queue 100
+queue 10
 
 arguments = 2 ionosphere adaboost-majorityvoting
-queue 100
+queue 10
 
 arguments = 2 ionosphere adaboost-averaging
-queue 100
+queue 10
 
 arguments = 2 ionosphere stacking
-queue 100
+queue 10
 
 arguments = 2 ionosphere stacking-dropout
-queue 100
+queue 10
 
 arguments = 2 ionosphere dropstacking-dropout
-queue 100
+queue 10
 
 arguments = 2 ionosphere dropstacking
-queue 100
-
+queue 10

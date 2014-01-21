@@ -17,38 +17,37 @@ Requirements = (TARGET.Opsys == "WINDOWS")
 periodic_remove = (CommittedTime - CommittedSuspensionTime) > 43200
 
 arguments = 2 landsat bagging-averaging-nodrop
-queue 100
+queue 10
 
 arguments = 2 landsat bagging-majorityvoting-nodrop
-queue 100
+queue 10
 
 arguments = 2 landsat adaboost-majorityvoting-nodrop
-queue 100
+queue 10
 
 arguments = 2 landsat adaboost-averaging-nodrop
-queue 100
+queue 10
 
 arguments = 2 landsat bagging-averaging
-queue 100
+queue 10
 
 arguments = 2 landsat bagging-majorityvoting
-queue 100
+queue 10
 
 arguments = 2 landsat adaboost-majorityvoting
-queue 100
+queue 10
 
 arguments = 2 landsat adaboost-averaging
-queue 100
+queue 10
 
 arguments = 2 landsat stacking
-queue 100
+queue 10
 
 arguments = 2 landsat stacking-dropout
-queue 100
+queue 10
 
 arguments = 2 landsat dropstacking-dropout
-queue 100
+queue 10
 
 arguments = 2 landsat dropstacking
-queue 100
-
+queue 10
