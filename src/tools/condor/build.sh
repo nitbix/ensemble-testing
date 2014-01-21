@@ -4,7 +4,7 @@ git pull -u
 cd ~/git/encog-java-core/
 git pull -u
 cd ~/ensemble-testing
-cp ~/git/ensemble-testing/src/tools/condor/*.bat .
+cp ~/git/ensemble-testing/src/tools/condor/run-prop.bat .
 cp -r ~/git/ensemble-testing/src/tools/condor/experiments .
 #forced rebuild of all ensemble code
 cd ~/git/ensemble-testing/src
