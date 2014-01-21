@@ -1,0 +1,44 @@
+################################
+#
+# Condor submit file
+#
+#
+################################
+
+Universe = vanilla
+Executable = run-prop.bat 
+Output = logs/out/haberman$(Cluster).$(Process).out
+Error = logs/err/haberman$(Cluster).$(Process).err
+Log = logs/log/haberman$(Cluster).$(Process).log
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = ensemble-testing.jar
+Requirements = (TARGET.Opsys == "WINDOWS")
+periodic_remove = (CommittedTime - CommittedSuspensionTime) > 43200
+
+arguments = 2 haberman stacking/10-0.1
+queue 50
+
+arguments = 2 haberman stacking/10-0.001
+queue 50
+
+arguments = 2 haberman stacking/10-0.00001
+queue 50
+
+arguments = 2 haberman stacking/30-0.1
+queue 50
+
+arguments = 2 haberman stacking/30-0.001
+queue 50
+
+arguments = 2 haberman stacking/30-0.00001
+queue 50
+
+arguments = 2 haberman stacking/100-0.1
+queue 50
+
+arguments = 2 haberman stacking/100-0.001
+queue 50
+
+arguments = 2 haberman stacking/100-0.00001
+queue 50
