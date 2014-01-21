@@ -5,9 +5,6 @@
 			<include name="mysql-connector-java-5.1.25-bin.jar"/>
 		</fileset>
 	</path>
-	<manifestclasspath property="jar.class.path" jarfile="../ensemble-testing.jar">
-	    <classpath refid="project.class.path"/>
-	</manifestclasspath>
 	<path id="build-classpath">
 	</path>
 	<target name="clean">
@@ -27,6 +24,9 @@
 		</javac>
 	</target>
 	<target name="dist">
+		<manifestclasspath property="jar.class.path" jarfile="../ensemble-testing.jar">
+		    <classpath refid="project.class.path"/>
+		</manifestclasspath>
 		<mkdir dir="build"/>
 		<jar jarfile="../ensemble-testing.jar" basedir="build">
 			<manifest>
