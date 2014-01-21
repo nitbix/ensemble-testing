@@ -52,6 +52,7 @@ public class StackingET extends EvaluationTechnique {
 				ensemble.addNewMember();
 				ensemble.trainMember(i, trainToError, selectionError, selectionSet, verbose);
 			}
+			aggregator.setTrainingErrorDivisor(sizes.get(currentSizeIndex));
 			ensemble.retrainAggregator();
 		} else {
 			this.hasStepsLeft = false;
