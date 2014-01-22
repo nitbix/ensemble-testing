@@ -10,6 +10,7 @@ Executable = run-prop.bat
 Output = logs/out/ionosphere$(Cluster).$(Process).out
 Error = logs/err/ionosphere$(Cluster).$(Process).err
 Log = logs/log/ionosphere$(Cluster).$(Process).log
+copy_to_spool = true
 should_transfer_files = YES
 when_to_transfer_output = ON_EXIT
 transfer_input_files = ensemble-testing.jar
