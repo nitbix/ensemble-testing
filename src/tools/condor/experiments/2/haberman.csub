@@ -17,37 +17,37 @@ Requirements = (TARGET.Opsys == "WINDOWS")
 periodic_remove = (CommittedTime - CommittedSuspensionTime) > 43200
 
 arguments = 2 haberman bagging-averaging-nodrop
-queue 10
+queue 50
 
 arguments = 2 haberman bagging-majorityvoting-nodrop
-queue 10
+queue 50
 
 arguments = 2 haberman adaboost-majorityvoting-nodrop
-queue 10
+queue 50
 
 arguments = 2 haberman adaboost-averaging-nodrop
-queue 10
+queue 50
 
 arguments = 2 haberman bagging-averaging
-queue 10
+queue 50
 
 arguments = 2 haberman bagging-majorityvoting
-queue 10
+queue 50
 
 arguments = 2 haberman adaboost-majorityvoting
-queue 10
+queue 50
 
 arguments = 2 haberman adaboost-averaging
-queue 10
+queue 50
 
 arguments = 2 haberman stacking
-queue 10
+queue 50
 
 arguments = 2 haberman stacking-dropout
-queue 10
+queue 50
 
 arguments = 2 haberman dropstacking-dropout
-queue 10
+queue 50
 
 arguments = 2 haberman dropstacking
-queue 10
+queue 50
