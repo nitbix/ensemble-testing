@@ -111,6 +111,7 @@ public class DataLoader {
 	public int size() {
 		return _completeSet.size();
 	}
+	
 	public BasicNeuralDataSet getTrainingSet(int fold) {
 		BasicNeuralDataSet trainingSet = new BasicNeuralDataSet();
 		for (int i = 0; i < nFolds; i++)

@@ -7,15 +7,21 @@ import java.util.Properties;
 public class ProblemDescriptionLoader implements ProblemDescription {
 	public static class BadArgument extends Exception {
 
-		/**
-		 * 
-		 */
+		public BadArgument(String message) {
+			super(message);
+		}
+
+		public BadArgument() {
+			super();
+		}
+
 		private static final long serialVersionUID = 4633079187826478261L;
 		
 	}
 	public enum MapperType {
 		INT,
 		LETTER,
+		BOOL,
 	}
 	
 	boolean loaded=false;
@@ -58,6 +64,15 @@ public class ProblemDescriptionLoader implements ProblemDescription {
 		switch(how) {
 			case INT: return new IntMapper(outputs,activationThreshold);
 			case LETTER: return new LetterMapper(outputs,activationThreshold,0.0);
+			case BOOL: 
+				try
+				{
+					return new BoolMapper(outputs,activationThreshold);
+				}
+				catch(Exception e)
+				{
+					throw new BadArgument(e.getMessage());
+				}
 			default: throw new BadArgument();
 		}
 	}
