@@ -5,7 +5,9 @@ import java.util.List;
 import org.encog.ensemble.EnsembleAggregator;
 import org.encog.ensemble.EnsembleMLMethodFactory;
 import org.encog.ensemble.EnsembleTrainFactory;
+import org.encog.ensemble.EnsembleWeightedAggregator;
 import org.encog.ensemble.adaboost.AdaBoost;
+import org.encog.ensemble.aggregator.WeightedAveraging.WeightMismatchException;
 import org.encog.ensemble.data.EnsembleDataSet;
 import org.encog.ml.data.MLData;
 
@@ -14,6 +16,13 @@ import helpers.ChainParams;
 
 public class AdaBoostET extends EvaluationTechnique {
 
+	public static class RequiresWeightedAggregatorException extends Exception {
+
+		/**
+		 * This happens if you pass a non-weighted aggregator to AdaBoost
+		 */
+		private static final long serialVersionUID = -621777903130247977L;
+	}
 	private int dataSetSize;
 	private DataLoader dataLoader;
 	private int fold;
@@ -29,17 +38,21 @@ public class AdaBoostET extends EvaluationTechnique {
 	}
 
 	@Override
-	public void init(DataLoader dataLoader, int fold) {
+	public void init(DataLoader dataLoader, int fold) throws RequiresWeightedAggregatorException {
 		this.dataLoader = dataLoader;
 		this.fold = fold;
-		ensemble = new AdaBoost(sizes.get(currentSizeIndex),dataSetSize,mlMethod,trainFactory,aggregator);
+		if (!(aggregator instanceof EnsembleWeightedAggregator))
+		{
+			throw new RequiresWeightedAggregatorException();
+		}
+		ensemble = new AdaBoost(sizes.get(currentSizeIndex),dataSetSize,mlMethod,trainFactory,(EnsembleWeightedAggregator) aggregator);
 		setTrainingSet(dataLoader.getTrainingSet(fold));
 		setSelectionSet(dataLoader.getTestSet(fold));
 		ensemble.setTrainingData(trainingSet);
 	}
 	
 	@Override
-	public MLData compute(MLData input) {
+	public MLData compute(MLData input) throws WeightMismatchException {
 		return ensemble.compute(input);
 	}
 

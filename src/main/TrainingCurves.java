@@ -7,8 +7,10 @@ import java.util.List;
 import org.encog.ensemble.EnsembleAggregator;
 import org.encog.ensemble.EnsembleMLMethodFactory;
 import org.encog.ensemble.EnsembleTrainFactory;
+import org.encog.ensemble.aggregator.WeightedAveraging.WeightMismatchException;
 import org.encog.neural.data.basic.BasicNeuralDataSet;
 
+import techniques.AdaBoostET.RequiresWeightedAggregatorException;
 import techniques.EvaluationTechnique;
 import helpers.ArgParser;
 import helpers.ArgParser.BadArgument;
@@ -32,7 +34,7 @@ public class TrainingCurves {
 	private static String etType;
 	private static int maxIterations;
 	
-	public static void loop() {
+	public static void loop() throws WeightMismatchException, RequiresWeightedAggregatorException {
 		List<Integer> one = new ArrayList<Integer>();
 		one.add(1);
 		for(EnsembleMLMethodFactory mlf: mlfs)
@@ -60,7 +62,7 @@ public class TrainingCurves {
 		}
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws WeightMismatchException, RequiresWeightedAggregatorException {
 		if (args.length != 8) {
 			help();
 		} 

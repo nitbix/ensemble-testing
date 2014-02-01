@@ -9,7 +9,9 @@ import java.util.List;
 import org.encog.ensemble.EnsembleAggregator;
 import org.encog.ensemble.EnsembleMLMethodFactory;
 import org.encog.ensemble.EnsembleTrainFactory;
+import org.encog.ensemble.aggregator.WeightedAveraging.WeightMismatchException;
 
+import techniques.AdaBoostET.RequiresWeightedAggregatorException;
 import techniques.EvaluationTechnique;
 import helpers.ArgParser;
 import helpers.ArgParser.BadArgument;
@@ -61,7 +63,7 @@ public class Test {
 	private static String dbconn,dbuser,dbpass;
 	private static DBConnect reconnectCallback;
 	
-	public static void loop() throws SQLException, FileNotFoundException, IOException
+	public static void loop() throws SQLException, FileNotFoundException, IOException, WeightMismatchException, RequiresWeightedAggregatorException
 	{
 		DateFormat sqlDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Calendar cal = Calendar.getInstance();
@@ -136,7 +138,7 @@ public class Test {
 		}
 	}
 	
-	public static void main(String[] args)
+	public static void main(String[] args) throws WeightMismatchException, RequiresWeightedAggregatorException
 	{
 		FileLoader fileLoader = new FileLoader();
 		Options options = new Options();

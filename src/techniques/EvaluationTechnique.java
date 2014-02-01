@@ -13,11 +13,14 @@ import org.encog.ensemble.Ensemble.TrainingAborted;
 import org.encog.ensemble.EnsembleAggregator;
 import org.encog.ensemble.EnsembleMLMethodFactory;
 import org.encog.ensemble.EnsembleTrainFactory;
+import org.encog.ensemble.aggregator.WeightedAveraging.WeightMismatchException;
 import org.encog.ensemble.data.EnsembleDataSet;
 import org.encog.ml.data.MLData;
 import org.encog.ml.data.MLDataPair;
 import org.encog.ml.data.MLDataSet;
 import org.encog.neural.data.basic.BasicNeuralDataSet;
+
+import techniques.AdaBoostET.RequiresWeightedAggregatorException;
 
 public abstract class EvaluationTechnique {
 
@@ -35,7 +38,7 @@ public abstract class EvaluationTechnique {
 	protected boolean hasStepsLeft = true;
 	protected int maxIterations = 2000;
 	
-	public double getMisclassification(BasicNeuralDataSet evalSet, DataMapper dataMapper) {
+	public double getMisclassification(BasicNeuralDataSet evalSet, DataMapper dataMapper) throws WeightMismatchException {
 		int bad = 0;
 		for(int i = 0; i < evalSet.getRecordCount(); i++)
 		{
@@ -50,7 +53,7 @@ public abstract class EvaluationTechnique {
 		return error;
 	}
 	
-	public int getMisclassificationCount(BasicNeuralDataSet evalSet, DataMapper dataMapper) {
+	public int getMisclassificationCount(BasicNeuralDataSet evalSet, DataMapper dataMapper) throws WeightMismatchException {
 		int bad = 0;
 		for(int i = 0; i < evalSet.getRecordCount(); i++)
 		{
@@ -94,7 +97,7 @@ public abstract class EvaluationTechnique {
 		return ensemble.getMember(0).getError(selectionSet);
 	}	
 	
-	public abstract void init(DataLoader dataLoader, int fold);
+	public abstract void init(DataLoader dataLoader, int fold) throws RequiresWeightedAggregatorException;
 	
 	public String getLabel() {
 		return label.get(sizes.get(currentSizeIndex));
@@ -116,11 +119,11 @@ public abstract class EvaluationTechnique {
 		this.selectionSet = new EnsembleDataSet(testSet);
 	}
 	
-	public MLData compute(MLData input) {
+	public MLData compute(MLData input) throws WeightMismatchException {
 		return ensemble.compute(input);
 	}
 	
-	public PerfResults testPerformance(BasicNeuralDataSet evalSet, DataMapper dataMapper, boolean debug) {
+	public PerfResults testPerformance(BasicNeuralDataSet evalSet, DataMapper dataMapper, boolean debug) throws WeightMismatchException {
 		int outputs = evalSet.getIdealSize();
 		long size = evalSet.getRecordCount();
 		int tp[] = new int[outputs];

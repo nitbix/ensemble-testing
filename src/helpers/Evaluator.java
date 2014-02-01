@@ -7,8 +7,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Connection;
 import org.encog.ensemble.Ensemble.TrainingAborted;
+import org.encog.ensemble.aggregator.WeightedAveraging.WeightMismatchException;
 import org.encog.neural.data.basic.BasicNeuralDataSet;
 
+import techniques.AdaBoostET.RequiresWeightedAggregatorException;
 import techniques.EvaluationTechnique;
 
 public class Evaluator
@@ -17,7 +19,7 @@ public class Evaluator
 	private EvaluationTechnique technique;
 	private DataLoader dataLoader;
 	
-	Evaluator(EvaluationTechnique technique, DataMapper mapper, int inputCols, int inputs, String dataFile, boolean inputsReversed, int nFolds, double targetTrainingError, double selectionError, int fold) throws FileNotFoundException
+	Evaluator(EvaluationTechnique technique, DataMapper mapper, int inputCols, int inputs, String dataFile, boolean inputsReversed, int nFolds, double targetTrainingError, double selectionError, int fold) throws FileNotFoundException, RequiresWeightedAggregatorException
 	{
 		this.setTechnique(technique);
 		dataLoader = new DataLoader(mapper,inputCols,inputs,inputsReversed,nFolds);
@@ -27,7 +29,7 @@ public class Evaluator
 		this.technique.train(false);
 	}
 	
-	public Evaluator(EvaluationTechnique technique, DataLoader dataLoader, double targetTrainingError, double selectionError, boolean verbose, int fold)
+	public Evaluator(EvaluationTechnique technique, DataLoader dataLoader, double targetTrainingError, double selectionError, boolean verbose, int fold) throws RequiresWeightedAggregatorException
 	{
 		this.setTechnique(technique);
 		this.dataLoader = dataLoader;
@@ -36,7 +38,7 @@ public class Evaluator
 		this.technique.train(verbose);
 	}
 	
-	public void makeLine(boolean isTest, double trainingError, ChainParams chainPars, BasicNeuralDataSet dataSet, Statement sqlStatement, long chainId) throws SQLException
+	public void makeLine(boolean isTest, double trainingError, ChainParams chainPars, BasicNeuralDataSet dataSet, Statement sqlStatement, long chainId) throws SQLException, WeightMismatchException
 	{
 		DataMapper dataMapper = dataLoader.getMapper();
 		PerfResults perf = this.technique.testPerformance(dataSet, dataMapper,false);
@@ -103,7 +105,7 @@ public class Evaluator
 		}
 	}
 
-	public void getResults (ChainParams prefix, double te, int fold, DBConnect reconnect, long chainId, boolean noSQL) throws SQLException, FileNotFoundException, IOException
+	public void getResults (ChainParams prefix, double te, int fold, DBConnect reconnect, long chainId, boolean noSQL) throws SQLException, FileNotFoundException, IOException, WeightMismatchException
 	{
 		while(technique.hasStepsLeft())
 		{

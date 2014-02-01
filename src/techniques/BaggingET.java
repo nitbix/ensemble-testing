@@ -6,6 +6,7 @@ import org.encog.ensemble.Ensemble.TrainingAborted;
 import org.encog.ensemble.EnsembleAggregator;
 import org.encog.ensemble.EnsembleMLMethodFactory;
 import org.encog.ensemble.EnsembleTrainFactory;
+import org.encog.ensemble.aggregator.WeightedAveraging.WeightMismatchException;
 import org.encog.ensemble.bagging.Bagging;
 import org.encog.ml.data.MLData;
 
@@ -36,7 +37,7 @@ public class BaggingET extends EvaluationTechnique {
 	}
 
 	@Override
-	public MLData compute(MLData input) {
+	public MLData compute(MLData input) throws WeightMismatchException {
 		return ensemble.compute(input);
 	}
 
