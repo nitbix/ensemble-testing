@@ -23,10 +23,7 @@ queue 50
 arguments = 2 haberman bagging-majorityvoting-nodrop
 queue 50
 
-arguments = 2 haberman adaboost-majorityvoting-nodrop
-queue 50
-
-arguments = 2 haberman adaboost-averaging-nodrop
+arguments = 2 haberman adaboost-nodrop
 queue 50
 
 arguments = 2 haberman bagging-averaging
@@ -35,10 +32,7 @@ queue 50
 arguments = 2 haberman bagging-majorityvoting
 queue 50
 
-arguments = 2 haberman adaboost-majorityvoting
-queue 50
-
-arguments = 2 haberman adaboost-averaging
+arguments = 2 haberman adaboost
 queue 50
 
 arguments = 2 haberman stacking

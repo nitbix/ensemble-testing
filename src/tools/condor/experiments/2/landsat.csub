@@ -23,10 +23,7 @@ queue 10
 arguments = 2 landsat bagging-majorityvoting-nodrop
 queue 10
 
-arguments = 2 landsat adaboost-majorityvoting-nodrop
-queue 10
-
-arguments = 2 landsat adaboost-averaging-nodrop
+arguments = 2 landsat adaboost-nodrop
 queue 10
 
 arguments = 2 landsat bagging-averaging
@@ -38,7 +35,7 @@ queue 10
 arguments = 2 landsat adaboost-majorityvoting
 queue 10
 
-arguments = 2 landsat adaboost-averaging
+arguments = 2 landsat adaboost
 queue 10
 
 arguments = 2 landsat stacking
