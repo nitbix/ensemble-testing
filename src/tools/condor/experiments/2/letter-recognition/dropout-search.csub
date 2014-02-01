@@ -17,38 +17,26 @@ transfer_input_files = ensemble-testing.jar
 Requirements = (TARGET.Opsys == "WINDOWS")
 periodic_remove = (CommittedTime - CommittedSuspensionTime) > 43200
 
-arguments = 2 letter-recognition bagging-averaging-nodrop
+arguments = 2 letter-recognition dropout-search/averaging-0.1
 queue 10
 
-arguments = 2 letter-recognition bagging-majorityvoting-nodrop
+arguments = 2 letter-recognition dropout-search/averaging-0.03
 queue 10
 
-arguments = 2 letter-recognition adaboost-majorityvoting-nodrop
+arguments = 2 letter-recognition dropout-search/averaging-0.01
 queue 10
 
-arguments = 2 letter-recognition adaboost-averaging-nodrop
+arguments = 2 letter-recognition dropout-search/averaging-0.003
 queue 10
 
-arguments = 2 letter-recognition bagging-averaging
+arguments = 2 letter-recognition dropout-search/majorityvoting-0.1
 queue 10
 
-arguments = 2 letter-recognition bagging-majorityvoting
+arguments = 2 letter-recognition dropout-search/majorityvoting-0.03
 queue 10
 
-arguments = 2 letter-recognition adaboost-majorityvoting
+arguments = 2 letter-recognition dropout-search/majorityvoting-0.01
 queue 10
 
-arguments = 2 letter-recognition adaboost-averaging
-queue 10
-
-arguments = 2 letter-recognition stacking
-queue 10
-
-arguments = 2 letter-recognition stacking-dropout
-queue 10
-
-arguments = 2 letter-recognition dropstacking-dropout
-queue 10
-
-arguments = 2 letter-recognition dropstacking
+arguments = 2 letter-recognition dropout-search/majorityvoting-0.001
 queue 10
