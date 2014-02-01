@@ -20,9 +20,6 @@ periodic_remove = (CommittedTime - CommittedSuspensionTime) > 43200
 arguments = 2 landsat bagging-averaging-nodrop
 queue 10
 
-arguments = 2 landsat bagging-majorityvoting-nodrop
-queue 10
-
 arguments = 2 landsat adaboost-nodrop
 queue 10
 
