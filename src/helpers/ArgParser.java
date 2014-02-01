@@ -11,6 +11,7 @@ import org.encog.ensemble.EnsembleTrainFactory;
 import org.encog.ensemble.aggregator.Averaging;
 import org.encog.ensemble.aggregator.MajorityVoting;
 import org.encog.ensemble.aggregator.MetaClassifier;
+import org.encog.ensemble.aggregator.WeightedAveraging;
 import org.encog.ensemble.ml.mlp.factory.MultiLayerPerceptronFactory;
 import org.encog.ensemble.training.BackpropagationFactory;
 import org.encog.ensemble.training.LevenbergMarquardtFactory;
@@ -52,6 +53,7 @@ public class ArgParser {
 	public enum Aggregators {
 		MAJORITYVOTING,
 		AVERAGING,
+		WEIGHTEDAVERAGING,
 		METACLASSIFIER,
 	}
 	
@@ -138,6 +140,7 @@ public class ArgParser {
 		String values[] = string.split("-");
 		switch (Aggregators.valueOf(values[0].toUpperCase())) {
 			case AVERAGING: return new Averaging();
+			case WEIGHTEDAVERAGING: return new WeightedAveraging(null);
 			case MAJORITYVOTING: return new MajorityVoting();
 			case METACLASSIFIER:
 				switch (values.length)
