@@ -1,0 +1,48 @@
+################################
+#
+# Condor submit file
+#
+#
+################################
+
+Universe = vanilla
+Executable = run-prop.bat 
+Output = logs/out/parkinsons$(Cluster).$(Process).out
+Error = logs/err/parkinsons$(Cluster).$(Process).err
+Log = logs/log/parkinsons$(Cluster).$(Process).log
+copy_to_spool = true
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = ensemble-testing.jar
+Requirements = (TARGET.Opsys == "WINDOWS")
+periodic_remove = (CommittedTime - CommittedSuspensionTime) > 43200
+
+arguments = 2 parkinsons bagging-averaging-nodrop
+queue 10
+
+arguments = 2 parkinsons adaboost-nodrop
+queue 10
+
+arguments = 2 parkinsons bagging-averaging
+queue 10
+
+arguments = 2 parkinsons bagging-majorityvoting
+queue 10
+
+arguments = 2 parkinsons adaboost-majorityvoting
+queue 10
+
+arguments = 2 parkinsons adaboost
+queue 10
+
+arguments = 2 parkinsons stacking
+queue 10
+
+arguments = 2 parkinsons stacking-dropout
+queue 10
+
+arguments = 2 parkinsons dropstacking-dropout
+queue 10
+
+arguments = 2 parkinsons dropstacking
+queue 10
