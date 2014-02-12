@@ -1,8 +1,8 @@
 #UCI Parkinsons
 label=parkinsons
-outputs=1
+outputs=2
 inputs=22
 read_inputs=1
 inputs_reversed=true
-mapper_type=bool
+mapper_type=int
 data_file=data/parkinsons.data
