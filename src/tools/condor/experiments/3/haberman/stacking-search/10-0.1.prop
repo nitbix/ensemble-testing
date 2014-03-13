@@ -1,0 +1,15 @@
+problem = problems/uci_haberman
+ensemble_sizes = 1,3,10,30,100
+dataset_sizes = 200
+training_errors = 0.15
+folds = 10
+activation_threshold = 0.1
+ensemble_training = rprop-0.5
+member_types = mlp:30:sigmoid
+aggregator = metaclassifier-mlp:10:sigmoid-0.1-rprop
+verbose = false
+selection_error = 0.25
+max_runs = 1000
+max_training_iterations = 10000
+experiment_id = 2
+ensemble_method = stacking
