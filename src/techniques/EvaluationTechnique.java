@@ -99,6 +99,11 @@ public abstract class EvaluationTechnique {
 	
 	public abstract void init(DataLoader dataLoader, int fold) throws RequiresWeightedAggregatorException;
 	
+	public void init(DataLoader dataLoader, int fold, int maxIterations) throws RequiresWeightedAggregatorException
+	{
+		this.maxIterations = maxIterations;
+		this.init(dataLoader,fold);
+	}
 	public String getLabel() {
 		return label.get(sizes.get(currentSizeIndex));
 	}

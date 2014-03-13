@@ -2,7 +2,6 @@ package main;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -22,11 +21,8 @@ import helpers.ChainParams;
 import helpers.FileLoader;
 import helpers.ProblemDescription;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -125,7 +121,7 @@ public class Test {
 			}
 			for (double te: trainingErrors)
 			{
-				Evaluator ev = new Evaluator(et, dataLoader, te, selectionError, verbose,fold);
+				Evaluator ev = new Evaluator(et, dataLoader, te, selectionError, verbose,fold,maxIterations);
 				ev.getResults(fullLabel,te,fold,reconnectCallback,chainId,noSQL);
 			}
 			if(!noSQL)
@@ -176,6 +172,7 @@ public class Test {
 			dataSetSizes = ArgParser.intList(problemPropFile.getProperty("dataset_sizes"));
 			trainingErrors = ArgParser.doubleList(problemPropFile.getProperty("training_errors"));
 			etf = ArgParser.ETF(problemPropFile.getProperty("ensemble_training"));
+			maxIterations = ArgParser.intSingle(problemPropFile.getProperty("max_training_iterations"));
 			mlfs = ArgParser.MLFS(problemPropFile.getProperty("member_types"));
 			agg = ArgParser.AGG(problemPropFile.getProperty("aggregator"));
 			verbose = Boolean.parseBoolean(problemPropFile.getProperty("verbose")) || commandLine.hasOption("v");
@@ -183,7 +180,6 @@ public class Test {
 			if (nFolds < 2) {throw new BadArgument();};
 			dataLoader = problem.getDataLoader(activationThreshold,nFolds);
 			targetRunCount = ArgParser.intSingle(problemPropFile.getProperty("max_runs"));
-			maxIterations = ArgParser.intSingle(problemPropFile.getProperty("max_training_iterations"));
 			EXPERIMENT = ArgParser.intSingle(problemPropFile.getProperty("experiment_id"));
 		}
 		catch (FileNotFoundException e)
