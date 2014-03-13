@@ -52,7 +52,7 @@ public class Evaluator
 					", " + trainingError +
 					", " + this.technique.getSelectionError() +
 					", " + this.technique.getTrainingSet().size() +
-					", " + this.technique.getMisclassificationCount(dataSet,dataMapper) +
+					", " + (this.technique.getMisclassificationCount(dataSet,dataMapper) / dataSet.size()) +
 					", " + (isTest ? 1 : 0) +
 					", " + perf.getAccuracy(PerfResults.AveragingMethod.MACRO) +
 					", " + perf.getPrecision(PerfResults.AveragingMethod.MACRO) +
