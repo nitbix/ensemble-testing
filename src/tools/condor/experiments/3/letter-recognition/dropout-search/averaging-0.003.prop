@@ -1,0 +1,15 @@
+problem = problems/uci_letterrecognition
+ensemble_sizes = 1,3,10,30,100
+dataset_sizes = 16000
+training_errors = 0.003
+folds = 10
+activation_threshold = 0.1
+ensemble_training = rprop-0.5
+member_types = mlp:100:sigmoid
+aggregator = averaging
+verbose = false
+selection_error = 0.03
+max_runs = 1000
+max_training_iterations = 3000
+experiment_id = 2
+ensemble_method = bagging
