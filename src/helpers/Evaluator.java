@@ -52,7 +52,7 @@ public class Evaluator
 					", " + trainingError +
 					", " + this.technique.getSelectionError() +
 					", " + this.technique.getTrainingSet().size() +
-					", " + (this.technique.getMisclassificationCount(dataSet,dataMapper) / dataSet.size()) +
+					", " + ((double) this.technique.getMisclassificationCount(dataSet,dataMapper) / (double) dataSet.size()) +
 					", " + (isTest ? 1 : 0) +
 					", " + perf.getAccuracy(PerfResults.AveragingMethod.MACRO) +
 					", " + perf.getPrecision(PerfResults.AveragingMethod.MACRO) +
@@ -81,7 +81,7 @@ public class Evaluator
 			System.out.println("size = " + technique.getCurrentSize());
 			System.out.println("ml_technique =" + chainPars.getMLF());
 			System.out.println("training_error =" + trainingError);
-			System.out.println("misclassified =" + (this.technique.getMisclassificationCount(dataSet,dataMapper) / dataSet.size()));
+			System.out.println("misclassified =" + ((double) this.technique.getMisclassificationCount(dataSet,dataMapper) / (double) dataSet.size()));
 			System.out.println("precision =" + perf.getPrecision(PerfResults.AveragingMethod.MACRO));
 			System.out.println("recall =" + perf.getRecall(PerfResults.AveragingMethod.MACRO));
 			System.out.println("accuracy =" + perf.getAccuracy(PerfResults.AveragingMethod.MACRO));
