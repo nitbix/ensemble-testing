@@ -17,14 +17,14 @@ transfer_input_files = ensemble-testing.jar
 Requirements = (TARGET.Opsys == "WINDOWS")
 periodic_remove = (CommittedTime - CommittedSuspensionTime) > 43200
 
-arguments = 2 ionosphere bagging-averaging-nodrop
+arguments = 3 ionosphere bagging-averaging-nodrop
 queue 10
 
-arguments = 2 ionosphere adaboost-nodrop
+arguments = 3 ionosphere adaboost-nodrop
 queue 10
 
-arguments = 2 ionosphere stacking
+arguments = 3 ionosphere stacking
 queue 10
 
-arguments = 2 ionosphere dropout
+arguments = 3 ionosphere dropout
 queue 10

@@ -17,14 +17,14 @@ transfer_input_files = ensemble-testing.jar
 Requirements = (TARGET.Opsys == "WINDOWS")
 periodic_remove = (CommittedTime - CommittedSuspensionTime) > 43200
 
-arguments = 2 haberman bagging-averaging-nodrop
+arguments = 3 haberman bagging-averaging-nodrop
 queue 10
 
-arguments = 2 haberman adaboost-nodrop
+arguments = 3 haberman adaboost-nodrop
 queue 10
 
-arguments = 2 haberman stacking
+arguments = 3 haberman stacking
 queue 10
 
-arguments = 2 haberman dropout
+arguments = 3 haberman dropout
 queue 10

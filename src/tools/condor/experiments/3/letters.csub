@@ -17,14 +17,14 @@ transfer_input_files = ensemble-testing.jar
 Requirements = (TARGET.Opsys == "WINDOWS")
 periodic_remove = (CommittedTime - CommittedSuspensionTime) > 43200
 
-arguments = 2 letter-recognition bagging-averaging-nodrop
+arguments = 3 letter-recognition bagging-averaging-nodrop
 queue 10
 
-arguments = 2 letter-recognition adaboost-nodrop
+arguments = 3 letter-recognition adaboost-nodrop
 queue 10
 
-arguments = 2 letter-recognition stacking
+arguments = 3 letter-recognition stacking
 queue 10
 
-arguments = 2 letter-recognition dropout
+arguments = 3 letter-recognition dropout
 queue 10

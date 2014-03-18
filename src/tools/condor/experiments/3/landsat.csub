@@ -17,14 +17,14 @@ transfer_input_files = ensemble-testing.jar
 Requirements = (TARGET.Opsys == "WINDOWS")
 periodic_remove = (CommittedTime - CommittedSuspensionTime) > 43200
 
-arguments = 2 landsat bagging-averaging-nodrop
+arguments = 3 landsat bagging-averaging-nodrop
 queue 10
 
-arguments = 2 landsat adaboost-nodrop
+arguments = 3 landsat adaboost-nodrop
 queue 10
 
-arguments = 2 landsat stacking
+arguments = 3 landsat stacking
 queue 10
 
-arguments = 2 landsat dropout
+arguments = 3 landsat dropout
 queue 10
