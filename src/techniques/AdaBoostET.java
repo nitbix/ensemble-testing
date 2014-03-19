@@ -41,13 +41,14 @@ public class AdaBoostET extends EvaluationTechnique {
 	public void init(DataLoader dataLoader, int fold) throws RequiresWeightedAggregatorException {
 		this.dataLoader = dataLoader;
 		this.fold = fold;
+		dataLoader.setFold(fold);
 		if (!(aggregator instanceof EnsembleWeightedAggregator))
 		{
 			throw new RequiresWeightedAggregatorException();
 		}
 		ensemble = new AdaBoost(sizes.get(currentSizeIndex),dataSetSize,mlMethod,trainFactory,(EnsembleWeightedAggregator) aggregator);
-		setTrainingSet(dataLoader.getTrainingSet(fold));
-		setSelectionSet(dataLoader.getTestSet(fold));
+		setTrainingSet(dataLoader.getTrainingSet());
+		setSelectionSet(dataLoader.getTestSet());
 		ensemble.setTrainingData(trainingSet);
 	}
 	

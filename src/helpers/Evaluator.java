@@ -19,10 +19,10 @@ public class Evaluator
 	private EvaluationTechnique technique;
 	private DataLoader dataLoader;
 	
-	Evaluator(EvaluationTechnique technique, DataMapper mapper, int inputCols, int inputs, String dataFile, boolean inputsReversed, int nFolds, double targetTrainingError, double selectionError, int fold, int maxIterations) throws FileNotFoundException, RequiresWeightedAggregatorException
+	Evaluator(EvaluationTechnique technique, DataMapper mapper, int inputCols, int inputs, String dataFile, boolean inputsReversed, int nFolds, double targetTrainingError, double selectionError, int fold, int maxIterations, boolean hasSeparateTestSet) throws FileNotFoundException, RequiresWeightedAggregatorException
 	{
 		this.setTechnique(technique);
-		dataLoader = new DataLoader(mapper,inputCols,inputs,inputsReversed,nFolds);
+		dataLoader = new DataLoader(mapper,inputCols,inputs,inputsReversed,nFolds,hasSeparateTestSet);
 		dataLoader.readData(dataFile);
 		this.technique.init(dataLoader,fold,maxIterations);
 		this.technique.setParams(targetTrainingError, selectionError);
@@ -107,7 +107,7 @@ public class Evaluator
 		}
 	}
 
-	public void getResults (ChainParams prefix, double te, int fold, DBConnect reconnect, long chainId, boolean noSQL) throws SQLException, FileNotFoundException, IOException, WeightMismatchException
+	public void getResults (ChainParams prefix, double te, DBConnect reconnect, long chainId, boolean noSQL) throws SQLException, FileNotFoundException, IOException, WeightMismatchException
 	{
 		while(technique.hasStepsLeft())
 		{
@@ -115,14 +115,14 @@ public class Evaluator
 			{
 				Connection sqlConnection = reconnect.connect();
 				Statement sqlStatement = sqlConnection.createStatement();
-				makeLine(false,te,prefix,this.dataLoader.getTrainingSet(fold), sqlStatement, chainId);
-				makeLine(true,te,prefix,this.dataLoader.getTestSet(fold), sqlStatement, chainId);
+				makeLine(false,te,prefix,this.dataLoader.getTrainingSet(), sqlStatement, chainId);
+				makeLine(true,te,prefix,this.dataLoader.getTestSet(), sqlStatement, chainId);
 				sqlConnection.close();
 			}
 			else
 			{
-				makeLine(false,te,prefix,this.dataLoader.getTrainingSet(fold), null, chainId);
-				makeLine(true,te,prefix,this.dataLoader.getTestSet(fold), null, chainId);				
+				makeLine(false,te,prefix,this.dataLoader.getTrainingSet(), null, chainId);
+				makeLine(true,te,prefix,this.dataLoader.getTestSet(), null, chainId);				
 			}
 			try
 			{
@@ -130,7 +130,7 @@ public class Evaluator
 			}
 			catch (TrainingAborted e)
 			{
-				System.out.println("Training aborted on E_t = " + te + ", fold = " + fold + " in chain" + chainId);
+				System.out.println("Training aborted on E_t = " + te + ", in chain" + chainId);
 			}
 		}
 	}

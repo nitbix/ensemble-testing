@@ -47,8 +47,8 @@ public class TrainingCurves {
 				help();
 			}
 			DataMapper dataMapper = dataLoader.getMapper();
-			BasicNeuralDataSet testSet = dataLoader.getTestSet(1);
-			BasicNeuralDataSet trainingSet = dataLoader.getTrainingSet(1);
+			BasicNeuralDataSet testSet = dataLoader.getTestSet();
+			BasicNeuralDataSet trainingSet = dataLoader.getTrainingSet();
 			et.init(dataLoader,1);
 			for (int i=0; i < maxIterations; i++) {
 				et.trainStep();

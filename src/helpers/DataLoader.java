@@ -19,29 +19,31 @@ public class DataLoader {
 	
 	private ArrayList<BasicNeuralDataSet> folds;
 	private BasicNeuralDataSet _completeSet;
+	private BasicNeuralDataSet _trainSet;
+	private BasicNeuralDataSet _testSet;
 	private boolean _inputsReversed;
 	private DataMapper _dataMapper;
 	private int _inputs;
 	private int _readinputs;
 	private int nFolds;
+	private boolean hasSeparateTestSet;
 
-	public DataLoader(DataMapper dataMapper, int readInputs, int inputs, boolean inputsReversed, int nFolds) {
+	public DataLoader(DataMapper dataMapper, int readInputs, int inputs, boolean inputsReversed, int nFolds, boolean hasSeparateTestSet) {
 		_dataMapper = dataMapper;
 		_readinputs = readInputs;
 		_inputs = inputs;
 		_inputsReversed = inputsReversed;
+		this.hasSeparateTestSet = hasSeparateTestSet;
 		this.nFolds = nFolds;
 		folds = new ArrayList<BasicNeuralDataSet>();
 		for (int i = 0; i < nFolds; i++)
 			folds.add(new BasicNeuralDataSet());
 	}
 	
-	public int readData(String inputFile) throws FileNotFoundException {
+	private BasicNeuralDataSet readFile(String inputFile) throws FileNotFoundException {
 		FileLoader fileLoader = new FileLoader();
-		int total=0;
-		//System.out.println("importing dataset");
 		ReadCSV csv = new ReadCSV(fileLoader.openOrFind(inputFile),false,',');
-		_completeSet = new BasicNeuralDataSet();
+		BasicNeuralDataSet set = new BasicNeuralDataSet();
 		while(csv.next())
 		{
 			BasicNeuralData inputData = new BasicNeuralData(getInputs());
@@ -62,26 +64,45 @@ public class DataLoader {
 					inputData.setData(j,csv.getDouble(j + getReadInputs()));
 				}
 			}
-			_completeSet.add(inputData,idealData);
-			total++;
-		}
-		BasicNeuralDataSet _normSet = new BasicNeuralDataSet();
-		DataNormalization normalizer = new DataNormalization();
-		normalizer.setReport(new NullStatusReportable());
-		normalizer.setTarget(new NormalizationStorageNeuralDataSet(_normSet));
-		InputField[] a = new InputField[getInputs()];
-		for(int j = 0; j < getInputs(); j++) {
-			normalizer.addInputField(a[j] = new InputFieldMLDataSet(false,_completeSet,j));
-			normalizer.addOutputField(new OutputFieldRangeMapped(a[j],0.0,1.0));
-		}
-		normalizer.process();
-		for (int i = 0; i < total; i++)
-		{
-			folds.get(i % nFolds).add(_normSet.get(i).getInput(),_completeSet.get(i).getIdeal());
+			set.add(inputData,idealData);
 		}
 		csv.close();
-		return total;
+		return set;
 		
+	}
+	
+	public int readData(String inputFile) throws FileNotFoundException {
+		//System.out.println("importing dataset");
+		if(hasSeparateTestSet)
+		{
+			_trainSet = readFile(inputFile + ".train");
+			_testSet = readFile(inputFile + ".test");
+			_completeSet = (BasicNeuralDataSet) _trainSet.clone();
+			for(MLDataPair p : _testSet)
+			{
+				_completeSet.add(p);
+			}
+			return _trainSet.size() + _testSet.size();
+		}
+		else
+		{
+			_completeSet = readFile(inputFile);
+			BasicNeuralDataSet _normSet = new BasicNeuralDataSet();
+			DataNormalization normalizer = new DataNormalization();
+			normalizer.setReport(new NullStatusReportable());
+			normalizer.setTarget(new NormalizationStorageNeuralDataSet(_normSet));
+			InputField[] a = new InputField[getInputs()];
+			for(int j = 0; j < getInputs(); j++) {
+				normalizer.addInputField(a[j] = new InputFieldMLDataSet(false,_completeSet,j));
+				normalizer.addOutputField(new OutputFieldRangeMapped(a[j],0.0,1.0));
+			}
+			normalizer.process();
+			for (int i = 0; i < _completeSet.size(); i++)
+			{
+				folds.get(i % nFolds).add(_normSet.get(i).getInput(),_completeSet.get(i).getIdeal());
+			}
+			return _completeSet.size();
+		}
 	}
 
 	public DataMapper getMapper() {
@@ -96,8 +117,8 @@ public class DataLoader {
 		this._inputs = _inputs;
 	}
 
-	public BasicNeuralDataSet getTestSet(int fold) {
-		return folds.get(fold);
+	public BasicNeuralDataSet getTestSet() {
+		return _testSet;
 	}
 
 	public int getReadInputs() {
@@ -112,14 +133,24 @@ public class DataLoader {
 		return _completeSet.size();
 	}
 	
-	public BasicNeuralDataSet getTrainingSet(int fold) {
-		BasicNeuralDataSet trainingSet = new BasicNeuralDataSet();
-		for (int i = 0; i < nFolds; i++)
-			if ((i != fold) && (nFolds > 1)){
-				for (MLDataPair k : folds.get(i)) {
-					trainingSet.add(k);
+	public void setFold(int fold)
+	{
+		if(!hasSeparateTestSet)
+		{
+			_trainSet = new BasicNeuralDataSet();
+			for (int i = 0; i < nFolds; i++)
+			{
+				if ((i != fold) && (nFolds > 1)){
+					for (MLDataPair k : folds.get(i)) {
+						_trainSet.add(k);
+					}
 				}
 			}
-		return trainingSet;
+			_testSet = folds.get(fold);
+		}
+	}
+	
+	public BasicNeuralDataSet getTrainingSet() {
+		return _trainSet;
 	}
 }

@@ -32,6 +32,7 @@ public class ProblemDescriptionLoader implements ProblemDescription {
 	private static String inputFile;
 	private static MapperType mapperType;
 	private static String label;
+	private static boolean hasSeparateTestSet;
 	
 	public ProblemDescriptionLoader(String file) throws BadArgument {
 		this.fromProblemDescriptionFile(file);
@@ -53,6 +54,7 @@ public class ProblemDescriptionLoader implements ProblemDescription {
 			inputFile=descFile.getProperty("data_file");
 			mapperType=MapperType.valueOf(descFile.getProperty("mapper_type").toUpperCase());
 			label=descFile.getProperty("label");
+			hasSeparateTestSet=Boolean.parseBoolean(descFile.getProperty("separate_train_and_test_sets"));
 			loaded=true;
 		} catch (IOException e) {
 			System.err.println("Could not load config file: " + file);
@@ -86,7 +88,7 @@ public class ProblemDescriptionLoader implements ProblemDescription {
 	public DataLoader getDataLoader(double activationThreshold, int nFolds) throws BadArgument, FileNotFoundException {
 		if (! loaded)
 			throw new BadArgument();
-		DataLoader dataLoader = new DataLoader(makeMapper(mapperType,activationThreshold),readInputs,inputs,inputsReversed,nFolds);
+		DataLoader dataLoader = new DataLoader(makeMapper(mapperType,activationThreshold),readInputs,inputs,inputsReversed,nFolds,hasSeparateTestSet);
 		dataLoader.readData(inputFile);
 		return dataLoader;
 	}

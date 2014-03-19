@@ -122,7 +122,7 @@ public class Test {
 			for (double te: trainingErrors)
 			{
 				Evaluator ev = new Evaluator(et, dataLoader, te, selectionError, verbose,fold,maxIterations);
-				ev.getResults(fullLabel,te,fold,reconnectCallback,chainId,noSQL);
+				ev.getResults(fullLabel,te,reconnectCallback,chainId,noSQL);
 			}
 			if(!noSQL)
 			{
