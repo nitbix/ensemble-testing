@@ -38,21 +38,6 @@ public abstract class EvaluationTechnique {
 	protected boolean hasStepsLeft = true;
 	protected int maxIterations = 2000;
 	
-	public double getMisclassification(BasicNeuralDataSet evalSet, DataMapper dataMapper) throws WeightMismatchException {
-		int bad = 0;
-		for(int i = 0; i < evalSet.getRecordCount(); i++)
-		{
-			MLDataPair pair = evalSet.get(i);
-			MLData output = compute(pair.getInput());
-			ArrayList<String> result = dataMapper.unmap(output);
-			ArrayList<String> expected = dataMapper.unmap(pair.getIdeal());
-			if (!dataMapper.compare(result,expected,false))
-				bad++;
-		}
-		double error = (double) bad / (double) evalSet.getRecordCount();
-		return error;
-	}
-	
 	public int getMisclassificationCount(BasicNeuralDataSet evalSet, DataMapper dataMapper) throws WeightMismatchException {
 		int bad = 0;
 		for(int i = 0; i < evalSet.getRecordCount(); i++)
@@ -65,6 +50,10 @@ public abstract class EvaluationTechnique {
 				bad++;
 		}
 		return bad;
+	}
+	
+	public double getMisclassification(BasicNeuralDataSet evalSet, DataMapper dataMapper) throws WeightMismatchException {
+		return (double) getMisclassificationCount(evalSet, dataMapper) / (double) evalSet.size();
 	}
 	
 	public void setParams(double trainToError, double selectionError) {

@@ -45,14 +45,15 @@ public class Evaluator
 		long runId = 0;
 		if(sqlStatement != null)
 		{
-			sqlStatement.executeUpdate("INSERT INTO runs (chain, ml_technique, training_error, selection_error, dataset_size, misclassified_samples," +
+			sqlStatement.executeUpdate("INSERT INTO runs ("
+					+ "chain, ml_technique, training_error, selection_error, dataset_size, misclassified_samples," +
 					"is_test, macro_accuracy, macro_precision, macro_recall, macro_f1, micro_accuracy, micro_precision," +
 					"micro_recall, micro_f1, misclassification, ensemble_size) VALUES (" + chainId +
 					", '" + chainPars.getMLF() + "'" +
 					", " + trainingError +
 					", " + this.technique.getSelectionError() +
 					", " + this.technique.getTrainingSet().size() +
-					", " + ((double) this.technique.getMisclassificationCount(dataSet,dataMapper) / (double) dataSet.size()) +
+					", " + this.technique.getMisclassificationCount(dataSet,dataMapper) +
 					", " + (isTest ? 1 : 0) +
 					", " + perf.getAccuracy(PerfResults.AveragingMethod.MACRO) +
 					", " + perf.getPrecision(PerfResults.AveragingMethod.MACRO) +
@@ -83,7 +84,7 @@ public class Evaluator
 			System.out.println("training_error = " + trainingError);
 			System.out.println("misclassified = " + this.technique.getMisclassificationCount(dataSet,dataMapper));
 			System.out.println("set size = " + dataSet.size());
-			System.out.println("misclassification rate = " + ((double) this.technique.getMisclassificationCount(dataSet,dataMapper) / (double) dataSet.size()));
+			System.out.println("misclassification rate = " + this.technique.getMisclassification(dataSet,dataMapper));
 			System.out.println("precision = " + perf.getPrecision(PerfResults.AveragingMethod.MACRO));
 			System.out.println("recall = " + perf.getRecall(PerfResults.AveragingMethod.MACRO));
 			System.out.println("accuracy = " + perf.getAccuracy(PerfResults.AveragingMethod.MACRO));
