@@ -1,9 +1,9 @@
 problem = problems/uci_letterrecognition
 ensemble_sizes = 1,3,10,30,100
-dataset_sizes = 16000
+dataset_resampling_sizes = 16000
 training_errors = 0.02
 folds = 10
-activation_threshold = 0.1
+neural_invalidation_threshold = 0.1
 ensemble_training = rprop-0.5
 member_types = mlp:300:sigmoid
 aggregator = weightedaveraging
