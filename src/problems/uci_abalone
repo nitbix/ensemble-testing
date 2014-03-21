@@ -2,7 +2,7 @@
 label=abalone
 outputs=1
 inputs=7
-read_inputs=1
+output_columns_to_read=1
 labels_at_eol=true
 mapper_type=int
 data_file=data/abalone.data

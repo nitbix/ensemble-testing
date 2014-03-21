@@ -2,7 +2,7 @@
 label=ionosphere
 outputs=2
 inputs=34
-read_inputs=1
+output_columns_to_read=1
 labels_at_eol=true
 #1=b,2=g
 mapper_type=int

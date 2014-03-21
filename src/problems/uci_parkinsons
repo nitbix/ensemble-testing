@@ -2,7 +2,7 @@
 label=parkinsons
 outputs=2
 inputs=22
-read_inputs=1
+output_columns_to_read=1
 labels_at_eol=true
 mapper_type=int
 data_file=data/parkinsons.data
