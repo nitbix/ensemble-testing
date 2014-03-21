@@ -3,7 +3,7 @@ label=magic
 outputs=2
 inputs=10
 read_inputs=1
-inputs_reversed=true
+labels_at_eol=true
 #1=g,2=h
 mapper_type=int
 data_file=data/magic.data

@@ -3,6 +3,6 @@ label=letters
 outputs=26
 inputs=16
 read_inputs=1
-inputs_reversed=false
+labels_at_eol=false
 mapper_type=letter
 data_file=data/letter-recognition.data

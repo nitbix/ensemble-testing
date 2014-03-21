@@ -3,6 +3,6 @@ label=abalone
 outputs=1
 inputs=7
 read_inputs=1
-inputs_reversed=true
+labels_at_eol=true
 mapper_type=int
 data_file=data/abalone.data

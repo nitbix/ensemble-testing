@@ -3,6 +3,6 @@ label=landsat
 outputs=7
 inputs=36
 read_inputs=1
-inputs_reversed=true
+labels_at_eol=true
 mapper_type=int
 data_file=data/landsat.data

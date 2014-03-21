@@ -49,8 +49,8 @@ public class ProblemDescriptionLoader implements ProblemDescription {
 			descFile.load(fileLoader.openOrFind(file));
 			outputs=Integer.parseInt(descFile.getProperty("outputs"));
 			inputs=Integer.parseInt(descFile.getProperty("inputs"));
-			readInputs=Integer.parseInt(descFile.getProperty("read_inputs"));
-			inputsReversed=Boolean.parseBoolean(descFile.getProperty("inputs_reversed"));
+			readInputs=Integer.parseInt(descFile.getProperty("output_columns_to_read"));
+			inputsReversed=Boolean.parseBoolean(descFile.getProperty("labels_at_eol"));
 			inputFile=descFile.getProperty("data_file");
 			mapperType=MapperType.valueOf(descFile.getProperty("mapper_type").toUpperCase());
 			label=descFile.getProperty("label");
