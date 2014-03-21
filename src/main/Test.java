@@ -166,7 +166,7 @@ public class Test {
 			}
 			problem = ArgParser.problem(problemPropFile.getProperty("problem"));
 			nFolds = ArgParser.intSingle(problemPropFile.getProperty("folds"));
-			activationThreshold = ArgParser.doubleSingle(problemPropFile.getProperty("neuron_invalidation_threshold"));
+			activationThreshold = ArgParser.doubleSingle(problemPropFile.getProperty("neural_invalidation_threshold"));
 			etType = problemPropFile.getProperty("ensemble_method");
 			sizes = ArgParser.intList(problemPropFile.getProperty("ensemble_sizes"));
 			dataSetSizes = ArgParser.intList(problemPropFile.getProperty("dataset_resampling_sizes"));
