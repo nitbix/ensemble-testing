@@ -34,7 +34,7 @@ public class BaggingET extends EvaluationTechnique {
 		ensemble = new Bagging(sizes.get(currentSizeIndex),dataSetSize,mlMethod,trainFactory,aggregator);
 		dataLoader.setFold(fold);
 		setTrainingSet(dataLoader.getTrainingSet());
-		setSelectionSet(dataLoader.getTestSet());
+		setSelectionSet(dataLoader.getCVSet());
 		ensemble.setTrainingData(trainingSet);
 	}
 

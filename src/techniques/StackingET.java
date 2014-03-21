@@ -32,7 +32,7 @@ public class StackingET extends EvaluationTechnique {
 		ensemble = new Stacking(sizes.get(currentSizeIndex),dataSetSize,mlMethod,trainFactory,aggregator);
 		dataLoader.setFold(fold);
 		setTrainingSet(dataLoader.getTrainingSet());
-		setSelectionSet(dataLoader.getTestSet());
+		setSelectionSet(dataLoader.getCVSet());
 		ensemble.setTrainingData(trainingSet);
 	}	
 	
@@ -53,7 +53,7 @@ public class StackingET extends EvaluationTechnique {
 				ensemble.addNewMember();
 				ensemble.trainMember(i, trainToError, selectionError, selectionSet, verbose);
 			}
-			aggregator.setTrainingErrorDivisor(sizes.get(currentSizeIndex));
+			aggregator.setNumberOfMembers(sizes.get(currentSizeIndex));
 			ensemble.retrainAggregator();
 		} else {
 			this.hasStepsLeft = false;

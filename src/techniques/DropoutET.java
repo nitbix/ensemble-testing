@@ -40,7 +40,7 @@ public class DropoutET extends EvaluationTechnique {
 		ensemble = new Dropout(1,dataSetSize,mlMethod,trainFactory,new MajorityVoting());
 		dataLoader.setFold(fold);
 		setTrainingSet(dataLoader.getTrainingSet());
-		setSelectionSet(dataLoader.getTestSet());
+		setSelectionSet(dataLoader.getCVSet());
 		ensemble.setTrainingData(trainingSet);
 	}
 

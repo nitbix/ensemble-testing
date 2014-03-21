@@ -48,7 +48,7 @@ public class AdaBoostET extends EvaluationTechnique {
 		}
 		ensemble = new AdaBoost(sizes.get(currentSizeIndex),dataSetSize,mlMethod,trainFactory,(EnsembleWeightedAggregator) aggregator);
 		setTrainingSet(dataLoader.getTrainingSet());
-		setSelectionSet(dataLoader.getTestSet());
+		setSelectionSet(dataLoader.getCVSet());
 		ensemble.setTrainingData(trainingSet);
 	}
 	
