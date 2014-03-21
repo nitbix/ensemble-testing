@@ -20,6 +20,7 @@ public class DataLoader {
 	private ArrayList<BasicNeuralDataSet> folds;
 	private BasicNeuralDataSet _completeSet;
 	private BasicNeuralDataSet _trainSet;
+	private BasicNeuralDataSet _cvSet;
 	private BasicNeuralDataSet _testSet;
 	private boolean _inputsReversed;
 	private DataMapper _dataMapper;
@@ -75,12 +76,17 @@ public class DataLoader {
 		//System.out.println("importing dataset");
 		if(hasSeparateTestSet)
 		{
+			//TODO: normalize
 			_trainSet = readFile(inputFile + ".train");
 			_testSet = readFile(inputFile + ".test");
 			_completeSet = (BasicNeuralDataSet) _trainSet.clone();
 			for(MLDataPair p : _testSet)
 			{
 				_completeSet.add(p);
+			}
+			for (int i = 0; i < _trainSet.size(); i++)
+			{
+				folds.get(i % nFolds).add(_trainSet.get(i).getInput(),_trainSet.get(i).getIdeal());
 			}
 			return _trainSet.size() + _testSet.size();
 		}
@@ -121,6 +127,10 @@ public class DataLoader {
 		return _testSet;
 	}
 
+	public BasicNeuralDataSet getCVSet() {
+		return _cvSet;
+	}
+
 	public int getReadInputs() {
 		return _readinputs;
 	}
@@ -135,18 +145,36 @@ public class DataLoader {
 	
 	public void setFold(int fold)
 	{
+		_trainSet = new BasicNeuralDataSet();
 		if(!hasSeparateTestSet)
 		{
 			_trainSet = new BasicNeuralDataSet();
 			for (int i = 0; i < nFolds; i++)
 			{
-				if ((i != fold) && (nFolds > 1)){
-					for (MLDataPair k : folds.get(i)) {
+				if ((i != fold) && (i != (fold + 1) % nFolds))
+				{
+					for (MLDataPair k : folds.get(i))
+					{
 						_trainSet.add(k);
 					}
 				}
 			}
-			_testSet = folds.get(fold);
+			_testSet = (BasicNeuralDataSet) folds.get(fold).clone();
+			_cvSet = (BasicNeuralDataSet) folds.get((fold + 1) % nFolds).clone();
+		}
+		else
+		{
+			for (int i = 0; i < nFolds; i++)
+			{
+				if (i != fold)
+				{
+					for (MLDataPair k : folds.get(i))
+					{
+						_trainSet.add(k);
+					}
+				}
+			}
+			_cvSet = (BasicNeuralDataSet) folds.get(fold).clone();
 		}
 	}
 	
