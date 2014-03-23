@@ -1,6 +1,6 @@
 #UCI Biodeg 
 label=biodeg
-outputs=1
+outputs=2
 inputs=41
 output_columns_to_read=1
 labels_at_eol=true
