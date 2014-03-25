@@ -1,0 +1,15 @@
+problem = problems/uci_biodeg
+ensemble_sizes = 1
+dataset_resampling_sizes = 840
+training_errors = 0.07
+folds = 10
+neural_invalidation_threshold = 0.1
+ensemble_training = rprop
+member_types = mlp:50:sigmoid
+aggregator = averaging
+verbose = false
+selection_error = 0.14
+max_runs = 1000
+max_training_iterations = 10000
+experiment_id = 3
+ensemble_method = dropout-0.1

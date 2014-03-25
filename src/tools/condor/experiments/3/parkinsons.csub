@@ -26,5 +26,17 @@ queue 10
 arguments = 3 parkinsons stacking
 queue 10
 
-arguments = 3 parkinsons dropout
+arguments = 3 parkinsons dropout/dropout-0.1
+queue 10
+
+arguments = 3 parkinsons dropout/dropout-0.3
+queue 10
+
+arguments = 3 parkinsons dropout/dropout-0.5
+queue 10
+
+arguments = 3 parkinsons dropout/dropout-0.7
+queue 10
+
+arguments = 3 parkinsons dropout/dropout-0.9
 queue 10
