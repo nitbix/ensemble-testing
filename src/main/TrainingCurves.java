@@ -46,10 +46,10 @@ public class TrainingCurves {
 			} catch (BadArgument e) {
 				help();
 			}
+			et.init(dataLoader,8);
 			DataMapper dataMapper = dataLoader.getMapper();
 			BasicNeuralDataSet testSet = dataLoader.getTestSet();
 			BasicNeuralDataSet trainingSet = dataLoader.getTrainingSet();
-			et.init(dataLoader,1);
 			for (int i=0; i < maxIterations; i++) {
 				et.trainStep();
 				double trainMSE = et.trainError();
@@ -73,14 +73,14 @@ public class TrainingCurves {
 			activationThreshold = ArgParser.doubleSingle(args[3]);
 			etf = ArgParser.ETF(args[4]);
 			mlfs = ArgParser.MLFS(args[5]);
-			agg = ArgParser.AGG(args[7]);
 			maxIterations = ArgParser.intSingle(args[6]);
+			agg = ArgParser.AGG(args[7]);
 		} catch (BadArgument e) {
 			help();
 		}
 		
 		try {
-			dataLoader = problem.getDataLoader(activationThreshold,trainingSetSize);
+			dataLoader = problem.getDataLoader(activationThreshold,10);
 		}
 		catch (FileNotFoundException e)
 		{

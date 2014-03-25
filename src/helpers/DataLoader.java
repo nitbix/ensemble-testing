@@ -151,7 +151,7 @@ public class DataLoader {
 			_trainSet = new BasicNeuralDataSet();
 			for (int i = 0; i < nFolds; i++)
 			{
-				if ((i != fold) && (i != (fold + 1) % nFolds))
+				if (((i != fold) && (i != (fold + 1) % nFolds)) || nFolds == 1)
 				{
 					for (MLDataPair k : folds.get(i))
 					{
