@@ -1,7 +1,7 @@
 problem = problems/uci_parkinsons
 ensemble_sizes = 1
 dataset_resampling_sizes = 175
-training_errors = 0.0001
+training_errors = 0.000001
 folds = 10
 neural_invalidation_threshold = 0.5
 ensemble_training = rprop
