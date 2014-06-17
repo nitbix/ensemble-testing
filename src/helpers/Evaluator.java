@@ -108,7 +108,7 @@ public class Evaluator
 		}
 	}
 
-	public void getResults (ChainParams prefix, double te, DBConnect reconnect, long chainId, boolean noSQL) throws SQLException, FileNotFoundException, IOException, WeightMismatchException
+	public void getResults (ChainParams prefix, double te, DBConnect reconnect, long chainId, boolean noSQL, boolean verbose) throws SQLException, FileNotFoundException, IOException, WeightMismatchException
 	{
 		while(technique.hasStepsLeft())
 		{
@@ -127,7 +127,7 @@ public class Evaluator
 			}
 			try
 			{
-				technique.step(false);
+				technique.step(verbose);
 			}
 			catch (TrainingAborted e)
 			{
