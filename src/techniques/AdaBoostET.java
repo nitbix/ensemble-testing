@@ -75,7 +75,7 @@ public class AdaBoostET extends EvaluationTechnique {
 	public void step(boolean verbose) {
 		currentSizeIndex++;
 		if (currentSizeIndex < sizes.size()) {
-			this.resize(sizes.get(currentSizeIndex),false);
+			this.resize(sizes.get(currentSizeIndex),verbose);
 		} else {
 			this.hasStepsLeft = false;
 		}

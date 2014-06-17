@@ -115,6 +115,7 @@ public class Test {
 			try
 			{
 				et = ArgParser.technique(etType,sizes,dataSetSize,fullLabel,mlf,etf,agg,dataLoader,maxIterations);
+				System.out.println("created technique");
 			} catch (BadArgument e)
 			{
 				help();

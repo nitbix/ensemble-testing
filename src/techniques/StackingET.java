@@ -51,7 +51,7 @@ public class StackingET extends EvaluationTechnique {
 		if (currentSizeIndex < sizes.size() -1) {
 			for (int i = sizes.get(currentSizeIndex++); i < sizes.get(currentSizeIndex); i++) {
 				ensemble.addNewMember();
-				ensemble.trainMember(i, trainToError, selectionError, selectionSet, verbose);
+				ensemble.trainMember(i, trainToError, selectionError, maxIterations, selectionSet, verbose);
 			}
 			aggregator.setNumberOfMembers(sizes.get(currentSizeIndex));
 			ensemble.retrainAggregator();

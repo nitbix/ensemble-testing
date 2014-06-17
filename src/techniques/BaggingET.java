@@ -60,7 +60,7 @@ public class BaggingET extends EvaluationTechnique {
 			for (int i = sizes.get(currentSizeIndex++); i < sizes.get(currentSizeIndex); i++) {
 				ensemble.addNewMember();
 				try {
-					ensemble.trainMember(i, trainToError, selectionError, selectionSet, verbose);
+					ensemble.trainMember(i, trainToError, selectionError, maxIterations, selectionSet, verbose);
 				}
 				catch (TrainingAborted e) {
 					System.out.println("Training aborted on E_t = " + trainToError + ", member no " + i);

@@ -30,7 +30,7 @@ public class DropoutET extends EvaluationTechnique {
 	@Override
 	public void step(boolean verbose) throws TrainingAborted {
 		if(this.hasStepsLeft) {
-			ensemble.trainMember(0,trainToError, selectionError, selectionSet, verbose);
+			ensemble.trainMember(0,trainToError, selectionError, maxIterations, selectionSet, verbose);
 		}
 		this.hasStepsLeft = false;
 	}
