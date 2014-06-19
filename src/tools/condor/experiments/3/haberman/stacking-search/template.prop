@@ -1,0 +1,16 @@
+problem = problems/uci_haberman
+ensemble_sizes = 1,3,10,30,100
+dataset_resampling_sizes = 200
+training_errors = {te}
+folds = 10
+neural_invalidation_threshold = 0.1
+ensemble_training = rprop
+member_types = mlp:30:sigmoid
+aggregator = metaclassifier-mlp:{mid}:sigmoid-{ste}-rprop
+verbose = false
+selection_error = {se}
+max_runs = 1000
+max_training_iterations = 3000
+max_retrain_loops = 1000
+experiment_id = 3
+ensemble_method = stacking
