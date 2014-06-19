@@ -1,6 +1,7 @@
 package main;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,6 +86,10 @@ public class TrainingCurves {
 		catch (FileNotFoundException e)
 		{
 			System.err.println("Could not create dataLoader - data file not found");
+		}
+		catch (IOException e)
+		{
+			System.err.println("Could not create dataLoader - IOException" + e.toString());
 		}
 		catch (helpers.ProblemDescriptionLoader.BadArgument e) {
 			System.err.println("Could not get dataLoader - perhaps the mapper_type property is wrong");

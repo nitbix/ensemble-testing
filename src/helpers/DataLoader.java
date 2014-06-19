@@ -1,6 +1,7 @@
 package helpers;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.encog.NullStatusReportable;
@@ -28,8 +29,9 @@ public class DataLoader {
 	private int _readinputs;
 	private int nFolds;
 	private boolean hasSeparateTestSet;
+	private boolean gzippedData;
 
-	public DataLoader(DataMapper dataMapper, int readInputs, int inputs, boolean inputsReversed, int nFolds, boolean hasSeparateTestSet) {
+	public DataLoader(DataMapper dataMapper, int readInputs, int inputs, boolean inputsReversed, int nFolds, boolean hasSeparateTestSet, boolean gzippedData) {
 		_dataMapper = dataMapper;
 		_readinputs = readInputs;
 		_inputs = inputs;
@@ -41,9 +43,15 @@ public class DataLoader {
 			folds.add(new BasicNeuralDataSet());
 	}
 	
-	private BasicNeuralDataSet readFile(String inputFile) throws FileNotFoundException {
+	private BasicNeuralDataSet readFile(String inputFile) throws FileNotFoundException, IOException {
 		FileLoader fileLoader = new FileLoader();
-		ReadCSV csv = new ReadCSV(fileLoader.openOrFind(inputFile),false,',');
+		String inputFileNameFinal = inputFile;
+		if(gzippedData)
+		{
+			inputFileNameFinal += ".gz";
+		}
+		
+		ReadCSV csv = new ReadCSV(fileLoader.openOrFind(inputFileNameFinal),false,',');
 		BasicNeuralDataSet set = new BasicNeuralDataSet();
 		while(csv.next())
 		{
@@ -72,7 +80,7 @@ public class DataLoader {
 		
 	}
 	
-	public int readData(String inputFile) throws FileNotFoundException {
+	public int readData(String inputFile) throws FileNotFoundException, IOException {
 		//System.out.println("importing dataset");
 		if(hasSeparateTestSet)
 		{
