@@ -2,6 +2,7 @@ package techniques;
 
 import java.util.List;
 
+import org.encog.ensemble.Ensemble.TrainingAborted;
 import org.encog.ensemble.EnsembleAggregator;
 import org.encog.ensemble.EnsembleMLMethodFactory;
 import org.encog.ensemble.EnsembleTrainFactory;
@@ -68,12 +69,12 @@ public class AdaBoostET extends EvaluationTechnique {
 		return ensemble.getMember(0).getTraining().getError();
 	}
 
-	private void resize(int size, boolean verbose) {
-		((AdaBoost)ensemble).resize(size,trainToError,selectionError,maxIterations,(EnsembleDataSet) selectionSet,verbose);
+	private void resize(int size, boolean verbose) throws TrainingAborted {
+		((AdaBoost)ensemble).resize(size,trainToError,selectionError,maxIterations,maxLoops,(EnsembleDataSet) selectionSet,verbose);
 	}
 	
 	@Override
-	public void step(boolean verbose) {
+	public void step(boolean verbose) throws TrainingAborted {
 		currentSizeIndex++;
 		if (currentSizeIndex < sizes.size()) {
 			this.resize(sizes.get(currentSizeIndex),verbose);
