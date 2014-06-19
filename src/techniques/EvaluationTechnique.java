@@ -37,6 +37,7 @@ public abstract class EvaluationTechnique {
 	protected double selectionError;
 	protected boolean hasStepsLeft = true;
 	protected int maxIterations = 2000;
+	protected int maxLoops = 2000;
 	
 	public int getMisclassificationCount(BasicNeuralDataSet evalSet, DataMapper dataMapper) throws WeightMismatchException {
 		int bad = 0;
@@ -67,7 +68,7 @@ public abstract class EvaluationTechnique {
 
 	public void train(boolean verbose) {
 		try {
-			ensemble.train(trainToError, selectionError, maxIterations, (EnsembleDataSet) selectionSet,verbose);
+			ensemble.train(trainToError, selectionError, maxIterations, maxLoops, (EnsembleDataSet) selectionSet,verbose);
 		} catch (TrainingAborted e) {
 			System.out.println("Reached training iterations limit on E_t = " + trainToError);
 		}
@@ -93,6 +94,7 @@ public abstract class EvaluationTechnique {
 		this.maxIterations = maxIterations;
 		this.init(dataLoader,fold);
 	}
+	
 	public String getLabel() {
 		return label.get(sizes.get(currentSizeIndex));
 	}

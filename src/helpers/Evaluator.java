@@ -19,21 +19,21 @@ public class Evaluator
 	private EvaluationTechnique technique;
 	private DataLoader dataLoader;
 	
-	Evaluator(EvaluationTechnique technique, DataMapper mapper, int inputCols, int inputs, String dataFile, boolean inputsReversed, int nFolds, double targetTrainingError, double selectionError, int fold, int maxIterations, boolean hasSeparateTestSet, boolean gzippedData) throws FileNotFoundException, IOException, RequiresWeightedAggregatorException
+	Evaluator(EvaluationTechnique technique, DataMapper mapper, int inputCols, int inputs, String dataFile, boolean inputsReversed, int nFolds, double targetTrainingError, double selectionError, int fold, boolean hasSeparateTestSet, boolean gzippedData) throws FileNotFoundException, IOException, RequiresWeightedAggregatorException
 	{
 		this.setTechnique(technique);
 		dataLoader = new DataLoader(mapper,inputCols,inputs,inputsReversed,nFolds,hasSeparateTestSet,gzippedData);
 		dataLoader.readData(dataFile);
-		this.technique.init(dataLoader,fold,maxIterations);
+		this.technique.init(dataLoader,fold);
 		this.technique.setParams(targetTrainingError, selectionError);
 		this.technique.train(false);
 	}
 	
-	public Evaluator(EvaluationTechnique technique, DataLoader dataLoader, double targetTrainingError, double selectionError, boolean verbose, int fold, int maxIterations) throws RequiresWeightedAggregatorException
+	public Evaluator(EvaluationTechnique technique, DataLoader dataLoader, double targetTrainingError, double selectionError, boolean verbose, int fold) throws RequiresWeightedAggregatorException
 	{
 		this.setTechnique(technique);
 		this.dataLoader = dataLoader;
-		this.technique.init(dataLoader,fold,maxIterations);
+		this.technique.init(dataLoader,fold);
 		this.technique.setParams(targetTrainingError, selectionError);
 		this.technique.train(verbose);
 	}

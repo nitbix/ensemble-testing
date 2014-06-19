@@ -17,7 +17,7 @@ public class BaggingET extends EvaluationTechnique {
 
 	private int dataSetSize;
 
-	public BaggingET(List<Integer> sizes, int dataSetSize, int maxIterations, ChainParams fullLabel, EnsembleMLMethodFactory mlMethod, EnsembleTrainFactory trainFactory, EnsembleAggregator aggregator) {
+	public BaggingET(List<Integer> sizes, int dataSetSize, int maxIterations, int maxLoops, ChainParams fullLabel, EnsembleMLMethodFactory mlMethod, EnsembleTrainFactory trainFactory, EnsembleAggregator aggregator) {
 		this.sizes = sizes;
 		this.dataSetSize = dataSetSize;
 		this.label = fullLabel;
@@ -25,7 +25,7 @@ public class BaggingET extends EvaluationTechnique {
 		this.trainFactory = trainFactory;
 		this.aggregator = aggregator;
 		this.maxIterations = maxIterations;
-
+		this.maxLoops = maxLoops;
 	}
 
 	@Override

@@ -17,7 +17,7 @@ public class StackingET extends EvaluationTechnique {
 
 	private int dataSetSize;
 
-	public StackingET(List<Integer> sizes, int dataSetSize, int maxIterations, ChainParams fullLabel, EnsembleMLMethodFactory mlMethod, EnsembleTrainFactory trainFactory, EnsembleAggregator aggregator) {
+	public StackingET(List<Integer> sizes, int dataSetSize, int maxIterations, int maxLoops, ChainParams fullLabel, EnsembleMLMethodFactory mlMethod, EnsembleTrainFactory trainFactory, EnsembleAggregator aggregator) {
 		this.sizes = sizes;
 		this.dataSetSize = dataSetSize;
 		this.label = fullLabel;
@@ -25,6 +25,7 @@ public class StackingET extends EvaluationTechnique {
 		this.trainFactory = trainFactory;
 		this.aggregator = aggregator;
 		this.maxIterations = maxIterations;
+		this.maxLoops = maxLoops;
 	}
 
 	@Override

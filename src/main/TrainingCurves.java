@@ -34,6 +34,7 @@ public class TrainingCurves {
 	private static EnsembleAggregator agg;
 	private static String etType;
 	private static int maxIterations;
+	private static int maxLoops;
 	
 	public static void loop() throws WeightMismatchException, RequiresWeightedAggregatorException {
 		List<Integer> one = new ArrayList<Integer>();
@@ -43,7 +44,7 @@ public class TrainingCurves {
 			ChainParams labeler = new ChainParams("", "", "", "", "", 0);
 			EvaluationTechnique et = null;
 			try {
-				et = ArgParser.technique(etType,one,trainingSetSize,labeler,mlf,etf,agg,dataLoader,maxIterations);
+				et = ArgParser.technique(etType,one,trainingSetSize,labeler,mlf,etf,agg,dataLoader,maxIterations,maxLoops);
 			} catch (BadArgument e) {
 				help();
 			}
@@ -75,7 +76,8 @@ public class TrainingCurves {
 			etf = ArgParser.ETF(args[4]);
 			mlfs = ArgParser.MLFS(args[5]);
 			maxIterations = ArgParser.intSingle(args[6]);
-			agg = ArgParser.AGG(args[7]);
+			maxLoops = ArgParser.intSingle(args[7]);
+			agg = ArgParser.AGG(args[8]);
 		} catch (BadArgument e) {
 			help();
 		}
@@ -100,7 +102,7 @@ public class TrainingCurves {
 	}
 
 	private static void help() {
-		System.err.println("Usage: TrainingCurves <technique> <problem> <trainingSetSize> <activationThreshold> <training> <membertypes> <maxIterations> <aggregation>");
+		System.err.println("Usage: TrainingCurves <technique> <problem> <trainingSetSize> <activationThreshold> <training> <membertypes> <maxIterations> <maxLoops> <aggregation>");
 		System.exit(2);
 	}
 }

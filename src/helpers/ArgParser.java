@@ -166,13 +166,13 @@ public class ArgParser {
 	public static EvaluationTechnique technique(String etType, List<Integer> sizes,
 			Integer dataSetSize, ChainParams fullLabel, EnsembleMLMethodFactory mlf,
 			EnsembleTrainFactory etf, EnsembleAggregator agg, DataLoader dataLoader,
-			int maxIterations) throws BadArgument {
+			int maxIterations, int maxLoops) throws BadArgument {
 		String values[] = etType.split("-");
 		switch (Techniques.valueOf(values[0].toUpperCase())) {
-			case BAGGING: return new BaggingET(sizes,dataSetSize,maxIterations,fullLabel,mlf,etf,agg);
-			case ADABOOST: return new AdaBoostET(sizes,dataSetSize,maxIterations,fullLabel,mlf,etf,agg);
-			case STACKING: return new StackingET(sizes,dataSetSize,maxIterations,fullLabel,mlf,etf,agg);
-			case DROPOUT: return new DropoutET(dataSetSize,fullLabel,maxIterations,mlf,etf,agg,doubleSingle(values[1]));
+			case BAGGING: return new BaggingET(sizes,dataSetSize,maxIterations,maxLoops,fullLabel,mlf,etf,agg);
+			case ADABOOST: return new AdaBoostET(sizes,dataSetSize,maxIterations,maxLoops,fullLabel,mlf,etf,agg);
+			case STACKING: return new StackingET(sizes,dataSetSize,maxIterations,maxLoops,fullLabel,mlf,etf,agg);
+			case DROPOUT: return new DropoutET(dataSetSize,fullLabel,maxIterations,maxLoops,mlf,etf,agg,doubleSingle(values[1]));
 			default: throw new BadArgument();
 		}
 	}
