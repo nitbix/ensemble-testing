@@ -66,11 +66,12 @@ public abstract class EvaluationTechnique {
 		return selectionError;
 	}
 
-	public void train(boolean verbose) {
+	public void train(boolean verbose) throws TrainingAborted {
 		try {
 			ensemble.train(trainToError, selectionError, maxIterations, maxLoops, (EnsembleDataSet) selectionSet,verbose);
 		} catch (TrainingAborted e) {
 			System.out.println("Reached training iterations limit on E_t = " + trainToError);
+			throw e;
 		}
 	}
 

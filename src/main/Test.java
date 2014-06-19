@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
+import org.encog.ensemble.Ensemble.TrainingAborted;
 import org.encog.ensemble.EnsembleAggregator;
 import org.encog.ensemble.EnsembleMLMethodFactory;
 import org.encog.ensemble.EnsembleTrainFactory;
@@ -60,7 +61,7 @@ public class Test {
 	private static String dbconn,dbuser,dbpass;
 	private static DBConnect reconnectCallback;
 	
-	public static void loop() throws SQLException, FileNotFoundException, IOException, WeightMismatchException, RequiresWeightedAggregatorException
+	public static void loop() throws SQLException, FileNotFoundException, IOException, WeightMismatchException, RequiresWeightedAggregatorException, TrainingAborted
 	{
 		DateFormat sqlDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Calendar cal = Calendar.getInstance();
@@ -135,7 +136,7 @@ public class Test {
 		}
 	}
 	
-	public static void main(String[] args) throws WeightMismatchException, RequiresWeightedAggregatorException
+	public static void main(String[] args) throws WeightMismatchException, RequiresWeightedAggregatorException, TrainingAborted
 	{
 		FileLoader fileLoader = new FileLoader();
 		Options options = new Options();
