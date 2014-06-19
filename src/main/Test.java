@@ -115,7 +115,6 @@ public class Test {
 			try
 			{
 				et = ArgParser.technique(etType,sizes,dataSetSize,fullLabel,mlf,etf,agg,dataLoader,maxIterations);
-				System.out.println("created technique");
 			} catch (BadArgument e)
 			{
 				help();
@@ -186,6 +185,10 @@ public class Test {
 		catch (FileNotFoundException e)
 		{
 			System.err.println("Could not create dataLoader - data file not found");
+		}
+		catch (IOException e)
+		{
+			System.err.println("Could not create dataLoader - IOException" + e.toString());
 		}
 		catch (helpers.ProblemDescriptionLoader.BadArgument e) 
 		{
