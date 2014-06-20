@@ -143,14 +143,25 @@ public class ArgParser {
 			case WEIGHTEDAVERAGING: return new WeightedAveraging(null);
 			case MAJORITYVOTING: return new MajorityVoting();
 			case METACLASSIFIER:
-				switch (values.length)
+				boolean adaptive = false;
+				if(values[4].equals("rprop_adaptive"))
 				{
-					case 4:
-						return new MetaClassifier(doubleSingle(values[2]),MLF(values[1]), ETF(values[3]));
-					case 5:
-						return new MetaClassifier(doubleSingle(values[2]),MLF(values[1]), ETF(values[3] + "-" + values[4]));
-					default: throw new BadArgument();
+					values[4] = "rprop";
+					adaptive = true;
 				}
+				String etf = values[3];
+				for(int i = 4; i < values.length; i++)
+				{
+					if(values[i].equals("adaptive"))
+					{
+						adaptive = true;
+					}
+					else
+					{
+						etf += "-" + values[i];
+					}
+				}
+				return new MetaClassifier(doubleSingle(values[2]),MLF(values[1]), ETF(etf), adaptive);
 			default: throw new BadArgument();
 		}
 	}
