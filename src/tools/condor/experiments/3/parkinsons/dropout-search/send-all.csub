@@ -16,75 +16,93 @@ when_to_transfer_output = ON_EXIT
 transfer_input_files = ensemble-testing.jar
 Requirements = (TARGET.Opsys == "WINDOWS")
 periodic_remove = (CommittedTime - CommittedSuspensionTime) > 43200
-arguments = 3 parkinsons stacking-search/0.01-0.05-0.01-10
+arguments = 3 parkinsons dropout-search/0.03-0.05--
 queue 30
-arguments = 3 parkinsons stacking-search/0.01-0.05-0.01-30
+arguments = 3 parkinsons dropout-search/0.03-0.05--
 queue 30
-arguments = 3 parkinsons stacking-search/0.01-0.05-0.01-100
+arguments = 3 parkinsons dropout-search/0.03-0.05--
 queue 30
-arguments = 3 parkinsons stacking-search/0.01-0.05-0.0001-10
+arguments = 3 parkinsons dropout-search/0.03-0.05--
 queue 30
-arguments = 3 parkinsons stacking-search/0.01-0.05-0.0001-30
+arguments = 3 parkinsons dropout-search/0.03-0.05--
 queue 30
-arguments = 3 parkinsons stacking-search/0.01-0.05-0.0001-100
+arguments = 3 parkinsons dropout-search/0.03-0.03--
 queue 30
-arguments = 3 parkinsons stacking-search/0.01-0.05-0.000001-10
+arguments = 3 parkinsons dropout-search/0.03-0.03--
 queue 30
-arguments = 3 parkinsons stacking-search/0.01-0.05-0.000001-30
+arguments = 3 parkinsons dropout-search/0.03-0.03--
 queue 30
-arguments = 3 parkinsons stacking-search/0.01-0.05-0.000001-100
+arguments = 3 parkinsons dropout-search/0.03-0.03--
 queue 30
-arguments = 3 parkinsons stacking-search/0.01-0.03-0.01-10
+arguments = 3 parkinsons dropout-search/0.03-0.03--
 queue 30
-arguments = 3 parkinsons stacking-search/0.01-0.03-0.01-30
+arguments = 3 parkinsons dropout-search/0.03-0.01--
 queue 30
-arguments = 3 parkinsons stacking-search/0.01-0.03-0.01-100
+arguments = 3 parkinsons dropout-search/0.03-0.01--
 queue 30
-arguments = 3 parkinsons stacking-search/0.01-0.03-0.0001-10
+arguments = 3 parkinsons dropout-search/0.03-0.01--
 queue 30
-arguments = 3 parkinsons stacking-search/0.01-0.03-0.0001-30
+arguments = 3 parkinsons dropout-search/0.03-0.01--
 queue 30
-arguments = 3 parkinsons stacking-search/0.01-0.03-0.0001-100
+arguments = 3 parkinsons dropout-search/0.03-0.01--
 queue 30
-arguments = 3 parkinsons stacking-search/0.01-0.03-0.000001-10
+arguments = 3 parkinsons dropout-search/0.01-0.05--
 queue 30
-arguments = 3 parkinsons stacking-search/0.01-0.03-0.000001-30
+arguments = 3 parkinsons dropout-search/0.01-0.05--
 queue 30
-arguments = 3 parkinsons stacking-search/0.01-0.03-0.000001-100
+arguments = 3 parkinsons dropout-search/0.01-0.05--
 queue 30
-arguments = 3 parkinsons stacking-search/0.003-0.05-0.01-10
+arguments = 3 parkinsons dropout-search/0.01-0.05--
 queue 30
-arguments = 3 parkinsons stacking-search/0.003-0.05-0.01-30
+arguments = 3 parkinsons dropout-search/0.01-0.05--
 queue 30
-arguments = 3 parkinsons stacking-search/0.003-0.05-0.01-100
+arguments = 3 parkinsons dropout-search/0.01-0.03--
 queue 30
-arguments = 3 parkinsons stacking-search/0.003-0.05-0.0001-10
+arguments = 3 parkinsons dropout-search/0.01-0.03--
 queue 30
-arguments = 3 parkinsons stacking-search/0.003-0.05-0.0001-30
+arguments = 3 parkinsons dropout-search/0.01-0.03--
 queue 30
-arguments = 3 parkinsons stacking-search/0.003-0.05-0.0001-100
+arguments = 3 parkinsons dropout-search/0.01-0.03--
 queue 30
-arguments = 3 parkinsons stacking-search/0.003-0.05-0.000001-10
+arguments = 3 parkinsons dropout-search/0.01-0.03--
 queue 30
-arguments = 3 parkinsons stacking-search/0.003-0.05-0.000001-30
+arguments = 3 parkinsons dropout-search/0.01-0.01--
 queue 30
-arguments = 3 parkinsons stacking-search/0.003-0.05-0.000001-100
+arguments = 3 parkinsons dropout-search/0.01-0.01--
 queue 30
-arguments = 3 parkinsons stacking-search/0.003-0.03-0.01-10
+arguments = 3 parkinsons dropout-search/0.01-0.01--
 queue 30
-arguments = 3 parkinsons stacking-search/0.003-0.03-0.01-30
+arguments = 3 parkinsons dropout-search/0.01-0.01--
 queue 30
-arguments = 3 parkinsons stacking-search/0.003-0.03-0.01-100
+arguments = 3 parkinsons dropout-search/0.01-0.01--
 queue 30
-arguments = 3 parkinsons stacking-search/0.003-0.03-0.0001-10
+arguments = 3 parkinsons dropout-search/0.001-0.05--
 queue 30
-arguments = 3 parkinsons stacking-search/0.003-0.03-0.0001-30
+arguments = 3 parkinsons dropout-search/0.001-0.05--
 queue 30
-arguments = 3 parkinsons stacking-search/0.003-0.03-0.0001-100
+arguments = 3 parkinsons dropout-search/0.001-0.05--
 queue 30
-arguments = 3 parkinsons stacking-search/0.003-0.03-0.000001-10
+arguments = 3 parkinsons dropout-search/0.001-0.05--
 queue 30
-arguments = 3 parkinsons stacking-search/0.003-0.03-0.000001-30
+arguments = 3 parkinsons dropout-search/0.001-0.05--
 queue 30
-arguments = 3 parkinsons stacking-search/0.003-0.03-0.000001-100
+arguments = 3 parkinsons dropout-search/0.001-0.03--
+queue 30
+arguments = 3 parkinsons dropout-search/0.001-0.03--
+queue 30
+arguments = 3 parkinsons dropout-search/0.001-0.03--
+queue 30
+arguments = 3 parkinsons dropout-search/0.001-0.03--
+queue 30
+arguments = 3 parkinsons dropout-search/0.001-0.03--
+queue 30
+arguments = 3 parkinsons dropout-search/0.001-0.01--
+queue 30
+arguments = 3 parkinsons dropout-search/0.001-0.01--
+queue 30
+arguments = 3 parkinsons dropout-search/0.001-0.01--
+queue 30
+arguments = 3 parkinsons dropout-search/0.001-0.01--
+queue 30
+arguments = 3 parkinsons dropout-search/0.001-0.01--
 queue 30
