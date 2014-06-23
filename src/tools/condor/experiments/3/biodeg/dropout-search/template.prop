@@ -8,7 +8,6 @@ ensemble_training = rprop
 member_types = mlp:50:sigmoid
 aggregator = averaging
 verbose = false
-selection_error = 0.14
 selection_error = {se}
 max_runs = 1000
 max_training_iterations = 10000
