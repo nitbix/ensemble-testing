@@ -144,7 +144,7 @@ public class ArgParser {
 			case MAJORITYVOTING: return new MajorityVoting();
 			case METACLASSIFIER:
 				boolean adaptive = false;
-				if(values[4].equals("rprop_adaptive"))
+				if(values.length > 4 && values[4].equals("rprop_adaptive"))
 				{
 					values[4] = "rprop";
 					adaptive = true;
