@@ -38,6 +38,7 @@ public class DataLoader {
 		_inputsReversed = inputsReversed;
 		this.hasSeparateTestSet = hasSeparateTestSet;
 		this.nFolds = nFolds;
+		this.gzippedData = gzippedData;
 		folds = new ArrayList<BasicNeuralDataSet>();
 		for (int i = 0; i < nFolds; i++)
 			folds.add(new BasicNeuralDataSet());
@@ -50,7 +51,6 @@ public class DataLoader {
 		{
 			inputFileNameFinal += ".gz";
 		}
-		
 		ReadCSV csv = new ReadCSV(fileLoader.openOrFind(inputFileNameFinal),false,',');
 		BasicNeuralDataSet set = new BasicNeuralDataSet();
 		while(csv.next())
