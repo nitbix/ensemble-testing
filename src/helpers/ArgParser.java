@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.encog.engine.network.activation.ActivationFunction;
 import org.encog.engine.network.activation.ActivationSigmoid;
+import org.encog.engine.network.activation.ActivationSoftMax;
 import org.encog.ensemble.EnsembleAggregator;
 import org.encog.ensemble.EnsembleMLMethodFactory;
 import org.encog.ensemble.EnsembleTrainFactory;
@@ -48,6 +49,8 @@ public class ArgParser {
 	
 	public enum Activations {
 		SIGMOID,
+		SOFTMAX,
+		RELU
 	}
 	
 	public enum Aggregators {
@@ -139,6 +142,7 @@ public class ArgParser {
 	private static ActivationFunction activation(String string) throws BadArgument {
 		switch (Activations.valueOf(string.toUpperCase())) {
 			case SIGMOID: return new ActivationSigmoid();
+			case SOFTMAX: return new ActivationSoftMax();
 			default: throw new BadArgument();
 		}
 	}
