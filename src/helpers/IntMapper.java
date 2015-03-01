@@ -9,11 +9,13 @@ public class IntMapper implements DataMapper {
 	
 	private static int _outputs;
 	private static double _activationThreshold;
+	private static boolean _labelsStartAtZero;
 	
-	public IntMapper(int outputs, double activationThreshold)
+	public IntMapper(int outputs, double activationThreshold, boolean labelsStartAtZero)
 	{
 	  _outputs = outputs;
 	  _activationThreshold = activationThreshold;
+	  _labelsStartAtZero = labelsStartAtZero;
 	}
 	
 	@Override
@@ -21,7 +23,11 @@ public class IntMapper implements DataMapper {
 		final BasicNeuralData retVal = new BasicNeuralData(_outputs);
 		for (int i = 0; i < _outputs; i++)
 			retVal.add(i, 0.0);
-		int value = Integer.parseInt(data.get(0)) - 1;
+		int value = Integer.parseInt(data.get(0));
+		if(!_labelsStartAtZero)
+		{
+			value--;
+		}
 		retVal.setData(value, 1.0);
 		return retVal;
 	}
