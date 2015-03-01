@@ -17,26 +17,26 @@ transfer_input_files = ensemble-testing.jar
 Requirements = (TARGET.Opsys == "WINDOWS")
 periodic_remove = (CommittedTime - CommittedSuspensionTime) > 43200
 
-arguments = 3 parkinsons bagging-averaging-nodrop
-queue 10
-
+#arguments = 3 parkinsons bagging-averaging-nodrop
+#queue 100
+#
 arguments = 3 parkinsons adaboost-nodrop
-queue 10
+queue 200
 
-arguments = 3 parkinsons stacking
-queue 10
-
-arguments = 3 parkinsons dropout/dropout-0.1
-queue 10
-
-arguments = 3 parkinsons dropout/dropout-0.3
-queue 10
-
-arguments = 3 parkinsons dropout/dropout-0.5
-queue 10
-
-arguments = 3 parkinsons dropout/dropout-0.7
-queue 10
-
-arguments = 3 parkinsons dropout/dropout-0.9
-queue 10
+#arguments = 3 parkinsons stacking
+#queue 100
+#
+#arguments = 3 parkinsons dropout/dropout-0.1
+#queue 100
+#
+#arguments = 3 parkinsons dropout/dropout-0.3
+#queue 100
+#
+#arguments = 3 parkinsons dropout/dropout-0.5
+#queue 100
+#
+#arguments = 3 parkinsons dropout/dropout-0.7
+#queue 100
+#
+#arguments = 3 parkinsons dropout/dropout-0.9
+#queue 100

@@ -6,6 +6,6 @@ output_columns_to_read=1
 labels_at_eol=false
 #1=b,2=g
 mapper_type=int
-data_file=data/mnist.train.data
+data_file=data/mnist
 separate_train_and_test_sets=true
 gzipped_data=true

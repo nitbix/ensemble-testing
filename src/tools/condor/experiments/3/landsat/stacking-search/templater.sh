@@ -2,14 +2,14 @@
 
 cat template.csub > send-all.csub
 
-for te in 0.3 0.1; do
-for se in 0.3 0.1; do
+for te in 0.06 0.03 0.01; do
+for se in 0.06 0.03 0.01; do
 for ste in 0.1 0.01 0.001; do
 for mid in 10 30 100; do
 	cat template.prop | sed "s/{te}/$te/" | sed "s/{se}/$se/" | sed "s/{ste}/$ste/" | sed "s/{mid}/$mid/" | sed "s/{extra}//" > $te-$se-$ste-$mid.prop
 	cat template.prop | sed "s/{te}/$te/" | sed "s/{se}/$se/" | sed "s/{ste}/$ste/" | sed "s/{mid}/$mid/" | sed "s/{extra}/-adaptive/" > $te-$se-$ste-$mid-adaptive.prop
-	echo "arguments = 3 landsat stacking-search/$te-$se-$ste-$mid" >> send-all.csub
-	echo "queue 30" >> send-all.csub
+#	echo "arguments = 3 landsat stacking-search/$te-$se-$ste-$mid" >> send-all.csub
+#	echo "queue 30" >> send-all.csub
 	echo "arguments = 3 landsat stacking-search/$te-$se-$ste-$mid-adaptive" >> send-all.csub
 	echo "queue 30" >> send-all.csub
 done
