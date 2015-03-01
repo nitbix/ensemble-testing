@@ -1,0 +1,36 @@
+################################
+#
+# Condor submit file
+#
+#
+################################
+
+Universe = vanilla
+Executable = run-prop.bat 
+Output = logs/out/mnist$(Cluster).$(Process).out
+Error = logs/err/mnist$(Cluster).$(Process).err
+Log = logs/log/mnist$(Cluster).$(Process).log
+copy_to_spool = true
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = ensemble-testing.jar
+Requirements = (TARGET.Opsys == "WINDOWS")
+periodic_remove = (CommittedTime - CommittedSuspensionTime) > 43200
+
+arguments = 4 mnist bagging-averaging-nodrop
+queue 100
+
+arguments = 4 mnist adaboost-nodrop
+queue 100
+
+arguments = 4 mnist bagging-averaging
+queue 100
+
+arguments = 4 mnist adaboost
+queue 100
+
+arguments = 4 mnist stacking
+queue 100
+
+arguments = 4 mnist dropout/dropout-0.5
+queue 100
