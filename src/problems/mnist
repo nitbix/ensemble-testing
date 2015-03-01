@@ -1,9 +1,9 @@
 #MNIST
 label=mnist
-outputs=2
-inputs=34
+outputs=1
+inputs=784
 output_columns_to_read=1
-labels_at_eol=true
+labels_at_eol=false
 #1=b,2=g
 mapper_type=int
 data_file=data/mnist.train.data
