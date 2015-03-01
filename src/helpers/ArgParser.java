@@ -115,7 +115,14 @@ public class ArgParser {
 		switch (MLMethodFactories.valueOf(values[0].toUpperCase())) {
 			case MLP:
 				MultiLayerPerceptronFactory mlp = new MultiLayerPerceptronFactory();
-				mlp.setParameters(intList(values[1]), activation(values[2]));
+				if(values.length == 3)
+				{
+					mlp.setParameters(intList(values[1]), activation(values[2]));
+				} else if (values.length == 4) {
+					mlp.setParameters(intList(values[1]), activation(values[2]), activation(values[3]));					
+				} else {
+					throw new BadArgument();
+				}
 				return mlp;
 			default: throw new BadArgument();
 		}
