@@ -2,8 +2,10 @@ package main;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import org.encog.ensemble.EnsembleAggregator;
 import org.encog.ensemble.EnsembleMLMethodFactory;
@@ -15,10 +17,12 @@ import techniques.AdaBoostET.RequiresWeightedAggregatorException;
 import techniques.EvaluationTechnique;
 import helpers.ArgParser;
 import helpers.ArgParser.BadArgument;
+import helpers.DBConnect;
 import helpers.DataLoader;
 import helpers.DataMapper;
 import helpers.Evaluator;
 import helpers.ChainParams;
+import helpers.FileLoader;
 import helpers.ProblemDescription;
 
 public class TrainingCurves {
@@ -36,6 +40,16 @@ public class TrainingCurves {
 	private static int maxIterations;
 	private static int maxLoops;
 	
+	private static List<Integer> sizes;
+	private static List<Integer> dataSetSizes;
+	private static List<Double> trainingErrors;
+	private static int nFolds;
+	private static double selectionError;
+	private static int targetRunCount = 0;
+	
+	private static Connection sqlConnection;
+	private static String dbconn,dbuser,dbpass;
+	private static DBConnect reconnectCallback;
 	public static void loop() throws WeightMismatchException, RequiresWeightedAggregatorException {
 		List<Integer> one = new ArrayList<Integer>();
 		one.add(1);
@@ -65,25 +79,55 @@ public class TrainingCurves {
 	}
 	
 	public static void main(String[] args) throws WeightMismatchException, RequiresWeightedAggregatorException {
-		if (args.length != 8) {
+		FileLoader fileLoader = new FileLoader();
+		if (args.length != 8 && args.length != 1) {
 			help();
 		} 
 		try {
-			etType = args[0];
-			problem = ArgParser.problem(args[1]);
-			trainingSetSize = ArgParser.intSingle(args[2]);
-			activationThreshold = ArgParser.doubleSingle(args[3]);
-			etf = ArgParser.ETF(args[4]);
-			mlfs = ArgParser.MLFS(args[5]);
-			maxIterations = ArgParser.intSingle(args[6]);
-			maxLoops = ArgParser.intSingle(args[7]);
-			agg = ArgParser.AGG(args[8]);
-		} catch (BadArgument e) {
-			help();
-		}
-		
-		try {
-			dataLoader = problem.getDataLoader(activationThreshold,10);
+			if(args.length == 8)
+			{
+				etType = args[0];
+				problem = ArgParser.problem(args[1]);
+				trainingSetSize = ArgParser.intSingle(args[2]);
+				activationThreshold = ArgParser.doubleSingle(args[3]);
+				etf = ArgParser.ETF(args[4]);
+				mlfs = ArgParser.MLFS(args[5]);
+				maxIterations = ArgParser.intSingle(args[6]);
+				maxLoops = ArgParser.intSingle(args[7]);
+				agg = ArgParser.AGG(args[8]);
+			} else if (args.length == 1) {
+				Properties problemPropFile = new Properties();
+				try {
+					problemPropFile.load(fileLoader.openOrFind(args[0]));
+				} catch (FileNotFoundException e) {
+					System.err.println("Could not find " + args[0]);
+					help();
+				} catch (IOException e) {
+					help();
+				}
+				problem = ArgParser.problem(problemPropFile.getProperty("problem"));
+				nFolds = ArgParser.intSingle(problemPropFile.getProperty("folds"));
+				activationThreshold = ArgParser.doubleSingle(problemPropFile.getProperty("neural_invalidation_threshold"));
+				etType = problemPropFile.getProperty("ensemble_method");
+				sizes = ArgParser.intList(problemPropFile.getProperty("ensemble_sizes"));
+				dataSetSizes = ArgParser.intList(problemPropFile.getProperty("dataset_resampling_sizes"));
+				trainingErrors = ArgParser.doubleList(problemPropFile.getProperty("training_errors"));
+				etf = ArgParser.ETF(problemPropFile.getProperty("ensemble_training"));
+				maxIterations = ArgParser.intSingle(problemPropFile.getProperty("max_training_iterations"));
+				if(problemPropFile.containsKey("max_retrain_loops"))
+				{
+					maxLoops = ArgParser.intSingle(problemPropFile.getProperty("max_retrain_loops"));			
+				}
+				mlfs = ArgParser.MLFS(problemPropFile.getProperty("member_types"));
+				agg = ArgParser.AGG(problemPropFile.getProperty("aggregator"));
+//				verbose = Boolean.parseBoolean(problemPropFile.getProperty("verbose")) || commandLine.hasOption("v");
+				selectionError = ArgParser.doubleSingle(problemPropFile.getProperty("selection_error"));
+				if (nFolds < 2) {
+					throw new BadArgument();
+				};
+				dataLoader = problem.getDataLoader(activationThreshold,nFolds);
+
+			}
 		}
 		catch (FileNotFoundException e)
 		{
@@ -93,9 +137,14 @@ public class TrainingCurves {
 		{
 			System.err.println("Could not create dataLoader - IOException" + e.toString());
 		}
-		catch (helpers.ProblemDescriptionLoader.BadArgument e) {
-			System.err.println("Could not get dataLoader - perhaps the mapper_type property is wrong");
+		catch (helpers.ProblemDescriptionLoader.BadArgument e) 
+		{
+			System.err.println("Could not create dataLoader - perhaps the mapper_type property is wrong");
 			e.printStackTrace();
+		}
+		catch (BadArgument e)
+		{
+			help();
 		}
 		loop();
 		System.exit(0);
