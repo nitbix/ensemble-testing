@@ -125,8 +125,10 @@ public class TrainingCurves {
 				if (nFolds < 2) {
 					throw new BadArgument();
 				};
+				trainingSetSize = dataSetSizes.get(0);
+				//OMGHACK
 				dataLoader = problem.getDataLoader(activationThreshold,nFolds);
-
+				maxLoops = maxIterations;
 			}
 		}
 		catch (FileNotFoundException e)
