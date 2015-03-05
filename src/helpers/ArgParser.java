@@ -20,6 +20,7 @@ import org.encog.ensemble.training.LevenbergMarquardtFactory;
 import org.encog.ensemble.training.ManhattanPropagationFactory;
 import org.encog.ensemble.training.ResilientPropagationFactory;
 import org.encog.ensemble.training.ScaledConjugateGradientFactory;
+import org.encog.neural.networks.training.propagation.resilient.RPROPType;
 
 import techniques.AdaBoostET;
 import techniques.BaggingET;
@@ -42,6 +43,7 @@ public class ArgParser {
 		SCG,
 		MANHATTAN,
 		LMA,
+		ARPROP
 	}
 	
 	public enum MLMethodFactories {
@@ -96,13 +98,25 @@ public class ArgParser {
 		String values[] = string.split("-");
 		switch (TrainFactories.valueOf(values[0].toUpperCase())) {
 			case BACKPROP: return new BackpropagationFactory();
-			case RPROP: 
+			case RPROP:
+			{
 				ResilientPropagationFactory rpf = new ResilientPropagationFactory();
 				if(values.length > 1 && !values[1].isEmpty())
 				{
 					rpf.setDropoutRate(doubleSingle(values[1]));
 				}
 				return rpf;
+			}
+			case ARPROP:
+			{
+				ResilientPropagationFactory rpf = new ResilientPropagationFactory();
+				rpf.setRPROPType(RPROPType.ARPROP);
+				if(values.length > 1 && !values[1].isEmpty())
+				{
+					rpf.setDropoutRate(doubleSingle(values[1]));
+				}
+				return rpf;
+			}
 			case SCG: return new ScaledConjugateGradientFactory();
 			case MANHATTAN:
 				ManhattanPropagationFactory mpf = new ManhattanPropagationFactory();
