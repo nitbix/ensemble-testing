@@ -31,7 +31,6 @@ public class TrainingCurves {
 	static DataLoader dataLoader;
 	static ProblemDescription problem;
 	
-	private static int trainingSetSize;
 	private static double activationThreshold;
 	private static EnsembleTrainFactory etf;
 	private static List<EnsembleMLMethodFactory> mlfs;
@@ -39,17 +38,8 @@ public class TrainingCurves {
 	private static String etType;
 	private static int maxIterations;
 	private static int maxLoops;
+	private static int nFolds = 1;
 	
-	private static List<Integer> sizes;
-	private static List<Integer> dataSetSizes;
-	private static List<Double> trainingErrors;
-	private static int nFolds;
-	private static double selectionError;
-	private static int targetRunCount = 0;
-	
-	private static Connection sqlConnection;
-	private static String dbconn,dbuser,dbpass;
-	private static DBConnect reconnectCallback;
 	public static void loop() throws WeightMismatchException, RequiresWeightedAggregatorException {
 		List<Integer> one = new ArrayList<Integer>();
 		one.add(1);
@@ -57,6 +47,7 @@ public class TrainingCurves {
 		{
 			ChainParams labeler = new ChainParams("", "", "", "", "", 0);
 			EvaluationTechnique et = null;
+			int trainingSetSize = dataLoader.getTrainingSet().size();
 			try {
 				et = ArgParser.technique("CURVES",one,trainingSetSize,labeler,mlf,etf,agg,dataLoader,maxIterations,maxLoops);
 			} catch (BadArgument e) {
@@ -66,7 +57,6 @@ public class TrainingCurves {
 			DataMapper dataMapper = dataLoader.getMapper();
 			BasicNeuralDataSet testSet = dataLoader.getTestSet();
 			BasicNeuralDataSet trainingSet = dataLoader.getTrainingSet();
-			trainingSetSize = dataLoader.getTrainingSet().size();
 			for (int i=0; i < maxIterations; i++) {
 				et.trainStep();
 				double trainMSE = et.trainError();
@@ -104,9 +94,7 @@ public class TrainingCurves {
 					help();
 				}
 				problem = ArgParser.problem(problemPropFile.getProperty("problem"));
-				nFolds = ArgParser.intSingle(problemPropFile.getProperty("folds"));
 				activationThreshold = ArgParser.doubleSingle(problemPropFile.getProperty("neural_invalidation_threshold"));
-				trainingErrors = ArgParser.doubleList(problemPropFile.getProperty("training_errors"));
 				etf = ArgParser.ETF(problemPropFile.getProperty("ensemble_training"));
 				maxIterations = ArgParser.intSingle(problemPropFile.getProperty("max_training_iterations"));
 				if(problemPropFile.containsKey("max_retrain_loops"))
@@ -114,10 +102,6 @@ public class TrainingCurves {
 					maxLoops = ArgParser.intSingle(problemPropFile.getProperty("max_retrain_loops"));			
 				}
 				mlfs = ArgParser.MLFS(problemPropFile.getProperty("member_types"));
-				selectionError = ArgParser.doubleSingle(problemPropFile.getProperty("selection_error"));
-				if (nFolds < 2) {
-					throw new BadArgument();
-				};
 				//OMGHACK
 				dataLoader = problem.getDataLoader(activationThreshold,nFolds);
 				maxLoops = maxIterations;
