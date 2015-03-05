@@ -9,6 +9,7 @@ import org.encog.ensemble.EnsembleTrainFactory;
 import org.encog.ensemble.aggregator.WeightedAveraging.WeightMismatchException;
 import org.encog.ensemble.bagging.Bagging;
 import org.encog.ensemble.data.factories.NonResamplingDataSetFactory;
+import org.encog.ensemble.data.factories.WrappingNonResamplingDataSetFactory;
 import org.encog.ml.data.MLData;
 
 import helpers.DataLoader;
@@ -38,6 +39,7 @@ public class BaggingET extends EvaluationTechnique {
 			EnsembleTrainFactory trainFactory, EnsembleAggregator aggregator) {
 		this(sizes,dataSetSize,maxIterations,maxLoops,fullLabel,mlMethod,trainFactory,aggregator,true);
 	}
+	
 	@Override
 	public void init(DataLoader dataLoader,int fold)
 	{
@@ -45,7 +47,7 @@ public class BaggingET extends EvaluationTechnique {
 		{
 			ensemble = new Bagging(sizes.get(currentSizeIndex),dataSetSize,mlMethod,trainFactory,aggregator);
 		} else {
-			ensemble = new Bagging(sizes.get(currentSizeIndex),dataSetSize,mlMethod,trainFactory,aggregator,new NonResamplingDataSetFactory(fold));
+			ensemble = new Bagging(sizes.get(currentSizeIndex),dataSetSize,mlMethod,trainFactory,aggregator,new WrappingNonResamplingDataSetFactory(dataSetSize));
 		}
 		dataLoader.setFold(fold);
 		setTrainingSet(dataLoader.getTrainingSet());

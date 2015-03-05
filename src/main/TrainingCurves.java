@@ -47,16 +47,16 @@ public class TrainingCurves {
 		{
 			ChainParams labeler = new ChainParams("", "", "", "", "", 0);
 			EvaluationTechnique et = null;
-			int trainingSetSize = dataLoader.getTrainingSet().size();
+			DataMapper dataMapper = dataLoader.getMapper();
+			BasicNeuralDataSet testSet = dataLoader.getTestSet();
+			BasicNeuralDataSet trainingSet = dataLoader.getTrainingSet();
+			int trainingSetSize = trainingSet.size();
 			try {
 				et = ArgParser.technique("CURVES",one,trainingSetSize,labeler,mlf,etf,agg,dataLoader,maxIterations,maxLoops);
 			} catch (BadArgument e) {
 				help();
 			}
 			et.init(dataLoader,0);
-			DataMapper dataMapper = dataLoader.getMapper();
-			BasicNeuralDataSet testSet = dataLoader.getTestSet();
-			BasicNeuralDataSet trainingSet = dataLoader.getTrainingSet();
 			for (int i=0; i < maxIterations; i++) {
 				et.trainStep();
 				double trainMSE = et.trainError();

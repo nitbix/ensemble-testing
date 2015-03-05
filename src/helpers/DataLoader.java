@@ -84,7 +84,7 @@ public class DataLoader {
 		//System.out.println("importing dataset");
 		if(hasSeparateTestSet)
 		{
-			//TODO: normalize
+			//TODO: normalise
 			_trainSet = readFile(inputFile + ".train");
 			_testSet = readFile(inputFile + ".test");
 			_completeSet = (BasicNeuralDataSet) _trainSet.clone();
@@ -172,17 +172,21 @@ public class DataLoader {
 		}
 		else
 		{
-			for (int i = 0; i < nFolds; i++)
-			{
-				if (i != fold)
+			if(nFolds > 1) {
+				for (int i = 0; i < nFolds; i++)
 				{
-					for (MLDataPair k : folds.get(i))
+					if (i != fold)
 					{
-						_trainSet.add(k);
+						for (MLDataPair k : folds.get(i))
+						{
+							_trainSet.add(k);
+						}
 					}
 				}
+				_cvSet = (BasicNeuralDataSet) folds.get(fold).clone();
+			} else {
+				_trainSet = _cvSet = folds.get(0);
 			}
-			_cvSet = (BasicNeuralDataSet) folds.get(fold).clone();
 		}
 	}
 	
