@@ -66,6 +66,7 @@ public class TrainingCurves {
 			DataMapper dataMapper = dataLoader.getMapper();
 			BasicNeuralDataSet testSet = dataLoader.getTestSet();
 			BasicNeuralDataSet trainingSet = dataLoader.getTrainingSet();
+			trainingSetSize = dataLoader.getTrainingSet().size();
 			for (int i=0; i < maxIterations; i++) {
 				et.trainStep();
 				double trainMSE = et.trainError();
@@ -80,19 +81,18 @@ public class TrainingCurves {
 	
 	public static void main(String[] args) throws WeightMismatchException, RequiresWeightedAggregatorException {
 		FileLoader fileLoader = new FileLoader();
-		if (args.length != 8 && args.length != 1) {
+		if (args.length != 6 && args.length != 1) {
 			help();
 		} 
 		try {
-			if(args.length == 8)
+			if(args.length == 6)
 			{
 				problem = ArgParser.problem(args[0]);
-				trainingSetSize = ArgParser.intSingle(args[1]);
-				activationThreshold = ArgParser.doubleSingle(args[2]);
-				etf = ArgParser.ETF(args[3]);
-				mlfs = ArgParser.MLFS(args[4]);
-				maxIterations = ArgParser.intSingle(args[5]);
-				maxLoops = ArgParser.intSingle(args[6]);
+				activationThreshold = ArgParser.doubleSingle(args[1]);
+				etf = ArgParser.ETF(args[2]);
+				mlfs = ArgParser.MLFS(args[3]);
+				maxIterations = ArgParser.intSingle(args[4]);
+				maxLoops = ArgParser.intSingle(args[5]);
 			} else if (args.length == 1) {
 				Properties problemPropFile = new Properties();
 				try {
@@ -106,7 +106,6 @@ public class TrainingCurves {
 				problem = ArgParser.problem(problemPropFile.getProperty("problem"));
 				nFolds = ArgParser.intSingle(problemPropFile.getProperty("folds"));
 				activationThreshold = ArgParser.doubleSingle(problemPropFile.getProperty("neural_invalidation_threshold"));
-				dataSetSizes = ArgParser.intList(problemPropFile.getProperty("dataset_resampling_sizes"));
 				trainingErrors = ArgParser.doubleList(problemPropFile.getProperty("training_errors"));
 				etf = ArgParser.ETF(problemPropFile.getProperty("ensemble_training"));
 				maxIterations = ArgParser.intSingle(problemPropFile.getProperty("max_training_iterations"));
@@ -119,7 +118,6 @@ public class TrainingCurves {
 				if (nFolds < 2) {
 					throw new BadArgument();
 				};
-				trainingSetSize = dataSetSizes.get(0);
 				//OMGHACK
 				dataLoader = problem.getDataLoader(activationThreshold,nFolds);
 				maxLoops = maxIterations;
@@ -149,7 +147,7 @@ public class TrainingCurves {
 	}
 
 	private static void help() {
-		System.err.println("Usage: TrainingCurves <problem> <trainingSetSize> <activationThreshold> <training> <membertypes> <maxIterations> <maxLoops>");
+		System.err.println("Usage: TrainingCurves <problem> <activationThreshold> <training> <membertypes> <maxIterations> <maxLoops>");
 		System.exit(2);
 	}
 }
