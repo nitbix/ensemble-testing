@@ -58,11 +58,11 @@ public class TrainingCurves {
 			ChainParams labeler = new ChainParams("", "", "", "", "", 0);
 			EvaluationTechnique et = null;
 			try {
-				et = ArgParser.technique(etType,one,trainingSetSize,labeler,mlf,etf,agg,dataLoader,maxIterations,maxLoops);
+				et = ArgParser.technique("CURVES",one,trainingSetSize,labeler,mlf,etf,agg,dataLoader,maxIterations,maxLoops);
 			} catch (BadArgument e) {
 				help();
 			}
-			et.init(dataLoader,8);
+			et.init(dataLoader,0);
 			DataMapper dataMapper = dataLoader.getMapper();
 			BasicNeuralDataSet testSet = dataLoader.getTestSet();
 			BasicNeuralDataSet trainingSet = dataLoader.getTrainingSet();
@@ -86,15 +86,13 @@ public class TrainingCurves {
 		try {
 			if(args.length == 8)
 			{
-				etType = args[0];
-				problem = ArgParser.problem(args[1]);
-				trainingSetSize = ArgParser.intSingle(args[2]);
-				activationThreshold = ArgParser.doubleSingle(args[3]);
-				etf = ArgParser.ETF(args[4]);
-				mlfs = ArgParser.MLFS(args[5]);
-				maxIterations = ArgParser.intSingle(args[6]);
-				maxLoops = ArgParser.intSingle(args[7]);
-				agg = ArgParser.AGG(args[8]);
+				problem = ArgParser.problem(args[0]);
+				trainingSetSize = ArgParser.intSingle(args[1]);
+				activationThreshold = ArgParser.doubleSingle(args[2]);
+				etf = ArgParser.ETF(args[3]);
+				mlfs = ArgParser.MLFS(args[4]);
+				maxIterations = ArgParser.intSingle(args[5]);
+				maxLoops = ArgParser.intSingle(args[6]);
 			} else if (args.length == 1) {
 				Properties problemPropFile = new Properties();
 				try {
@@ -108,8 +106,6 @@ public class TrainingCurves {
 				problem = ArgParser.problem(problemPropFile.getProperty("problem"));
 				nFolds = ArgParser.intSingle(problemPropFile.getProperty("folds"));
 				activationThreshold = ArgParser.doubleSingle(problemPropFile.getProperty("neural_invalidation_threshold"));
-				etType = problemPropFile.getProperty("ensemble_method");
-				sizes = ArgParser.intList(problemPropFile.getProperty("ensemble_sizes"));
 				dataSetSizes = ArgParser.intList(problemPropFile.getProperty("dataset_resampling_sizes"));
 				trainingErrors = ArgParser.doubleList(problemPropFile.getProperty("training_errors"));
 				etf = ArgParser.ETF(problemPropFile.getProperty("ensemble_training"));
@@ -119,8 +115,6 @@ public class TrainingCurves {
 					maxLoops = ArgParser.intSingle(problemPropFile.getProperty("max_retrain_loops"));			
 				}
 				mlfs = ArgParser.MLFS(problemPropFile.getProperty("member_types"));
-				agg = ArgParser.AGG(problemPropFile.getProperty("aggregator"));
-//				verbose = Boolean.parseBoolean(problemPropFile.getProperty("verbose")) || commandLine.hasOption("v");
 				selectionError = ArgParser.doubleSingle(problemPropFile.getProperty("selection_error"));
 				if (nFolds < 2) {
 					throw new BadArgument();
@@ -130,6 +124,8 @@ public class TrainingCurves {
 				dataLoader = problem.getDataLoader(activationThreshold,nFolds);
 				maxLoops = maxIterations;
 			}
+			//defaults
+			agg = ArgParser.AGG("averaging");
 		}
 		catch (FileNotFoundException e)
 		{
@@ -153,7 +149,7 @@ public class TrainingCurves {
 	}
 
 	private static void help() {
-		System.err.println("Usage: TrainingCurves <technique> <problem> <trainingSetSize> <activationThreshold> <training> <membertypes> <maxIterations> <maxLoops> <aggregation>");
+		System.err.println("Usage: TrainingCurves <problem> <trainingSetSize> <activationThreshold> <training> <membertypes> <maxIterations> <maxLoops>");
 		System.exit(2);
 	}
 }

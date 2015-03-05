@@ -67,7 +67,8 @@ public class ArgParser {
 		BAGGING,
 		ADABOOST,
 		STACKING,
-		DROPOUT
+		DROPOUT,
+		CURVES //this is a special case to extract training curves
 	}
 
 	public static List<Integer> intList(String string) {
@@ -208,6 +209,7 @@ public class ArgParser {
 		String values[] = etType.split("-");
 		switch (Techniques.valueOf(values[0].toUpperCase())) {
 			case BAGGING: return new BaggingET(sizes,dataSetSize,maxIterations,maxLoops,fullLabel,mlf,etf,agg);
+			case CURVES: return new BaggingET(sizes,dataSetSize,maxIterations,maxLoops,fullLabel,mlf,etf,agg,false);
 			case ADABOOST: return new AdaBoostET(sizes,dataSetSize,maxIterations,maxLoops,fullLabel,mlf,etf,agg);
 			case STACKING: return new StackingET(sizes,dataSetSize,maxIterations,maxLoops,fullLabel,mlf,etf,agg);
 			case DROPOUT: return new DropoutET(dataSetSize,fullLabel,maxIterations,maxLoops,mlf,etf,agg,doubleSingle(values[1]));

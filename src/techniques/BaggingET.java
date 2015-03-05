@@ -8,6 +8,7 @@ import org.encog.ensemble.EnsembleMLMethodFactory;
 import org.encog.ensemble.EnsembleTrainFactory;
 import org.encog.ensemble.aggregator.WeightedAveraging.WeightMismatchException;
 import org.encog.ensemble.bagging.Bagging;
+import org.encog.ensemble.data.factories.NonResamplingDataSetFactory;
 import org.encog.ml.data.MLData;
 
 import helpers.DataLoader;
@@ -16,8 +17,11 @@ import helpers.ChainParams;
 public class BaggingET extends EvaluationTechnique {
 
 	private int dataSetSize;
+	private boolean resampling;
 
-	public BaggingET(List<Integer> sizes, int dataSetSize, int maxIterations, int maxLoops, ChainParams fullLabel, EnsembleMLMethodFactory mlMethod, EnsembleTrainFactory trainFactory, EnsembleAggregator aggregator) {
+	public BaggingET(List<Integer> sizes, int dataSetSize, int maxIterations, 
+			int maxLoops, ChainParams fullLabel, EnsembleMLMethodFactory mlMethod,
+			EnsembleTrainFactory trainFactory, EnsembleAggregator aggregator, boolean resampling) {
 		this.sizes = sizes;
 		this.dataSetSize = dataSetSize;
 		this.label = fullLabel;
@@ -26,12 +30,23 @@ public class BaggingET extends EvaluationTechnique {
 		this.aggregator = aggregator;
 		this.maxIterations = maxIterations;
 		this.maxLoops = maxLoops;
+		this.resampling = resampling;
 	}
 
+	public BaggingET(List<Integer> sizes, int dataSetSize, int maxIterations, 
+			int maxLoops, ChainParams fullLabel, EnsembleMLMethodFactory mlMethod,
+			EnsembleTrainFactory trainFactory, EnsembleAggregator aggregator) {
+		this(sizes,dataSetSize,maxIterations,maxLoops,fullLabel,mlMethod,trainFactory,aggregator,true);
+	}
 	@Override
 	public void init(DataLoader dataLoader,int fold)
 	{
-		ensemble = new Bagging(sizes.get(currentSizeIndex),dataSetSize,mlMethod,trainFactory,aggregator);
+		if(resampling)
+		{
+			ensemble = new Bagging(sizes.get(currentSizeIndex),dataSetSize,mlMethod,trainFactory,aggregator);
+		} else {
+			ensemble = new Bagging(sizes.get(currentSizeIndex),dataSetSize,mlMethod,trainFactory,aggregator,new NonResamplingDataSetFactory(fold));
+		}
 		dataLoader.setFold(fold);
 		setTrainingSet(dataLoader.getTrainingSet());
 		setSelectionSet(dataLoader.getCVSet());
