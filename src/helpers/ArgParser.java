@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.encog.engine.network.activation.ActivationFunction;
+import org.encog.engine.network.activation.ActivationReLU;
 import org.encog.engine.network.activation.ActivationSigmoid;
 import org.encog.engine.network.activation.ActivationSoftMax;
 import org.encog.ensemble.EnsembleAggregator;
@@ -143,6 +144,7 @@ public class ArgParser {
 		switch (Activations.valueOf(string.toUpperCase())) {
 			case SIGMOID: return new ActivationSigmoid();
 			case SOFTMAX: return new ActivationSoftMax();
+			case RELU: return new ActivationReLU();
 			default: throw new BadArgument();
 		}
 	}
