@@ -35,10 +35,12 @@ public class TrainingCurves {
 	private static EnsembleTrainFactory etf;
 	private static List<EnsembleMLMethodFactory> mlfs;
 	private static EnsembleAggregator agg;
-	private static String etType;
 	private static int maxIterations;
 	private static int maxLoops;
 	private static int nFolds = 1;
+	private static int trainingSetSize;
+	private static List<Integer> dataSetSizes;
+	
 	
 	public static void loop() throws WeightMismatchException, RequiresWeightedAggregatorException {
 		List<Integer> one = new ArrayList<Integer>();
@@ -47,16 +49,15 @@ public class TrainingCurves {
 		{
 			ChainParams labeler = new ChainParams("", "", "", "", "", 0);
 			EvaluationTechnique et = null;
-			DataMapper dataMapper = dataLoader.getMapper();
-			BasicNeuralDataSet testSet = dataLoader.getTestSet();
-			BasicNeuralDataSet trainingSet = dataLoader.getTrainingSet();
-			int trainingSetSize = trainingSet.size();
 			try {
 				et = ArgParser.technique("CURVES",one,trainingSetSize,labeler,mlf,etf,agg,dataLoader,maxIterations,maxLoops);
 			} catch (BadArgument e) {
 				help();
 			}
 			et.init(dataLoader,0);
+			DataMapper dataMapper = dataLoader.getMapper();
+			BasicNeuralDataSet testSet = dataLoader.getTestSet();
+			BasicNeuralDataSet trainingSet = dataLoader.getTrainingSet();
 			for (int i=0; i < maxIterations; i++) {
 				et.trainStep();
 				double trainMSE = et.trainError();
@@ -105,6 +106,8 @@ public class TrainingCurves {
 				//OMGHACK
 				dataLoader = problem.getDataLoader(activationThreshold,nFolds);
 				maxLoops = maxIterations;
+				dataSetSizes = ArgParser.intList(problemPropFile.getProperty("dataset_resampling_sizes"));
+				trainingSetSize = dataSetSizes.get(0);
 			}
 			//defaults
 			agg = ArgParser.AGG("averaging");
