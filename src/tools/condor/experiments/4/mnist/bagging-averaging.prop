@@ -11,5 +11,5 @@ verbose = false
 selection_error = 1.0
 max_runs = 1000
 max_training_iterations = 10000
-experiment_id = 3
+experiment_id = 4
 ensemble_method = bagging
