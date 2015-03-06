@@ -40,6 +40,7 @@ public class TrainingCurves {
 	private static int nFolds = 1;
 	private static int trainingSetSize;
 	private static List<Integer> dataSetSizes;
+	private static List<Double> dropoutRates;
 	
 	
 	public static void loop() throws WeightMismatchException, RequiresWeightedAggregatorException {
@@ -76,11 +77,15 @@ public class TrainingCurves {
 			help();
 		} 
 		try {
-			if(args.length == 6)
+			if(args.length == 6 || args.length == 7)
 			{
 				problem = ArgParser.problem(args[0]);
 				activationThreshold = ArgParser.doubleSingle(args[1]);
 				etf = ArgParser.ETF(args[2]);
+				if(args.length == 7)
+				{
+					dropoutRates = ArgParser.doubleList(args[6]);
+				}
 				mlfs = ArgParser.MLFS(args[3]);
 				maxIterations = ArgParser.intSingle(args[4]);
 				maxLoops = ArgParser.intSingle(args[5]);

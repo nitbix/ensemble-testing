@@ -131,15 +131,26 @@ public class ArgParser {
 
 	public static EnsembleMLMethodFactory MLF(String string) throws BadArgument {
 		String values[] = string.split(":");
-		switch (MLMethodFactories.valueOf(values[0].toUpperCase())) {
+		switch (MLMethodFactories.valueOf(values[0].toUpperCase()))
+		{
 			case MLP:
 				MultiLayerPerceptronFactory mlp = new MultiLayerPerceptronFactory();
-				if(values.length == 3)
+				String activations[] = values[2].split(",");
+				List<Double> dropoutRates = null;
+				if (values.length == 4)
 				{
-					mlp.setParameters(intList(values[1]), activation(values[2]));
-				} else if (values.length == 4) {
-					mlp.setParameters(intList(values[1]), activation(values[2]), activation(values[3]));					
-				} else {
+					dropoutRates = doubleList(values[3]);
+				} 
+				if(values.length == 3 || values.length == 4)
+				{
+					if(activations.length == 1)
+					{
+						mlp.setParameters(intList(values[1]), activation(activations[0]),dropoutRates);
+					} else if (activations.length == 2) 
+					{
+						mlp.setParameters(intList(values[1]), activation(activations[0]), activation(activations[1]),dropoutRates);											
+					}
+				} else { 
 					throw new BadArgument();
 				}
 				return mlp;
