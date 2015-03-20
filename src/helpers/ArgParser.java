@@ -149,6 +149,9 @@ public class ArgParser {
 					} else if (activations.length == 2) 
 					{
 						mlp.setParameters(intList(values[1]), activation(activations[0]), activation(activations[1]),dropoutRates);											
+					} else if (activations.length == 3) 
+					{
+						mlp.setParameters(intList(values[1]), activation(activations[0]), activation(activations[1]), activation(activations[2]),dropoutRates);											
 					}
 				} else { 
 					throw new BadArgument();
