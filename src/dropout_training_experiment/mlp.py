@@ -1,3 +1,4 @@
+#!/usr/bin/python
 """
 This tutorial introduces the multilayer perceptron using Theano.
 
@@ -31,16 +32,80 @@ import numpy
 
 import theano
 import theano.tensor as T
+from theano.sandbox.rng_mrg import MRG_RandomStreams                                                                                                                    
 
 
 from logistic_sgd import LogisticRegression, load_data
 
+def sharedX(value, name=None, borrow=False, dtype=None):
+    """
+    Transform value into a shared variable of type floatX
+    borrowed from pylearn2
+    """
+
+    if dtype is None:
+        dtype = theano.config.floatX
+    return theano.shared(theano._asarray(value, dtype=dtype),
+                         name=name,
+                         borrow=borrow)
 
 rectifier = lambda x: T.maximum(0, x)
 
+def sgd(param,learning_rate,gparam,mask,updates,cost):
+    return param - learning_rate * gparam * mask
+
+def rprop(param,learning_rate,gparam,mask,updates,cost,
+          eta_plus=1.4,eta_minus=0.5,max_delta=1000, min_delta=10e-7):
+    previous_grad = sharedX(numpy.ones(param.shape.eval()))
+    delta = sharedX(learning_rate * numpy.ones(param.shape.eval()))
+    previous_inc = sharedX(numpy.zeros(param.shape.eval()))
+#    previous_cost = sharedX(numpy.ones(cost.shape.eval()))
+    zero = T.zeros_like(param)
+    one = T.ones_like(param)
+    change = previous_grad * gparam
+
+    new_delta = T.clip(
+            T.switch(
+                T.gt(change,0.),
+                delta*eta_plus,
+                T.switch(
+                    T.lt(change,0.),
+                    delta*eta_minus,
+                    delta
+                )
+            ),
+            min_delta,
+            max_delta
+    )
+    new_previous_grad = T.switch(
+            T.gt(change,0.),
+            gparam,
+            T.switch(
+                T.lt(change,0.),
+                zero,
+                gparam
+            )
+    )
+    inc = T.switch(
+            T.gt(change,0.),
+            - T.sgn(gparam) * new_delta,
+            T.switch(
+                T.lt(change,0.),
+                zero,
+                - T.sgn(gparam) * new_delta
+            )
+    )
+
+    updates.append((previous_grad,new_previous_grad))
+    updates.append((delta,new_delta))
+    updates.append((previous_inc,inc))
+#    updates.append((previous_cost,cost))
+    return param + inc * mask
+
+
 class HiddenLayer(object):
     def __init__(self, rng, input, n_in, n_out, W=None, b=None,
-                 activation=T.tanh):
+                 activation=T.tanh,dropout_rate=0,layerName='hidden'):
         """
         Typical hidden layer of a MLP: units are fully-connected and have
         sigmoidal activation function. Weight matrix W is of shape (n_in,n_out)
@@ -67,13 +132,13 @@ class HiddenLayer(object):
                            layer
         """
         self.input = input
+        self.dropout_rate=dropout_rate
+        self.layerName=layerName
 
         # `W` is initialized with `W_values` which is uniformely sampled
         # from sqrt(-6./(n_in+n_hidden)) and sqrt(6./(n_in+n_hidden))
         # for tanh activation function
         # the output of uniform if converted using asarray to dtype
-        # theano.config.floatX so that the code is runable on GPU
-        # Note : optimal initialization of weights is dependent on the
         #        activation function used (among other things).
         #        For example, results presented in [Xavier10] suggest that you
         #        should use 4 times larger initial weights for sigmoid
@@ -88,16 +153,16 @@ class HiddenLayer(object):
             if activation == theano.tensor.nnet.sigmoid:
                 W_values *= 4
 
-            W = theano.shared(value=W_values, name='W', borrow=True)
+            W = theano.shared(value=W_values, name=layerName + '_W', borrow=True)
 
         if b is None:
             b_values = numpy.zeros((n_out,), dtype=theano.config.floatX)
-            b = theano.shared(value=b_values, name='b', borrow=True)
+            b = theano.shared(value=b_values, name=layerName + '_b', borrow=True)
 
         self.W = W
         self.b = b
 
-        lin_output = T.dot(input, self.W) + self.b
+        lin_output = T.dot(input, self.W) * (1 - self.dropout_rate) + self.b
         self.output = (lin_output if activation is None
                        else activation(lin_output))
         # parameters of the model
@@ -129,8 +194,9 @@ class MLP(object):
         :param n_in: number of input units, the dimension of the space in
         which the datapoints lie
 
-        :type n_hidden: int array
-        :param n_hidden: number of hidden units
+        :type n_hidden: (int,int) array
+        :param n_hidden: number of hidden units and dropout rate for each hidden
+        layer
 
         :type n_out: int
         :param n_out: number of output units, the dimension of the space in
@@ -142,16 +208,21 @@ class MLP(object):
         # into a HiddenLayer with a tanh activation function connected to the
         # LogisticRegression layer; the activation function can be replaced by
         # sigmoid or any other nonlinear function
-        self.hiddenLayers = [HiddenLayer(rng=rng, input=input,
-                                       n_in=n_in, n_out=n_this,
-                                       activation=T.tanh) for n_this in
-                                       n_hidden]
+        self.hiddenLayers = []
+        chain_n_in = n_in
+        chain_in = input
+        for (n_this,drop_this,name_this,activation_this) in n_hidden:
+            l = HiddenLayer(rng=rng, input=chain_in, n_in=chain_n_in, n_out=n_this,
+                    activation=activation_this,dropout_rate=drop_this,layerName=name_this)
+            chain_n_in=n_this
+            chain_in=l.output
+            self.hiddenLayers.append(l)
 
         # The logistic regression layer gets as input the hidden units
         # of the last hidden layer
         self.logRegressionLayer = LogisticRegression(
-            input=self.hiddenLayers[-1].output,
-            n_in=n_hidden[-1],
+            input=chain_in,
+            n_in=chain_n_in,
             n_out=n_out)
 
         # L1 norm ; one regularization option is to enforce L1 norm to
@@ -182,7 +253,8 @@ class MLP(object):
 
 
 def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
-             dataset='mnist.pkl.gz', batch_size=20, n_hidden=500):
+             dataset='mnist.pkl.gz', batch_size=20, n_hidden=(500,0),
+             update_rule=sgd):
     """
     Demonstrate stochastic gradient descent optimization for a multilayer
     perceptron
@@ -259,7 +331,7 @@ def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
                 x: valid_set_x[index * batch_size:(index + 1) * batch_size],
                 y: valid_set_y[index * batch_size:(index + 1) * batch_size]})
 
-    # compute the gradient of cost with respect to theta (sotred in params)
+    # compute the gradient of cost with respect to theta (sorted in params)
     # the resulting gradients will be stored in a list gparams
     gparams = []
     for param in classifier.params:
@@ -269,12 +341,21 @@ def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
     # specify how to update the parameters of the model as a list of
     # (variable, update expression) pairs
     updates = []
-    # given two list the zip A = [a1, a2, a3, a4] and B = [b1, b2, b3, b4] of
-    # same length, zip generates a list C of same size, where each element
-    # is a pair formed from the two lists :
-    #    C = [(a1, b1), (a2, b2), (a3, b3), (a4, b4)]
+    theano_rng = MRG_RandomStreams(max(rng.randint(2 ** 15), 1))
+
+    dropout_rates = {}
+    for layer in classifier.hiddenLayers:
+        dropout_rates[layer.layerName + '_W'] = layer.dropout_rate
     for param, gparam in zip(classifier.params, gparams):
-        updates.append((param, param - learning_rate * gparam))
+        if param in dropout_rates:
+            include_prob = 1 - dropout_rates[param]
+        else:
+            include_prob = 1
+        mask = theano_rng.binomial(p=include_prob,
+                                   size=param.shape,dtype=param.dtype)    
+        new_update = update_rule(param, learning_rate, gparam, mask, updates,
+                cost)
+        updates.append((param, new_update))
 
     # compiling a Theano function `train_model` that returns the cost, but
     # in the same time updates the parameter of the model based on the rules
@@ -369,9 +450,9 @@ L2_reg=0.0001
 n_epochs=1000
 dataset='mnist.pkl.gz'
 batch_size=200
-n_hidden=[500]
+n_hidden=[(800,0,'h0',rectifier),(1500,0,'h1',rectifier)]
 for arg in sys.argv[1:]:
 	if arg[0]=='-':
 		exec(arg[1:])
 mlp=test_mlp(learning_rate, L1_reg, L2_reg, n_epochs,
-	dataset, batch_size, n_hidden)
+	dataset, batch_size, n_hidden, update_rule = rprop)
