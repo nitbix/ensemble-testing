@@ -7,6 +7,7 @@ import org.encog.engine.network.activation.ActivationFunction;
 import org.encog.engine.network.activation.ActivationReLU;
 import org.encog.engine.network.activation.ActivationSigmoid;
 import org.encog.engine.network.activation.ActivationSoftMax;
+import org.encog.engine.network.activation.ActivationTANH;
 import org.encog.ensemble.EnsembleAggregator;
 import org.encog.ensemble.EnsembleMLMethodFactory;
 import org.encog.ensemble.EnsembleTrainFactory;
@@ -53,7 +54,8 @@ public class ArgParser {
 	public enum Activations {
 		SIGMOID,
 		SOFTMAX,
-		RELU
+		RELU,
+		TANH
 	}
 	
 	public enum Aggregators {
@@ -174,6 +176,7 @@ public class ArgParser {
 			case SIGMOID: return new ActivationSigmoid();
 			case SOFTMAX: return new ActivationSoftMax();
 			case RELU: return new ActivationReLU();
+			case TANH: return new ActivationTANH();
 			default: throw new BadArgument();
 		}
 	}
