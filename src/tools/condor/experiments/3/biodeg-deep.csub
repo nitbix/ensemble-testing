@@ -18,19 +18,19 @@ Requirements = (TARGET.Opsys == "WINDOWS")
 periodic_remove = (CommittedTime - CommittedSuspensionTime) > 43200
 
 arguments = 3 biodeg bagging-averaging-nodrop-deep
-queue 100
+queue 20
 
 arguments = 3 biodeg adaboost-nodrop-deep
-queue 100
+queue 20
 
 arguments = 3 biodeg stacking-deep
-queue 100
+queue 20
 
 arguments = 3 biodeg dropstacking-deep
-queue 100
+queue 20
 
 arguments = 3 biodeg dropstacking-dropout-deep
-queue 100
+queue 20
 
 arguments = 3 biodeg dropout-deep
-queue 100
+queue 20
