@@ -19,21 +19,21 @@ public class Evaluator
 	private EvaluationTechnique technique;
 	private DataLoader dataLoader;
 	
-	Evaluator(EvaluationTechnique technique, DataMapper mapper, int inputCols, int inputs, String dataFile, boolean inputsReversed, int nFolds, double targetTrainingError, double selectionError, int fold, int maxIterations, boolean hasSeparateTestSet) throws FileNotFoundException, RequiresWeightedAggregatorException
+	Evaluator(EvaluationTechnique technique, DataMapper mapper, int inputCols, int inputs, String dataFile, boolean inputsReversed, int nFolds, double targetTrainingError, double selectionError, int fold, boolean hasSeparateTestSet, boolean gzippedData) throws FileNotFoundException, IOException, RequiresWeightedAggregatorException, TrainingAborted
 	{
 		this.setTechnique(technique);
-		dataLoader = new DataLoader(mapper,inputCols,inputs,inputsReversed,nFolds,hasSeparateTestSet);
+		dataLoader = new DataLoader(mapper,inputCols,inputs,inputsReversed,nFolds,hasSeparateTestSet,gzippedData);
 		dataLoader.readData(dataFile);
-		this.technique.init(dataLoader,fold,maxIterations);
+		this.technique.init(dataLoader,fold);
 		this.technique.setParams(targetTrainingError, selectionError);
 		this.technique.train(false);
 	}
 	
-	public Evaluator(EvaluationTechnique technique, DataLoader dataLoader, double targetTrainingError, double selectionError, boolean verbose, int fold, int maxIterations) throws RequiresWeightedAggregatorException
+	public Evaluator(EvaluationTechnique technique, DataLoader dataLoader, double targetTrainingError, double selectionError, boolean verbose, int fold) throws RequiresWeightedAggregatorException, TrainingAborted
 	{
 		this.setTechnique(technique);
 		this.dataLoader = dataLoader;
-		this.technique.init(dataLoader,fold,maxIterations);
+		this.technique.init(dataLoader,fold);
 		this.technique.setParams(targetTrainingError, selectionError);
 		this.technique.train(verbose);
 	}
@@ -108,7 +108,7 @@ public class Evaluator
 		}
 	}
 
-	public void getResults (ChainParams prefix, double te, DBConnect reconnect, long chainId, boolean noSQL) throws SQLException, FileNotFoundException, IOException, WeightMismatchException
+	public void getResults (ChainParams prefix, double te, DBConnect reconnect, long chainId, boolean noSQL, boolean verbose) throws SQLException, FileNotFoundException, IOException, WeightMismatchException
 	{
 		while(technique.hasStepsLeft())
 		{
@@ -127,7 +127,7 @@ public class Evaluator
 			}
 			try
 			{
-				technique.step(false);
+				technique.step(verbose);
 			}
 			catch (TrainingAborted e)
 			{

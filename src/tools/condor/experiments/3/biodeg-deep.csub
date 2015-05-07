@@ -1,0 +1,36 @@
+################################
+#
+# Condor submit file
+#
+#
+################################
+
+Universe = vanilla
+Executable = run-prop.bat 
+Output = logs/out/biodeg$(Cluster).$(Process).out
+Error = logs/err/biodeg$(Cluster).$(Process).err
+Log = logs/log/biodeg$(Cluster).$(Process).log
+copy_to_spool = true
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = ensemble-testing.jar
+Requirements = (TARGET.Opsys == "WINDOWS")
+periodic_remove = (CommittedTime - CommittedSuspensionTime) > 43200
+
+arguments = 3 biodeg bagging-averaging-nodrop-deep
+queue 100
+
+arguments = 3 biodeg adaboost-nodrop-deep
+queue 100
+
+arguments = 3 biodeg stacking-deep
+queue 100
+
+arguments = 3 biodeg dropstacking-deep
+queue 100
+
+arguments = 3 biodeg dropstacking-dropout-deep
+queue 100
+
+arguments = 3 biodeg dropout-deep
+queue 100

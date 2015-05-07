@@ -1,6 +1,7 @@
 package helpers;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.encog.NullStatusReportable;
@@ -28,22 +29,29 @@ public class DataLoader {
 	private int _readinputs;
 	private int nFolds;
 	private boolean hasSeparateTestSet;
+	private boolean gzippedData;
 
-	public DataLoader(DataMapper dataMapper, int readInputs, int inputs, boolean inputsReversed, int nFolds, boolean hasSeparateTestSet) {
+	public DataLoader(DataMapper dataMapper, int readInputs, int inputs, boolean inputsReversed, int nFolds, boolean hasSeparateTestSet, boolean gzippedData) {
 		_dataMapper = dataMapper;
 		_readinputs = readInputs;
 		_inputs = inputs;
 		_inputsReversed = inputsReversed;
 		this.hasSeparateTestSet = hasSeparateTestSet;
 		this.nFolds = nFolds;
+		this.gzippedData = gzippedData;
 		folds = new ArrayList<BasicNeuralDataSet>();
 		for (int i = 0; i < nFolds; i++)
 			folds.add(new BasicNeuralDataSet());
 	}
 	
-	private BasicNeuralDataSet readFile(String inputFile) throws FileNotFoundException {
+	private BasicNeuralDataSet readFile(String inputFile) throws FileNotFoundException, IOException {
 		FileLoader fileLoader = new FileLoader();
-		ReadCSV csv = new ReadCSV(fileLoader.openOrFind(inputFile),false,',');
+		String inputFileNameFinal = inputFile;
+		if(gzippedData)
+		{
+			inputFileNameFinal += ".gz";
+		}
+		ReadCSV csv = new ReadCSV(fileLoader.openOrFind(inputFileNameFinal),false,',');
 		BasicNeuralDataSet set = new BasicNeuralDataSet();
 		while(csv.next())
 		{
@@ -72,11 +80,11 @@ public class DataLoader {
 		
 	}
 	
-	public int readData(String inputFile) throws FileNotFoundException {
+	public int readData(String inputFile) throws FileNotFoundException, IOException {
 		//System.out.println("importing dataset");
 		if(hasSeparateTestSet)
 		{
-			//TODO: normalize
+			//TODO: normalise
 			_trainSet = readFile(inputFile + ".train");
 			_testSet = readFile(inputFile + ".test");
 			_completeSet = (BasicNeuralDataSet) _trainSet.clone();
@@ -164,17 +172,21 @@ public class DataLoader {
 		}
 		else
 		{
-			for (int i = 0; i < nFolds; i++)
-			{
-				if (i != fold)
+			if(nFolds > 1) {
+				for (int i = 0; i < nFolds; i++)
 				{
-					for (MLDataPair k : folds.get(i))
+					if (i != fold)
 					{
-						_trainSet.add(k);
+						for (MLDataPair k : folds.get(i))
+						{
+							_trainSet.add(k);
+						}
 					}
 				}
+				_cvSet = (BasicNeuralDataSet) folds.get(fold).clone();
+			} else {
+				_trainSet = _cvSet = folds.get(0);
 			}
-			_cvSet = (BasicNeuralDataSet) folds.get(fold).clone();
 		}
 	}
 	

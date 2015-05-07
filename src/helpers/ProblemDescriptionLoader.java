@@ -33,6 +33,8 @@ public class ProblemDescriptionLoader implements ProblemDescription {
 	private static MapperType mapperType;
 	private static String label;
 	private static boolean hasSeparateTestSet;
+	private static boolean gzippedData = false;
+	private static boolean labelsStartAtZero = false;
 	
 	public ProblemDescriptionLoader(String file) throws BadArgument {
 		this.fromProblemDescriptionFile(file);
@@ -55,6 +57,10 @@ public class ProblemDescriptionLoader implements ProblemDescription {
 			mapperType=MapperType.valueOf(descFile.getProperty("mapper_type").toUpperCase());
 			label=descFile.getProperty("label");
 			hasSeparateTestSet=Boolean.parseBoolean(descFile.getProperty("separate_train_and_test_sets"));
+			if(descFile.containsKey("gzipped_data"))
+				gzippedData = Boolean.parseBoolean(descFile.getProperty("gzipped_data"));
+			if(descFile.containsKey("labels_start_at_zero"))
+				labelsStartAtZero = Boolean.parseBoolean(descFile.getProperty("labels_start_at_zero"));
 			loaded=true;
 		} catch (IOException e) {
 			System.err.println("Could not load config file: " + file);
@@ -64,7 +70,7 @@ public class ProblemDescriptionLoader implements ProblemDescription {
 
 	public DataMapper makeMapper(MapperType how, double activationThreshold) throws BadArgument {
 		switch(how) {
-			case INT: return new IntMapper(outputs,activationThreshold);
+			case INT: return new IntMapper(outputs,activationThreshold,labelsStartAtZero);
 			case LETTER: return new LetterMapper(outputs,activationThreshold,0.0);
 			case BOOL: 
 				try
@@ -85,10 +91,10 @@ public class ProblemDescriptionLoader implements ProblemDescription {
 	}
 	
 	@Override
-	public DataLoader getDataLoader(double activationThreshold, int nFolds) throws BadArgument, FileNotFoundException {
+	public DataLoader getDataLoader(double activationThreshold, int nFolds) throws BadArgument, FileNotFoundException, IOException {
 		if (! loaded)
 			throw new BadArgument();
-		DataLoader dataLoader = new DataLoader(makeMapper(mapperType,activationThreshold),readInputs,inputs,inputsReversed,nFolds,hasSeparateTestSet);
+		DataLoader dataLoader = new DataLoader(makeMapper(mapperType,activationThreshold),readInputs,inputs,inputsReversed,nFolds,hasSeparateTestSet,gzippedData);
 		dataLoader.readData(inputFile);
 		return dataLoader;
 	}

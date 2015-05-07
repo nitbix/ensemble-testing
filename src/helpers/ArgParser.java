@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.encog.engine.network.activation.ActivationFunction;
+import org.encog.engine.network.activation.ActivationReLU;
 import org.encog.engine.network.activation.ActivationSigmoid;
+import org.encog.engine.network.activation.ActivationSoftMax;
+import org.encog.engine.network.activation.ActivationTANH;
 import org.encog.ensemble.EnsembleAggregator;
 import org.encog.ensemble.EnsembleMLMethodFactory;
 import org.encog.ensemble.EnsembleTrainFactory;
@@ -18,6 +21,7 @@ import org.encog.ensemble.training.LevenbergMarquardtFactory;
 import org.encog.ensemble.training.ManhattanPropagationFactory;
 import org.encog.ensemble.training.ResilientPropagationFactory;
 import org.encog.ensemble.training.ScaledConjugateGradientFactory;
+import org.encog.neural.networks.training.propagation.resilient.RPROPType;
 
 import techniques.AdaBoostET;
 import techniques.BaggingET;
@@ -40,6 +44,7 @@ public class ArgParser {
 		SCG,
 		MANHATTAN,
 		LMA,
+		ARPROP
 	}
 	
 	public enum MLMethodFactories {
@@ -48,6 +53,9 @@ public class ArgParser {
 	
 	public enum Activations {
 		SIGMOID,
+		SOFTMAX,
+		RELU,
+		TANH
 	}
 	
 	public enum Aggregators {
@@ -61,7 +69,8 @@ public class ArgParser {
 		BAGGING,
 		ADABOOST,
 		STACKING,
-		DROPOUT
+		DROPOUT,
+		CURVES //this is a special case to extract training curves
 	}
 
 	public static List<Integer> intList(String string) {
@@ -92,13 +101,25 @@ public class ArgParser {
 		String values[] = string.split("-");
 		switch (TrainFactories.valueOf(values[0].toUpperCase())) {
 			case BACKPROP: return new BackpropagationFactory();
-			case RPROP: 
+			case RPROP:
+			{
 				ResilientPropagationFactory rpf = new ResilientPropagationFactory();
 				if(values.length > 1 && !values[1].isEmpty())
 				{
 					rpf.setDropoutRate(doubleSingle(values[1]));
 				}
 				return rpf;
+			}
+			case ARPROP:
+			{
+				ResilientPropagationFactory rpf = new ResilientPropagationFactory();
+				rpf.setRPROPType(RPROPType.ARPROP);
+				if(values.length > 1 && !values[1].isEmpty())
+				{
+					rpf.setDropoutRate(doubleSingle(values[1]));
+				}
+				return rpf;
+			}
 			case SCG: return new ScaledConjugateGradientFactory();
 			case MANHATTAN:
 				ManhattanPropagationFactory mpf = new ManhattanPropagationFactory();
@@ -112,10 +133,31 @@ public class ArgParser {
 
 	public static EnsembleMLMethodFactory MLF(String string) throws BadArgument {
 		String values[] = string.split(":");
-		switch (MLMethodFactories.valueOf(values[0].toUpperCase())) {
+		switch (MLMethodFactories.valueOf(values[0].toUpperCase()))
+		{
 			case MLP:
 				MultiLayerPerceptronFactory mlp = new MultiLayerPerceptronFactory();
-				mlp.setParameters(intList(values[1]), activation(values[2]));
+				String activations[] = values[2].split(",");
+				List<Double> dropoutRates = null;
+				if (values.length == 4)
+				{
+					dropoutRates = doubleList(values[3]);
+				} 
+				if(values.length == 3 || values.length == 4)
+				{
+					if(activations.length == 1)
+					{
+						mlp.setParameters(intList(values[1]), activation(activations[0]),dropoutRates);
+					} else if (activations.length == 2) 
+					{
+						mlp.setParameters(intList(values[1]), activation(activations[0]), activation(activations[1]),dropoutRates);											
+					} else if (activations.length == 3) 
+					{
+						mlp.setParameters(intList(values[1]), activation(activations[0]), activation(activations[1]), activation(activations[2]),dropoutRates);											
+					}
+				} else { 
+					throw new BadArgument();
+				}
 				return mlp;
 			default: throw new BadArgument();
 		}
@@ -132,6 +174,9 @@ public class ArgParser {
 	private static ActivationFunction activation(String string) throws BadArgument {
 		switch (Activations.valueOf(string.toUpperCase())) {
 			case SIGMOID: return new ActivationSigmoid();
+			case SOFTMAX: return new ActivationSoftMax();
+			case RELU: return new ActivationReLU();
+			case TANH: return new ActivationTANH();
 			default: throw new BadArgument();
 		}
 	}
@@ -143,14 +188,25 @@ public class ArgParser {
 			case WEIGHTEDAVERAGING: return new WeightedAveraging(null);
 			case MAJORITYVOTING: return new MajorityVoting();
 			case METACLASSIFIER:
-				switch (values.length)
+				boolean adaptive = false;
+				if(values.length > 4 && values[4].equals("rprop_adaptive"))
 				{
-					case 4:
-						return new MetaClassifier(doubleSingle(values[2]),MLF(values[1]), ETF(values[3]));
-					case 5:
-						return new MetaClassifier(doubleSingle(values[2]),MLF(values[1]), ETF(values[3] + "-" + values[4]));
-					default: throw new BadArgument();
+					values[4] = "rprop";
+					adaptive = true;
 				}
+				String etf = values[3];
+				for(int i = 4; i < values.length; i++)
+				{
+					if(values[i].equals("adaptive"))
+					{
+						adaptive = true;
+					}
+					else
+					{
+						etf += "-" + values[i];
+					}
+				}
+				return new MetaClassifier(doubleSingle(values[2]),MLF(values[1]), ETF(etf), adaptive);
 			default: throw new BadArgument();
 		}
 	}
@@ -166,13 +222,14 @@ public class ArgParser {
 	public static EvaluationTechnique technique(String etType, List<Integer> sizes,
 			Integer dataSetSize, ChainParams fullLabel, EnsembleMLMethodFactory mlf,
 			EnsembleTrainFactory etf, EnsembleAggregator agg, DataLoader dataLoader,
-			int maxIterations) throws BadArgument {
+			int maxIterations, int maxLoops) throws BadArgument {
 		String values[] = etType.split("-");
 		switch (Techniques.valueOf(values[0].toUpperCase())) {
-			case BAGGING: return new BaggingET(sizes,dataSetSize,maxIterations,fullLabel,mlf,etf,agg);
-			case ADABOOST: return new AdaBoostET(sizes,dataSetSize,maxIterations,fullLabel,mlf,etf,agg);
-			case STACKING: return new StackingET(sizes,dataSetSize,maxIterations,fullLabel,mlf,etf,agg);
-			case DROPOUT: return new DropoutET(dataSetSize,fullLabel,maxIterations,mlf,etf,agg,doubleSingle(values[1]));
+			case BAGGING: return new BaggingET(sizes,dataSetSize,maxIterations,maxLoops,fullLabel,mlf,etf,agg);
+			case CURVES: return new BaggingET(sizes,dataSetSize,maxIterations,maxLoops,fullLabel,mlf,etf,agg,false);
+			case ADABOOST: return new AdaBoostET(sizes,dataSetSize,maxIterations,maxLoops,fullLabel,mlf,etf,agg);
+			case STACKING: return new StackingET(sizes,dataSetSize,maxIterations,maxLoops,fullLabel,mlf,etf,agg);
+			case DROPOUT: return new DropoutET(dataSetSize,fullLabel,maxIterations,maxLoops,mlf,etf,agg,doubleSingle(values[1]));
 			default: throw new BadArgument();
 		}
 	}

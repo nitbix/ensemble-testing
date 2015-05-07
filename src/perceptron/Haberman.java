@@ -28,7 +28,7 @@ public class Haberman extends Tester {
 		setReadInputs(1);
 		setReversedInputs();
 		setTrainingSetSize(100);
-		setMapper(new IntMapper(getOutputs(), 0.3));
+		setMapper(new IntMapper(getOutputs(), 0.3, false));
 		readData("../../data/haberman.data");
 		_network = createNetwork();
 		//(new NguyenWidrowRandomizer(-1,1)).randomize(_network);

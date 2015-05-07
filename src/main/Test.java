@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
+import org.encog.ensemble.Ensemble.TrainingAborted;
 import org.encog.ensemble.EnsembleAggregator;
 import org.encog.ensemble.EnsembleMLMethodFactory;
 import org.encog.ensemble.EnsembleTrainFactory;
@@ -53,13 +54,14 @@ public class Test {
 	//default is no limit
 	private static int targetRunCount = 0;
 	private static int maxIterations;
+	private static int maxLoops = 2000;
 	private static boolean noSQL;
 	
 	private static Connection sqlConnection;
 	private static String dbconn,dbuser,dbpass;
 	private static DBConnect reconnectCallback;
 	
-	public static void loop() throws SQLException, FileNotFoundException, IOException, WeightMismatchException, RequiresWeightedAggregatorException
+	public static void loop() throws SQLException, FileNotFoundException, IOException, WeightMismatchException, RequiresWeightedAggregatorException, TrainingAborted
 	{
 		DateFormat sqlDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Calendar cal = Calendar.getInstance();
@@ -114,15 +116,15 @@ public class Test {
 			ChainParams fullLabel = new ChainParams(problem.getLabel(),etType,etf.getLabel(),mlf.getLabel(),agg.getLabel(),dataSetSize);
 			try
 			{
-				et = ArgParser.technique(etType,sizes,dataSetSize,fullLabel,mlf,etf,agg,dataLoader,maxIterations);
+				et = ArgParser.technique(etType,sizes,dataSetSize,fullLabel,mlf,etf,agg,dataLoader,maxIterations,maxLoops);
 			} catch (BadArgument e)
 			{
 				help();
 			}
 			for (double te: trainingErrors)
 			{
-				Evaluator ev = new Evaluator(et, dataLoader, te, selectionError, verbose,fold,maxIterations);
-				ev.getResults(fullLabel,te,reconnectCallback,chainId,noSQL);
+				Evaluator ev = new Evaluator(et, dataLoader, te, selectionError, verbose, fold);
+				ev.getResults(fullLabel,te,reconnectCallback,chainId,noSQL, verbose);
 			}
 			if(!noSQL)
 			{
@@ -134,7 +136,7 @@ public class Test {
 		}
 	}
 	
-	public static void main(String[] args) throws WeightMismatchException, RequiresWeightedAggregatorException
+	public static void main(String[] args) throws WeightMismatchException, RequiresWeightedAggregatorException, TrainingAborted
 	{
 		FileLoader fileLoader = new FileLoader();
 		Options options = new Options();
@@ -173,11 +175,17 @@ public class Test {
 			trainingErrors = ArgParser.doubleList(problemPropFile.getProperty("training_errors"));
 			etf = ArgParser.ETF(problemPropFile.getProperty("ensemble_training"));
 			maxIterations = ArgParser.intSingle(problemPropFile.getProperty("max_training_iterations"));
+			if(problemPropFile.containsKey("max_retrain_loops"))
+			{
+				maxLoops = ArgParser.intSingle(problemPropFile.getProperty("max_retrain_loops"));			
+			}
 			mlfs = ArgParser.MLFS(problemPropFile.getProperty("member_types"));
 			agg = ArgParser.AGG(problemPropFile.getProperty("aggregator"));
 			verbose = Boolean.parseBoolean(problemPropFile.getProperty("verbose")) || commandLine.hasOption("v");
 			selectionError = ArgParser.doubleSingle(problemPropFile.getProperty("selection_error"));
-			if (nFolds < 2) {throw new BadArgument();};
+			if (nFolds < 2) {
+				throw new BadArgument();
+			};
 			dataLoader = problem.getDataLoader(activationThreshold,nFolds);
 			targetRunCount = ArgParser.intSingle(problemPropFile.getProperty("max_runs"));
 			EXPERIMENT = ArgParser.intSingle(problemPropFile.getProperty("experiment_id"));
@@ -185,6 +193,10 @@ public class Test {
 		catch (FileNotFoundException e)
 		{
 			System.err.println("Could not create dataLoader - data file not found");
+		}
+		catch (IOException e)
+		{
+			System.err.println("Could not create dataLoader - IOException" + e.toString());
 		}
 		catch (helpers.ProblemDescriptionLoader.BadArgument e) 
 		{
