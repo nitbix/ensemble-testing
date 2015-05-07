@@ -171,6 +171,7 @@ public class ArgParser {
 		}
 		return res;
 	}
+
 	private static ActivationFunction activation(String string) throws BadArgument {
 		switch (Activations.valueOf(string.toUpperCase())) {
 			case SIGMOID: return new ActivationSigmoid();
