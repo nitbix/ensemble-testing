@@ -7,9 +7,9 @@
 
 Universe = vanilla
 Executable = run-prop.bat 
-Output = logs/out/landsat$(Cluster).$(Process).out
-Error = logs/err/landsat$(Cluster).$(Process).err
-Log = logs/log/landsat$(Cluster).$(Process).log
+Output = logs/out/parkinsons$(Cluster).$(Process).out
+Error = logs/err/parkinsons$(Cluster).$(Process).err
+Log = logs/log/parkinsons$(Cluster).$(Process).log
 copy_to_spool = true
 should_transfer_files = YES
 when_to_transfer_output = ON_EXIT
@@ -17,20 +17,17 @@ transfer_input_files = ensemble-testing.jar
 Requirements = (TARGET.Opsys == "WINDOWS")
 periodic_remove = (CommittedTime - CommittedSuspensionTime) > 43200
 
-arguments = 3 landsat bagging-averaging-nodrop-deep
+arguments = 3 parkinsons bagging-averaging-deep
 queue 20
 
-arguments = 3 landsat adaboost-nodrop-deep
+arguments = 3 parkinsons bagging-averaging-nodrop-deep
 queue 20
 
-arguments = 3 landsat stacking-deep
+arguments = 3 parkinsons adaboost-nodrop-deep
 queue 20
 
-arguments = 3 landsat stacking-dropout-deep
+arguments = 3 parkinsons adaboost-deep
 queue 20
 
-arguments = 3 landsat dropstacking-deep
-queue 20
-
-arguments = 3 landsat dropstacking-dropout-deep
+arguments = 3 parkinsons dropout-deep
 queue 20

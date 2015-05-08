@@ -31,6 +31,3 @@ queue 20
 
 arguments = 3 biodeg dropstacking-dropout-deep
 queue 20
-
-arguments = 3 biodeg dropout-deep
-queue 20
