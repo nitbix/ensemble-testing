@@ -32,9 +32,8 @@ import numpy
 
 import theano
 import theano.tensor as T
+from theano.ifelse import ifelse
 from theano.sandbox.rng_mrg import MRG_RandomStreams                                                                                                                    
-
-
 from logistic_sgd import LogisticRegression, load_data
 
 def sharedX(value, name=None, borrow=False, dtype=None):
@@ -50,58 +49,131 @@ def sharedX(value, name=None, borrow=False, dtype=None):
                          borrow=borrow)
 
 rectifier = lambda x: T.maximum(0, x)
+softsign = lambda x: x / (1 + abs(x))
 
-def sgd(param,learning_rate,gparam,mask,updates,cost):
+def sgd(param,learning_rate,gparam,mask,updates,current_cost,previous_cost):
     return param - learning_rate * gparam * mask
 
-def rprop(param,learning_rate,gparam,mask,updates,cost,
-          eta_plus=1.4,eta_minus=0.5,max_delta=1000, min_delta=10e-7):
+def rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
+          eta_plus=1.2,eta_minus=0.25,max_delta=50, min_delta=10e-8):
     previous_grad = sharedX(numpy.ones(param.shape.eval()))
     delta = sharedX(learning_rate * numpy.ones(param.shape.eval()))
     previous_inc = sharedX(numpy.zeros(param.shape.eval()))
-#    previous_cost = sharedX(numpy.ones(cost.shape.eval()))
     zero = T.zeros_like(param)
     one = T.ones_like(param)
     change = previous_grad * gparam
 
     new_delta = T.clip(
             T.switch(
-                T.gt(change,0.),
-                delta*eta_plus,
+                T.eq(mask * gparam,0.),
+                delta,
                 T.switch(
-                    T.lt(change,0.),
-                    delta*eta_minus,
-                    delta
+                    T.gt(change,0.),
+                    delta*eta_plus,
+                    T.switch(
+                        T.lt(change,0.),
+                        delta*eta_minus,
+                        delta
+                    )
                 )
             ),
             min_delta,
             max_delta
     )
     new_previous_grad = T.switch(
-            T.gt(change,0.),
-            gparam,
+            T.eq(mask * gparam,0.),
+            previous_grad,
             T.switch(
-                T.lt(change,0.),
-                zero,
-                gparam
+                T.gt(change,0.),
+                gparam,
+                T.switch(
+                    T.lt(change,0.),
+                    zero,
+                    gparam
+                )
             )
     )
     inc = T.switch(
-            T.gt(change,0.),
-            - T.sgn(gparam) * new_delta,
+            T.eq(mask * gparam,0.),
+            zero,
             T.switch(
-                T.lt(change,0.),
-                zero,
-                - T.sgn(gparam) * new_delta
+                T.gt(change,0.),
+                - T.sgn(gparam) * new_delta,
+                T.switch(
+                    T.lt(change,0.),
+                    zero,
+                    - T.sgn(gparam) * new_delta
+                )
             )
     )
 
     updates.append((previous_grad,new_previous_grad))
     updates.append((delta,new_delta))
     updates.append((previous_inc,inc))
-#    updates.append((previous_cost,cost))
     return param + inc * mask
 
+def irprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
+          eta_plus=1.5,eta_minus=0.25,max_delta=500, min_delta=10e-8):
+    previous_grad = sharedX(numpy.ones(param.shape.eval()))
+    delta = sharedX(learning_rate * numpy.ones(param.shape.eval()))
+    previous_inc = sharedX(numpy.zeros(param.shape.eval()))
+    zero = T.zeros_like(param)
+    one = T.ones_like(param)
+    change = previous_grad * gparam
+
+    new_delta = T.clip(
+            T.switch(
+                T.eq(mask * gparam,0.),
+                delta,
+                T.switch(
+                    T.gt(change,0.),
+                    delta*eta_plus,
+                    T.switch(
+                        T.lt(change,0.),
+                        delta*eta_minus,
+                        delta
+                    )
+                )
+            ),
+            min_delta,
+            max_delta
+    )
+    new_previous_grad = T.switch(
+            T.eq(mask * gparam,0.),
+            previous_grad,
+            T.switch(
+                T.gt(change,0.),
+                gparam,
+                T.switch(
+                    T.lt(change,0.),
+                    zero,
+                    gparam
+                )
+            )
+    )
+    inc = T.switch(
+            T.eq(mask * gparam,0.),
+            zero,
+            T.switch(
+                T.gt(change,0.),
+                - T.sgn(gparam) * new_delta,
+                T.switch(
+                    T.lt(change,0.),
+                    zero,
+#                    - T.sgn(gparam) * new_delta
+                    T.switch( 
+                        T.gt(current_cost, previous_cost),
+                        - T.sgn(gparam) * new_delta,
+                        zero
+                    )
+                )
+            )
+    )
+
+    updates.append((previous_grad,new_previous_grad))
+    updates.append((delta,new_delta))
+    updates.append((previous_inc,inc))
+    return param + inc * mask
 
 class HiddenLayer(object):
     def __init__(self, rng, input, n_in, n_out, W=None, b=None,
@@ -340,6 +412,7 @@ def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
 
     # specify how to update the parameters of the model as a list of
     # (variable, update expression) pairs
+    previous_cost = T.lscalar()
     updates = []
     theano_rng = MRG_RandomStreams(max(rng.randint(2 ** 15), 1))
 
@@ -354,18 +427,20 @@ def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
         mask = theano_rng.binomial(p=include_prob,
                                    size=param.shape,dtype=param.dtype)    
         new_update = update_rule(param, learning_rate, gparam, mask, updates,
-                cost)
+                cost,previous_cost)
         updates.append((param, new_update))
 
     # compiling a Theano function `train_model` that returns the cost, but
     # in the same time updates the parameter of the model based on the rules
     # defined in `updates`
-    train_model = theano.function(inputs=[index], outputs=cost,
+    train_model = theano.function(inputs=[index,previous_cost], outputs=cost,
+            on_unused_input='warn',
             updates=updates,
             givens={
                 x: train_set_x[index * batch_size:(index + 1) * batch_size],
                 y: train_set_y[index * batch_size:(index + 1) * batch_size]})
 
+    print type(train_model)
     ###############
     # TRAIN MODEL #
     ###############
@@ -375,7 +450,7 @@ def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
     patience = 10000  # look as this many examples regardless
     patience_increase = 2  # wait this much longer when a new best is
                            # found
-    improvement_threshold = 0.995  # a relative improvement of this much is
+    improvement_threshold = 0.99999  # a relative improvement of this much is
                                    # considered significant
     validation_frequency = min(n_train_batches, patience / 2)
                                   # go through this many
@@ -392,11 +467,12 @@ def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
     epoch = 0
     done_looping = False
 
+    previous_minibatch_avg_cost = 1
     while (epoch < n_epochs) and (not done_looping):
         epoch = epoch + 1
         for minibatch_index in xrange(n_train_batches):
 
-            minibatch_avg_cost = train_model(minibatch_index)
+            minibatch_avg_cost = train_model(minibatch_index,previous_minibatch_avg_cost)
             # iteration number
             iter = (epoch - 1) * n_train_batches + minibatch_index
 
@@ -431,6 +507,7 @@ def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
                            test_score * 100.))
 
             if patience <= iter:
+                    print('finished patience')
                     done_looping = True
                     break
 
@@ -446,11 +523,16 @@ def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
 
 learning_rate=0.01
 L1_reg=0.00
-L2_reg=0.0001
-n_epochs=1000
+L2_reg=0.00
+n_epochs=10000
 dataset='mnist.pkl.gz'
 batch_size=200
-n_hidden=[(800,0,'h0',rectifier),(1500,0,'h1',rectifier)]
+n_hidden=[(2500,0.5,'h0',T.tanh),
+          (2000,0.5,'h1',T.tanh),
+          (1500,0.5,'h2',T.tanh),
+          (1000,0.5,'h2',T.tanh),
+          (500,0.5,'h3',T.tanh)
+         ]
 for arg in sys.argv[1:]:
 	if arg[0]=='-':
 		exec(arg[1:])
