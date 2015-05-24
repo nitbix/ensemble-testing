@@ -55,7 +55,7 @@ def sgd(param,learning_rate,gparam,mask,updates,current_cost,previous_cost):
     return param - learning_rate * gparam * mask
 
 def rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
-          eta_plus=1.2,eta_minus=0.25,max_delta=50, min_delta=10e-8):
+          eta_plus=1.2,eta_minus=0.5,max_delta=50, min_delta=10e-6):
     previous_grad = sharedX(numpy.ones(param.shape.eval()))
     delta = sharedX(learning_rate * numpy.ones(param.shape.eval()))
     previous_inc = sharedX(numpy.zeros(param.shape.eval()))
@@ -440,7 +440,6 @@ def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
                 x: train_set_x[index * batch_size:(index + 1) * batch_size],
                 y: train_set_y[index * batch_size:(index + 1) * batch_size]})
 
-    print type(train_model)
     ###############
     # TRAIN MODEL #
     ###############
@@ -448,7 +447,7 @@ def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
 
     # early-stopping parameters
     patience = 10000  # look as this many examples regardless
-    patience_increase = 2  # wait this much longer when a new best is
+    patience_increase = 20  # wait this much longer when a new best is
                            # found
     improvement_threshold = 0.99999  # a relative improvement of this much is
                                    # considered significant
@@ -520,21 +519,169 @@ def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
                           ' ran for %.2fm' % ((end_time - start_time) / 60.))
     return classifier
 
+def train_and_select(training_set, validation_set, learning_rate=0.01,
+                     L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
+                     dataset='mnist.pkl.gz', batch_size=20, n_hidden=(500,0),
+                     update_rule=sgd):
+    """
+    Train a classifier and select the version with the best validation
+    error
+    """
+    train_set_x, train_set_y = training_set
+    valid_set_x, valid_set_y = validation_set
 
-learning_rate=0.01
-L1_reg=0.00
-L2_reg=0.00
-n_epochs=10000
-dataset='mnist.pkl.gz'
-batch_size=200
-n_hidden=[(2500,0.5,'h0',T.tanh),
-          (2000,0.5,'h1',T.tanh),
-          (1500,0.5,'h2',T.tanh),
-          (1000,0.5,'h2',T.tanh),
-          (500,0.5,'h3',T.tanh)
-         ]
-for arg in sys.argv[1:]:
-	if arg[0]=='-':
-		exec(arg[1:])
-mlp=test_mlp(learning_rate, L1_reg, L2_reg, n_epochs,
-	dataset, batch_size, n_hidden, update_rule = rprop)
+    # compute number of minibatches for training, validation and testing
+    n_train_batches = train_set_x.get_value(borrow=True).shape[0] / batch_size
+    n_valid_batches = valid_set_x.get_value(borrow=True).shape[0] / batch_size
+
+    # allocate symbolic variables for the data
+    index = T.lscalar()  # index to a [mini]batch
+    x = T.matrix('x')  # the data is presented as rasterized images
+    y = T.ivector('y')  # the labels are presented as 1D vector of
+                        # [int] labels
+
+    rng = numpy.random.RandomState(1234)
+
+    # construct the MLP class
+    classifier = MLP(rng=rng, input=x, n_in=28 * 28,
+                     n_hidden=n_hidden, n_out=10)
+
+    # the cost we minimize during training is the negative log likelihood of
+    # the model plus the regularization terms (L1 and L2); cost is expressed
+    # here symbolically
+    cost = classifier.negative_log_likelihood(y) \
+         + L1_reg * classifier.L1 \
+         + L2_reg * classifier.L2_sqr
+
+    validate_model = theano.function(inputs=[index],
+            outputs=classifier.errors(y),
+            givens={
+                x: valid_set_x[index * batch_size:(index + 1) * batch_size],
+                y: valid_set_y[index * batch_size:(index + 1) * batch_size]})
+
+    # compute the gradient of cost with respect to theta (sorted in params)
+    # the resulting gradients will be stored in a list gparams
+    gparams = []
+    for param in classifier.params:
+        gparam = T.grad(cost, param)
+        gparams.append(gparam)
+
+    # specify how to update the parameters of the model as a list of
+    # (variable, update expression) pairs
+    previous_cost = T.lscalar()
+    updates = []
+    theano_rng = MRG_RandomStreams(max(rng.randint(2 ** 15), 1))
+
+    dropout_rates = {}
+    for layer in classifier.hiddenLayers:
+        dropout_rates[layer.layerName + '_W'] = layer.dropout_rate
+    for param, gparam in zip(classifier.params, gparams):
+        if param in dropout_rates:
+            include_prob = 1 - dropout_rates[param]
+        else:
+            include_prob = 1
+        mask = theano_rng.binomial(p=include_prob,
+                                   size=param.shape,dtype=param.dtype)    
+        new_update = update_rule(param, learning_rate, gparam, mask, updates,
+                cost,previous_cost)
+        updates.append((param, new_update))
+
+    # compiling a Theano function `train_model` that returns the cost, but
+    # in the same time updates the parameter of the model based on the rules
+    # defined in `updates`
+    train_model = theano.function(inputs=[index,previous_cost], outputs=cost,
+            on_unused_input='warn',
+            updates=updates,
+            givens={
+                x: train_set_x[index * batch_size:(index + 1) * batch_size],
+                y: train_set_y[index * batch_size:(index + 1) * batch_size]})
+    ###############
+    # TRAIN MODEL #
+    ###############
+
+    # early-stopping parameters
+    patience = 10000  # look as this many examples regardless
+    patience_increase = 20  # wait this much longer when a new best is
+                           # found
+    improvement_threshold = 0.99999  # a relative improvement of this much is
+                                   # considered significant
+    validation_frequency = min(n_train_batches, patience / 2)
+                                  # go through this many
+                                  # minibatche before checking the network
+                                  # on the validation set; in this case we
+                                  # check every epoch
+
+    best_params = None
+    best_classifier = None
+    best_validation_loss = numpy.inf
+    best_iter = 0
+    test_score = 0.
+    start_time = time.clock()
+
+    epoch = 0
+    done_looping = False
+
+    previous_minibatch_avg_cost = 1
+    while (epoch < n_epochs) and (not done_looping):
+        epoch = epoch + 1
+        for minibatch_index in xrange(n_train_batches):
+
+            minibatch_avg_cost = train_model(minibatch_index,previous_minibatch_avg_cost)
+            # iteration number
+            iter = (epoch - 1) * n_train_batches + minibatch_index
+
+            if (iter + 1) % validation_frequency == 0:
+                # compute zero-one loss on validation set
+                validation_losses = [validate_model(i) for i
+                                     in xrange(n_valid_batches)]
+                this_validation_loss = numpy.mean(validation_losses)
+
+                # if we got the best validation score until now
+                if this_validation_loss < best_validation_loss:
+                    #improve patience if loss improvement is good enough
+                    if this_validation_loss < best_validation_loss *  \
+                           improvement_threshold:
+                        patience = max(patience, iter * patience_increase)
+
+                    best_validation_loss = this_validation_loss
+                    best_iter = iter
+                    best_classifier = classifier
+
+                    print('epoch %i, minibatch %i/%i, validation error %f %%' %
+                         (epoch, minibatch_index + 1, n_train_batches,
+                          this_validation_loss * 100.))
+
+#                    print(('     epoch %i, minibatch %i/%i, test error of '
+#                           'best model %f %%') %
+#                          (epoch, minibatch_index + 1, n_train_batches,
+#                           test_score * 100.))
+
+            if patience <= iter:
+                    print('finished patience')
+                    done_looping = True
+                    break
+
+    end_time = time.clock()
+    print(('Selection : Best validation score of %f %% ' %
+          best_validation_loss * 100.))
+    return best_classifier
+
+
+if __name__ == '__main__':
+    learning_rate=0.01
+    L1_reg=0.00
+    L2_reg=0.00
+    n_epochs=10000
+    dataset='mnist.pkl.gz'
+    batch_size=100
+    n_hidden=[(2500,0.5,'h0',T.tanh),
+              (2000,0.5,'h1',T.tanh),
+              (1500,0.5,'h2',T.tanh),
+              (1000,0.5,'h2',T.tanh),
+              (500,0.5,'h3',T.tanh)
+             ]
+    for arg in sys.argv[1:]:
+        if arg[0]=='-':
+            exec(arg[1:])
+    mlp=test_mlp(learning_rate, L1_reg, L2_reg, n_epochs,
+        dataset, batch_size, n_hidden, update_rule = rprop)
