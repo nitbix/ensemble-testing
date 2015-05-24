@@ -314,6 +314,7 @@ class MLP(object):
         # logistic regression layer
         self.negative_log_likelihood = self.logRegressionLayer.negative_log_likelihood
         # same holds for the function computing the number of errors
+        self.p_y_given_x = self.logRegressionLayer.p_y_given_x
         self.errors = self.logRegressionLayer.errors
 
         # the parameters of the model are the parameters of the two layer it is
@@ -590,7 +591,7 @@ def train_and_select(training_set, validation_set, learning_rate=0.01,
     # in the same time updates the parameter of the model based on the rules
     # defined in `updates`
     train_model = theano.function(inputs=[index,previous_cost], outputs=cost,
-            on_unused_input='warn',
+            on_unused_input='ignore',
             updates=updates,
             givens={
                 x: train_set_x[index * batch_size:(index + 1) * batch_size],
@@ -647,7 +648,7 @@ def train_and_select(training_set, validation_set, learning_rate=0.01,
                     best_iter = iter
                     best_classifier = classifier
 
-                    print('epoch %i, minibatch %i/%i, validation error %f %%' %
+                    print('\repoch %i, minibatch %i/%i, validation error %f %%' %
                          (epoch, minibatch_index + 1, n_train_batches,
                           this_validation_loss * 100.))
 
@@ -662,7 +663,7 @@ def train_and_select(training_set, validation_set, learning_rate=0.01,
                     break
 
     end_time = time.clock()
-    print(('Selection : Best validation score of %f %% ' %
+    print('Selection : Best validation score of {0} %'.format(
           best_validation_loss * 100.))
     return best_classifier
 
