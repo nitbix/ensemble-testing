@@ -520,7 +520,7 @@ def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
                           ' ran for %.2fm' % ((end_time - start_time) / 60.))
     return classifier
 
-def train_and_select(training_set, validation_set, learning_rate=0.01,
+def train_and_select(x,y,training_set, validation_set, learning_rate=0.01,
                      L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
                      dataset='mnist.pkl.gz', batch_size=20, n_hidden=(500,0),
                      update_rule=sgd):
@@ -537,8 +537,8 @@ def train_and_select(training_set, validation_set, learning_rate=0.01,
 
     # allocate symbolic variables for the data
     index = T.lscalar()  # index to a [mini]batch
-    x = T.matrix('x')  # the data is presented as rasterized images
-    y = T.ivector('y')  # the labels are presented as 1D vector of
+    #x = T.matrix('x')  # the data is presented as rasterized images
+    #y = T.ivector('y')  # the labels are presented as 1D vector of
                         # [int] labels
 
     rng = numpy.random.RandomState(1234)
@@ -648,7 +648,7 @@ def train_and_select(training_set, validation_set, learning_rate=0.01,
                     best_iter = iter
                     best_classifier = classifier
 
-                    print('\repoch %i, minibatch %i/%i, validation error %f %%' %
+                    print("\repoch %i, minibatch %i/%i, validation error %f %%" %
                          (epoch, minibatch_index + 1, n_train_batches,
                           this_validation_loss * 100.))
 
