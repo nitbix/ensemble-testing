@@ -101,7 +101,9 @@ class Stacking:
         self.y_pred = self.stack_head.y_pred
         self.stack_input = theano.function(inputs=[x],
                 outputs=T.concatenate([m.p_y_given_x for m in self.ensemble]))
-        self.errors = theano.function(inputs=[],outputs=self.stack_head.errors,
+        self.errors = theano.function(
+                inputs=[],
+                outputs=self.stack_head.errors(y),
                 givens={x:self.stack_input,y:y})()
 
 if __name__ == '__main__':
