@@ -46,6 +46,18 @@ import numpy
 import theano
 import theano.tensor as T
 
+def sharedX(value, name=None, borrow=False, dtype=None):
+    """
+    Transform value into a shared variable of type floatX
+    borrowed from pylearn2
+    """
+
+    if dtype is None:
+        dtype = theano.config.floatX
+    return theano.shared(theano._asarray(value, dtype=dtype),
+                         name=name,
+                         borrow=borrow)
+
 
 class LogisticRegression(object):
     """Multi-class Logistic Regression Class

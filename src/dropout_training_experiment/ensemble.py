@@ -5,7 +5,7 @@ import numpy.random
 import theano
 import theano.tensor as T
 import mlp
-from logistic_sgd import LogisticRegression, load_data, shared_dataset
+from logistic_sgd import LogisticRegression, load_data, shared_dataset, sharedX
 
 class Resampler:
     """
@@ -32,11 +32,29 @@ class Resampler:
             sampled_y.append(self.train_y[s])
         return shared_dataset((sampled_x,sampled_y))
 
+    def get_train(self):
+        return shared_dataset(self.train)
+
     def get_valid(self):
         return shared_dataset(self.valid)
 
     def get_test(self):
         return shared_dataset(self.test)
+
+
+class Averaging:
+    """
+    Take an ensemble and produce the majority vote output on a dataset
+    """
+
+    def __init__(self,ensemble,x,y):
+        self.ensemble=ensemble
+        self.x = x
+        self.y = y
+        self.p_y_given_x = 0.
+        self.p_y_given_x = sum([m.p_y_given_x for m in self.ensemble]) / len(ensemble)
+        self.y_pred = T.argmax(self.p_y_given_x, axis=1)
+        self.errors = T.mean(T.neq(self.y_pred, y))
 
 
 class MajorityVoting:
@@ -55,22 +73,53 @@ class MajorityVoting:
         self.errors = T.mean(T.neq(self.y_pred, y))
 
 
+class Stacking:
+    """
+    Take an ensemble and produce the majority vote output on a dataset
+    """
+
+    def __init__(self,x,y,ensemble,n_hidden,update_rule,n_epochs,batch_size,train_set,valid_set):
+        self.ensemble=ensemble
+        train_set_x,train_set_y = train_set
+        valid_set_x,valid_set_y = valid_set
+#        self.input_given_x = theano.function(inputs=[x],
+#                outputs=T.concatenate([m.p_y_given_x.eval({x:x}) for m in self.ensemble]))
+        self.train_input_x = theano.function(inputs=[],
+                outputs=T.concatenate([m.p_y_given_x for m in self.ensemble]),
+                givens={x:train_set_x})
+        self.valid_input_x = theano.function(inputs=[],
+                outputs=T.concatenate([m.p_y_given_x for m in self.ensemble]),
+                givens={x:valid_set_x})
+        print 'training stack head'
+        self.stack_head = mlp.train_and_select(x,y,
+                (sharedX(self.train_input_x()),train_set_y),
+                (sharedX(self.valid_input_x()),valid_set_y),
+                L1_reg=0.,L2_reg=0.,n_epochs=n_epochs,batch_size=batch_size,
+                n_hidden=n_hidden,
+                update_rule=update_rule,
+                n_in=10*len(ensemble))
+        self.y_pred = self.stack_head.y_pred
+        self.stack_input = theano.function(inputs=[x],
+                outputs=T.concatenate([m.p_y_given_x for m in self.ensemble]))
+        self.errors = theano.function(inputs=[],outputs=self.stack_head.errors,
+                givens={x:self.stack_input,y:y})()
+
 if __name__ == '__main__':
 
     learning_rate=0.01
     L1_reg=0.00
     L2_reg=0.00
-    n_epochs=1
+    n_epochs=1#200
     dataset='mnist.pkl.gz'
     batch_size=100
     resample_size=50000
     n_hidden=[#(2500,0.5,'h0',T.tanh),
-             # (2000,0.5,'h1',T.tanh),
-             # (1500,0.5,'h2',T.tanh),
-             # (1000,0.5,'h2',T.tanh),
-              (500,0.5,'h3',T.tanh)
+              #(2000,0.5,'h1',T.tanh),
+              #(1500,0.5,'h2',T.tanh),
+              #(1000,0.5,'h2',T.tanh),
+              (5,0.5,'h3',T.tanh)
              ]
-    ensemble_size = 1
+    ensemble_size = 1#30
     for arg in sys.argv[1:]:
         if arg[0]=='-':
             exec(arg[1:])
@@ -83,9 +132,11 @@ if __name__ == '__main__':
         print 'training member {0}'.format(i)
         m=mlp.train_and_select(x,y,resampler.make_new_train(resample_size),
                 resampler.get_valid(),learning_rate, L1_reg, L2_reg, n_epochs,
-                dataset, batch_size, n_hidden, update_rule = mlp.rprop)
+                batch_size, n_hidden, update_rule = mlp.rprop)
         members.append(m)
-    mv = MajorityVoting(members,x,y)
+#    mv = Averaging(members,x,y)
+    mv = Stacking(x,y,members,[(ensemble_size * 10, 0,'s0',T.tanh)], mlp.rprop,
+            1, batch_size, resampler.get_train(),resampler.get_valid())
     test_set_x, test_set_y = resampler.get_test()
     test_model = theano.function(inputs=[],
         on_unused_input='warn',

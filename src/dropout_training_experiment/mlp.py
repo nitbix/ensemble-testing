@@ -34,19 +34,7 @@ import theano
 import theano.tensor as T
 from theano.ifelse import ifelse
 from theano.sandbox.rng_mrg import MRG_RandomStreams                                                                                                                    
-from logistic_sgd import LogisticRegression, load_data
-
-def sharedX(value, name=None, borrow=False, dtype=None):
-    """
-    Transform value into a shared variable of type floatX
-    borrowed from pylearn2
-    """
-
-    if dtype is None:
-        dtype = theano.config.floatX
-    return theano.shared(theano._asarray(value, dtype=dtype),
-                         name=name,
-                         borrow=borrow)
+from logistic_sgd import LogisticRegression, load_data, sharedX
 
 rectifier = lambda x: T.maximum(0, x)
 softsign = lambda x: x / (1 + abs(x))
@@ -316,6 +304,7 @@ class MLP(object):
         # same holds for the function computing the number of errors
         self.p_y_given_x = self.logRegressionLayer.p_y_given_x
         self.errors = self.logRegressionLayer.errors
+        self.y_pred = self.logRegressionLayer.y_pred
 
         # the parameters of the model are the parameters of the two layer it is
         # made out of
@@ -522,8 +511,8 @@ def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
 
 def train_and_select(x,y,training_set, validation_set, learning_rate=0.01,
                      L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
-                     dataset='mnist.pkl.gz', batch_size=20, n_hidden=(500,0),
-                     update_rule=sgd):
+                     batch_size=20, n_hidden=(500,0),
+                     update_rule=sgd,n_in=28*28):
     """
     Train a classifier and select the version with the best validation
     error
@@ -537,14 +526,11 @@ def train_and_select(x,y,training_set, validation_set, learning_rate=0.01,
 
     # allocate symbolic variables for the data
     index = T.lscalar()  # index to a [mini]batch
-    #x = T.matrix('x')  # the data is presented as rasterized images
-    #y = T.ivector('y')  # the labels are presented as 1D vector of
-                        # [int] labels
 
     rng = numpy.random.RandomState(1234)
 
     # construct the MLP class
-    classifier = MLP(rng=rng, input=x, n_in=28 * 28,
+    classifier = MLP(rng=rng, input=x, n_in=n_in,
                      n_hidden=n_hidden, n_out=10)
 
     # the cost we minimize during training is the negative log likelihood of
