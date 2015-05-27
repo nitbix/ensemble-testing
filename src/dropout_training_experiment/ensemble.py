@@ -91,7 +91,8 @@ class Stacking:
                 outputs=T.concatenate([m.p_y_given_x for m in self.ensemble]),
                 givens={x:valid_set_x})
         print 'training stack head'
-        self.stack_head = mlp.train_and_select(x,y,
+        self.head_x = T.concatenate([m.p_y_given_x for m in self.ensemble])
+        self.stack_head = mlp.train_and_select(self.head_x,y,
                 (sharedX(self.train_input_x()),train_set_y),
                 (sharedX(self.valid_input_x()),valid_set_y),
                 L1_reg=0.,L2_reg=0.,n_epochs=n_epochs,batch_size=batch_size,
@@ -99,29 +100,24 @@ class Stacking:
                 update_rule=update_rule,
                 n_in=10*len(ensemble))
         self.y_pred = self.stack_head.y_pred
-        self.stack_input = theano.function(inputs=[x],
-                outputs=T.concatenate([m.p_y_given_x for m in self.ensemble]))
-        self.errors = theano.function(
-                inputs=[],
-                outputs=self.stack_head.errors(y),
-                givens={x:self.stack_input,y:y})()
+        self.errors = self.stack_head.errors(y)
 
 if __name__ == '__main__':
 
     learning_rate=0.01
     L1_reg=0.00
     L2_reg=0.00
-    n_epochs=1#200
+    n_epochs=200
     dataset='mnist.pkl.gz'
     batch_size=100
     resample_size=50000
-    n_hidden=[#(2500,0.5,'h0',T.tanh),
-              #(2000,0.5,'h1',T.tanh),
-              #(1500,0.5,'h2',T.tanh),
-              #(1000,0.5,'h2',T.tanh),
-              (5,0.5,'h3',T.tanh)
+    n_hidden=[(2500,0.5,'h0',T.tanh),
+              (2000,0.5,'h1',T.tanh),
+              (1500,0.5,'h2',T.tanh),
+              (1000,0.5,'h2',T.tanh),
+              (500,0.5,'h3',T.tanh)
              ]
-    ensemble_size = 1#30
+    ensemble_size = 30
     for arg in sys.argv[1:]:
         if arg[0]=='-':
             exec(arg[1:])
@@ -137,13 +133,16 @@ if __name__ == '__main__':
                 batch_size, n_hidden, update_rule = mlp.rprop)
         members.append(m)
 #    mv = Averaging(members,x,y)
-    mv = Stacking(x,y,members,[(ensemble_size * 10, 0,'s0',T.tanh)], mlp.rprop,
-            1, batch_size, resampler.get_train(),resampler.get_valid())
+    mv = Stacking(x,y,members,[(ensemble_size * 10, 0,'s0',T.tanh)],
+            update_rule=mlp.rprop,
+            n_epochs=1,
+            batch_size=batch_size,
+            train_set=resampler.get_train(),
+            valid_set=resampler.get_valid())
     test_set_x, test_set_y = resampler.get_test()
     test_model = theano.function(inputs=[],
         on_unused_input='warn',
         outputs=mv.errors,
         givens={x:test_set_x, y:test_set_y})
-    n_test_batches = test_set_x.get_value(borrow=True).shape[0] / batch_size
     test_score = test_model()
     print 'Final error: {0} %'.format(test_score * 100.)
