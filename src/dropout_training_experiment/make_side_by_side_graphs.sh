@@ -3,6 +3,7 @@
 first_file=$1
 second_file=$2
 out_file=$3
+error_name=$4
 
 echo "
 #set style line 1 lc rgb '#8b1a0e' lw 2 # --- red
@@ -17,7 +18,7 @@ set grid back ls 12
 #set title \"Misclassification Rates ($technique - $problem_name)\"
 set terminal postscript eps enhanced color size 4,2.5
 set xlabel \"Training Epoch\"
-set ylabel \"Error (%)\"
+set ylabel \"${error_name} Error (%)\"
 set terminal postscript eps enhanced color size 4,2.5
 set out \"${out_file}.eps\"
 plot \"${first_file}\"  using 1:2 lw 2 title \"\" with lines,\

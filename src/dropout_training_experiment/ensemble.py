@@ -85,16 +85,19 @@ class Stacking:
 #        self.input_given_x = theano.function(inputs=[x],
 #                outputs=T.concatenate([m.p_y_given_x.eval({x:x}) for m in self.ensemble]))
         self.train_input_x = theano.function(inputs=[],
-                outputs=T.concatenate([m.p_y_given_x for m in self.ensemble]),
+                outputs=T.concatenate([m.p_y_given_x
+                    for m in self.ensemble],axis=1),
                 givens={x:train_set_x})
         self.valid_input_x = theano.function(inputs=[],
-                outputs=T.concatenate([m.p_y_given_x for m in self.ensemble]),
+                outputs=T.concatenate([m.p_y_given_x
+                    for m in self.ensemble],axis=1),
                 givens={x:valid_set_x})
         print 'training stack head'
-        self.head_x = T.concatenate([m.p_y_given_x for m in self.ensemble])
+        self.head_x = T.concatenate([m.p_y_given_x
+            for m in self.ensemble],axis=1)
         self.stack_head = mlp.train_and_select(self.head_x,y,
-                (sharedX(self.train_input_x()),train_set_y),
-                (sharedX(self.valid_input_x()),valid_set_y),
+                (sharedX(self.train_input_x(),borrow=True),train_set_y),
+                (sharedX(self.valid_input_x(),borrow=True),valid_set_y),
                 L1_reg=0.,L2_reg=0.,n_epochs=n_epochs,batch_size=batch_size,
                 n_hidden=n_hidden,
                 update_rule=update_rule,
@@ -107,7 +110,7 @@ if __name__ == '__main__':
     learning_rate=0.01
     L1_reg=0.00
     L2_reg=0.00
-    n_epochs=200
+    n_epochs=150
     dataset='mnist.pkl.gz'
     batch_size=100
     resample_size=50000
@@ -117,7 +120,7 @@ if __name__ == '__main__':
               (1000,0.5,'h2',T.tanh),
               (500,0.5,'h3',T.tanh)
              ]
-    ensemble_size = 30
+    ensemble_size = 3
     for arg in sys.argv[1:]:
         if arg[0]=='-':
             exec(arg[1:])
@@ -135,7 +138,7 @@ if __name__ == '__main__':
 #    mv = Averaging(members,x,y)
     mv = Stacking(x,y,members,[(ensemble_size * 10, 0,'s0',T.tanh)],
             update_rule=mlp.rprop,
-            n_epochs=1,
+            n_epochs=1000,
             batch_size=batch_size,
             train_set=resampler.get_train(),
             valid_set=resampler.get_valid())

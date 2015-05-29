@@ -44,9 +44,9 @@ def sgd(param,learning_rate,gparam,mask,updates,current_cost,previous_cost):
 
 def rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
           eta_plus=1.2,eta_minus=0.5,max_delta=50, min_delta=10e-6):
-    previous_grad = sharedX(numpy.ones(param.shape.eval()))
-    delta = sharedX(learning_rate * numpy.ones(param.shape.eval()))
-    previous_inc = sharedX(numpy.zeros(param.shape.eval()))
+    previous_grad = sharedX(numpy.ones(param.shape.eval()),borrow=True)
+    delta = sharedX(learning_rate * numpy.ones(param.shape.eval()),borrow=True)
+    previous_inc = sharedX(numpy.zeros(param.shape.eval()),borrow=True)
     zero = T.zeros_like(param)
     one = T.ones_like(param)
     change = previous_grad * gparam
@@ -102,9 +102,9 @@ def rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
 
 def irprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
           eta_plus=1.5,eta_minus=0.25,max_delta=500, min_delta=10e-8):
-    previous_grad = sharedX(numpy.ones(param.shape.eval()))
-    delta = sharedX(learning_rate * numpy.ones(param.shape.eval()))
-    previous_inc = sharedX(numpy.zeros(param.shape.eval()))
+    previous_grad = sharedX(numpy.ones(param.shape.eval()),borrow=True)
+    delta = sharedX(learning_rate * numpy.ones(param.shape.eval()),borrow=True)
+    previous_inc = sharedX(numpy.zeros(param.shape.eval()),borrow=True)
     zero = T.zeros_like(param)
     one = T.ones_like(param)
     change = previous_grad * gparam
