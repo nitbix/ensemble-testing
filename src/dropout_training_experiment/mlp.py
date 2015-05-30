@@ -42,6 +42,51 @@ softsign = lambda x: x / (1 + abs(x))
 def sgd(param,learning_rate,gparam,mask,updates,current_cost,previous_cost):
     return param - learning_rate * gparam * mask
 
+def old_rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
+          eta_plus=1.2,eta_minus=0.5,max_delta=50, min_delta=10e-6):
+    previous_grad = sharedX(numpy.ones(param.shape.eval()),borrow=True)
+    delta = sharedX(learning_rate * numpy.ones(param.shape.eval()),borrow=True)
+    previous_inc = sharedX(numpy.zeros(param.shape.eval()),borrow=True)
+    zero = T.zeros_like(param)
+    one = T.ones_like(param)
+    change = previous_grad * gparam
+
+    new_delta = T.clip(
+            T.switch(
+                T.gt(change,0.),
+                delta*eta_plus,
+                T.switch(
+                    T.lt(change,0.),
+                    delta*eta_minus,
+                    delta
+                )
+            ),
+            min_delta,
+            max_delta
+    )
+    new_previous_grad = T.switch(
+            T.gt(change,0.),
+            gparam,
+            T.switch(
+                T.lt(change,0.),
+                zero,
+                gparam
+            )
+    )
+    inc = T.switch(
+            T.gt(change,0.),
+            - T.sgn(gparam) * new_delta,
+            T.switch(
+                T.lt(change,0.),
+                zero,
+                - T.sgn(gparam) * new_delta
+            )
+    )
+
+    updates.append((previous_grad,new_previous_grad))
+    updates.append((delta,new_delta))
+    updates.append((previous_inc,inc))
+    return param + inc * mask
 def rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
           eta_plus=1.2,eta_minus=0.5,max_delta=50, min_delta=10e-6):
     previous_grad = sharedX(numpy.ones(param.shape.eval()),borrow=True)

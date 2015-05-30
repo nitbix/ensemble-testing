@@ -112,7 +112,7 @@ if __name__ == '__main__':
     L2_reg=0.00
     n_epochs=150
     dataset='mnist.pkl.gz'
-    batch_size=100
+    batch_size=200
     resample_size=50000
     n_hidden=[(2500,0.5,'h0',T.tanh),
               (2000,0.5,'h1',T.tanh),
@@ -136,7 +136,10 @@ if __name__ == '__main__':
                 batch_size, n_hidden, update_rule = mlp.rprop)
         members.append(m)
 #    mv = Averaging(members,x,y)
-    mv = Stacking(x,y,members,[(ensemble_size * 10, 0,'s0',T.tanh)],
+    mv = Stacking(x,y,members,[
+                (ensemble_size * 10,0,'s0',T.tanh),
+                (ensemble_size * 2, 0,'s0',T.tanh)
+            ],
             update_rule=mlp.rprop,
             n_epochs=1000,
             batch_size=batch_size,
