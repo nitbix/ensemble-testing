@@ -1,0 +1,5 @@
+... loading data
+training member 0
+epoch 1, minibatch 500/500, validation error 10.220000 %
+Selection : Best validation score of 10.22 %
+Final error: 90.02 %

@@ -1,0 +1,10 @@
+... loading data
+... building the model
+<class 'theano.compile.function_module.Function'>
+... training
+epoch 1, minibatch 250/250, validation error 13.600000 %
+     epoch 1, minibatch 250/250, test error of best model 14.090000 %
+epoch 2, minibatch 250/250, validation error 11.600000 %
+     epoch 2, minibatch 250/250, test error of best model 12.550000 %
+epoch 3, minibatch 250/250, validation error 11.250000 %
+     epoch 3, minibatch 250/250, test error of best model 12.160000 %

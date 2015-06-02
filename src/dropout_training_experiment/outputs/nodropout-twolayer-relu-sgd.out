@@ -1,0 +1,1157 @@
+... loading data
+... building the model
+[W, b, h0_W, h0_b, h0_W, h0_b]
+... training
+epoch 1, minibatch 250/250, validation error 22.980000 %
+     epoch 1, minibatch 250/250, test error of best model 24.040000 %
+epoch 2, minibatch 250/250, validation error 15.240000 %
+     epoch 2, minibatch 250/250, test error of best model 16.460000 %
+epoch 3, minibatch 250/250, validation error 12.540000 %
+     epoch 3, minibatch 250/250, test error of best model 13.140000 %
+epoch 4, minibatch 250/250, validation error 11.100000 %
+     epoch 4, minibatch 250/250, test error of best model 11.480000 %
+epoch 5, minibatch 250/250, validation error 10.000000 %
+     epoch 5, minibatch 250/250, test error of best model 10.620000 %
+epoch 6, minibatch 250/250, validation error 9.450000 %
+     epoch 6, minibatch 250/250, test error of best model 9.800000 %
+epoch 7, minibatch 250/250, validation error 9.070000 %
+     epoch 7, minibatch 250/250, test error of best model 9.430000 %
+epoch 8, minibatch 250/250, validation error 8.780000 %
+     epoch 8, minibatch 250/250, test error of best model 8.930000 %
+epoch 9, minibatch 250/250, validation error 8.600000 %
+     epoch 9, minibatch 250/250, test error of best model 8.530000 %
+epoch 10, minibatch 250/250, validation error 8.330000 %
+     epoch 10, minibatch 250/250, test error of best model 8.250000 %
+epoch 11, minibatch 250/250, validation error 8.130000 %
+     epoch 11, minibatch 250/250, test error of best model 8.090000 %
+epoch 12, minibatch 250/250, validation error 7.830000 %
+     epoch 12, minibatch 250/250, test error of best model 7.940000 %
+epoch 13, minibatch 250/250, validation error 7.600000 %
+     epoch 13, minibatch 250/250, test error of best model 7.690000 %
+epoch 14, minibatch 250/250, validation error 7.470000 %
+     epoch 14, minibatch 250/250, test error of best model 7.570000 %
+epoch 15, minibatch 250/250, validation error 7.280000 %
+     epoch 15, minibatch 250/250, test error of best model 7.370000 %
+epoch 16, minibatch 250/250, validation error 7.070000 %
+     epoch 16, minibatch 250/250, test error of best model 7.210000 %
+epoch 17, minibatch 250/250, validation error 6.900000 %
+     epoch 17, minibatch 250/250, test error of best model 7.060000 %
+epoch 18, minibatch 250/250, validation error 6.800000 %
+     epoch 18, minibatch 250/250, test error of best model 6.850000 %
+epoch 19, minibatch 250/250, validation error 6.680000 %
+     epoch 19, minibatch 250/250, test error of best model 6.760000 %
+epoch 20, minibatch 250/250, validation error 6.530000 %
+     epoch 20, minibatch 250/250, test error of best model 6.610000 %
+epoch 21, minibatch 250/250, validation error 6.430000 %
+     epoch 21, minibatch 250/250, test error of best model 6.460000 %
+epoch 22, minibatch 250/250, validation error 6.300000 %
+     epoch 22, minibatch 250/250, test error of best model 6.370000 %
+epoch 23, minibatch 250/250, validation error 6.120000 %
+     epoch 23, minibatch 250/250, test error of best model 6.300000 %
+epoch 24, minibatch 250/250, validation error 5.990000 %
+     epoch 24, minibatch 250/250, test error of best model 6.210000 %
+epoch 25, minibatch 250/250, validation error 5.840000 %
+     epoch 25, minibatch 250/250, test error of best model 6.070000 %
+epoch 26, minibatch 250/250, validation error 5.720000 %
+     epoch 26, minibatch 250/250, test error of best model 5.940000 %
+epoch 27, minibatch 250/250, validation error 5.590000 %
+     epoch 27, minibatch 250/250, test error of best model 5.860000 %
+epoch 28, minibatch 250/250, validation error 5.460000 %
+     epoch 28, minibatch 250/250, test error of best model 5.740000 %
+epoch 29, minibatch 250/250, validation error 5.380000 %
+     epoch 29, minibatch 250/250, test error of best model 5.680000 %
+epoch 30, minibatch 250/250, validation error 5.270000 %
+     epoch 30, minibatch 250/250, test error of best model 5.530000 %
+epoch 31, minibatch 250/250, validation error 5.100000 %
+     epoch 31, minibatch 250/250, test error of best model 5.450000 %
+epoch 32, minibatch 250/250, validation error 5.010000 %
+     epoch 32, minibatch 250/250, test error of best model 5.360000 %
+epoch 33, minibatch 250/250, validation error 4.860000 %
+     epoch 33, minibatch 250/250, test error of best model 5.310000 %
+epoch 34, minibatch 250/250, validation error 4.830000 %
+     epoch 34, minibatch 250/250, test error of best model 5.240000 %
+epoch 35, minibatch 250/250, validation error 4.710000 %
+     epoch 35, minibatch 250/250, test error of best model 5.170000 %
+epoch 36, minibatch 250/250, validation error 4.630000 %
+     epoch 36, minibatch 250/250, test error of best model 5.060000 %
+epoch 37, minibatch 250/250, validation error 4.580000 %
+     epoch 37, minibatch 250/250, test error of best model 4.950000 %
+epoch 38, minibatch 250/250, validation error 4.510000 %
+     epoch 38, minibatch 250/250, test error of best model 4.900000 %
+epoch 39, minibatch 250/250, validation error 4.460000 %
+     epoch 39, minibatch 250/250, test error of best model 4.850000 %
+epoch 40, minibatch 250/250, validation error 4.360000 %
+     epoch 40, minibatch 250/250, test error of best model 4.760000 %
+epoch 41, minibatch 250/250, validation error 4.330000 %
+     epoch 41, minibatch 250/250, test error of best model 4.700000 %
+epoch 42, minibatch 250/250, validation error 4.260000 %
+     epoch 42, minibatch 250/250, test error of best model 4.650000 %
+epoch 43, minibatch 250/250, validation error 4.230000 %
+     epoch 43, minibatch 250/250, test error of best model 4.620000 %
+epoch 44, minibatch 250/250, validation error 4.190000 %
+     epoch 44, minibatch 250/250, test error of best model 4.540000 %
+epoch 45, minibatch 250/250, validation error 4.170000 %
+     epoch 45, minibatch 250/250, test error of best model 4.500000 %
+epoch 46, minibatch 250/250, validation error 4.170000 %
+epoch 47, minibatch 250/250, validation error 4.070000 %
+     epoch 47, minibatch 250/250, test error of best model 4.380000 %
+epoch 48, minibatch 250/250, validation error 3.980000 %
+     epoch 48, minibatch 250/250, test error of best model 4.370000 %
+epoch 49, minibatch 250/250, validation error 3.850000 %
+     epoch 49, minibatch 250/250, test error of best model 4.330000 %
+epoch 50, minibatch 250/250, validation error 3.780000 %
+     epoch 50, minibatch 250/250, test error of best model 4.280000 %
+epoch 51, minibatch 250/250, validation error 3.730000 %
+     epoch 51, minibatch 250/250, test error of best model 4.270000 %
+epoch 52, minibatch 250/250, validation error 3.690000 %
+     epoch 52, minibatch 250/250, test error of best model 4.220000 %
+epoch 53, minibatch 250/250, validation error 3.640000 %
+     epoch 53, minibatch 250/250, test error of best model 4.200000 %
+epoch 54, minibatch 250/250, validation error 3.630000 %
+     epoch 54, minibatch 250/250, test error of best model 4.140000 %
+epoch 55, minibatch 250/250, validation error 3.560000 %
+     epoch 55, minibatch 250/250, test error of best model 4.030000 %
+epoch 56, minibatch 250/250, validation error 3.480000 %
+     epoch 56, minibatch 250/250, test error of best model 4.000000 %
+epoch 57, minibatch 250/250, validation error 3.420000 %
+     epoch 57, minibatch 250/250, test error of best model 3.960000 %
+epoch 58, minibatch 250/250, validation error 3.420000 %
+epoch 59, minibatch 250/250, validation error 3.400000 %
+     epoch 59, minibatch 250/250, test error of best model 3.830000 %
+epoch 60, minibatch 250/250, validation error 3.380000 %
+     epoch 60, minibatch 250/250, test error of best model 3.810000 %
+epoch 61, minibatch 250/250, validation error 3.360000 %
+     epoch 61, minibatch 250/250, test error of best model 3.780000 %
+epoch 62, minibatch 250/250, validation error 3.350000 %
+     epoch 62, minibatch 250/250, test error of best model 3.740000 %
+epoch 63, minibatch 250/250, validation error 3.280000 %
+     epoch 63, minibatch 250/250, test error of best model 3.710000 %
+epoch 64, minibatch 250/250, validation error 3.230000 %
+     epoch 64, minibatch 250/250, test error of best model 3.680000 %
+epoch 65, minibatch 250/250, validation error 3.170000 %
+     epoch 65, minibatch 250/250, test error of best model 3.620000 %
+epoch 66, minibatch 250/250, validation error 3.160000 %
+     epoch 66, minibatch 250/250, test error of best model 3.610000 %
+epoch 67, minibatch 250/250, validation error 3.140000 %
+     epoch 67, minibatch 250/250, test error of best model 3.580000 %
+epoch 68, minibatch 250/250, validation error 3.100000 %
+     epoch 68, minibatch 250/250, test error of best model 3.520000 %
+epoch 69, minibatch 250/250, validation error 3.080000 %
+     epoch 69, minibatch 250/250, test error of best model 3.470000 %
+epoch 70, minibatch 250/250, validation error 3.040000 %
+     epoch 70, minibatch 250/250, test error of best model 3.460000 %
+epoch 71, minibatch 250/250, validation error 3.040000 %
+epoch 72, minibatch 250/250, validation error 3.020000 %
+     epoch 72, minibatch 250/250, test error of best model 3.400000 %
+epoch 73, minibatch 250/250, validation error 3.000000 %
+     epoch 73, minibatch 250/250, test error of best model 3.390000 %
+epoch 74, minibatch 250/250, validation error 2.960000 %
+     epoch 74, minibatch 250/250, test error of best model 3.360000 %
+epoch 75, minibatch 250/250, validation error 2.960000 %
+epoch 76, minibatch 250/250, validation error 2.930000 %
+     epoch 76, minibatch 250/250, test error of best model 3.320000 %
+epoch 77, minibatch 250/250, validation error 2.900000 %
+     epoch 77, minibatch 250/250, test error of best model 3.280000 %
+epoch 78, minibatch 250/250, validation error 2.890000 %
+     epoch 78, minibatch 250/250, test error of best model 3.250000 %
+epoch 79, minibatch 250/250, validation error 2.900000 %
+epoch 80, minibatch 250/250, validation error 2.850000 %
+     epoch 80, minibatch 250/250, test error of best model 3.180000 %
+epoch 81, minibatch 250/250, validation error 2.820000 %
+     epoch 81, minibatch 250/250, test error of best model 3.120000 %
+epoch 82, minibatch 250/250, validation error 2.820000 %
+epoch 83, minibatch 250/250, validation error 2.810000 %
+     epoch 83, minibatch 250/250, test error of best model 3.080000 %
+epoch 84, minibatch 250/250, validation error 2.790000 %
+     epoch 84, minibatch 250/250, test error of best model 3.070000 %
+epoch 85, minibatch 250/250, validation error 2.790000 %
+     epoch 85, minibatch 250/250, test error of best model 3.040000 %
+epoch 86, minibatch 250/250, validation error 2.770000 %
+     epoch 86, minibatch 250/250, test error of best model 3.030000 %
+epoch 87, minibatch 250/250, validation error 2.780000 %
+epoch 88, minibatch 250/250, validation error 2.790000 %
+epoch 89, minibatch 250/250, validation error 2.780000 %
+epoch 90, minibatch 250/250, validation error 2.770000 %
+     epoch 90, minibatch 250/250, test error of best model 2.940000 %
+epoch 91, minibatch 250/250, validation error 2.760000 %
+     epoch 91, minibatch 250/250, test error of best model 2.930000 %
+epoch 92, minibatch 250/250, validation error 2.760000 %
+epoch 93, minibatch 250/250, validation error 2.760000 %
+epoch 94, minibatch 250/250, validation error 2.770000 %
+epoch 95, minibatch 250/250, validation error 2.760000 %
+epoch 96, minibatch 250/250, validation error 2.740000 %
+     epoch 96, minibatch 250/250, test error of best model 2.890000 %
+epoch 97, minibatch 250/250, validation error 2.710000 %
+     epoch 97, minibatch 250/250, test error of best model 2.860000 %
+epoch 98, minibatch 250/250, validation error 2.710000 %
+epoch 99, minibatch 250/250, validation error 2.700000 %
+     epoch 99, minibatch 250/250, test error of best model 2.850000 %
+epoch 100, minibatch 250/250, validation error 2.700000 %
+epoch 101, minibatch 250/250, validation error 2.700000 %
+epoch 102, minibatch 250/250, validation error 2.680000 %
+     epoch 102, minibatch 250/250, test error of best model 2.830000 %
+epoch 103, minibatch 250/250, validation error 2.670000 %
+     epoch 103, minibatch 250/250, test error of best model 2.830000 %
+epoch 104, minibatch 250/250, validation error 2.670000 %
+epoch 105, minibatch 250/250, validation error 2.670000 %
+epoch 106, minibatch 250/250, validation error 2.630000 %
+     epoch 106, minibatch 250/250, test error of best model 2.780000 %
+epoch 107, minibatch 250/250, validation error 2.610000 %
+     epoch 107, minibatch 250/250, test error of best model 2.770000 %
+epoch 108, minibatch 250/250, validation error 2.600000 %
+     epoch 108, minibatch 250/250, test error of best model 2.790000 %
+epoch 109, minibatch 250/250, validation error 2.590000 %
+     epoch 109, minibatch 250/250, test error of best model 2.760000 %
+epoch 110, minibatch 250/250, validation error 2.570000 %
+     epoch 110, minibatch 250/250, test error of best model 2.770000 %
+epoch 111, minibatch 250/250, validation error 2.560000 %
+     epoch 111, minibatch 250/250, test error of best model 2.730000 %
+epoch 112, minibatch 250/250, validation error 2.540000 %
+     epoch 112, minibatch 250/250, test error of best model 2.700000 %
+epoch 113, minibatch 250/250, validation error 2.540000 %
+epoch 114, minibatch 250/250, validation error 2.540000 %
+epoch 115, minibatch 250/250, validation error 2.530000 %
+     epoch 115, minibatch 250/250, test error of best model 2.690000 %
+epoch 116, minibatch 250/250, validation error 2.500000 %
+     epoch 116, minibatch 250/250, test error of best model 2.680000 %
+epoch 117, minibatch 250/250, validation error 2.480000 %
+     epoch 117, minibatch 250/250, test error of best model 2.680000 %
+epoch 118, minibatch 250/250, validation error 2.480000 %
+epoch 119, minibatch 250/250, validation error 2.470000 %
+     epoch 119, minibatch 250/250, test error of best model 2.670000 %
+epoch 120, minibatch 250/250, validation error 2.470000 %
+epoch 121, minibatch 250/250, validation error 2.470000 %
+epoch 122, minibatch 250/250, validation error 2.440000 %
+     epoch 122, minibatch 250/250, test error of best model 2.620000 %
+epoch 123, minibatch 250/250, validation error 2.430000 %
+     epoch 123, minibatch 250/250, test error of best model 2.620000 %
+epoch 124, minibatch 250/250, validation error 2.440000 %
+epoch 125, minibatch 250/250, validation error 2.430000 %
+epoch 126, minibatch 250/250, validation error 2.410000 %
+     epoch 126, minibatch 250/250, test error of best model 2.610000 %
+epoch 127, minibatch 250/250, validation error 2.390000 %
+     epoch 127, minibatch 250/250, test error of best model 2.610000 %
+epoch 128, minibatch 250/250, validation error 2.390000 %
+epoch 129, minibatch 250/250, validation error 2.390000 %
+epoch 130, minibatch 250/250, validation error 2.380000 %
+     epoch 130, minibatch 250/250, test error of best model 2.550000 %
+epoch 131, minibatch 250/250, validation error 2.380000 %
+epoch 132, minibatch 250/250, validation error 2.390000 %
+epoch 133, minibatch 250/250, validation error 2.380000 %
+epoch 134, minibatch 250/250, validation error 2.360000 %
+     epoch 134, minibatch 250/250, test error of best model 2.520000 %
+epoch 135, minibatch 250/250, validation error 2.350000 %
+     epoch 135, minibatch 250/250, test error of best model 2.510000 %
+epoch 136, minibatch 250/250, validation error 2.340000 %
+     epoch 136, minibatch 250/250, test error of best model 2.480000 %
+epoch 137, minibatch 250/250, validation error 2.340000 %
+epoch 138, minibatch 250/250, validation error 2.320000 %
+     epoch 138, minibatch 250/250, test error of best model 2.470000 %
+epoch 139, minibatch 250/250, validation error 2.310000 %
+     epoch 139, minibatch 250/250, test error of best model 2.440000 %
+epoch 140, minibatch 250/250, validation error 2.290000 %
+     epoch 140, minibatch 250/250, test error of best model 2.430000 %
+epoch 141, minibatch 250/250, validation error 2.300000 %
+epoch 142, minibatch 250/250, validation error 2.290000 %
+epoch 143, minibatch 250/250, validation error 2.290000 %
+epoch 144, minibatch 250/250, validation error 2.290000 %
+epoch 145, minibatch 250/250, validation error 2.290000 %
+epoch 146, minibatch 250/250, validation error 2.300000 %
+epoch 147, minibatch 250/250, validation error 2.290000 %
+epoch 148, minibatch 250/250, validation error 2.290000 %
+epoch 149, minibatch 250/250, validation error 2.290000 %
+epoch 150, minibatch 250/250, validation error 2.290000 %
+epoch 151, minibatch 250/250, validation error 2.280000 %
+     epoch 151, minibatch 250/250, test error of best model 2.350000 %
+epoch 152, minibatch 250/250, validation error 2.280000 %
+epoch 153, minibatch 250/250, validation error 2.280000 %
+epoch 154, minibatch 250/250, validation error 2.270000 %
+     epoch 154, minibatch 250/250, test error of best model 2.330000 %
+epoch 155, minibatch 250/250, validation error 2.270000 %
+epoch 156, minibatch 250/250, validation error 2.270000 %
+epoch 157, minibatch 250/250, validation error 2.250000 %
+     epoch 157, minibatch 250/250, test error of best model 2.290000 %
+epoch 158, minibatch 250/250, validation error 2.260000 %
+epoch 159, minibatch 250/250, validation error 2.260000 %
+epoch 160, minibatch 250/250, validation error 2.260000 %
+epoch 161, minibatch 250/250, validation error 2.250000 %
+epoch 162, minibatch 250/250, validation error 2.250000 %
+epoch 163, minibatch 250/250, validation error 2.240000 %
+     epoch 163, minibatch 250/250, test error of best model 2.230000 %
+epoch 164, minibatch 250/250, validation error 2.230000 %
+     epoch 164, minibatch 250/250, test error of best model 2.230000 %
+epoch 165, minibatch 250/250, validation error 2.220000 %
+     epoch 165, minibatch 250/250, test error of best model 2.220000 %
+epoch 166, minibatch 250/250, validation error 2.220000 %
+epoch 167, minibatch 250/250, validation error 2.220000 %
+epoch 168, minibatch 250/250, validation error 2.220000 %
+epoch 169, minibatch 250/250, validation error 2.220000 %
+epoch 170, minibatch 250/250, validation error 2.210000 %
+     epoch 170, minibatch 250/250, test error of best model 2.220000 %
+epoch 171, minibatch 250/250, validation error 2.190000 %
+     epoch 171, minibatch 250/250, test error of best model 2.230000 %
+epoch 172, minibatch 250/250, validation error 2.180000 %
+     epoch 172, minibatch 250/250, test error of best model 2.240000 %
+epoch 173, minibatch 250/250, validation error 2.180000 %
+epoch 174, minibatch 250/250, validation error 2.180000 %
+epoch 175, minibatch 250/250, validation error 2.170000 %
+     epoch 175, minibatch 250/250, test error of best model 2.210000 %
+epoch 176, minibatch 250/250, validation error 2.170000 %
+epoch 177, minibatch 250/250, validation error 2.150000 %
+     epoch 177, minibatch 250/250, test error of best model 2.180000 %
+epoch 178, minibatch 250/250, validation error 2.150000 %
+epoch 179, minibatch 250/250, validation error 2.130000 %
+     epoch 179, minibatch 250/250, test error of best model 2.180000 %
+epoch 180, minibatch 250/250, validation error 2.130000 %
+epoch 181, minibatch 250/250, validation error 2.120000 %
+     epoch 181, minibatch 250/250, test error of best model 2.180000 %
+epoch 182, minibatch 250/250, validation error 2.120000 %
+epoch 183, minibatch 250/250, validation error 2.120000 %
+epoch 184, minibatch 250/250, validation error 2.110000 %
+     epoch 184, minibatch 250/250, test error of best model 2.180000 %
+epoch 185, minibatch 250/250, validation error 2.120000 %
+epoch 186, minibatch 250/250, validation error 2.120000 %
+epoch 187, minibatch 250/250, validation error 2.130000 %
+epoch 188, minibatch 250/250, validation error 2.130000 %
+epoch 189, minibatch 250/250, validation error 2.130000 %
+epoch 190, minibatch 250/250, validation error 2.130000 %
+epoch 191, minibatch 250/250, validation error 2.130000 %
+epoch 192, minibatch 250/250, validation error 2.130000 %
+epoch 193, minibatch 250/250, validation error 2.130000 %
+epoch 194, minibatch 250/250, validation error 2.130000 %
+epoch 195, minibatch 250/250, validation error 2.120000 %
+epoch 196, minibatch 250/250, validation error 2.130000 %
+epoch 197, minibatch 250/250, validation error 2.130000 %
+epoch 198, minibatch 250/250, validation error 2.130000 %
+epoch 199, minibatch 250/250, validation error 2.130000 %
+epoch 200, minibatch 250/250, validation error 2.120000 %
+epoch 201, minibatch 250/250, validation error 2.120000 %
+epoch 202, minibatch 250/250, validation error 2.120000 %
+epoch 203, minibatch 250/250, validation error 2.120000 %
+epoch 204, minibatch 250/250, validation error 2.110000 %
+epoch 205, minibatch 250/250, validation error 2.120000 %
+epoch 206, minibatch 250/250, validation error 2.120000 %
+epoch 207, minibatch 250/250, validation error 2.120000 %
+epoch 208, minibatch 250/250, validation error 2.120000 %
+epoch 209, minibatch 250/250, validation error 2.100000 %
+     epoch 209, minibatch 250/250, test error of best model 2.050000 %
+epoch 210, minibatch 250/250, validation error 2.100000 %
+epoch 211, minibatch 250/250, validation error 2.100000 %
+epoch 212, minibatch 250/250, validation error 2.100000 %
+epoch 213, minibatch 250/250, validation error 2.090000 %
+     epoch 213, minibatch 250/250, test error of best model 2.060000 %
+epoch 214, minibatch 250/250, validation error 2.090000 %
+epoch 215, minibatch 250/250, validation error 2.090000 %
+epoch 216, minibatch 250/250, validation error 2.090000 %
+epoch 217, minibatch 250/250, validation error 2.070000 %
+     epoch 217, minibatch 250/250, test error of best model 2.060000 %
+epoch 218, minibatch 250/250, validation error 2.070000 %
+epoch 219, minibatch 250/250, validation error 2.060000 %
+     epoch 219, minibatch 250/250, test error of best model 2.060000 %
+epoch 220, minibatch 250/250, validation error 2.060000 %
+epoch 221, minibatch 250/250, validation error 2.060000 %
+epoch 222, minibatch 250/250, validation error 2.040000 %
+     epoch 222, minibatch 250/250, test error of best model 2.020000 %
+epoch 223, minibatch 250/250, validation error 2.030000 %
+     epoch 223, minibatch 250/250, test error of best model 2.020000 %
+epoch 224, minibatch 250/250, validation error 2.030000 %
+epoch 225, minibatch 250/250, validation error 2.020000 %
+     epoch 225, minibatch 250/250, test error of best model 2.020000 %
+epoch 226, minibatch 250/250, validation error 2.010000 %
+     epoch 226, minibatch 250/250, test error of best model 2.020000 %
+epoch 227, minibatch 250/250, validation error 2.010000 %
+epoch 228, minibatch 250/250, validation error 2.010000 %
+epoch 229, minibatch 250/250, validation error 2.010000 %
+epoch 230, minibatch 250/250, validation error 2.010000 %
+epoch 231, minibatch 250/250, validation error 2.010000 %
+epoch 232, minibatch 250/250, validation error 2.010000 %
+epoch 233, minibatch 250/250, validation error 2.010000 %
+epoch 234, minibatch 250/250, validation error 2.010000 %
+epoch 235, minibatch 250/250, validation error 2.000000 %
+     epoch 235, minibatch 250/250, test error of best model 1.970000 %
+epoch 236, minibatch 250/250, validation error 1.980000 %
+     epoch 236, minibatch 250/250, test error of best model 1.970000 %
+epoch 237, minibatch 250/250, validation error 1.970000 %
+     epoch 237, minibatch 250/250, test error of best model 1.970000 %
+epoch 238, minibatch 250/250, validation error 1.970000 %
+epoch 239, minibatch 250/250, validation error 1.970000 %
+epoch 240, minibatch 250/250, validation error 1.970000 %
+epoch 241, minibatch 250/250, validation error 1.960000 %
+     epoch 241, minibatch 250/250, test error of best model 1.970000 %
+epoch 242, minibatch 250/250, validation error 1.950000 %
+     epoch 242, minibatch 250/250, test error of best model 1.970000 %
+epoch 243, minibatch 250/250, validation error 1.950000 %
+epoch 244, minibatch 250/250, validation error 1.950000 %
+epoch 245, minibatch 250/250, validation error 1.950000 %
+epoch 246, minibatch 250/250, validation error 1.950000 %
+epoch 247, minibatch 250/250, validation error 1.930000 %
+     epoch 247, minibatch 250/250, test error of best model 1.990000 %
+epoch 248, minibatch 250/250, validation error 1.920000 %
+     epoch 248, minibatch 250/250, test error of best model 1.980000 %
+epoch 249, minibatch 250/250, validation error 1.920000 %
+epoch 250, minibatch 250/250, validation error 1.920000 %
+epoch 251, minibatch 250/250, validation error 1.920000 %
+epoch 252, minibatch 250/250, validation error 1.920000 %
+epoch 253, minibatch 250/250, validation error 1.920000 %
+epoch 254, minibatch 250/250, validation error 1.920000 %
+epoch 255, minibatch 250/250, validation error 1.920000 %
+epoch 256, minibatch 250/250, validation error 1.920000 %
+epoch 257, minibatch 250/250, validation error 1.910000 %
+     epoch 257, minibatch 250/250, test error of best model 1.980000 %
+epoch 258, minibatch 250/250, validation error 1.910000 %
+epoch 259, minibatch 250/250, validation error 1.910000 %
+epoch 260, minibatch 250/250, validation error 1.910000 %
+epoch 261, minibatch 250/250, validation error 1.900000 %
+     epoch 261, minibatch 250/250, test error of best model 1.970000 %
+epoch 262, minibatch 250/250, validation error 1.900000 %
+epoch 263, minibatch 250/250, validation error 1.900000 %
+epoch 264, minibatch 250/250, validation error 1.900000 %
+epoch 265, minibatch 250/250, validation error 1.900000 %
+epoch 266, minibatch 250/250, validation error 1.900000 %
+epoch 267, minibatch 250/250, validation error 1.900000 %
+epoch 268, minibatch 250/250, validation error 1.910000 %
+epoch 269, minibatch 250/250, validation error 1.910000 %
+epoch 270, minibatch 250/250, validation error 1.910000 %
+epoch 271, minibatch 250/250, validation error 1.890000 %
+     epoch 271, minibatch 250/250, test error of best model 1.950000 %
+epoch 272, minibatch 250/250, validation error 1.890000 %
+epoch 273, minibatch 250/250, validation error 1.890000 %
+epoch 274, minibatch 250/250, validation error 1.890000 %
+epoch 275, minibatch 250/250, validation error 1.890000 %
+epoch 276, minibatch 250/250, validation error 1.890000 %
+epoch 277, minibatch 250/250, validation error 1.890000 %
+epoch 278, minibatch 250/250, validation error 1.900000 %
+epoch 279, minibatch 250/250, validation error 1.890000 %
+epoch 280, minibatch 250/250, validation error 1.900000 %
+epoch 281, minibatch 250/250, validation error 1.890000 %
+epoch 282, minibatch 250/250, validation error 1.880000 %
+     epoch 282, minibatch 250/250, test error of best model 1.940000 %
+epoch 283, minibatch 250/250, validation error 1.880000 %
+epoch 284, minibatch 250/250, validation error 1.880000 %
+epoch 285, minibatch 250/250, validation error 1.880000 %
+epoch 286, minibatch 250/250, validation error 1.880000 %
+epoch 287, minibatch 250/250, validation error 1.880000 %
+epoch 288, minibatch 250/250, validation error 1.880000 %
+epoch 289, minibatch 250/250, validation error 1.880000 %
+epoch 290, minibatch 250/250, validation error 1.880000 %
+epoch 291, minibatch 250/250, validation error 1.880000 %
+epoch 292, minibatch 250/250, validation error 1.880000 %
+epoch 293, minibatch 250/250, validation error 1.880000 %
+epoch 294, minibatch 250/250, validation error 1.870000 %
+     epoch 294, minibatch 250/250, test error of best model 1.910000 %
+epoch 295, minibatch 250/250, validation error 1.870000 %
+epoch 296, minibatch 250/250, validation error 1.870000 %
+epoch 297, minibatch 250/250, validation error 1.870000 %
+epoch 298, minibatch 250/250, validation error 1.880000 %
+epoch 299, minibatch 250/250, validation error 1.880000 %
+epoch 300, minibatch 250/250, validation error 1.880000 %
+epoch 301, minibatch 250/250, validation error 1.880000 %
+epoch 302, minibatch 250/250, validation error 1.880000 %
+epoch 303, minibatch 250/250, validation error 1.880000 %
+epoch 304, minibatch 250/250, validation error 1.890000 %
+epoch 305, minibatch 250/250, validation error 1.890000 %
+epoch 306, minibatch 250/250, validation error 1.890000 %
+epoch 307, minibatch 250/250, validation error 1.890000 %
+epoch 308, minibatch 250/250, validation error 1.890000 %
+epoch 309, minibatch 250/250, validation error 1.890000 %
+epoch 310, minibatch 250/250, validation error 1.890000 %
+epoch 311, minibatch 250/250, validation error 1.890000 %
+epoch 312, minibatch 250/250, validation error 1.890000 %
+epoch 313, minibatch 250/250, validation error 1.890000 %
+epoch 314, minibatch 250/250, validation error 1.880000 %
+epoch 315, minibatch 250/250, validation error 1.890000 %
+epoch 316, minibatch 250/250, validation error 1.880000 %
+epoch 317, minibatch 250/250, validation error 1.880000 %
+epoch 318, minibatch 250/250, validation error 1.880000 %
+epoch 319, minibatch 250/250, validation error 1.870000 %
+epoch 320, minibatch 250/250, validation error 1.870000 %
+epoch 321, minibatch 250/250, validation error 1.880000 %
+epoch 322, minibatch 250/250, validation error 1.870000 %
+epoch 323, minibatch 250/250, validation error 1.870000 %
+epoch 324, minibatch 250/250, validation error 1.880000 %
+epoch 325, minibatch 250/250, validation error 1.880000 %
+epoch 326, minibatch 250/250, validation error 1.890000 %
+epoch 327, minibatch 250/250, validation error 1.890000 %
+epoch 328, minibatch 250/250, validation error 1.890000 %
+epoch 329, minibatch 250/250, validation error 1.890000 %
+epoch 330, minibatch 250/250, validation error 1.890000 %
+epoch 331, minibatch 250/250, validation error 1.890000 %
+epoch 332, minibatch 250/250, validation error 1.890000 %
+epoch 333, minibatch 250/250, validation error 1.890000 %
+epoch 334, minibatch 250/250, validation error 1.900000 %
+epoch 335, minibatch 250/250, validation error 1.890000 %
+epoch 336, minibatch 250/250, validation error 1.890000 %
+epoch 337, minibatch 250/250, validation error 1.880000 %
+epoch 338, minibatch 250/250, validation error 1.880000 %
+epoch 339, minibatch 250/250, validation error 1.880000 %
+epoch 340, minibatch 250/250, validation error 1.880000 %
+epoch 341, minibatch 250/250, validation error 1.880000 %
+epoch 342, minibatch 250/250, validation error 1.880000 %
+epoch 343, minibatch 250/250, validation error 1.870000 %
+epoch 344, minibatch 250/250, validation error 1.870000 %
+epoch 345, minibatch 250/250, validation error 1.870000 %
+epoch 346, minibatch 250/250, validation error 1.870000 %
+epoch 347, minibatch 250/250, validation error 1.870000 %
+epoch 348, minibatch 250/250, validation error 1.870000 %
+epoch 349, minibatch 250/250, validation error 1.870000 %
+epoch 350, minibatch 250/250, validation error 1.870000 %
+epoch 351, minibatch 250/250, validation error 1.880000 %
+epoch 352, minibatch 250/250, validation error 1.880000 %
+epoch 353, minibatch 250/250, validation error 1.880000 %
+epoch 354, minibatch 250/250, validation error 1.880000 %
+epoch 355, minibatch 250/250, validation error 1.880000 %
+epoch 356, minibatch 250/250, validation error 1.880000 %
+epoch 357, minibatch 250/250, validation error 1.880000 %
+epoch 358, minibatch 250/250, validation error 1.880000 %
+epoch 359, minibatch 250/250, validation error 1.880000 %
+epoch 360, minibatch 250/250, validation error 1.890000 %
+epoch 361, minibatch 250/250, validation error 1.890000 %
+epoch 362, minibatch 250/250, validation error 1.890000 %
+epoch 363, minibatch 250/250, validation error 1.890000 %
+epoch 364, minibatch 250/250, validation error 1.890000 %
+epoch 365, minibatch 250/250, validation error 1.890000 %
+epoch 366, minibatch 250/250, validation error 1.890000 %
+epoch 367, minibatch 250/250, validation error 1.890000 %
+epoch 368, minibatch 250/250, validation error 1.890000 %
+epoch 369, minibatch 250/250, validation error 1.890000 %
+epoch 370, minibatch 250/250, validation error 1.890000 %
+epoch 371, minibatch 250/250, validation error 1.890000 %
+epoch 372, minibatch 250/250, validation error 1.890000 %
+epoch 373, minibatch 250/250, validation error 1.890000 %
+epoch 374, minibatch 250/250, validation error 1.890000 %
+epoch 375, minibatch 250/250, validation error 1.890000 %
+epoch 376, minibatch 250/250, validation error 1.890000 %
+epoch 377, minibatch 250/250, validation error 1.890000 %
+epoch 378, minibatch 250/250, validation error 1.890000 %
+epoch 379, minibatch 250/250, validation error 1.880000 %
+epoch 380, minibatch 250/250, validation error 1.880000 %
+epoch 381, minibatch 250/250, validation error 1.900000 %
+epoch 382, minibatch 250/250, validation error 1.900000 %
+epoch 383, minibatch 250/250, validation error 1.890000 %
+epoch 384, minibatch 250/250, validation error 1.880000 %
+epoch 385, minibatch 250/250, validation error 1.880000 %
+epoch 386, minibatch 250/250, validation error 1.870000 %
+epoch 387, minibatch 250/250, validation error 1.880000 %
+epoch 388, minibatch 250/250, validation error 1.880000 %
+epoch 389, minibatch 250/250, validation error 1.870000 %
+epoch 390, minibatch 250/250, validation error 1.880000 %
+epoch 391, minibatch 250/250, validation error 1.880000 %
+epoch 392, minibatch 250/250, validation error 1.880000 %
+epoch 393, minibatch 250/250, validation error 1.880000 %
+epoch 394, minibatch 250/250, validation error 1.880000 %
+epoch 395, minibatch 250/250, validation error 1.880000 %
+epoch 396, minibatch 250/250, validation error 1.880000 %
+epoch 397, minibatch 250/250, validation error 1.880000 %
+epoch 398, minibatch 250/250, validation error 1.880000 %
+epoch 399, minibatch 250/250, validation error 1.870000 %
+epoch 400, minibatch 250/250, validation error 1.870000 %
+epoch 401, minibatch 250/250, validation error 1.870000 %
+epoch 402, minibatch 250/250, validation error 1.870000 %
+epoch 403, minibatch 250/250, validation error 1.870000 %
+epoch 404, minibatch 250/250, validation error 1.860000 %
+     epoch 404, minibatch 250/250, test error of best model 1.920000 %
+epoch 405, minibatch 250/250, validation error 1.860000 %
+epoch 406, minibatch 250/250, validation error 1.860000 %
+epoch 407, minibatch 250/250, validation error 1.870000 %
+epoch 408, minibatch 250/250, validation error 1.860000 %
+epoch 409, minibatch 250/250, validation error 1.860000 %
+epoch 410, minibatch 250/250, validation error 1.860000 %
+epoch 411, minibatch 250/250, validation error 1.860000 %
+epoch 412, minibatch 250/250, validation error 1.860000 %
+epoch 413, minibatch 250/250, validation error 1.860000 %
+epoch 414, minibatch 250/250, validation error 1.850000 %
+     epoch 414, minibatch 250/250, test error of best model 1.920000 %
+epoch 415, minibatch 250/250, validation error 1.850000 %
+epoch 416, minibatch 250/250, validation error 1.850000 %
+epoch 417, minibatch 250/250, validation error 1.840000 %
+     epoch 417, minibatch 250/250, test error of best model 1.920000 %
+epoch 418, minibatch 250/250, validation error 1.840000 %
+epoch 419, minibatch 250/250, validation error 1.840000 %
+epoch 420, minibatch 250/250, validation error 1.830000 %
+     epoch 420, minibatch 250/250, test error of best model 1.920000 %
+epoch 421, minibatch 250/250, validation error 1.830000 %
+epoch 422, minibatch 250/250, validation error 1.830000 %
+epoch 423, minibatch 250/250, validation error 1.830000 %
+epoch 424, minibatch 250/250, validation error 1.830000 %
+epoch 425, minibatch 250/250, validation error 1.830000 %
+epoch 426, minibatch 250/250, validation error 1.830000 %
+epoch 427, minibatch 250/250, validation error 1.830000 %
+epoch 428, minibatch 250/250, validation error 1.830000 %
+epoch 429, minibatch 250/250, validation error 1.830000 %
+epoch 430, minibatch 250/250, validation error 1.830000 %
+epoch 431, minibatch 250/250, validation error 1.830000 %
+epoch 432, minibatch 250/250, validation error 1.830000 %
+epoch 433, minibatch 250/250, validation error 1.830000 %
+epoch 434, minibatch 250/250, validation error 1.830000 %
+epoch 435, minibatch 250/250, validation error 1.820000 %
+     epoch 435, minibatch 250/250, test error of best model 1.880000 %
+epoch 436, minibatch 250/250, validation error 1.820000 %
+epoch 437, minibatch 250/250, validation error 1.820000 %
+epoch 438, minibatch 250/250, validation error 1.820000 %
+epoch 439, minibatch 250/250, validation error 1.820000 %
+epoch 440, minibatch 250/250, validation error 1.820000 %
+epoch 441, minibatch 250/250, validation error 1.820000 %
+epoch 442, minibatch 250/250, validation error 1.820000 %
+epoch 443, minibatch 250/250, validation error 1.820000 %
+epoch 444, minibatch 250/250, validation error 1.820000 %
+epoch 445, minibatch 250/250, validation error 1.820000 %
+epoch 446, minibatch 250/250, validation error 1.820000 %
+epoch 447, minibatch 250/250, validation error 1.820000 %
+epoch 448, minibatch 250/250, validation error 1.820000 %
+epoch 449, minibatch 250/250, validation error 1.820000 %
+epoch 450, minibatch 250/250, validation error 1.820000 %
+epoch 451, minibatch 250/250, validation error 1.820000 %
+epoch 452, minibatch 250/250, validation error 1.820000 %
+epoch 453, minibatch 250/250, validation error 1.820000 %
+epoch 454, minibatch 250/250, validation error 1.820000 %
+epoch 455, minibatch 250/250, validation error 1.820000 %
+epoch 456, minibatch 250/250, validation error 1.820000 %
+epoch 457, minibatch 250/250, validation error 1.820000 %
+epoch 458, minibatch 250/250, validation error 1.820000 %
+epoch 459, minibatch 250/250, validation error 1.820000 %
+epoch 460, minibatch 250/250, validation error 1.820000 %
+epoch 461, minibatch 250/250, validation error 1.820000 %
+epoch 462, minibatch 250/250, validation error 1.820000 %
+epoch 463, minibatch 250/250, validation error 1.820000 %
+epoch 464, minibatch 250/250, validation error 1.820000 %
+epoch 465, minibatch 250/250, validation error 1.820000 %
+epoch 466, minibatch 250/250, validation error 1.820000 %
+epoch 467, minibatch 250/250, validation error 1.820000 %
+epoch 468, minibatch 250/250, validation error 1.820000 %
+epoch 469, minibatch 250/250, validation error 1.830000 %
+epoch 470, minibatch 250/250, validation error 1.820000 %
+epoch 471, minibatch 250/250, validation error 1.830000 %
+epoch 472, minibatch 250/250, validation error 1.830000 %
+epoch 473, minibatch 250/250, validation error 1.830000 %
+epoch 474, minibatch 250/250, validation error 1.830000 %
+epoch 475, minibatch 250/250, validation error 1.830000 %
+epoch 476, minibatch 250/250, validation error 1.830000 %
+epoch 477, minibatch 250/250, validation error 1.830000 %
+epoch 478, minibatch 250/250, validation error 1.840000 %
+epoch 479, minibatch 250/250, validation error 1.840000 %
+epoch 480, minibatch 250/250, validation error 1.840000 %
+epoch 481, minibatch 250/250, validation error 1.840000 %
+epoch 482, minibatch 250/250, validation error 1.840000 %
+epoch 483, minibatch 250/250, validation error 1.840000 %
+epoch 484, minibatch 250/250, validation error 1.840000 %
+epoch 485, minibatch 250/250, validation error 1.840000 %
+epoch 486, minibatch 250/250, validation error 1.840000 %
+epoch 487, minibatch 250/250, validation error 1.840000 %
+epoch 488, minibatch 250/250, validation error 1.840000 %
+epoch 489, minibatch 250/250, validation error 1.840000 %
+epoch 490, minibatch 250/250, validation error 1.840000 %
+epoch 491, minibatch 250/250, validation error 1.840000 %
+epoch 492, minibatch 250/250, validation error 1.840000 %
+epoch 493, minibatch 250/250, validation error 1.840000 %
+epoch 494, minibatch 250/250, validation error 1.840000 %
+epoch 495, minibatch 250/250, validation error 1.840000 %
+epoch 496, minibatch 250/250, validation error 1.840000 %
+epoch 497, minibatch 250/250, validation error 1.840000 %
+epoch 498, minibatch 250/250, validation error 1.840000 %
+epoch 499, minibatch 250/250, validation error 1.840000 %
+epoch 500, minibatch 250/250, validation error 1.840000 %
+epoch 501, minibatch 250/250, validation error 1.840000 %
+epoch 502, minibatch 250/250, validation error 1.840000 %
+epoch 503, minibatch 250/250, validation error 1.840000 %
+epoch 504, minibatch 250/250, validation error 1.840000 %
+epoch 505, minibatch 250/250, validation error 1.840000 %
+epoch 506, minibatch 250/250, validation error 1.840000 %
+epoch 507, minibatch 250/250, validation error 1.840000 %
+epoch 508, minibatch 250/250, validation error 1.840000 %
+epoch 509, minibatch 250/250, validation error 1.840000 %
+epoch 510, minibatch 250/250, validation error 1.840000 %
+epoch 511, minibatch 250/250, validation error 1.840000 %
+epoch 512, minibatch 250/250, validation error 1.840000 %
+epoch 513, minibatch 250/250, validation error 1.840000 %
+epoch 514, minibatch 250/250, validation error 1.840000 %
+epoch 515, minibatch 250/250, validation error 1.840000 %
+epoch 516, minibatch 250/250, validation error 1.840000 %
+epoch 517, minibatch 250/250, validation error 1.840000 %
+epoch 518, minibatch 250/250, validation error 1.840000 %
+epoch 519, minibatch 250/250, validation error 1.840000 %
+epoch 520, minibatch 250/250, validation error 1.840000 %
+epoch 521, minibatch 250/250, validation error 1.840000 %
+epoch 522, minibatch 250/250, validation error 1.840000 %
+epoch 523, minibatch 250/250, validation error 1.840000 %
+epoch 524, minibatch 250/250, validation error 1.840000 %
+epoch 525, minibatch 250/250, validation error 1.840000 %
+epoch 526, minibatch 250/250, validation error 1.840000 %
+epoch 527, minibatch 250/250, validation error 1.840000 %
+epoch 528, minibatch 250/250, validation error 1.840000 %
+epoch 529, minibatch 250/250, validation error 1.840000 %
+epoch 530, minibatch 250/250, validation error 1.840000 %
+epoch 531, minibatch 250/250, validation error 1.840000 %
+epoch 532, minibatch 250/250, validation error 1.840000 %
+epoch 533, minibatch 250/250, validation error 1.840000 %
+epoch 534, minibatch 250/250, validation error 1.840000 %
+epoch 535, minibatch 250/250, validation error 1.840000 %
+epoch 536, minibatch 250/250, validation error 1.840000 %
+epoch 537, minibatch 250/250, validation error 1.850000 %
+epoch 538, minibatch 250/250, validation error 1.850000 %
+epoch 539, minibatch 250/250, validation error 1.850000 %
+epoch 540, minibatch 250/250, validation error 1.850000 %
+epoch 541, minibatch 250/250, validation error 1.850000 %
+epoch 542, minibatch 250/250, validation error 1.840000 %
+epoch 543, minibatch 250/250, validation error 1.850000 %
+epoch 544, minibatch 250/250, validation error 1.850000 %
+epoch 545, minibatch 250/250, validation error 1.850000 %
+epoch 546, minibatch 250/250, validation error 1.850000 %
+epoch 547, minibatch 250/250, validation error 1.850000 %
+epoch 548, minibatch 250/250, validation error 1.850000 %
+epoch 549, minibatch 250/250, validation error 1.850000 %
+epoch 550, minibatch 250/250, validation error 1.850000 %
+epoch 551, minibatch 250/250, validation error 1.850000 %
+epoch 552, minibatch 250/250, validation error 1.850000 %
+epoch 553, minibatch 250/250, validation error 1.850000 %
+epoch 554, minibatch 250/250, validation error 1.850000 %
+epoch 555, minibatch 250/250, validation error 1.850000 %
+epoch 556, minibatch 250/250, validation error 1.850000 %
+epoch 557, minibatch 250/250, validation error 1.850000 %
+epoch 558, minibatch 250/250, validation error 1.850000 %
+epoch 559, minibatch 250/250, validation error 1.850000 %
+epoch 560, minibatch 250/250, validation error 1.850000 %
+epoch 561, minibatch 250/250, validation error 1.850000 %
+epoch 562, minibatch 250/250, validation error 1.850000 %
+epoch 563, minibatch 250/250, validation error 1.850000 %
+epoch 564, minibatch 250/250, validation error 1.850000 %
+epoch 565, minibatch 250/250, validation error 1.850000 %
+epoch 566, minibatch 250/250, validation error 1.850000 %
+epoch 567, minibatch 250/250, validation error 1.850000 %
+epoch 568, minibatch 250/250, validation error 1.850000 %
+epoch 569, minibatch 250/250, validation error 1.850000 %
+epoch 570, minibatch 250/250, validation error 1.850000 %
+epoch 571, minibatch 250/250, validation error 1.850000 %
+epoch 572, minibatch 250/250, validation error 1.850000 %
+epoch 573, minibatch 250/250, validation error 1.850000 %
+epoch 574, minibatch 250/250, validation error 1.850000 %
+epoch 575, minibatch 250/250, validation error 1.850000 %
+epoch 576, minibatch 250/250, validation error 1.860000 %
+epoch 577, minibatch 250/250, validation error 1.850000 %
+epoch 578, minibatch 250/250, validation error 1.850000 %
+epoch 579, minibatch 250/250, validation error 1.850000 %
+epoch 580, minibatch 250/250, validation error 1.850000 %
+epoch 581, minibatch 250/250, validation error 1.850000 %
+epoch 582, minibatch 250/250, validation error 1.850000 %
+epoch 583, minibatch 250/250, validation error 1.850000 %
+epoch 584, minibatch 250/250, validation error 1.850000 %
+epoch 585, minibatch 250/250, validation error 1.850000 %
+epoch 586, minibatch 250/250, validation error 1.850000 %
+epoch 587, minibatch 250/250, validation error 1.850000 %
+epoch 588, minibatch 250/250, validation error 1.850000 %
+epoch 589, minibatch 250/250, validation error 1.850000 %
+epoch 590, minibatch 250/250, validation error 1.850000 %
+epoch 591, minibatch 250/250, validation error 1.850000 %
+epoch 592, minibatch 250/250, validation error 1.850000 %
+epoch 593, minibatch 250/250, validation error 1.850000 %
+epoch 594, minibatch 250/250, validation error 1.850000 %
+epoch 595, minibatch 250/250, validation error 1.860000 %
+epoch 596, minibatch 250/250, validation error 1.850000 %
+epoch 597, minibatch 250/250, validation error 1.860000 %
+epoch 598, minibatch 250/250, validation error 1.860000 %
+epoch 599, minibatch 250/250, validation error 1.860000 %
+epoch 600, minibatch 250/250, validation error 1.860000 %
+epoch 601, minibatch 250/250, validation error 1.860000 %
+epoch 602, minibatch 250/250, validation error 1.860000 %
+epoch 603, minibatch 250/250, validation error 1.860000 %
+epoch 604, minibatch 250/250, validation error 1.860000 %
+epoch 605, minibatch 250/250, validation error 1.860000 %
+epoch 606, minibatch 250/250, validation error 1.860000 %
+epoch 607, minibatch 250/250, validation error 1.860000 %
+epoch 608, minibatch 250/250, validation error 1.860000 %
+epoch 609, minibatch 250/250, validation error 1.860000 %
+epoch 610, minibatch 250/250, validation error 1.860000 %
+epoch 611, minibatch 250/250, validation error 1.860000 %
+epoch 612, minibatch 250/250, validation error 1.860000 %
+epoch 613, minibatch 250/250, validation error 1.860000 %
+epoch 614, minibatch 250/250, validation error 1.870000 %
+epoch 615, minibatch 250/250, validation error 1.870000 %
+epoch 616, minibatch 250/250, validation error 1.870000 %
+epoch 617, minibatch 250/250, validation error 1.870000 %
+epoch 618, minibatch 250/250, validation error 1.870000 %
+epoch 619, minibatch 250/250, validation error 1.870000 %
+epoch 620, minibatch 250/250, validation error 1.870000 %
+epoch 621, minibatch 250/250, validation error 1.870000 %
+epoch 622, minibatch 250/250, validation error 1.860000 %
+epoch 623, minibatch 250/250, validation error 1.860000 %
+epoch 624, minibatch 250/250, validation error 1.860000 %
+epoch 625, minibatch 250/250, validation error 1.860000 %
+epoch 626, minibatch 250/250, validation error 1.860000 %
+epoch 627, minibatch 250/250, validation error 1.860000 %
+epoch 628, minibatch 250/250, validation error 1.860000 %
+epoch 629, minibatch 250/250, validation error 1.860000 %
+epoch 630, minibatch 250/250, validation error 1.860000 %
+epoch 631, minibatch 250/250, validation error 1.860000 %
+epoch 632, minibatch 250/250, validation error 1.860000 %
+epoch 633, minibatch 250/250, validation error 1.860000 %
+epoch 634, minibatch 250/250, validation error 1.860000 %
+epoch 635, minibatch 250/250, validation error 1.860000 %
+epoch 636, minibatch 250/250, validation error 1.860000 %
+epoch 637, minibatch 250/250, validation error 1.860000 %
+epoch 638, minibatch 250/250, validation error 1.860000 %
+epoch 639, minibatch 250/250, validation error 1.860000 %
+epoch 640, minibatch 250/250, validation error 1.860000 %
+epoch 641, minibatch 250/250, validation error 1.860000 %
+epoch 642, minibatch 250/250, validation error 1.860000 %
+epoch 643, minibatch 250/250, validation error 1.860000 %
+epoch 644, minibatch 250/250, validation error 1.860000 %
+epoch 645, minibatch 250/250, validation error 1.860000 %
+epoch 646, minibatch 250/250, validation error 1.860000 %
+epoch 647, minibatch 250/250, validation error 1.860000 %
+epoch 648, minibatch 250/250, validation error 1.860000 %
+epoch 649, minibatch 250/250, validation error 1.860000 %
+epoch 650, minibatch 250/250, validation error 1.860000 %
+epoch 651, minibatch 250/250, validation error 1.860000 %
+epoch 652, minibatch 250/250, validation error 1.860000 %
+epoch 653, minibatch 250/250, validation error 1.860000 %
+epoch 654, minibatch 250/250, validation error 1.860000 %
+epoch 655, minibatch 250/250, validation error 1.860000 %
+epoch 656, minibatch 250/250, validation error 1.860000 %
+epoch 657, minibatch 250/250, validation error 1.860000 %
+epoch 658, minibatch 250/250, validation error 1.860000 %
+epoch 659, minibatch 250/250, validation error 1.860000 %
+epoch 660, minibatch 250/250, validation error 1.860000 %
+epoch 661, minibatch 250/250, validation error 1.860000 %
+epoch 662, minibatch 250/250, validation error 1.860000 %
+epoch 663, minibatch 250/250, validation error 1.860000 %
+epoch 664, minibatch 250/250, validation error 1.860000 %
+epoch 665, minibatch 250/250, validation error 1.860000 %
+epoch 666, minibatch 250/250, validation error 1.860000 %
+epoch 667, minibatch 250/250, validation error 1.860000 %
+epoch 668, minibatch 250/250, validation error 1.860000 %
+epoch 669, minibatch 250/250, validation error 1.860000 %
+epoch 670, minibatch 250/250, validation error 1.860000 %
+epoch 671, minibatch 250/250, validation error 1.860000 %
+epoch 672, minibatch 250/250, validation error 1.860000 %
+epoch 673, minibatch 250/250, validation error 1.860000 %
+epoch 674, minibatch 250/250, validation error 1.860000 %
+epoch 675, minibatch 250/250, validation error 1.860000 %
+epoch 676, minibatch 250/250, validation error 1.860000 %
+epoch 677, minibatch 250/250, validation error 1.860000 %
+epoch 678, minibatch 250/250, validation error 1.860000 %
+epoch 679, minibatch 250/250, validation error 1.860000 %
+epoch 680, minibatch 250/250, validation error 1.860000 %
+epoch 681, minibatch 250/250, validation error 1.860000 %
+epoch 682, minibatch 250/250, validation error 1.860000 %
+epoch 683, minibatch 250/250, validation error 1.860000 %
+epoch 684, minibatch 250/250, validation error 1.860000 %
+epoch 685, minibatch 250/250, validation error 1.860000 %
+epoch 686, minibatch 250/250, validation error 1.860000 %
+epoch 687, minibatch 250/250, validation error 1.860000 %
+epoch 688, minibatch 250/250, validation error 1.860000 %
+epoch 689, minibatch 250/250, validation error 1.850000 %
+epoch 690, minibatch 250/250, validation error 1.850000 %
+epoch 691, minibatch 250/250, validation error 1.860000 %
+epoch 692, minibatch 250/250, validation error 1.860000 %
+epoch 693, minibatch 250/250, validation error 1.850000 %
+epoch 694, minibatch 250/250, validation error 1.850000 %
+epoch 695, minibatch 250/250, validation error 1.850000 %
+epoch 696, minibatch 250/250, validation error 1.850000 %
+epoch 697, minibatch 250/250, validation error 1.850000 %
+epoch 698, minibatch 250/250, validation error 1.850000 %
+epoch 699, minibatch 250/250, validation error 1.850000 %
+epoch 700, minibatch 250/250, validation error 1.850000 %
+epoch 701, minibatch 250/250, validation error 1.850000 %
+epoch 702, minibatch 250/250, validation error 1.850000 %
+epoch 703, minibatch 250/250, validation error 1.850000 %
+epoch 704, minibatch 250/250, validation error 1.850000 %
+epoch 705, minibatch 250/250, validation error 1.850000 %
+epoch 706, minibatch 250/250, validation error 1.850000 %
+epoch 707, minibatch 250/250, validation error 1.850000 %
+epoch 708, minibatch 250/250, validation error 1.850000 %
+epoch 709, minibatch 250/250, validation error 1.850000 %
+epoch 710, minibatch 250/250, validation error 1.850000 %
+epoch 711, minibatch 250/250, validation error 1.850000 %
+epoch 712, minibatch 250/250, validation error 1.850000 %
+epoch 713, minibatch 250/250, validation error 1.850000 %
+epoch 714, minibatch 250/250, validation error 1.850000 %
+epoch 715, minibatch 250/250, validation error 1.850000 %
+epoch 716, minibatch 250/250, validation error 1.850000 %
+epoch 717, minibatch 250/250, validation error 1.850000 %
+epoch 718, minibatch 250/250, validation error 1.850000 %
+epoch 719, minibatch 250/250, validation error 1.850000 %
+epoch 720, minibatch 250/250, validation error 1.840000 %
+epoch 721, minibatch 250/250, validation error 1.840000 %
+epoch 722, minibatch 250/250, validation error 1.840000 %
+epoch 723, minibatch 250/250, validation error 1.840000 %
+epoch 724, minibatch 250/250, validation error 1.840000 %
+epoch 725, minibatch 250/250, validation error 1.840000 %
+epoch 726, minibatch 250/250, validation error 1.840000 %
+epoch 727, minibatch 250/250, validation error 1.840000 %
+epoch 728, minibatch 250/250, validation error 1.840000 %
+epoch 729, minibatch 250/250, validation error 1.840000 %
+epoch 730, minibatch 250/250, validation error 1.840000 %
+epoch 731, minibatch 250/250, validation error 1.840000 %
+epoch 732, minibatch 250/250, validation error 1.840000 %
+epoch 733, minibatch 250/250, validation error 1.840000 %
+epoch 734, minibatch 250/250, validation error 1.840000 %
+epoch 735, minibatch 250/250, validation error 1.840000 %
+epoch 736, minibatch 250/250, validation error 1.840000 %
+epoch 737, minibatch 250/250, validation error 1.840000 %
+epoch 738, minibatch 250/250, validation error 1.840000 %
+epoch 739, minibatch 250/250, validation error 1.840000 %
+epoch 740, minibatch 250/250, validation error 1.840000 %
+epoch 741, minibatch 250/250, validation error 1.840000 %
+epoch 742, minibatch 250/250, validation error 1.840000 %
+epoch 743, minibatch 250/250, validation error 1.840000 %
+epoch 744, minibatch 250/250, validation error 1.840000 %
+epoch 745, minibatch 250/250, validation error 1.840000 %
+epoch 746, minibatch 250/250, validation error 1.840000 %
+epoch 747, minibatch 250/250, validation error 1.840000 %
+epoch 748, minibatch 250/250, validation error 1.840000 %
+epoch 749, minibatch 250/250, validation error 1.840000 %
+epoch 750, minibatch 250/250, validation error 1.840000 %
+epoch 751, minibatch 250/250, validation error 1.840000 %
+epoch 752, minibatch 250/250, validation error 1.840000 %
+epoch 753, minibatch 250/250, validation error 1.840000 %
+epoch 754, minibatch 250/250, validation error 1.840000 %
+epoch 755, minibatch 250/250, validation error 1.840000 %
+epoch 756, minibatch 250/250, validation error 1.840000 %
+epoch 757, minibatch 250/250, validation error 1.840000 %
+epoch 758, minibatch 250/250, validation error 1.840000 %
+epoch 759, minibatch 250/250, validation error 1.840000 %
+epoch 760, minibatch 250/250, validation error 1.840000 %
+epoch 761, minibatch 250/250, validation error 1.840000 %
+epoch 762, minibatch 250/250, validation error 1.840000 %
+epoch 763, minibatch 250/250, validation error 1.840000 %
+epoch 764, minibatch 250/250, validation error 1.840000 %
+epoch 765, minibatch 250/250, validation error 1.840000 %
+epoch 766, minibatch 250/250, validation error 1.840000 %
+epoch 767, minibatch 250/250, validation error 1.840000 %
+epoch 768, minibatch 250/250, validation error 1.840000 %
+epoch 769, minibatch 250/250, validation error 1.840000 %
+epoch 770, minibatch 250/250, validation error 1.840000 %
+epoch 771, minibatch 250/250, validation error 1.840000 %
+epoch 772, minibatch 250/250, validation error 1.840000 %
+epoch 773, minibatch 250/250, validation error 1.840000 %
+epoch 774, minibatch 250/250, validation error 1.840000 %
+epoch 775, minibatch 250/250, validation error 1.840000 %
+epoch 776, minibatch 250/250, validation error 1.840000 %
+epoch 777, minibatch 250/250, validation error 1.840000 %
+epoch 778, minibatch 250/250, validation error 1.840000 %
+epoch 779, minibatch 250/250, validation error 1.840000 %
+epoch 780, minibatch 250/250, validation error 1.840000 %
+epoch 781, minibatch 250/250, validation error 1.840000 %
+epoch 782, minibatch 250/250, validation error 1.840000 %
+epoch 783, minibatch 250/250, validation error 1.840000 %
+epoch 784, minibatch 250/250, validation error 1.840000 %
+epoch 785, minibatch 250/250, validation error 1.840000 %
+epoch 786, minibatch 250/250, validation error 1.840000 %
+epoch 787, minibatch 250/250, validation error 1.840000 %
+epoch 788, minibatch 250/250, validation error 1.840000 %
+epoch 789, minibatch 250/250, validation error 1.840000 %
+epoch 790, minibatch 250/250, validation error 1.850000 %
+epoch 791, minibatch 250/250, validation error 1.840000 %
+epoch 792, minibatch 250/250, validation error 1.840000 %
+epoch 793, minibatch 250/250, validation error 1.840000 %
+epoch 794, minibatch 250/250, validation error 1.840000 %
+epoch 795, minibatch 250/250, validation error 1.840000 %
+epoch 796, minibatch 250/250, validation error 1.840000 %
+epoch 797, minibatch 250/250, validation error 1.830000 %
+epoch 798, minibatch 250/250, validation error 1.830000 %
+epoch 799, minibatch 250/250, validation error 1.840000 %
+epoch 800, minibatch 250/250, validation error 1.830000 %
+epoch 801, minibatch 250/250, validation error 1.830000 %
+epoch 802, minibatch 250/250, validation error 1.830000 %
+epoch 803, minibatch 250/250, validation error 1.830000 %
+epoch 804, minibatch 250/250, validation error 1.830000 %
+epoch 805, minibatch 250/250, validation error 1.830000 %
+epoch 806, minibatch 250/250, validation error 1.830000 %
+epoch 807, minibatch 250/250, validation error 1.830000 %
+epoch 808, minibatch 250/250, validation error 1.830000 %
+epoch 809, minibatch 250/250, validation error 1.830000 %
+epoch 810, minibatch 250/250, validation error 1.830000 %
+epoch 811, minibatch 250/250, validation error 1.830000 %
+epoch 812, minibatch 250/250, validation error 1.820000 %
+epoch 813, minibatch 250/250, validation error 1.820000 %
+epoch 814, minibatch 250/250, validation error 1.820000 %
+epoch 815, minibatch 250/250, validation error 1.820000 %
+epoch 816, minibatch 250/250, validation error 1.820000 %
+epoch 817, minibatch 250/250, validation error 1.820000 %
+epoch 818, minibatch 250/250, validation error 1.820000 %
+epoch 819, minibatch 250/250, validation error 1.820000 %
+epoch 820, minibatch 250/250, validation error 1.820000 %
+epoch 821, minibatch 250/250, validation error 1.820000 %
+epoch 822, minibatch 250/250, validation error 1.820000 %
+epoch 823, minibatch 250/250, validation error 1.820000 %
+epoch 824, minibatch 250/250, validation error 1.820000 %
+epoch 825, minibatch 250/250, validation error 1.820000 %
+epoch 826, minibatch 250/250, validation error 1.820000 %
+epoch 827, minibatch 250/250, validation error 1.820000 %
+epoch 828, minibatch 250/250, validation error 1.820000 %
+epoch 829, minibatch 250/250, validation error 1.820000 %
+epoch 830, minibatch 250/250, validation error 1.820000 %
+epoch 831, minibatch 250/250, validation error 1.820000 %
+epoch 832, minibatch 250/250, validation error 1.820000 %
+epoch 833, minibatch 250/250, validation error 1.820000 %
+epoch 834, minibatch 250/250, validation error 1.820000 %
+epoch 835, minibatch 250/250, validation error 1.820000 %
+epoch 836, minibatch 250/250, validation error 1.820000 %
+epoch 837, minibatch 250/250, validation error 1.820000 %
+epoch 838, minibatch 250/250, validation error 1.820000 %
+epoch 839, minibatch 250/250, validation error 1.820000 %
+epoch 840, minibatch 250/250, validation error 1.820000 %
+epoch 841, minibatch 250/250, validation error 1.820000 %
+epoch 842, minibatch 250/250, validation error 1.820000 %
+epoch 843, minibatch 250/250, validation error 1.820000 %
+epoch 844, minibatch 250/250, validation error 1.820000 %
+epoch 845, minibatch 250/250, validation error 1.820000 %
+epoch 846, minibatch 250/250, validation error 1.820000 %
+epoch 847, minibatch 250/250, validation error 1.820000 %
+epoch 848, minibatch 250/250, validation error 1.820000 %
+epoch 849, minibatch 250/250, validation error 1.820000 %
+epoch 850, minibatch 250/250, validation error 1.820000 %
+epoch 851, minibatch 250/250, validation error 1.820000 %
+epoch 852, minibatch 250/250, validation error 1.820000 %
+epoch 853, minibatch 250/250, validation error 1.820000 %
+epoch 854, minibatch 250/250, validation error 1.820000 %
+epoch 855, minibatch 250/250, validation error 1.820000 %
+epoch 856, minibatch 250/250, validation error 1.820000 %
+epoch 857, minibatch 250/250, validation error 1.820000 %
+epoch 858, minibatch 250/250, validation error 1.820000 %
+epoch 859, minibatch 250/250, validation error 1.820000 %
+epoch 860, minibatch 250/250, validation error 1.810000 %
+     epoch 860, minibatch 250/250, test error of best model 1.820000 %
+epoch 861, minibatch 250/250, validation error 1.810000 %
+epoch 862, minibatch 250/250, validation error 1.810000 %
+epoch 863, minibatch 250/250, validation error 1.810000 %
+epoch 864, minibatch 250/250, validation error 1.810000 %
+epoch 865, minibatch 250/250, validation error 1.810000 %
+epoch 866, minibatch 250/250, validation error 1.810000 %
+epoch 867, minibatch 250/250, validation error 1.810000 %
+epoch 868, minibatch 250/250, validation error 1.810000 %
+epoch 869, minibatch 250/250, validation error 1.810000 %
+epoch 870, minibatch 250/250, validation error 1.810000 %
+epoch 871, minibatch 250/250, validation error 1.810000 %
+epoch 872, minibatch 250/250, validation error 1.810000 %
+epoch 873, minibatch 250/250, validation error 1.810000 %
+epoch 874, minibatch 250/250, validation error 1.810000 %
+epoch 875, minibatch 250/250, validation error 1.810000 %
+epoch 876, minibatch 250/250, validation error 1.810000 %
+epoch 877, minibatch 250/250, validation error 1.810000 %
+epoch 878, minibatch 250/250, validation error 1.810000 %
+epoch 879, minibatch 250/250, validation error 1.810000 %
+epoch 880, minibatch 250/250, validation error 1.810000 %
+epoch 881, minibatch 250/250, validation error 1.810000 %
+epoch 882, minibatch 250/250, validation error 1.810000 %
+epoch 883, minibatch 250/250, validation error 1.810000 %
+epoch 884, minibatch 250/250, validation error 1.810000 %
+epoch 885, minibatch 250/250, validation error 1.810000 %
+epoch 886, minibatch 250/250, validation error 1.810000 %
+epoch 887, minibatch 250/250, validation error 1.810000 %
+epoch 888, minibatch 250/250, validation error 1.810000 %
+epoch 889, minibatch 250/250, validation error 1.810000 %
+epoch 890, minibatch 250/250, validation error 1.810000 %
+epoch 891, minibatch 250/250, validation error 1.810000 %
+epoch 892, minibatch 250/250, validation error 1.810000 %
+epoch 893, minibatch 250/250, validation error 1.810000 %
+epoch 894, minibatch 250/250, validation error 1.810000 %
+epoch 895, minibatch 250/250, validation error 1.810000 %
+epoch 896, minibatch 250/250, validation error 1.810000 %
+epoch 897, minibatch 250/250, validation error 1.810000 %
+epoch 898, minibatch 250/250, validation error 1.810000 %
+epoch 899, minibatch 250/250, validation error 1.810000 %
+epoch 900, minibatch 250/250, validation error 1.810000 %
+epoch 901, minibatch 250/250, validation error 1.810000 %
+epoch 902, minibatch 250/250, validation error 1.810000 %
+epoch 903, minibatch 250/250, validation error 1.810000 %
+epoch 904, minibatch 250/250, validation error 1.810000 %
+epoch 905, minibatch 250/250, validation error 1.810000 %
+epoch 906, minibatch 250/250, validation error 1.810000 %
+epoch 907, minibatch 250/250, validation error 1.810000 %
+epoch 908, minibatch 250/250, validation error 1.810000 %
+epoch 909, minibatch 250/250, validation error 1.810000 %
+epoch 910, minibatch 250/250, validation error 1.810000 %
+epoch 911, minibatch 250/250, validation error 1.810000 %
+epoch 912, minibatch 250/250, validation error 1.810000 %
+epoch 913, minibatch 250/250, validation error 1.810000 %
+epoch 914, minibatch 250/250, validation error 1.810000 %
+epoch 915, minibatch 250/250, validation error 1.810000 %
+epoch 916, minibatch 250/250, validation error 1.810000 %
+epoch 917, minibatch 250/250, validation error 1.800000 %
+     epoch 917, minibatch 250/250, test error of best model 1.810000 %
+epoch 918, minibatch 250/250, validation error 1.800000 %
+epoch 919, minibatch 250/250, validation error 1.800000 %
+epoch 920, minibatch 250/250, validation error 1.800000 %
+epoch 921, minibatch 250/250, validation error 1.800000 %
+epoch 922, minibatch 250/250, validation error 1.800000 %
+epoch 923, minibatch 250/250, validation error 1.810000 %
+epoch 924, minibatch 250/250, validation error 1.800000 %
+epoch 925, minibatch 250/250, validation error 1.800000 %
+epoch 926, minibatch 250/250, validation error 1.800000 %
+epoch 927, minibatch 250/250, validation error 1.800000 %
+epoch 928, minibatch 250/250, validation error 1.800000 %
+epoch 929, minibatch 250/250, validation error 1.800000 %
+epoch 930, minibatch 250/250, validation error 1.800000 %
+epoch 931, minibatch 250/250, validation error 1.800000 %
+epoch 932, minibatch 250/250, validation error 1.800000 %
+epoch 933, minibatch 250/250, validation error 1.800000 %
+epoch 934, minibatch 250/250, validation error 1.800000 %
+epoch 935, minibatch 250/250, validation error 1.800000 %
+epoch 936, minibatch 250/250, validation error 1.800000 %
+epoch 937, minibatch 250/250, validation error 1.800000 %
+epoch 938, minibatch 250/250, validation error 1.800000 %
+epoch 939, minibatch 250/250, validation error 1.800000 %
+epoch 940, minibatch 250/250, validation error 1.800000 %
+epoch 941, minibatch 250/250, validation error 1.800000 %
+epoch 942, minibatch 250/250, validation error 1.800000 %
+epoch 943, minibatch 250/250, validation error 1.800000 %
+epoch 944, minibatch 250/250, validation error 1.790000 %
+     epoch 944, minibatch 250/250, test error of best model 1.810000 %
+epoch 945, minibatch 250/250, validation error 1.790000 %
+epoch 946, minibatch 250/250, validation error 1.780000 %
+     epoch 946, minibatch 250/250, test error of best model 1.810000 %
+epoch 947, minibatch 250/250, validation error 1.790000 %
+epoch 948, minibatch 250/250, validation error 1.780000 %
+epoch 949, minibatch 250/250, validation error 1.780000 %
+epoch 950, minibatch 250/250, validation error 1.780000 %
+epoch 951, minibatch 250/250, validation error 1.780000 %
+epoch 952, minibatch 250/250, validation error 1.790000 %
+epoch 953, minibatch 250/250, validation error 1.780000 %
+epoch 954, minibatch 250/250, validation error 1.780000 %
+epoch 955, minibatch 250/250, validation error 1.780000 %
+epoch 956, minibatch 250/250, validation error 1.780000 %
+epoch 957, minibatch 250/250, validation error 1.780000 %
+epoch 958, minibatch 250/250, validation error 1.780000 %
+epoch 959, minibatch 250/250, validation error 1.780000 %
+epoch 960, minibatch 250/250, validation error 1.780000 %
+epoch 961, minibatch 250/250, validation error 1.780000 %
+epoch 962, minibatch 250/250, validation error 1.780000 %
+epoch 963, minibatch 250/250, validation error 1.780000 %
+epoch 964, minibatch 250/250, validation error 1.780000 %
+epoch 965, minibatch 250/250, validation error 1.780000 %
+epoch 966, minibatch 250/250, validation error 1.780000 %
+epoch 967, minibatch 250/250, validation error 1.780000 %
+epoch 968, minibatch 250/250, validation error 1.780000 %
+epoch 969, minibatch 250/250, validation error 1.780000 %
+epoch 970, minibatch 250/250, validation error 1.780000 %
+epoch 971, minibatch 250/250, validation error 1.780000 %
+epoch 972, minibatch 250/250, validation error 1.780000 %
+epoch 973, minibatch 250/250, validation error 1.780000 %
+epoch 974, minibatch 250/250, validation error 1.780000 %
+epoch 975, minibatch 250/250, validation error 1.780000 %
+epoch 976, minibatch 250/250, validation error 1.780000 %
+epoch 977, minibatch 250/250, validation error 1.780000 %
+epoch 978, minibatch 250/250, validation error 1.780000 %
+epoch 979, minibatch 250/250, validation error 1.780000 %
+epoch 980, minibatch 250/250, validation error 1.780000 %
+epoch 981, minibatch 250/250, validation error 1.780000 %
+epoch 982, minibatch 250/250, validation error 1.780000 %
+epoch 983, minibatch 250/250, validation error 1.780000 %
+epoch 984, minibatch 250/250, validation error 1.780000 %
+epoch 985, minibatch 250/250, validation error 1.780000 %
+epoch 986, minibatch 250/250, validation error 1.780000 %
+epoch 987, minibatch 250/250, validation error 1.780000 %
+epoch 988, minibatch 250/250, validation error 1.780000 %
+epoch 989, minibatch 250/250, validation error 1.780000 %
+epoch 990, minibatch 250/250, validation error 1.780000 %
+epoch 991, minibatch 250/250, validation error 1.780000 %
+epoch 992, minibatch 250/250, validation error 1.780000 %
+epoch 993, minibatch 250/250, validation error 1.780000 %
+epoch 994, minibatch 250/250, validation error 1.780000 %
+epoch 995, minibatch 250/250, validation error 1.780000 %
+epoch 996, minibatch 250/250, validation error 1.780000 %
+epoch 997, minibatch 250/250, validation error 1.780000 %
+epoch 998, minibatch 250/250, validation error 1.780000 %
+epoch 999, minibatch 250/250, validation error 1.780000 %
+epoch 1000, minibatch 250/250, validation error 1.780000 %
+Optimization complete. Best validation score of 1.780000 % obtained at iteration 236500, with test performance 1.810000 %
