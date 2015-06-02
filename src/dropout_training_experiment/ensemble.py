@@ -110,9 +110,9 @@ if __name__ == '__main__':
     learning_rate=0.01
     L1_reg=0.00
     L2_reg=0.00
-    n_epochs=150
+    n_epochs=200
     dataset='mnist.pkl.gz'
-    batch_size=200
+    batch_size=300
     resample_size=50000
     n_hidden=[(2500,0.5,'h0',T.tanh),
               (2000,0.5,'h1',T.tanh),
@@ -120,7 +120,7 @@ if __name__ == '__main__':
               (1000,0.5,'h2',T.tanh),
               (500,0.5,'h3',T.tanh)
              ]
-    ensemble_size = 3
+    ensemble_size = 10
     for arg in sys.argv[1:]:
         if arg[0]=='-':
             exec(arg[1:])
@@ -135,16 +135,16 @@ if __name__ == '__main__':
                 resampler.get_valid(),learning_rate, L1_reg, L2_reg, n_epochs,
                 batch_size, n_hidden, update_rule = mlp.rprop)
         members.append(m)
-#    mv = Averaging(members,x,y)
-    mv = Stacking(x,y,members,[
-                (ensemble_size * 10,0,'s0',T.tanh),
-                (ensemble_size * 2, 0,'s0',T.tanh)
-            ],
-            update_rule=mlp.rprop,
-            n_epochs=1000,
-            batch_size=batch_size,
-            train_set=resampler.get_train(),
-            valid_set=resampler.get_valid())
+    mv = Averaging(members,x,y)
+#    mv = Stacking(x,y,members,[
+#                (ensemble_size * 10,0,'s0',T.tanh),
+#                (ensemble_size * 2, 0,'s0',T.tanh)
+#            ],
+#            update_rule=mlp.rprop,
+#            n_epochs=1000,
+#            batch_size=batch_size,
+#            train_set=resampler.get_train(),
+#            valid_set=resampler.get_valid())
     test_set_x, test_set_y = resampler.get_test()
     test_model = theano.function(inputs=[],
         on_unused_input='warn',

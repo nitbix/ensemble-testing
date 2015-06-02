@@ -703,7 +703,7 @@ if __name__ == '__main__':
     learning_rate=0.01
     L1_reg=0.00
     L2_reg=0.00
-    n_epochs=10000
+    n_epochs=2000
     dataset='mnist.pkl.gz'
     batch_size=100
     n_hidden=[(2500,0.5,'h0',T.tanh),
@@ -716,4 +716,4 @@ if __name__ == '__main__':
         if arg[0]=='-':
             exec(arg[1:])
     mlp=test_mlp(learning_rate, L1_reg, L2_reg, n_epochs,
-        dataset, batch_size, n_hidden, update_rule = rprop)
+        dataset, batch_size, n_hidden, update_rule = sgd)
