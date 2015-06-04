@@ -1,0 +1,206 @@
+#!/usr/bin/python
+
+from __future__ import print_function
+
+import os
+import gc
+import numpy as np
+import scipy.ndimage as ni
+import numpy.random
+import theano
+import theano.tensor as T
+import gzip
+import cPickle
+
+def sharedX(value, name=None, borrow=False, dtype=None):
+    """
+    Transform value into a shared variable of type floatX
+    borrowed from pylearn2
+    """
+
+    if dtype is None:
+        dtype = theano.config.floatX
+    return theano.shared(theano._asarray(value, dtype=dtype),
+                         name=name,
+                         borrow=borrow)
+
+
+def shared_dataset(data_xy, borrow=True):
+    """ Function that loads the dataset into shared variables
+
+    The reason we store our dataset in shared variables is to allow
+    Theano to copy it into the GPU memory (when code is run on GPU).
+    Since copying data into the GPU is slow, copying a minibatch everytime
+    is needed (the default behaviour if the data is not in a shared
+    variable) would lead to a large decrease in performance.
+    """
+    data_x, data_y = data_xy
+    shared_x = theano.shared(numpy.asarray(data_x,
+                                           dtype=theano.config.floatX),
+                             borrow=borrow)
+    shared_y = theano.shared(numpy.asarray(data_y,
+                                           dtype=theano.config.floatX),
+                             borrow=borrow)
+    # When storing data on the GPU it has to be stored as floats
+    # therefore we will store the labels as ``floatX`` as well
+    # (``shared_y`` does exactly that). But during our computations
+    # we need them as ints (we use labels as index, and if they are
+    # floats it doesn't make sense) therefore instead of returning
+    # ``shared_y`` we will have to cast it to int. This little hack
+    # lets ous get around this issue
+    return shared_x, T.cast(shared_y, 'int32')
+
+
+def load_data(dataset, shared=True):
+    ''' Loads the dataset
+
+    :type dataset: string
+    :param dataset: the path to the dataset (here MNIST)
+    '''
+
+    #############
+    # LOAD DATA #
+    #############
+
+    # Download the MNIST dataset if it is not present
+    data_dir, data_file = os.path.split(dataset)
+    if data_dir == "" and not os.path.isfile(dataset):
+        # Check if dataset is in the data directory.
+        new_path = os.path.join(os.path.split(__file__)[0], "..", "data", dataset)
+        if os.path.isfile(new_path) or data_file == 'mnist.pkl.gz':
+            dataset = new_path
+
+    if (not os.path.isfile(dataset)) and data_file == 'mnist.pkl.gz':
+        import urllib
+        origin = 'http://www.iro.umontreal.ca/~lisa/deep/data/mnist/mnist.pkl.gz'
+        print('Downloading data from {0}'.format(origin))
+        urllib.urlretrieve(origin, dataset)
+
+    print('... loading data')
+
+    # Load the dataset
+    f = gzip.open(dataset, 'rb')
+    train_set, valid_set, test_set = cPickle.load(f)
+    f.close()
+    #train_set, valid_set, test_set format: tuple(input, target)
+    #input is an numpy.ndarray of 2 dimensions (a matrix)
+    #witch row's correspond to an example. target is a
+    #numpy.ndarray of 1 dimensions (vector)) that have the same length as
+    #the number of rows in the input. It should give the target
+    #target to the example with the same index in the input.
+
+    if shared:
+        test_set_x, test_set_y = shared_dataset(test_set)
+        valid_set_x, valid_set_y = shared_dataset(valid_set)
+        train_set_x, train_set_y = shared_dataset(train_set)
+    else:
+        test_set_x, test_set_y = test_set
+        valid_set_x, valid_set_y = valid_set
+        train_set_x, train_set_y = train_set
+
+
+    rval = [(train_set_x, train_set_y), (valid_set_x, valid_set_y),
+            (test_set_x, test_set_y)]
+    return rval
+
+
+class Resampler:
+    """
+    Resample a dataset either uniformly or with a given probability
+    distribution
+    """
+
+    def __init__(self,dataset):
+        self.train,self.valid,self.test = dataset
+        self.train_x, self.train_y = self.train
+        self.valid_x, self.valid_y = self.valid
+        self.test_x, self.test_y = self.test
+        self.train_size = len(self.train_x)
+        
+    def make_new_train(self,sample_size,distribution=None):
+        if distribution is None:
+            sample = numpy.random.randint(low=0,high=self.train_size,size=sample_size)
+        else:
+            raise Exception("not implemented");
+        sampled_x = []
+        sampled_y = []
+        for s in sample:
+            sampled_x.append(self.train_x[s])
+            sampled_y.append(self.train_y[s])
+        return shared_dataset((sampled_x,sampled_y))
+
+    def get_train(self):
+        return shared_dataset(self.train)
+
+    def get_valid(self):
+        return shared_dataset(self.valid)
+
+    def get_test(self):
+        return shared_dataset(self.test)
+
+
+class Transformer:
+    """
+    Apply translation, scaling, rotation and other transformations to a 
+    training set to produce a larger, noisy training set
+    """
+
+    def __init__(self,original_set,x,y, progress = False):
+        print("..transforming dataset")
+        self.progress = progress
+        self.x = x
+        self.y = y
+        min_trans_x = -1
+        max_trans_x =  1
+        x_step = 2
+        min_trans_y = -1
+        max_trans_y =  1
+        y_step = 2
+        min_angle = -5
+        max_angle =  5
+        angle_step = 10
+        sigma = 0.4
+        gaussian_resamples = 1
+        self.original_x, self.original_y = original_set
+        self.final_x = []
+        self.final_y = []
+        self.instance_no = 0
+        for i in xrange(1,len(self.original_x)):
+            self.step_no = 0
+            curr_x = self.original_x[i].reshape(self.x,self.y)
+            curr_y = self.original_y[i]
+            self.add_instance(curr_x,curr_y)
+            for dx in xrange(min_trans_x,max_trans_x,x_step):
+                for dy in xrange(min_trans_y,max_trans_y,y_step):
+                    if dx != 0 or dy != 0:
+                        self.add_instance(
+                                self.translate_instance(curr_x,dx,dy),
+                                curr_y)
+            for angle in xrange(min_angle,max_angle,angle_step):
+                if angle != 0:
+                    self.add_instance(self.rotate_instance(curr_x,angle),curr_y)
+            for j in xrange(1,gaussian_resamples):
+                self.add_instance(self.gaussian_noise(curr_x,sigma),curr_y)
+            self.instance_no += 1
+            gc.collect()
+
+    def translate_instance(self,xval, dx, dy):
+        return np.roll(np.roll(xval,dx,axis=0),dy,axis=1)
+
+    def rotate_instance(self,xval,angle):
+        return ni.rotate(xval,angle,reshape=False)
+
+    def gaussian_noise(self,xval,sigma):
+        return xval + numpy.random.normal(0.,sigma,xval.shape)
+
+    def add_instance(self,xval,yval):
+        self.final_x.append(xval.flatten())
+        self.final_y.append(yval)
+        self.step_no += 1
+        if self.progress:
+            print("instance {0}, step {1}".format(
+                    self.instance_no, self.step_no), end="\r")
+
+    def get_data(self):
+        return (np.array(self.final_x),np.array(self.final_y))
+

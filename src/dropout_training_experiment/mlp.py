@@ -34,7 +34,9 @@ import theano
 import theano.tensor as T
 from theano.ifelse import ifelse
 from theano.sandbox.rng_mrg import MRG_RandomStreams                                                                                                                    
-from logistic_sgd import LogisticRegression, load_data, sharedX
+from logistic_sgd import LogisticRegression
+import data
+from data import Resampler, Transformer, sharedX
 
 rectifier = lambda x: T.maximum(0, x)
 softsign = lambda x: x / (1 + abs(x))
@@ -361,7 +363,7 @@ class MLP(object):
 
 def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
              dataset='mnist.pkl.gz', batch_size=20, n_hidden=(500,0),
-             update_rule=sgd):
+             update_rule=sgd,transform=False):
     """
     Demonstrate stochastic gradient descent optimization for a multilayer
     perceptron
@@ -389,7 +391,21 @@ def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
 
 
    """
-    datasets = load_data(dataset)
+    datasets = data.load_data(dataset, shared = not transform)
+
+    train_set_x, train_set_y = datasets[0]
+    valid_set_x, valid_set_y = datasets[1]
+    test_set_x, test_set_y = datasets[2]
+
+    if transform:
+        aggregate_x = numpy.concatenate((train_set_x, valid_set_x), axis=0)
+        aggregate_y = numpy.concatenate((train_set_y, valid_set_y), axis=0)
+        t = Transformer((aggregate_x,aggregate_y),28,28,progress=True)
+        aggregate_train = t.get_data()
+        aggregate_valid = (aggregate_x, aggregate_y)
+        datasets = (data.shared_dataset(aggregate_train),
+                    data.shared_dataset(aggregate_valid),
+                    data.shared_dataset(datasets[2]))
 
     train_set_x, train_set_y = datasets[0]
     valid_set_x, valid_set_y = datasets[1]
@@ -704,7 +720,7 @@ if __name__ == '__main__':
     L1_reg=0.00
     L2_reg=0.00
     n_epochs=2000
-    dataset='mnist.pkl.gz'
+    dataset='mnist-transformed.pkl.gz'
     batch_size=100
     n_hidden=[(2500,0.5,'h0',T.tanh),
               (2000,0.5,'h1',T.tanh),
@@ -716,4 +732,4 @@ if __name__ == '__main__':
         if arg[0]=='-':
             exec(arg[1:])
     mlp=test_mlp(learning_rate, L1_reg, L2_reg, n_epochs,
-        dataset, batch_size, n_hidden, update_rule = sgd)
+        dataset, batch_size, n_hidden, update_rule = rprop, transform = False)
