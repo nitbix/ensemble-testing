@@ -116,12 +116,14 @@ if __name__ == '__main__':
         gc.collect()
 #    mv = Averaging(members,x,y)
     mv = Stacking(x,y,members,[
-                (ensemble_size * 300,0,'s0',T.tanh),
-                (ensemble_size * 100,0,'s0',T.tanh),
-                (ensemble_size * 30, 0,'s0',T.tanh)
+                (ensemble_size * 500,0,'s0',T.tanh),
+                (ensemble_size * 400,0,'s1',T.tanh),
+                (ensemble_size * 300,0,'s2',T.tanh),
+                (ensemble_size * 200,0,'s3',T.tanh),
+                (ensemble_size * 100,0,'s4',T.tanh),
             ],
             update_rule=mlp.rprop,
-            n_epochs=1000,
+            n_epochs=500,
             batch_size=batch_size,
             train_set=resampler.get_train(),
             valid_set=resampler.get_valid())
@@ -129,6 +131,6 @@ if __name__ == '__main__':
     test_model = theano.function(inputs=[],
         on_unused_input='warn',
         outputs=mv.errors,
-        givens={x:test_set_x, y:test_set_y})
+        givens={x:In(test_set_x,borrow=True), y:In(test_set_y,borrow=True)})
     test_score = test_model()
     print 'Final error: {0} %'.format(test_score * 100.)

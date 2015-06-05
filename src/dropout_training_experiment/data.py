@@ -4,6 +4,7 @@ from __future__ import print_function
 
 import os
 import gc
+import sys
 import numpy as np
 import scipy.ndimage as ni
 import numpy.random
@@ -116,6 +117,9 @@ class Resampler:
         self.valid_x, self.valid_y = self.valid
         self.test_x, self.test_y = self.test
         self.train_size = len(self.train_x)
+        self.s_train = None
+        self.s_valid = None
+        self.s_test = None
         
     def make_new_train(self,sample_size,distribution=None):
         if distribution is None:
@@ -130,13 +134,19 @@ class Resampler:
         return shared_dataset((sampled_x,sampled_y))
 
     def get_train(self):
-        return shared_dataset(self.train)
+        if self.s_train is None:
+            self.s_train = shared_dataset(self.train)
+        return self.s_train
 
     def get_valid(self):
-        return shared_dataset(self.valid)
+        if self.s_valid is None:
+            self.s_valid = shared_dataset(self.valid)
+        return self.s_valid
 
     def get_test(self):
-        return shared_dataset(self.test)
+        if self.s_test is None:
+            self.s_test = shared_dataset(self.test)
+        return self.s_test
 
 
 class Transformer:
@@ -150,16 +160,16 @@ class Transformer:
         self.progress = progress
         self.x = x
         self.y = y
-        min_trans_x = -1
-        max_trans_x =  1
+        min_trans_x = -2
+        max_trans_x =  2
         x_step = 2
-        min_trans_y = -1
-        max_trans_y =  1
+        min_trans_y = -2
+        max_trans_y =  2
         y_step = 2
-        min_angle = -5
-        max_angle =  5
-        angle_step = 10
-        sigma = 0.4
+        min_angle = -30
+        max_angle =  30
+        angle_step = 20
+        sigmas = [0.2,0.4]
         gaussian_resamples = 1
         self.original_x, self.original_y = original_set
         self.final_x = []
@@ -180,7 +190,8 @@ class Transformer:
                 if angle != 0:
                     self.add_instance(self.rotate_instance(curr_x,angle),curr_y)
             for j in xrange(1,gaussian_resamples):
-                self.add_instance(self.gaussian_noise(curr_x,sigma),curr_y)
+                for sigma in sigmas:
+                    self.add_instance(self.gaussian_noise(curr_x,sigma),curr_y)
             self.instance_no += 1
             gc.collect()
 

@@ -484,7 +484,8 @@ def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
     # compiling a Theano function `train_model` that returns the cost, but
     # in the same time updates the parameter of the model based on the rules
     # defined in `updates`
-    train_model = theano.function(inputs=[index,previous_cost], outputs=cost,
+    train_model = theano.function(inputs=[index,previous_cost],
+            outputs=cost,
             on_unused_input='warn',
             updates=updates,
             givens={
@@ -637,12 +638,14 @@ def train_and_select(x,y,training_set, validation_set, learning_rate=0.01,
     # compiling a Theano function `train_model` that returns the cost, but
     # in the same time updates the parameter of the model based on the rules
     # defined in `updates`
-    train_model = theano.function(inputs=[index,previous_cost], outputs=cost,
+    train_model = theano.function(inputs=[index,previous_cost],
+            outputs=cost,
             on_unused_input='ignore',
             updates=updates,
             givens={
                 x: train_set_x[index * batch_size:(index + 1) * batch_size],
-                y: train_set_y[index * batch_size:(index + 1) * batch_size]})
+                y: train_set_y[index * batch_size:(index + 1) * batch_size]
+            })
     ###############
     # TRAIN MODEL #
     ###############
@@ -720,7 +723,7 @@ if __name__ == '__main__':
     L1_reg=0.00
     L2_reg=0.00
     n_epochs=2000
-    dataset='mnist-transformed.pkl.gz'
+    dataset='mnist.pkl.gz'
     batch_size=100
     n_hidden=[(2500,0.5,'h0',T.tanh),
               (2000,0.5,'h1',T.tanh),
