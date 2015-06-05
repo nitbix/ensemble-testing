@@ -123,7 +123,7 @@ if __name__ == '__main__':
                 (ensemble_size * 100,0,'s4',T.tanh),
             ],
             update_rule=mlp.rprop,
-            n_epochs=500,
+            n_epochs=100,
             batch_size=batch_size,
             train_set=resampler.get_train(),
             valid_set=resampler.get_valid())
@@ -131,6 +131,6 @@ if __name__ == '__main__':
     test_model = theano.function(inputs=[],
         on_unused_input='warn',
         outputs=mv.errors,
-        givens={x:In(test_set_x,borrow=True), y:In(test_set_y,borrow=True)})
+        givens={x:test_set_x, y:test_set_y})
     test_score = test_model()
     print 'Final error: {0} %'.format(test_score * 100.)
