@@ -52,7 +52,7 @@ def shared_dataset(data_xy, borrow=True):
     return shared_x, T.cast(shared_y, 'int32')
 
 
-def load_data(dataset, shared=True):
+def load_data(dataset, shared=True, pickled=True):
     ''' Loads the dataset
 
     :type dataset: string
@@ -65,24 +65,29 @@ def load_data(dataset, shared=True):
 
     # Download the MNIST dataset if it is not present
     data_dir, data_file = os.path.split(dataset)
-    if data_dir == "" and not os.path.isfile(dataset):
-        # Check if dataset is in the data directory.
-        new_path = os.path.join(os.path.split(__file__)[0], "..", "data", dataset)
-        if os.path.isfile(new_path) or data_file == 'mnist.pkl.gz':
-            dataset = new_path
+    if pickled:
+        if data_dir == "" and not os.path.isfile(dataset):
+            # Check if dataset is in the data directory.
+            new_path = os.path.join(os.path.split(__file__)[0], "..", "data", dataset)
+            if os.path.isfile(new_path) or data_file == 'mnist.pkl.gz':
+                dataset = new_path
 
-    if (not os.path.isfile(dataset)) and data_file == 'mnist.pkl.gz':
-        import urllib
-        origin = 'http://www.iro.umontreal.ca/~lisa/deep/data/mnist/mnist.pkl.gz'
-        print('Downloading data from {0}'.format(origin))
-        urllib.urlretrieve(origin, dataset)
+        if (not os.path.isfile(dataset)) and data_file == 'mnist.pkl.gz':
+            import urllib
+            origin = 'http://www.iro.umontreal.ca/~lisa/deep/data/mnist/mnist.pkl.gz'
+            print('Downloading data from {0}'.format(origin))
+            urllib.urlretrieve(origin, dataset)
 
-    print('... loading data')
+        print('... loading data')
 
-    # Load the dataset
-    f = gzip.open(dataset, 'rb')
-    train_set, valid_set, test_set = cPickle.load(f)
-    f.close()
+        # Load the dataset
+        f = gzip.open(dataset, 'rb')
+        train_set, valid_set, test_set = cPickle.load(f)
+        f.close()
+    else:
+        train_set = np.load(dataset + 'train')
+        valid_set = np.load(dataset + 'valid')
+        test_set = np.load(dataset + 'test')
     #train_set, valid_set, test_set format: tuple(input, target)
     #input is an numpy.ndarray of 2 dimensions (a matrix)
     #witch row's correspond to an example. target is a
@@ -176,6 +181,7 @@ class Transformer:
         self.final_y = []
         self.instance_no = 0
         instances = len(self.original_x)
+	instances = 100
         for i in xrange(1,instances):
             self.step_no = 0
             curr_x = self.original_x[i].reshape(self.x,self.y)
