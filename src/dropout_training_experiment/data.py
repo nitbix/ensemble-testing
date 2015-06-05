@@ -179,6 +179,7 @@ class Transformer:
         angle_step = 20
         sigmas = [0.2,0.4]
         gaussian_resamples = 1
+        scalings = [0.8,1.2]
         self.original_x, self.original_y = original_set
         self.final_x = []
         self.final_y = []
@@ -201,6 +202,10 @@ class Transformer:
             for j in xrange(1,gaussian_resamples):
                 for sigma in sigmas:
                     self.add_instance(self.gaussian_noise(curr_x,sigma),curr_y)
+            for scale_x in scalings:
+                for scale_y in scalings:
+                    if scale_x != 1 or scale_y != 1:
+                        self.add_instance(self.scale(curr_x,[scale_x,scale_y]),curr_y)
             self.instance_no += 1
             gc.collect()
 
@@ -212,6 +217,9 @@ class Transformer:
 
     def gaussian_noise(self,xval,sigma):
         return xval + numpy.random.normal(0.,sigma,xval.shape)
+
+    def scale(self,xval,scaling):
+        return ni.zoom(xval,scale)
 
     def add_instance(self,xval,yval):
         self.final_x.append(xval.flatten())
