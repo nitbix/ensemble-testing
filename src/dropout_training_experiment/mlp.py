@@ -363,7 +363,7 @@ class MLP(object):
 
 def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
              dataset='mnist.pkl.gz', batch_size=20, n_hidden=(500,0),
-             update_rule=sgd,transform=False):
+             update_rule=sgd,transform=False,pickled=True):
     """
     Demonstrate stochastic gradient descent optimization for a multilayer
     perceptron
@@ -391,7 +391,7 @@ def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
 
 
    """
-    datasets = data.load_data(dataset, shared = not transform)
+    datasets = data.load_data(dataset, shared = not transform, pickled = pickled)
 
     train_set_x, train_set_y = datasets[0]
     valid_set_x, valid_set_y = datasets[1]
@@ -723,9 +723,14 @@ if __name__ == '__main__':
     L1_reg=0.00
     L2_reg=0.00
     n_epochs=2000
-    dataset='mnist.pkl.gz'
+#    dataset='/local/mnist.pkl.gz'
+    dataset='mnist-transformed/'
+    pickled=False
     batch_size=100
-    n_hidden=[(2500,0.5,'h0',T.tanh),
+    n_hidden=[
+#	      (3500,0.5,'h0',T.tanh),
+#	      (3000,0.5,'h0',T.tanh),
+	      (2500,0.5,'h0',T.tanh),
               (2000,0.5,'h1',T.tanh),
               (1500,0.5,'h2',T.tanh),
               (1000,0.5,'h2',T.tanh),
@@ -735,4 +740,4 @@ if __name__ == '__main__':
         if arg[0]=='-':
             exec(arg[1:])
     mlp=test_mlp(learning_rate, L1_reg, L2_reg, n_epochs,
-        dataset, batch_size, n_hidden, update_rule = rprop, transform = False)
+        dataset, batch_size, n_hidden, update_rule = sgd, transform = False, pickled = pickled)
