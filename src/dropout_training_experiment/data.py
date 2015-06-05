@@ -166,8 +166,8 @@ class Transformer:
         min_trans_y = -2
         max_trans_y =  2
         y_step = 2
-        min_angle = -30
-        max_angle =  30
+        min_angle = -20
+        max_angle =  20
         angle_step = 20
         sigmas = [0.2,0.4]
         gaussian_resamples = 1
@@ -175,7 +175,8 @@ class Transformer:
         self.final_x = []
         self.final_y = []
         self.instance_no = 0
-        for i in xrange(1,len(self.original_x)):
+        instances = len(self.original_x)
+        for i in xrange(1,instances):
             self.step_no = 0
             curr_x = self.original_x[i].reshape(self.x,self.y)
             curr_y = self.original_y[i]
@@ -214,4 +215,3 @@ class Transformer:
 
     def get_data(self):
         return (np.array(self.final_x),np.array(self.final_y))
-
