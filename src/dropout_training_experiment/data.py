@@ -85,9 +85,12 @@ def load_data(dataset, shared=True, pickled=True):
         train_set, valid_set, test_set = cPickle.load(f)
         f.close()
     else:
-        train_set = np.load(dataset + 'train')
-        valid_set = np.load(dataset + 'valid')
-        test_set = np.load(dataset + 'test')
+        tr = np.load(dataset + 'train.npz')
+        v = np.load(dataset + 'valid.npz')
+        te = np.load(dataset + 'test.npz')
+	train_set = (tr['x'],tr['y'])
+	valid_set = (v['x'],v['y'])
+	test_set = (te['x'],te['y'])
     #train_set, valid_set, test_set format: tuple(input, target)
     #input is an numpy.ndarray of 2 dimensions (a matrix)
     #witch row's correspond to an example. target is a
@@ -181,7 +184,6 @@ class Transformer:
         self.final_y = []
         self.instance_no = 0
         instances = len(self.original_x)
-	instances = 100
         for i in xrange(1,instances):
             self.step_no = 0
             curr_x = self.original_x[i].reshape(self.x,self.y)
