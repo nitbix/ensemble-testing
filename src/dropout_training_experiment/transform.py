@@ -13,7 +13,7 @@ if __name__ == '__main__':
         fileName = sys.argv[2]
     else:
         dataset='mnist.pkl.gz'
-        fileName='mnist-transformed'
+        fileName='mnist-transformed/'
     dataset = data.load_data(dataset,shared=False)
     train,valid,test = dataset
     train_x, train_y = train
@@ -25,8 +25,8 @@ if __name__ == '__main__':
     aggregate_train = t.get_data()
     aggregate_valid = (aggregate_x, aggregate_y)
     atx,aty = aggregate_train
-    transformed_dataset = (aggregate_train,aggregate_valid,test)
+#    transformed_dataset = (aggregate_train,aggregate_valid,test)
     print "... saving"
-    f = open(fileName + '.pkl','wb')
-    cPickle.dump(transformed_dataset,f)
-    f.close()
+    np.savez_compressed(fileName + 'train',x=atx,y=aty)
+    np.savez_compressed(fileName + 'valid',x=aggregate_x,y=aggregate_y)
+    np.savez_compressed(fileName + 'test',x=test_x,y=test_y)
