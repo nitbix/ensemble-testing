@@ -12,6 +12,7 @@ import theano
 import theano.tensor as T
 import gzip
 import cPickle
+import matplotlib.pyplot as plt
 
 def sharedX(value, name=None, borrow=False, dtype=None):
     """
@@ -185,7 +186,11 @@ class Transformer:
         self.final_y = []
         self.instance_no = 0
         instances = len(self.original_x)
-        for i in xrange(1,instances):
+        elastic_sigma = 6.
+        elastic_alpha = 5.
+        elastic_transforms = 2
+        rng = numpy.random.RandomState(42)
+        for i in xrange(0,instances):
             self.step_no = 0
             curr_x = self.original_x[i].reshape(self.x,self.y)
             curr_y = self.original_y[i]
@@ -206,8 +211,23 @@ class Transformer:
                 for scale_y in scalings:
                     if scale_x != 1 or scale_y != 1:
                         self.add_instance(self.scale(curr_x,[scale_x,scale_y]),curr_y)
+            for j in range(0,elastic_transforms):
+                self.add_instance(self.elastic_transform(curr_x,elastic_sigma,elastic_alpha),curr_y)
+
             self.instance_no += 1
             gc.collect()
+
+    def elastic_transform(self,xval,sigma,alpha):
+            field_x = numpy.random.rand(28,28) * 2. - 1.
+            field_y = numpy.random.rand(28,28) * 2. - 1.
+            convolved_field_x = ni.filters.gaussian_filter(field_x,sigma)
+            convolved_field_y = ni.filters.gaussian_filter(field_y,sigma)
+            convolved_field_x = convolved_field_x * alpha / max(abs(convolved_field_x.flatten()))
+            convolved_field_y = convolved_field_y * alpha / max(abs(convolved_field_y.flatten()))
+            def mapping(coords):
+                x,y = coords
+                return  (x+convolved_field_x[x,y],y+convolved_field_y[x,y])
+            return ni.geometric_transform(xval,mapping)
 
     def translate_instance(self,xval, dx, dy):
         return np.roll(np.roll(xval,dx,axis=0),dy,axis=1)
@@ -219,9 +239,13 @@ class Transformer:
         return xval + numpy.random.normal(0.,sigma,xval.shape)
 
     def scale(self,xval,scaling):
-        return ni.zoom(xval,scale)
+        return ni.zoom(xval,scaling)
 
-    def add_instance(self,xval,yval):
+    def add_instance(self,xval,yval,plot=False):
+        if plot:
+            plt.gray()
+            plt.imshow(xval)
+            plt.show()
         self.final_x.append(xval.flatten())
         self.final_y.append(yval)
         self.step_no += 1
