@@ -1,0 +1,4 @@
+... building the model
+... training
+epoch 1, minibatch 3600/3600, validation error 28.751667 %
+     epoch 1, minibatch 3600/3600, test error of best model 27.570000 %
