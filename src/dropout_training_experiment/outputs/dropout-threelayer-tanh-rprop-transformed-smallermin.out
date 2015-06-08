@@ -1,4 +1,50 @@
 ... building the model
 ... training
-epoch 1, minibatch 3600/3600, validation error 20.103333 %
-     epoch 1, minibatch 3600/3600, test error of best model 19.140000 %
+epoch 1, minibatch 3600/3600, validation error 19.315000 %
+     epoch 1, minibatch 3600/3600, test error of best model 17.930000 %
+epoch 2, minibatch 3600/3600, validation error 16.891667 %
+     epoch 2, minibatch 3600/3600, test error of best model 15.950000 %
+epoch 3, minibatch 3600/3600, validation error 15.423333 %
+     epoch 3, minibatch 3600/3600, test error of best model 14.840000 %
+epoch 4, minibatch 3600/3600, validation error 14.533333 %
+     epoch 4, minibatch 3600/3600, test error of best model 13.970000 %
+epoch 5, minibatch 3600/3600, validation error 13.885000 %
+     epoch 5, minibatch 3600/3600, test error of best model 13.280000 %
+epoch 6, minibatch 3600/3600, validation error 13.378333 %
+     epoch 6, minibatch 3600/3600, test error of best model 12.850000 %
+epoch 7, minibatch 3600/3600, validation error 12.875000 %
+     epoch 7, minibatch 3600/3600, test error of best model 12.130000 %
+epoch 8, minibatch 3600/3600, validation error 12.450000 %
+     epoch 8, minibatch 3600/3600, test error of best model 11.830000 %
+epoch 9, minibatch 3600/3600, validation error 12.341667 %
+     epoch 9, minibatch 3600/3600, test error of best model 11.570000 %
+epoch 10, minibatch 3600/3600, validation error 11.771667 %
+     epoch 10, minibatch 3600/3600, test error of best model 11.100000 %
+epoch 11, minibatch 3600/3600, validation error 11.596667 %
+     epoch 11, minibatch 3600/3600, test error of best model 11.040000 %
+epoch 12, minibatch 3600/3600, validation error 11.241667 %
+     epoch 12, minibatch 3600/3600, test error of best model 10.540000 %
+epoch 13, minibatch 3600/3600, validation error 11.108333 %
+     epoch 13, minibatch 3600/3600, test error of best model 10.570000 %
+epoch 14, minibatch 3600/3600, validation error 10.735000 %
+     epoch 14, minibatch 3600/3600, test error of best model 10.150000 %
+epoch 15, minibatch 3600/3600, validation error 10.478333 %
+     epoch 15, minibatch 3600/3600, test error of best model 9.850000 %
+epoch 16, minibatch 3600/3600, validation error 10.343333 %
+     epoch 16, minibatch 3600/3600, test error of best model 9.660000 %
+epoch 17, minibatch 3600/3600, validation error 10.105000 %
+     epoch 17, minibatch 3600/3600, test error of best model 9.520000 %
+epoch 18, minibatch 3600/3600, validation error 9.945000 %
+     epoch 18, minibatch 3600/3600, test error of best model 9.380000 %
+epoch 19, minibatch 3600/3600, validation error 9.785000 %
+     epoch 19, minibatch 3600/3600, test error of best model 9.360000 %
+epoch 20, minibatch 3600/3600, validation error 9.726667 %
+     epoch 20, minibatch 3600/3600, test error of best model 9.290000 %
+epoch 21, minibatch 3600/3600, validation error 9.505000 %
+     epoch 21, minibatch 3600/3600, test error of best model 9.120000 %
+epoch 22, minibatch 3600/3600, validation error 9.346667 %
+     epoch 22, minibatch 3600/3600, test error of best model 9.140000 %
+epoch 23, minibatch 3600/3600, validation error 9.270000 %
+     epoch 23, minibatch 3600/3600, test error of best model 8.960000 %
+epoch 24, minibatch 3600/3600, validation error 9.103333 %
+     epoch 24, minibatch 3600/3600, test error of best model 8.890000 %
