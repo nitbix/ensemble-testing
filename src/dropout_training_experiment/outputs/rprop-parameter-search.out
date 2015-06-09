@@ -1,0 +1,1334 @@
+PARAMS:
+ETA-: 0.1
+ETA+: 1.1
+MIN_DELTA: 0.001
+MAX_DELTA: 5
+... loading data
+... building the model
+... training
+epoch 1, minibatch 500/500, validation error 7.830000 %
+     epoch 1, minibatch 500/500, test error of best model 8.680000 %
+epoch 2, minibatch 500/500, validation error 6.750000 %
+     epoch 2, minibatch 500/500, test error of best model 7.320000 %
+epoch 3, minibatch 500/500, validation error 5.080000 %
+     epoch 3, minibatch 500/500, test error of best model 6.010000 %
+epoch 4, minibatch 500/500, validation error 4.030000 %
+     epoch 4, minibatch 500/500, test error of best model 4.730000 %
+epoch 5, minibatch 500/500, validation error 3.800000 %
+     epoch 5, minibatch 500/500, test error of best model 4.370000 %
+epoch 6, minibatch 500/500, validation error 3.370000 %
+     epoch 6, minibatch 500/500, test error of best model 4.000000 %
+epoch 7, minibatch 500/500, validation error 3.910000 %
+epoch 8, minibatch 500/500, validation error 3.630000 %
+epoch 9, minibatch 500/500, validation error 3.280000 %
+     epoch 9, minibatch 500/500, test error of best model 3.610000 %
+epoch 10, minibatch 500/500, validation error 3.240000 %
+     epoch 10, minibatch 500/500, test error of best model 3.540000 %
+epoch 11, minibatch 500/500, validation error 3.180000 %
+     epoch 11, minibatch 500/500, test error of best model 3.340000 %
+epoch 12, minibatch 500/500, validation error 3.240000 %
+epoch 13, minibatch 500/500, validation error 3.250000 %
+epoch 14, minibatch 500/500, validation error 2.890000 %
+     epoch 14, minibatch 500/500, test error of best model 3.370000 %
+epoch 15, minibatch 500/500, validation error 3.030000 %
+epoch 16, minibatch 500/500, validation error 3.010000 %
+epoch 17, minibatch 500/500, validation error 3.020000 %
+epoch 18, minibatch 500/500, validation error 3.060000 %
+epoch 19, minibatch 500/500, validation error 2.850000 %
+     epoch 19, minibatch 500/500, test error of best model 2.940000 %
+epoch 20, minibatch 500/500, validation error 2.970000 %
+epoch 21, minibatch 500/500, validation error 2.620000 %
+     epoch 21, minibatch 500/500, test error of best model 2.820000 %
+epoch 22, minibatch 500/500, validation error 2.570000 %
+     epoch 22, minibatch 500/500, test error of best model 2.890000 %
+epoch 23, minibatch 500/500, validation error 2.580000 %
+skipping manually to next
+PARAMS:
+ETA-: 0.1
+ETA+: 1.1
+MIN_DELTA: 0.001
+MAX_DELTA: 50
+... loading data
+... building the model
+... training
+skipping manually to next
+PARAMS:
+ETA-: 0.1
+ETA+: 1.1
+MIN_DELTA: 0.001
+MAX_DELTA: 500
+... loading data
+skipping manually to next
+PARAMS:
+ETA-: 0.1
+ETA+: 1.1
+MIN_DELTA: 0.0001
+MAX_DELTA: 5
+... loading data
+... building the model
+... training
+epoch 1, minibatch 500/500, validation error 10.200000 %
+     epoch 1, minibatch 500/500, test error of best model 10.830000 %
+epoch 2, minibatch 500/500, validation error 7.490000 %
+     epoch 2, minibatch 500/500, test error of best model 8.200000 %
+epoch 3, minibatch 500/500, validation error 6.400000 %
+     epoch 3, minibatch 500/500, test error of best model 6.990000 %
+epoch 4, minibatch 500/500, validation error 5.940000 %
+     epoch 4, minibatch 500/500, test error of best model 6.690000 %
+epoch 5, minibatch 500/500, validation error 5.400000 %
+     epoch 5, minibatch 500/500, test error of best model 5.940000 %
+epoch 6, minibatch 500/500, validation error 4.750000 %
+     epoch 6, minibatch 500/500, test error of best model 5.140000 %
+epoch 7, minibatch 500/500, validation error 4.310000 %
+     epoch 7, minibatch 500/500, test error of best model 4.600000 %
+epoch 8, minibatch 500/500, validation error 4.020000 %
+     epoch 8, minibatch 500/500, test error of best model 4.080000 %
+epoch 9, minibatch 500/500, validation error 3.590000 %
+     epoch 9, minibatch 500/500, test error of best model 3.910000 %
+epoch 10, minibatch 500/500, validation error 3.420000 %
+     epoch 10, minibatch 500/500, test error of best model 3.720000 %
+epoch 11, minibatch 500/500, validation error 3.360000 %
+     epoch 11, minibatch 500/500, test error of best model 3.720000 %
+epoch 12, minibatch 500/500, validation error 3.360000 %
+     epoch 12, minibatch 500/500, test error of best model 3.800000 %
+epoch 13, minibatch 500/500, validation error 3.240000 %
+     epoch 13, minibatch 500/500, test error of best model 3.720000 %
+epoch 14, minibatch 500/500, validation error 3.290000 %
+epoch 15, minibatch 500/500, validation error 3.150000 %
+     epoch 15, minibatch 500/500, test error of best model 3.390000 %
+epoch 16, minibatch 500/500, validation error 3.350000 %
+epoch 17, minibatch 500/500, validation error 3.090000 %
+     epoch 17, minibatch 500/500, test error of best model 3.480000 %
+epoch 18, minibatch 500/500, validation error 3.180000 %
+epoch 19, minibatch 500/500, validation error 3.150000 %
+epoch 20, minibatch 500/500, validation error 2.830000 %
+     epoch 20, minibatch 500/500, test error of best model 3.220000 %
+epoch 21, minibatch 500/500, validation error 3.020000 %
+epoch 22, minibatch 500/500, validation error 2.900000 %
+epoch 23, minibatch 500/500, validation error 2.760000 %
+     epoch 23, minibatch 500/500, test error of best model 3.270000 %
+epoch 24, minibatch 500/500, validation error 2.640000 %
+     epoch 24, minibatch 500/500, test error of best model 2.970000 %
+epoch 25, minibatch 500/500, validation error 2.850000 %
+epoch 26, minibatch 500/500, validation error 2.680000 %
+epoch 27, minibatch 500/500, validation error 2.780000 %
+epoch 28, minibatch 500/500, validation error 2.700000 %
+epoch 29, minibatch 500/500, validation error 2.750000 %
+epoch 30, minibatch 500/500, validation error 2.980000 %
+epoch 31, minibatch 500/500, validation error 2.720000 %
+epoch 32, minibatch 500/500, validation error 2.720000 %
+epoch 33, minibatch 500/500, validation error 2.450000 %
+     epoch 33, minibatch 500/500, test error of best model 2.940000 %
+epoch 34, minibatch 500/500, validation error 2.790000 %
+epoch 35, minibatch 500/500, validation error 2.570000 %
+epoch 36, minibatch 500/500, validation error 2.700000 %
+epoch 37, minibatch 500/500, validation error 2.750000 %
+epoch 38, minibatch 500/500, validation error 2.740000 %
+epoch 39, minibatch 500/500, validation error 2.780000 %
+epoch 40, minibatch 500/500, validation error 2.940000 %
+Optimization complete. Best validation score of 2.450000 % obtained at iteration 16500, with test performance 2.940000 %
+PARAMS:
+ETA-: 0.1
+ETA+: 1.1
+MIN_DELTA: 0.0001
+MAX_DELTA: 50
+... loading data
+... building the model
+... training
+epoch 1, minibatch 500/500, validation error 10.190000 %
+     epoch 1, minibatch 500/500, test error of best model 10.770000 %
+epoch 2, minibatch 500/500, validation error 7.370000 %
+     epoch 2, minibatch 500/500, test error of best model 8.060000 %
+epoch 3, minibatch 500/500, validation error 6.330000 %
+     epoch 3, minibatch 500/500, test error of best model 7.010000 %
+epoch 4, minibatch 500/500, validation error 5.910000 %
+     epoch 4, minibatch 500/500, test error of best model 6.620000 %
+epoch 5, minibatch 500/500, validation error 5.170000 %
+     epoch 5, minibatch 500/500, test error of best model 5.870000 %
+epoch 6, minibatch 500/500, validation error 4.690000 %
+     epoch 6, minibatch 500/500, test error of best model 5.070000 %
+epoch 7, minibatch 500/500, validation error 4.360000 %
+     epoch 7, minibatch 500/500, test error of best model 4.600000 %
+epoch 8, minibatch 500/500, validation error 3.970000 %
+     epoch 8, minibatch 500/500, test error of best model 4.100000 %
+epoch 9, minibatch 500/500, validation error 3.740000 %
+     epoch 9, minibatch 500/500, test error of best model 3.830000 %
+epoch 10, minibatch 500/500, validation error 3.460000 %
+     epoch 10, minibatch 500/500, test error of best model 3.680000 %
+epoch 11, minibatch 500/500, validation error 3.390000 %
+     epoch 11, minibatch 500/500, test error of best model 3.670000 %
+epoch 12, minibatch 500/500, validation error 3.320000 %
+     epoch 12, minibatch 500/500, test error of best model 3.650000 %
+epoch 13, minibatch 500/500, validation error 3.110000 %
+     epoch 13, minibatch 500/500, test error of best model 3.620000 %
+epoch 14, minibatch 500/500, validation error 3.140000 %
+epoch 15, minibatch 500/500, validation error 3.100000 %
+     epoch 15, minibatch 500/500, test error of best model 3.560000 %
+epoch 16, minibatch 500/500, validation error 3.080000 %
+     epoch 16, minibatch 500/500, test error of best model 3.280000 %
+epoch 17, minibatch 500/500, validation error 3.120000 %
+epoch 18, minibatch 500/500, validation error 3.130000 %
+epoch 19, minibatch 500/500, validation error 3.170000 %
+epoch 20, minibatch 500/500, validation error 2.870000 %
+     epoch 20, minibatch 500/500, test error of best model 3.320000 %
+epoch 21, minibatch 500/500, validation error 2.940000 %
+epoch 22, minibatch 500/500, validation error 2.880000 %
+epoch 23, minibatch 500/500, validation error 2.860000 %
+     epoch 23, minibatch 500/500, test error of best model 3.180000 %
+epoch 24, minibatch 500/500, validation error 2.670000 %
+     epoch 24, minibatch 500/500, test error of best model 2.920000 %
+epoch 25, minibatch 500/500, validation error 2.610000 %
+     epoch 25, minibatch 500/500, test error of best model 3.000000 %
+epoch 26, minibatch 500/500, validation error 2.590000 %
+     epoch 26, minibatch 500/500, test error of best model 2.990000 %
+epoch 27, minibatch 500/500, validation error 2.720000 %
+epoch 28, minibatch 500/500, validation error 2.440000 %
+     epoch 28, minibatch 500/500, test error of best model 2.740000 %
+epoch 29, minibatch 500/500, validation error 2.420000 %
+     epoch 29, minibatch 500/500, test error of best model 2.690000 %
+epoch 30, minibatch 500/500, validation error 2.600000 %
+epoch 31, minibatch 500/500, validation error 2.840000 %
+epoch 32, minibatch 500/500, validation error 2.480000 %
+epoch 33, minibatch 500/500, validation error 2.710000 %
+epoch 34, minibatch 500/500, validation error 2.560000 %
+epoch 35, minibatch 500/500, validation error 2.450000 %
+epoch 36, minibatch 500/500, validation error 2.630000 %
+epoch 37, minibatch 500/500, validation error 2.560000 %
+epoch 38, minibatch 500/500, validation error 2.740000 %
+epoch 39, minibatch 500/500, validation error 2.680000 %
+epoch 40, minibatch 500/500, validation error 2.730000 %
+Optimization complete. Best validation score of 2.420000 % obtained at iteration 14500, with test performance 2.690000 %
+PARAMS:
+ETA-: 0.1
+ETA+: 1.1
+MIN_DELTA: 0.0001
+MAX_DELTA: 500
+... loading data
+... building the model
+... training
+epoch 1, minibatch 500/500, validation error 10.190000 %
+     epoch 1, minibatch 500/500, test error of best model 10.770000 %
+epoch 2, minibatch 500/500, validation error 7.370000 %
+     epoch 2, minibatch 500/500, test error of best model 8.060000 %
+epoch 3, minibatch 500/500, validation error 6.330000 %
+     epoch 3, minibatch 500/500, test error of best model 7.010000 %
+epoch 4, minibatch 500/500, validation error 5.890000 %
+     epoch 4, minibatch 500/500, test error of best model 6.610000 %
+epoch 5, minibatch 500/500, validation error 5.240000 %
+     epoch 5, minibatch 500/500, test error of best model 5.890000 %
+epoch 6, minibatch 500/500, validation error 4.700000 %
+     epoch 6, minibatch 500/500, test error of best model 5.080000 %
+epoch 7, minibatch 500/500, validation error 4.250000 %
+     epoch 7, minibatch 500/500, test error of best model 4.620000 %
+epoch 8, minibatch 500/500, validation error 4.020000 %
+     epoch 8, minibatch 500/500, test error of best model 4.090000 %
+epoch 9, minibatch 500/500, validation error 3.670000 %
+     epoch 9, minibatch 500/500, test error of best model 3.710000 %
+epoch 10, minibatch 500/500, validation error 3.450000 %
+     epoch 10, minibatch 500/500, test error of best model 3.690000 %
+epoch 11, minibatch 500/500, validation error 3.250000 %
+     epoch 11, minibatch 500/500, test error of best model 3.610000 %
+epoch 12, minibatch 500/500, validation error 3.290000 %
+epoch 13, minibatch 500/500, validation error 3.290000 %
+epoch 14, minibatch 500/500, validation error 3.310000 %
+epoch 15, minibatch 500/500, validation error 3.260000 %
+epoch 16, minibatch 500/500, validation error 3.240000 %
+     epoch 16, minibatch 500/500, test error of best model 3.590000 %
+epoch 17, minibatch 500/500, validation error 3.160000 %
+     epoch 17, minibatch 500/500, test error of best model 3.430000 %
+epoch 18, minibatch 500/500, validation error 3.050000 %
+     epoch 18, minibatch 500/500, test error of best model 3.500000 %
+epoch 19, minibatch 500/500, validation error 2.920000 %
+     epoch 19, minibatch 500/500, test error of best model 3.230000 %
+epoch 20, minibatch 500/500, validation error 2.880000 %
+     epoch 20, minibatch 500/500, test error of best model 3.180000 %
+epoch 21, minibatch 500/500, validation error 3.110000 %
+epoch 22, minibatch 500/500, validation error 2.980000 %
+epoch 23, minibatch 500/500, validation error 2.980000 %
+epoch 24, minibatch 500/500, validation error 2.650000 %
+     epoch 24, minibatch 500/500, test error of best model 3.090000 %
+epoch 25, minibatch 500/500, validation error 2.640000 %
+     epoch 25, minibatch 500/500, test error of best model 3.020000 %
+epoch 26, minibatch 500/500, validation error 2.550000 %
+     epoch 26, minibatch 500/500, test error of best model 2.840000 %
+epoch 27, minibatch 500/500, validation error 2.650000 %
+epoch 28, minibatch 500/500, validation error 2.630000 %
+epoch 29, minibatch 500/500, validation error 2.630000 %
+epoch 30, minibatch 500/500, validation error 2.530000 %
+     epoch 30, minibatch 500/500, test error of best model 2.910000 %
+epoch 31, minibatch 500/500, validation error 2.710000 %
+epoch 32, minibatch 500/500, validation error 2.600000 %
+epoch 33, minibatch 500/500, validation error 2.610000 %
+epoch 34, minibatch 500/500, validation error 2.610000 %
+epoch 35, minibatch 500/500, validation error 2.490000 %
+     epoch 35, minibatch 500/500, test error of best model 2.650000 %
+epoch 36, minibatch 500/500, validation error 2.460000 %
+     epoch 36, minibatch 500/500, test error of best model 2.930000 %
+epoch 37, minibatch 500/500, validation error 2.670000 %
+epoch 38, minibatch 500/500, validation error 2.670000 %
+epoch 39, minibatch 500/500, validation error 2.700000 %
+epoch 40, minibatch 500/500, validation error 2.680000 %
+Optimization complete. Best validation score of 2.460000 % obtained at iteration 18000, with test performance 2.930000 %
+PARAMS:
+ETA-: 0.1
+ETA+: 1.1
+MIN_DELTA: 1e-05
+MAX_DELTA: 5
+... loading data
+... building the model
+... training
+epoch 1, minibatch 500/500, validation error 22.470000 %
+     epoch 1, minibatch 500/500, test error of best model 22.860000 %
+epoch 2, minibatch 500/500, validation error 14.160000 %
+     epoch 2, minibatch 500/500, test error of best model 14.630000 %
+epoch 3, minibatch 500/500, validation error 11.850000 %
+     epoch 3, minibatch 500/500, test error of best model 12.000000 %
+epoch 4, minibatch 500/500, validation error 10.490000 %
+     epoch 4, minibatch 500/500, test error of best model 10.710000 %
+epoch 5, minibatch 500/500, validation error 9.580000 %
+     epoch 5, minibatch 500/500, test error of best model 9.840000 %
+epoch 6, minibatch 500/500, validation error 9.130000 %
+     epoch 6, minibatch 500/500, test error of best model 9.210000 %
+epoch 7, minibatch 500/500, validation error 8.600000 %
+     epoch 7, minibatch 500/500, test error of best model 8.670000 %
+epoch 8, minibatch 500/500, validation error 8.230000 %
+     epoch 8, minibatch 500/500, test error of best model 8.240000 %
+epoch 9, minibatch 500/500, validation error 7.730000 %
+     epoch 9, minibatch 500/500, test error of best model 7.810000 %
+epoch 10, minibatch 500/500, validation error 7.370000 %
+     epoch 10, minibatch 500/500, test error of best model 7.410000 %
+epoch 11, minibatch 500/500, validation error 7.100000 %
+     epoch 11, minibatch 500/500, test error of best model 7.120000 %
+skipping manually to next
+PARAMS:
+ETA-: 0.1
+ETA+: 1.1
+MIN_DELTA: 1e-05
+MAX_DELTA: 50
+... loading data
+skipping manually to next
+PARAMS:
+ETA-: 0.1
+ETA+: 1.1
+MIN_DELTA: 1e-05
+MAX_DELTA: 500
+... loading data
+skipping manually to next
+PARAMS:
+ETA-: 0.1
+ETA+: 1.1
+MIN_DELTA: 1e-06
+MAX_DELTA: 5
+... loading data
+... building the model
+... training
+epoch 1, minibatch 500/500, validation error 31.440000 %
+     epoch 1, minibatch 500/500, test error of best model 32.830000 %
+epoch 2, minibatch 500/500, validation error 26.640000 %
+     epoch 2, minibatch 500/500, test error of best model 26.550000 %
+epoch 3, minibatch 500/500, validation error 24.430000 %
+     epoch 3, minibatch 500/500, test error of best model 24.440000 %
+skipping manually to next
+PARAMS:
+ETA-: 0.1
+ETA+: 1.1
+MIN_DELTA: 1e-06
+MAX_DELTA: 50
+... loading data
+skipping manually to next
+PARAMS:
+ETA-: 0.1
+ETA+: 1.1
+MIN_DELTA: 1e-06
+MAX_DELTA: 500
+... loading data
+skipping manually to next
+PARAMS:
+ETA-: 0.1
+ETA+: 1.1
+MIN_DELTA: 1e-07
+MAX_DELTA: 5
+... loading data
+skipping manually to next
+PARAMS:
+ETA-: 0.1
+ETA+: 1.1
+MIN_DELTA: 1e-07
+MAX_DELTA: 50
+... loading data
+skipping manually to next
+PARAMS:
+ETA-: 0.1
+ETA+: 1.1
+MIN_DELTA: 1e-07
+MAX_DELTA: 500
+... loading data
+skipping manually to next
+PARAMS:
+ETA-: 0.1
+ETA+: 1.2
+MIN_DELTA: 0.001
+MAX_DELTA: 5
+... loading data
+... building the model
+skipping manually to next
+PARAMS:
+ETA-: 0.1
+ETA+: 1.2
+MIN_DELTA: 0.001
+MAX_DELTA: 50
+... loading data
+skipping manually to next
+PARAMS:
+ETA-: 0.1
+ETA+: 1.2
+MIN_DELTA: 0.001
+MAX_DELTA: 500
+... loading data
+... building the model
+... training
+epoch 1, minibatch 500/500, validation error 7.540000 %
+     epoch 1, minibatch 500/500, test error of best model 8.570000 %
+epoch 2, minibatch 500/500, validation error 6.590000 %
+     epoch 2, minibatch 500/500, test error of best model 7.390000 %
+epoch 3, minibatch 500/500, validation error 5.160000 %
+     epoch 3, minibatch 500/500, test error of best model 6.060000 %
+epoch 4, minibatch 500/500, validation error 4.570000 %
+     epoch 4, minibatch 500/500, test error of best model 5.300000 %
+epoch 5, minibatch 500/500, validation error 4.130000 %
+     epoch 5, minibatch 500/500, test error of best model 4.520000 %
+epoch 6, minibatch 500/500, validation error 4.150000 %
+epoch 7, minibatch 500/500, validation error 3.810000 %
+     epoch 7, minibatch 500/500, test error of best model 4.270000 %
+epoch 8, minibatch 500/500, validation error 3.880000 %
+epoch 9, minibatch 500/500, validation error 3.910000 %
+epoch 10, minibatch 500/500, validation error 3.540000 %
+     epoch 10, minibatch 500/500, test error of best model 3.960000 %
+epoch 11, minibatch 500/500, validation error 3.400000 %
+     epoch 11, minibatch 500/500, test error of best model 3.630000 %
+epoch 12, minibatch 500/500, validation error 3.360000 %
+     epoch 12, minibatch 500/500, test error of best model 3.850000 %
+epoch 13, minibatch 500/500, validation error 3.090000 %
+     epoch 13, minibatch 500/500, test error of best model 3.640000 %
+epoch 14, minibatch 500/500, validation error 3.130000 %
+epoch 15, minibatch 500/500, validation error 3.210000 %
+epoch 16, minibatch 500/500, validation error 2.980000 %
+     epoch 16, minibatch 500/500, test error of best model 3.190000 %
+epoch 17, minibatch 500/500, validation error 3.120000 %
+epoch 18, minibatch 500/500, validation error 3.200000 %
+epoch 19, minibatch 500/500, validation error 3.130000 %
+epoch 20, minibatch 500/500, validation error 2.990000 %
+epoch 21, minibatch 500/500, validation error 3.060000 %
+epoch 22, minibatch 500/500, validation error 3.140000 %
+epoch 23, minibatch 500/500, validation error 3.490000 %
+epoch 24, minibatch 500/500, validation error 3.260000 %
+epoch 25, minibatch 500/500, validation error 3.080000 %
+epoch 26, minibatch 500/500, validation error 2.880000 %
+     epoch 26, minibatch 500/500, test error of best model 3.460000 %
+epoch 27, minibatch 500/500, validation error 3.100000 %
+epoch 28, minibatch 500/500, validation error 2.930000 %
+epoch 29, minibatch 500/500, validation error 2.920000 %
+epoch 30, minibatch 500/500, validation error 3.200000 %
+epoch 31, minibatch 500/500, validation error 3.380000 %
+epoch 32, minibatch 500/500, validation error 3.300000 %
+epoch 33, minibatch 500/500, validation error 3.240000 %
+epoch 34, minibatch 500/500, validation error 3.130000 %
+epoch 35, minibatch 500/500, validation error 2.890000 %
+epoch 36, minibatch 500/500, validation error 3.250000 %
+epoch 37, minibatch 500/500, validation error 3.280000 %
+epoch 38, minibatch 500/500, validation error 2.840000 %
+     epoch 38, minibatch 500/500, test error of best model 3.080000 %
+epoch 39, minibatch 500/500, validation error 3.540000 %
+skipping manually to next
+PARAMS:
+ETA-: 0.1
+ETA+: 1.2
+MIN_DELTA: 0.0001
+MAX_DELTA: 5
+... loading data
+... building the model
+... training
+epoch 1, minibatch 500/500, validation error 9.640000 %
+     epoch 1, minibatch 500/500, test error of best model 10.640000 %
+epoch 2, minibatch 500/500, validation error 7.390000 %
+     epoch 2, minibatch 500/500, test error of best model 8.480000 %
+epoch 3, minibatch 500/500, validation error 6.400000 %
+     epoch 3, minibatch 500/500, test error of best model 7.370000 %
+epoch 4, minibatch 500/500, validation error 5.710000 %
+     epoch 4, minibatch 500/500, test error of best model 6.350000 %
+epoch 5, minibatch 500/500, validation error 4.750000 %
+     epoch 5, minibatch 500/500, test error of best model 5.350000 %
+epoch 6, minibatch 500/500, validation error 4.500000 %
+     epoch 6, minibatch 500/500, test error of best model 4.890000 %
+epoch 7, minibatch 500/500, validation error 4.050000 %
+     epoch 7, minibatch 500/500, test error of best model 4.490000 %
+epoch 8, minibatch 500/500, validation error 3.870000 %
+     epoch 8, minibatch 500/500, test error of best model 4.430000 %
+epoch 9, minibatch 500/500, validation error 3.700000 %
+     epoch 9, minibatch 500/500, test error of best model 4.100000 %
+epoch 10, minibatch 500/500, validation error 3.580000 %
+     epoch 10, minibatch 500/500, test error of best model 3.820000 %
+epoch 11, minibatch 500/500, validation error 3.390000 %
+     epoch 11, minibatch 500/500, test error of best model 3.670000 %
+epoch 12, minibatch 500/500, validation error 3.430000 %
+epoch 13, minibatch 500/500, validation error 3.160000 %
+     epoch 13, minibatch 500/500, test error of best model 3.380000 %
+epoch 14, minibatch 500/500, validation error 3.310000 %
+epoch 15, minibatch 500/500, validation error 3.040000 %
+     epoch 15, minibatch 500/500, test error of best model 3.300000 %
+epoch 16, minibatch 500/500, validation error 3.000000 %
+     epoch 16, minibatch 500/500, test error of best model 3.240000 %
+epoch 17, minibatch 500/500, validation error 2.890000 %
+     epoch 17, minibatch 500/500, test error of best model 3.180000 %
+epoch 18, minibatch 500/500, validation error 2.950000 %
+epoch 19, minibatch 500/500, validation error 2.990000 %
+epoch 20, minibatch 500/500, validation error 2.890000 %
+epoch 21, minibatch 500/500, validation error 2.840000 %
+     epoch 21, minibatch 500/500, test error of best model 3.150000 %
+epoch 22, minibatch 500/500, validation error 3.040000 %
+epoch 23, minibatch 500/500, validation error 2.950000 %
+epoch 24, minibatch 500/500, validation error 2.720000 %
+     epoch 24, minibatch 500/500, test error of best model 2.930000 %
+epoch 25, minibatch 500/500, validation error 2.720000 %
+     epoch 25, minibatch 500/500, test error of best model 2.980000 %
+epoch 26, minibatch 500/500, validation error 2.750000 %
+epoch 27, minibatch 500/500, validation error 2.570000 %
+     epoch 27, minibatch 500/500, test error of best model 2.850000 %
+epoch 28, minibatch 500/500, validation error 2.620000 %
+epoch 29, minibatch 500/500, validation error 2.550000 %
+     epoch 29, minibatch 500/500, test error of best model 3.050000 %
+epoch 30, minibatch 500/500, validation error 2.750000 %
+epoch 31, minibatch 500/500, validation error 2.720000 %
+epoch 32, minibatch 500/500, validation error 2.950000 %
+epoch 33, minibatch 500/500, validation error 2.930000 %
+epoch 34, minibatch 500/500, validation error 2.720000 %
+epoch 35, minibatch 500/500, validation error 2.680000 %
+epoch 36, minibatch 500/500, validation error 2.800000 %
+epoch 37, minibatch 500/500, validation error 2.900000 %
+epoch 38, minibatch 500/500, validation error 3.000000 %
+epoch 39, minibatch 500/500, validation error 2.960000 %
+epoch 40, minibatch 500/500, validation error 2.900000 %
+Optimization complete. Best validation score of 2.550000 % obtained at iteration 14500, with test performance 3.050000 %
+PARAMS:
+ETA-: 0.1
+ETA+: 1.2
+MIN_DELTA: 0.0001
+MAX_DELTA: 50
+... loading data
+... building the model
+... training
+epoch 1, minibatch 500/500, validation error 9.730000 %
+     epoch 1, minibatch 500/500, test error of best model 10.800000 %
+epoch 2, minibatch 500/500, validation error 7.630000 %
+     epoch 2, minibatch 500/500, test error of best model 8.560000 %
+epoch 3, minibatch 500/500, validation error 6.070000 %
+     epoch 3, minibatch 500/500, test error of best model 6.970000 %
+epoch 4, minibatch 500/500, validation error 5.590000 %
+     epoch 4, minibatch 500/500, test error of best model 6.180000 %
+epoch 5, minibatch 500/500, validation error 4.960000 %
+     epoch 5, minibatch 500/500, test error of best model 5.370000 %
+epoch 6, minibatch 500/500, validation error 4.620000 %
+     epoch 6, minibatch 500/500, test error of best model 5.150000 %
+epoch 7, minibatch 500/500, validation error 4.310000 %
+     epoch 7, minibatch 500/500, test error of best model 4.680000 %
+epoch 8, minibatch 500/500, validation error 4.070000 %
+     epoch 8, minibatch 500/500, test error of best model 4.490000 %
+epoch 9, minibatch 500/500, validation error 3.650000 %
+     epoch 9, minibatch 500/500, test error of best model 4.110000 %
+epoch 10, minibatch 500/500, validation error 3.500000 %
+     epoch 10, minibatch 500/500, test error of best model 3.850000 %
+epoch 11, minibatch 500/500, validation error 3.420000 %
+     epoch 11, minibatch 500/500, test error of best model 3.640000 %
+epoch 12, minibatch 500/500, validation error 3.200000 %
+     epoch 12, minibatch 500/500, test error of best model 3.450000 %
+epoch 13, minibatch 500/500, validation error 3.150000 %
+     epoch 13, minibatch 500/500, test error of best model 3.450000 %
+epoch 14, minibatch 500/500, validation error 3.230000 %
+epoch 15, minibatch 500/500, validation error 3.140000 %
+     epoch 15, minibatch 500/500, test error of best model 3.420000 %
+epoch 16, minibatch 500/500, validation error 3.170000 %
+epoch 17, minibatch 500/500, validation error 3.170000 %
+epoch 18, minibatch 500/500, validation error 3.390000 %
+epoch 19, minibatch 500/500, validation error 3.150000 %
+epoch 20, minibatch 500/500, validation error 3.080000 %
+     epoch 20, minibatch 500/500, test error of best model 3.130000 %
+epoch 21, minibatch 500/500, validation error 2.990000 %
+     epoch 21, minibatch 500/500, test error of best model 2.920000 %
+epoch 22, minibatch 500/500, validation error 3.170000 %
+epoch 23, minibatch 500/500, validation error 3.020000 %
+epoch 24, minibatch 500/500, validation error 2.950000 %
+     epoch 24, minibatch 500/500, test error of best model 2.960000 %
+epoch 25, minibatch 500/500, validation error 2.800000 %
+     epoch 25, minibatch 500/500, test error of best model 2.900000 %
+epoch 26, minibatch 500/500, validation error 2.790000 %
+     epoch 26, minibatch 500/500, test error of best model 2.770000 %
+epoch 27, minibatch 500/500, validation error 2.940000 %
+epoch 28, minibatch 500/500, validation error 2.910000 %
+epoch 29, minibatch 500/500, validation error 2.900000 %
+epoch 30, minibatch 500/500, validation error 2.890000 %
+epoch 31, minibatch 500/500, validation error 2.960000 %
+epoch 32, minibatch 500/500, validation error 2.890000 %
+epoch 33, minibatch 500/500, validation error 2.860000 %
+epoch 34, minibatch 500/500, validation error 2.950000 %
+epoch 35, minibatch 500/500, validation error 2.990000 %
+epoch 36, minibatch 500/500, validation error 3.000000 %
+epoch 37, minibatch 500/500, validation error 2.930000 %
+epoch 38, minibatch 500/500, validation error 2.760000 %
+     epoch 38, minibatch 500/500, test error of best model 2.840000 %
+epoch 39, minibatch 500/500, validation error 3.040000 %
+epoch 40, minibatch 500/500, validation error 3.120000 %
+Optimization complete. Best validation score of 2.760000 % obtained at iteration 19000, with test performance 2.840000 %
+PARAMS:
+ETA-: 0.1
+ETA+: 1.2
+MIN_DELTA: 0.0001
+MAX_DELTA: 500
+... loading data
+... building the model
+... training
+epoch 1, minibatch 500/500, validation error 9.580000 %
+     epoch 1, minibatch 500/500, test error of best model 10.670000 %
+epoch 2, minibatch 500/500, validation error 7.730000 %
+     epoch 2, minibatch 500/500, test error of best model 8.690000 %
+epoch 3, minibatch 500/500, validation error 6.410000 %
+     epoch 3, minibatch 500/500, test error of best model 7.360000 %
+epoch 4, minibatch 500/500, validation error 5.590000 %
+     epoch 4, minibatch 500/500, test error of best model 6.360000 %
+epoch 5, minibatch 500/500, validation error 4.860000 %
+     epoch 5, minibatch 500/500, test error of best model 5.500000 %
+epoch 6, minibatch 500/500, validation error 4.680000 %
+     epoch 6, minibatch 500/500, test error of best model 5.170000 %
+epoch 7, minibatch 500/500, validation error 4.340000 %
+     epoch 7, minibatch 500/500, test error of best model 4.680000 %
+epoch 8, minibatch 500/500, validation error 3.980000 %
+     epoch 8, minibatch 500/500, test error of best model 4.520000 %
+epoch 9, minibatch 500/500, validation error 3.650000 %
+     epoch 9, minibatch 500/500, test error of best model 4.190000 %
+epoch 10, minibatch 500/500, validation error 3.600000 %
+     epoch 10, minibatch 500/500, test error of best model 3.820000 %
+epoch 11, minibatch 500/500, validation error 3.230000 %
+     epoch 11, minibatch 500/500, test error of best model 3.620000 %
+epoch 12, minibatch 500/500, validation error 3.210000 %
+     epoch 12, minibatch 500/500, test error of best model 3.650000 %
+epoch 13, minibatch 500/500, validation error 3.190000 %
+     epoch 13, minibatch 500/500, test error of best model 3.440000 %
+epoch 14, minibatch 500/500, validation error 3.300000 %
+epoch 15, minibatch 500/500, validation error 3.230000 %
+epoch 16, minibatch 500/500, validation error 3.320000 %
+epoch 17, minibatch 500/500, validation error 3.180000 %
+     epoch 17, minibatch 500/500, test error of best model 3.410000 %
+epoch 18, minibatch 500/500, validation error 3.100000 %
+     epoch 18, minibatch 500/500, test error of best model 3.150000 %
+epoch 19, minibatch 500/500, validation error 3.270000 %
+epoch 20, minibatch 500/500, validation error 2.980000 %
+     epoch 20, minibatch 500/500, test error of best model 2.910000 %
+epoch 21, minibatch 500/500, validation error 3.030000 %
+epoch 22, minibatch 500/500, validation error 2.910000 %
+     epoch 22, minibatch 500/500, test error of best model 3.080000 %
+epoch 23, minibatch 500/500, validation error 3.030000 %
+epoch 24, minibatch 500/500, validation error 2.850000 %
+     epoch 24, minibatch 500/500, test error of best model 3.080000 %
+epoch 25, minibatch 500/500, validation error 2.800000 %
+     epoch 25, minibatch 500/500, test error of best model 2.860000 %
+epoch 26, minibatch 500/500, validation error 2.850000 %
+epoch 27, minibatch 500/500, validation error 3.020000 %
+epoch 28, minibatch 500/500, validation error 3.020000 %
+epoch 29, minibatch 500/500, validation error 2.830000 %
+epoch 30, minibatch 500/500, validation error 2.970000 %
+epoch 31, minibatch 500/500, validation error 3.060000 %
+epoch 32, minibatch 500/500, validation error 2.870000 %
+epoch 33, minibatch 500/500, validation error 3.030000 %
+epoch 34, minibatch 500/500, validation error 3.200000 %
+epoch 35, minibatch 500/500, validation error 2.970000 %
+epoch 36, minibatch 500/500, validation error 3.050000 %
+epoch 37, minibatch 500/500, validation error 3.100000 %
+epoch 38, minibatch 500/500, validation error 2.810000 %
+epoch 39, minibatch 500/500, validation error 3.000000 %
+epoch 40, minibatch 500/500, validation error 3.010000 %
+Optimization complete. Best validation score of 2.800000 % obtained at iteration 12500, with test performance 2.860000 %
+PARAMS:
+ETA-: 0.1
+ETA+: 1.2
+MIN_DELTA: 1e-05
+MAX_DELTA: 5
+... loading data
+... building the model
+... training
+epoch 1, minibatch 500/500, validation error 16.210000 %
+     epoch 1, minibatch 500/500, test error of best model 17.000000 %
+epoch 2, minibatch 500/500, validation error 11.120000 %
+     epoch 2, minibatch 500/500, test error of best model 11.950000 %
+epoch 3, minibatch 500/500, validation error 9.390000 %
+     epoch 3, minibatch 500/500, test error of best model 10.070000 %
+epoch 4, minibatch 500/500, validation error 8.510000 %
+     epoch 4, minibatch 500/500, test error of best model 9.110000 %
+epoch 5, minibatch 500/500, validation error 7.850000 %
+     epoch 5, minibatch 500/500, test error of best model 8.400000 %
+epoch 6, minibatch 500/500, validation error 7.540000 %
+     epoch 6, minibatch 500/500, test error of best model 7.800000 %
+epoch 7, minibatch 500/500, validation error 7.250000 %
+     epoch 7, minibatch 500/500, test error of best model 7.390000 %
+epoch 8, minibatch 500/500, validation error 6.960000 %
+     epoch 8, minibatch 500/500, test error of best model 7.070000 %
+epoch 9, minibatch 500/500, validation error 6.560000 %
+     epoch 9, minibatch 500/500, test error of best model 6.760000 %
+epoch 10, minibatch 500/500, validation error 6.370000 %
+     epoch 10, minibatch 500/500, test error of best model 6.640000 %
+epoch 11, minibatch 500/500, validation error 6.120000 %
+     epoch 11, minibatch 500/500, test error of best model 6.550000 %
+epoch 12, minibatch 500/500, validation error 5.880000 %
+     epoch 12, minibatch 500/500, test error of best model 6.360000 %
+epoch 13, minibatch 500/500, validation error 5.680000 %
+     epoch 13, minibatch 500/500, test error of best model 6.110000 %
+epoch 14, minibatch 500/500, validation error 5.490000 %
+     epoch 14, minibatch 500/500, test error of best model 6.030000 %
+epoch 15, minibatch 500/500, validation error 5.400000 %
+     epoch 15, minibatch 500/500, test error of best model 5.890000 %
+epoch 16, minibatch 500/500, validation error 5.290000 %
+     epoch 16, minibatch 500/500, test error of best model 5.810000 %
+epoch 17, minibatch 500/500, validation error 5.260000 %
+     epoch 17, minibatch 500/500, test error of best model 5.760000 %
+epoch 18, minibatch 500/500, validation error 5.120000 %
+     epoch 18, minibatch 500/500, test error of best model 5.580000 %
+epoch 19, minibatch 500/500, validation error 4.950000 %
+     epoch 19, minibatch 500/500, test error of best model 5.440000 %
+epoch 20, minibatch 500/500, validation error 4.840000 %
+     epoch 20, minibatch 500/500, test error of best model 5.390000 %
+epoch 21, minibatch 500/500, validation error 4.710000 %
+     epoch 21, minibatch 500/500, test error of best model 5.290000 %
+epoch 22, minibatch 500/500, validation error 4.700000 %
+     epoch 22, minibatch 500/500, test error of best model 5.240000 %
+epoch 23, minibatch 500/500, validation error 4.570000 %
+     epoch 23, minibatch 500/500, test error of best model 5.170000 %
+epoch 24, minibatch 500/500, validation error 4.520000 %
+     epoch 24, minibatch 500/500, test error of best model 5.070000 %
+epoch 25, minibatch 500/500, validation error 4.600000 %
+epoch 26, minibatch 500/500, validation error 4.610000 %
+epoch 27, minibatch 500/500, validation error 4.560000 %
+epoch 28, minibatch 500/500, validation error 4.480000 %
+     epoch 28, minibatch 500/500, test error of best model 4.730000 %
+epoch 29, minibatch 500/500, validation error 4.480000 %
+     epoch 29, minibatch 500/500, test error of best model 4.620000 %
+epoch 30, minibatch 500/500, validation error 4.390000 %
+     epoch 30, minibatch 500/500, test error of best model 4.560000 %
+epoch 31, minibatch 500/500, validation error 4.350000 %
+     epoch 31, minibatch 500/500, test error of best model 4.510000 %
+epoch 32, minibatch 500/500, validation error 4.280000 %
+     epoch 32, minibatch 500/500, test error of best model 4.490000 %
+skipping manually to next
+PARAMS:
+ETA-: 0.1
+ETA+: 1.2
+MIN_DELTA: 1e-05
+MAX_DELTA: 50
+... loading data
+... building the model
+skipping manually to next
+PARAMS:
+ETA-: 0.1
+ETA+: 1.2
+MIN_DELTA: 1e-05
+MAX_DELTA: 500
+... loading data
+skipping manually to next
+PARAMS:
+ETA-: 0.1
+ETA+: 1.2
+MIN_DELTA: 1e-06
+MAX_DELTA: 5
+... loading data
+... building the model
+... training
+epoch 1, minibatch 500/500, validation error 23.910000 %
+     epoch 1, minibatch 500/500, test error of best model 25.090000 %
+epoch 2, minibatch 500/500, validation error 21.580000 %
+     epoch 2, minibatch 500/500, test error of best model 22.790000 %
+epoch 3, minibatch 500/500, validation error 19.890000 %
+     epoch 3, minibatch 500/500, test error of best model 21.020000 %
+epoch 4, minibatch 500/500, validation error 18.620000 %
+     epoch 4, minibatch 500/500, test error of best model 19.810000 %
+epoch 5, minibatch 500/500, validation error 17.580000 %
+     epoch 5, minibatch 500/500, test error of best model 18.530000 %
+epoch 6, minibatch 500/500, validation error 16.520000 %
+     epoch 6, minibatch 500/500, test error of best model 17.700000 %
+epoch 7, minibatch 500/500, validation error 15.590000 %
+     epoch 7, minibatch 500/500, test error of best model 16.890000 %
+epoch 8, minibatch 500/500, validation error 14.830000 %
+     epoch 8, minibatch 500/500, test error of best model 16.060000 %
+epoch 9, minibatch 500/500, validation error 14.290000 %
+     epoch 9, minibatch 500/500, test error of best model 15.450000 %
+epoch 10, minibatch 500/500, validation error 13.620000 %
+     epoch 10, minibatch 500/500, test error of best model 14.860000 %
+epoch 11, minibatch 500/500, validation error 13.180000 %
+     epoch 11, minibatch 500/500, test error of best model 14.300000 %
+epoch 12, minibatch 500/500, validation error 12.910000 %
+     epoch 12, minibatch 500/500, test error of best model 13.980000 %
+epoch 13, minibatch 500/500, validation error 12.610000 %
+     epoch 13, minibatch 500/500, test error of best model 13.420000 %
+epoch 14, minibatch 500/500, validation error 12.340000 %
+     epoch 14, minibatch 500/500, test error of best model 13.040000 %
+epoch 15, minibatch 500/500, validation error 12.110000 %
+     epoch 15, minibatch 500/500, test error of best model 12.840000 %
+epoch 16, minibatch 500/500, validation error 11.820000 %
+     epoch 16, minibatch 500/500, test error of best model 12.570000 %
+epoch 17, minibatch 500/500, validation error 11.520000 %
+     epoch 17, minibatch 500/500, test error of best model 12.220000 %
+epoch 18, minibatch 500/500, validation error 11.340000 %
+     epoch 18, minibatch 500/500, test error of best model 11.990000 %
+epoch 19, minibatch 500/500, validation error 11.110000 %
+     epoch 19, minibatch 500/500, test error of best model 11.670000 %
+epoch 20, minibatch 500/500, validation error 10.880000 %
+     epoch 20, minibatch 500/500, test error of best model 11.450000 %
+epoch 21, minibatch 500/500, validation error 10.740000 %
+     epoch 21, minibatch 500/500, test error of best model 11.220000 %
+epoch 22, minibatch 500/500, validation error 10.530000 %
+     epoch 22, minibatch 500/500, test error of best model 11.050000 %
+epoch 23, minibatch 500/500, validation error 10.410000 %
+     epoch 23, minibatch 500/500, test error of best model 10.840000 %
+epoch 24, minibatch 500/500, validation error 10.290000 %
+     epoch 24, minibatch 500/500, test error of best model 10.750000 %
+epoch 25, minibatch 500/500, validation error 10.140000 %
+     epoch 25, minibatch 500/500, test error of best model 10.510000 %
+epoch 26, minibatch 500/500, validation error 10.010000 %
+     epoch 26, minibatch 500/500, test error of best model 10.340000 %
+epoch 27, minibatch 500/500, validation error 9.890000 %
+     epoch 27, minibatch 500/500, test error of best model 10.190000 %
+epoch 28, minibatch 500/500, validation error 9.860000 %
+     epoch 28, minibatch 500/500, test error of best model 10.110000 %
+epoch 29, minibatch 500/500, validation error 9.720000 %
+     epoch 29, minibatch 500/500, test error of best model 9.940000 %
+epoch 30, minibatch 500/500, validation error 9.620000 %
+     epoch 30, minibatch 500/500, test error of best model 9.820000 %
+epoch 31, minibatch 500/500, validation error 9.540000 %
+     epoch 31, minibatch 500/500, test error of best model 9.690000 %
+epoch 32, minibatch 500/500, validation error 9.420000 %
+     epoch 32, minibatch 500/500, test error of best model 9.580000 %
+epoch 33, minibatch 500/500, validation error 9.350000 %
+     epoch 33, minibatch 500/500, test error of best model 9.520000 %
+epoch 34, minibatch 500/500, validation error 9.180000 %
+     epoch 34, minibatch 500/500, test error of best model 9.450000 %
+epoch 35, minibatch 500/500, validation error 9.110000 %
+     epoch 35, minibatch 500/500, test error of best model 9.370000 %
+epoch 36, minibatch 500/500, validation error 9.050000 %
+     epoch 36, minibatch 500/500, test error of best model 9.250000 %
+epoch 37, minibatch 500/500, validation error 8.930000 %
+     epoch 37, minibatch 500/500, test error of best model 9.140000 %
+epoch 38, minibatch 500/500, validation error 8.820000 %
+     epoch 38, minibatch 500/500, test error of best model 9.050000 %
+epoch 39, minibatch 500/500, validation error 8.760000 %
+     epoch 39, minibatch 500/500, test error of best model 8.910000 %
+epoch 40, minibatch 500/500, validation error 8.670000 %
+     epoch 40, minibatch 500/500, test error of best model 8.780000 %
+Optimization complete. Best validation score of 8.670000 % obtained at iteration 20000, with test performance 8.780000 %
+PARAMS:
+ETA-: 0.1
+ETA+: 1.2
+MIN_DELTA: 1e-06
+MAX_DELTA: 50
+... loading data
+... building the model
+... training
+epoch 1, minibatch 500/500, validation error 26.810000 %
+     epoch 1, minibatch 500/500, test error of best model 28.030000 %
+epoch 2, minibatch 500/500, validation error 24.130000 %
+     epoch 2, minibatch 500/500, test error of best model 25.040000 %
+epoch 3, minibatch 500/500, validation error 21.870000 %
+     epoch 3, minibatch 500/500, test error of best model 22.880000 %
+epoch 4, minibatch 500/500, validation error 20.330000 %
+     epoch 4, minibatch 500/500, test error of best model 21.010000 %
+epoch 5, minibatch 500/500, validation error 18.860000 %
+     epoch 5, minibatch 500/500, test error of best model 19.780000 %
+epoch 6, minibatch 500/500, validation error 17.750000 %
+     epoch 6, minibatch 500/500, test error of best model 18.640000 %
+epoch 7, minibatch 500/500, validation error 16.510000 %
+     epoch 7, minibatch 500/500, test error of best model 17.340000 %
+epoch 8, minibatch 500/500, validation error 15.850000 %
+     epoch 8, minibatch 500/500, test error of best model 16.700000 %
+epoch 9, minibatch 500/500, validation error 15.200000 %
+     epoch 9, minibatch 500/500, test error of best model 15.740000 %
+epoch 10, minibatch 500/500, validation error 14.510000 %
+     epoch 10, minibatch 500/500, test error of best model 15.180000 %
+epoch 11, minibatch 500/500, validation error 14.130000 %
+     epoch 11, minibatch 500/500, test error of best model 14.530000 %
+epoch 12, minibatch 500/500, validation error 13.610000 %
+     epoch 12, minibatch 500/500, test error of best model 13.910000 %
+epoch 13, minibatch 500/500, validation error 13.080000 %
+     epoch 13, minibatch 500/500, test error of best model 13.360000 %
+epoch 14, minibatch 500/500, validation error 12.710000 %
+     epoch 14, minibatch 500/500, test error of best model 12.910000 %
+epoch 15, minibatch 500/500, validation error 12.400000 %
+     epoch 15, minibatch 500/500, test error of best model 12.640000 %
+epoch 16, minibatch 500/500, validation error 12.150000 %
+     epoch 16, minibatch 500/500, test error of best model 12.280000 %
+epoch 17, minibatch 500/500, validation error 11.880000 %
+     epoch 17, minibatch 500/500, test error of best model 12.000000 %
+epoch 18, minibatch 500/500, validation error 11.650000 %
+     epoch 18, minibatch 500/500, test error of best model 11.710000 %
+epoch 19, minibatch 500/500, validation error 11.540000 %
+     epoch 19, minibatch 500/500, test error of best model 11.450000 %
+epoch 20, minibatch 500/500, validation error 11.200000 %
+     epoch 20, minibatch 500/500, test error of best model 11.250000 %
+epoch 21, minibatch 500/500, validation error 10.920000 %
+     epoch 21, minibatch 500/500, test error of best model 11.050000 %
+epoch 22, minibatch 500/500, validation error 10.710000 %
+     epoch 22, minibatch 500/500, test error of best model 10.870000 %
+epoch 23, minibatch 500/500, validation error 10.500000 %
+     epoch 23, minibatch 500/500, test error of best model 10.750000 %
+epoch 24, minibatch 500/500, validation error 10.300000 %
+     epoch 24, minibatch 500/500, test error of best model 10.590000 %
+epoch 25, minibatch 500/500, validation error 10.120000 %
+     epoch 25, minibatch 500/500, test error of best model 10.490000 %
+epoch 26, minibatch 500/500, validation error 9.900000 %
+     epoch 26, minibatch 500/500, test error of best model 10.300000 %
+epoch 27, minibatch 500/500, validation error 9.710000 %
+     epoch 27, minibatch 500/500, test error of best model 10.200000 %
+epoch 28, minibatch 500/500, validation error 9.650000 %
+     epoch 28, minibatch 500/500, test error of best model 9.970000 %
+epoch 29, minibatch 500/500, validation error 9.580000 %
+     epoch 29, minibatch 500/500, test error of best model 9.810000 %
+epoch 30, minibatch 500/500, validation error 9.430000 %
+     epoch 30, minibatch 500/500, test error of best model 9.680000 %
+epoch 31, minibatch 500/500, validation error 9.300000 %
+     epoch 31, minibatch 500/500, test error of best model 9.580000 %
+epoch 32, minibatch 500/500, validation error 9.190000 %
+     epoch 32, minibatch 500/500, test error of best model 9.400000 %
+epoch 33, minibatch 500/500, validation error 9.070000 %
+     epoch 33, minibatch 500/500, test error of best model 9.290000 %
+epoch 34, minibatch 500/500, validation error 9.030000 %
+     epoch 34, minibatch 500/500, test error of best model 9.190000 %
+epoch 35, minibatch 500/500, validation error 9.010000 %
+     epoch 35, minibatch 500/500, test error of best model 9.150000 %
+epoch 36, minibatch 500/500, validation error 8.930000 %
+     epoch 36, minibatch 500/500, test error of best model 9.060000 %
+epoch 37, minibatch 500/500, validation error 8.810000 %
+     epoch 37, minibatch 500/500, test error of best model 8.940000 %
+epoch 38, minibatch 500/500, validation error 8.690000 %
+     epoch 38, minibatch 500/500, test error of best model 8.880000 %
+epoch 39, minibatch 500/500, validation error 8.630000 %
+     epoch 39, minibatch 500/500, test error of best model 8.830000 %
+epoch 40, minibatch 500/500, validation error 8.640000 %
+Optimization complete. Best validation score of 8.630000 % obtained at iteration 19500, with test performance 8.830000 %
+PARAMS:
+ETA-: 0.1
+ETA+: 1.2
+MIN_DELTA: 1e-06
+MAX_DELTA: 500
+... loading data
+... building the model
+... training
+epoch 1, minibatch 500/500, validation error 26.920000 %
+     epoch 1, minibatch 500/500, test error of best model 28.040000 %
+epoch 2, minibatch 500/500, validation error 23.710000 %
+     epoch 2, minibatch 500/500, test error of best model 24.700000 %
+epoch 3, minibatch 500/500, validation error 21.710000 %
+     epoch 3, minibatch 500/500, test error of best model 22.650000 %
+epoch 4, minibatch 500/500, validation error 19.950000 %
+     epoch 4, minibatch 500/500, test error of best model 20.830000 %
+epoch 5, minibatch 500/500, validation error 18.710000 %
+     epoch 5, minibatch 500/500, test error of best model 19.750000 %
+epoch 6, minibatch 500/500, validation error 17.490000 %
+     epoch 6, minibatch 500/500, test error of best model 18.540000 %
+epoch 7, minibatch 500/500, validation error 16.640000 %
+     epoch 7, minibatch 500/500, test error of best model 17.400000 %
+epoch 8, minibatch 500/500, validation error 15.980000 %
+     epoch 8, minibatch 500/500, test error of best model 16.630000 %
+epoch 9, minibatch 500/500, validation error 15.260000 %
+     epoch 9, minibatch 500/500, test error of best model 15.810000 %
+epoch 10, minibatch 500/500, validation error 14.600000 %
+     epoch 10, minibatch 500/500, test error of best model 15.180000 %
+epoch 11, minibatch 500/500, validation error 14.150000 %
+     epoch 11, minibatch 500/500, test error of best model 14.590000 %
+epoch 12, minibatch 500/500, validation error 13.710000 %
+     epoch 12, minibatch 500/500, test error of best model 13.970000 %
+epoch 13, minibatch 500/500, validation error 13.330000 %
+     epoch 13, minibatch 500/500, test error of best model 13.500000 %
+epoch 14, minibatch 500/500, validation error 12.960000 %
+     epoch 14, minibatch 500/500, test error of best model 13.100000 %
+epoch 15, minibatch 500/500, validation error 12.620000 %
+     epoch 15, minibatch 500/500, test error of best model 12.730000 %
+epoch 16, minibatch 500/500, validation error 12.250000 %
+     epoch 16, minibatch 500/500, test error of best model 12.390000 %
+epoch 17, minibatch 500/500, validation error 11.860000 %
+     epoch 17, minibatch 500/500, test error of best model 12.040000 %
+epoch 18, minibatch 500/500, validation error 11.700000 %
+     epoch 18, minibatch 500/500, test error of best model 11.820000 %
+epoch 19, minibatch 500/500, validation error 11.440000 %
+     epoch 19, minibatch 500/500, test error of best model 11.650000 %
+epoch 20, minibatch 500/500, validation error 11.190000 %
+     epoch 20, minibatch 500/500, test error of best model 11.410000 %
+epoch 21, minibatch 500/500, validation error 11.010000 %
+     epoch 21, minibatch 500/500, test error of best model 11.110000 %
+epoch 22, minibatch 500/500, validation error 10.760000 %
+     epoch 22, minibatch 500/500, test error of best model 10.940000 %
+epoch 23, minibatch 500/500, validation error 10.620000 %
+     epoch 23, minibatch 500/500, test error of best model 10.770000 %
+epoch 24, minibatch 500/500, validation error 10.360000 %
+     epoch 24, minibatch 500/500, test error of best model 10.640000 %
+epoch 25, minibatch 500/500, validation error 10.160000 %
+     epoch 25, minibatch 500/500, test error of best model 10.480000 %
+epoch 26, minibatch 500/500, validation error 10.040000 %
+     epoch 26, minibatch 500/500, test error of best model 10.330000 %
+epoch 27, minibatch 500/500, validation error 9.830000 %
+     epoch 27, minibatch 500/500, test error of best model 10.270000 %
+epoch 28, minibatch 500/500, validation error 9.620000 %
+     epoch 28, minibatch 500/500, test error of best model 10.120000 %
+epoch 29, minibatch 500/500, validation error 9.520000 %
+     epoch 29, minibatch 500/500, test error of best model 9.940000 %
+epoch 30, minibatch 500/500, validation error 9.360000 %
+     epoch 30, minibatch 500/500, test error of best model 9.830000 %
+epoch 31, minibatch 500/500, validation error 9.310000 %
+     epoch 31, minibatch 500/500, test error of best model 9.760000 %
+epoch 32, minibatch 500/500, validation error 9.190000 %
+     epoch 32, minibatch 500/500, test error of best model 9.610000 %
+epoch 33, minibatch 500/500, validation error 9.120000 %
+     epoch 33, minibatch 500/500, test error of best model 9.460000 %
+epoch 34, minibatch 500/500, validation error 8.960000 %
+     epoch 34, minibatch 500/500, test error of best model 9.350000 %
+epoch 35, minibatch 500/500, validation error 8.820000 %
+     epoch 35, minibatch 500/500, test error of best model 9.240000 %
+epoch 36, minibatch 500/500, validation error 8.760000 %
+     epoch 36, minibatch 500/500, test error of best model 9.200000 %
+epoch 37, minibatch 500/500, validation error 8.710000 %
+     epoch 37, minibatch 500/500, test error of best model 9.050000 %
+epoch 38, minibatch 500/500, validation error 8.630000 %
+     epoch 38, minibatch 500/500, test error of best model 8.960000 %
+epoch 39, minibatch 500/500, validation error 8.540000 %
+     epoch 39, minibatch 500/500, test error of best model 8.850000 %
+epoch 40, minibatch 500/500, validation error 8.530000 %
+     epoch 40, minibatch 500/500, test error of best model 8.760000 %
+Optimization complete. Best validation score of 8.530000 % obtained at iteration 20000, with test performance 8.760000 %
+PARAMS:
+ETA-: 0.1
+ETA+: 1.2
+MIN_DELTA: 1e-07
+MAX_DELTA: 5
+... loading data
+... building the model
+... training
+epoch 1, minibatch 500/500, validation error 29.340000 %
+     epoch 1, minibatch 500/500, test error of best model 30.240000 %
+epoch 2, minibatch 500/500, validation error 26.360000 %
+     epoch 2, minibatch 500/500, test error of best model 27.060000 %
+epoch 3, minibatch 500/500, validation error 24.970000 %
+     epoch 3, minibatch 500/500, test error of best model 25.550000 %
+epoch 4, minibatch 500/500, validation error 24.450000 %
+     epoch 4, minibatch 500/500, test error of best model 24.930000 %
+epoch 5, minibatch 500/500, validation error 23.980000 %
+     epoch 5, minibatch 500/500, test error of best model 24.520000 %
+epoch 6, minibatch 500/500, validation error 23.540000 %
+     epoch 6, minibatch 500/500, test error of best model 24.080000 %
+epoch 7, minibatch 500/500, validation error 23.230000 %
+     epoch 7, minibatch 500/500, test error of best model 23.860000 %
+epoch 8, minibatch 500/500, validation error 22.900000 %
+     epoch 8, minibatch 500/500, test error of best model 23.600000 %
+epoch 9, minibatch 500/500, validation error 22.590000 %
+     epoch 9, minibatch 500/500, test error of best model 23.230000 %
+epoch 10, minibatch 500/500, validation error 22.330000 %
+     epoch 10, minibatch 500/500, test error of best model 22.970000 %
+epoch 11, minibatch 500/500, validation error 22.100000 %
+     epoch 11, minibatch 500/500, test error of best model 22.690000 %
+epoch 12, minibatch 500/500, validation error 21.950000 %
+     epoch 12, minibatch 500/500, test error of best model 22.440000 %
+epoch 13, minibatch 500/500, validation error 21.830000 %
+     epoch 13, minibatch 500/500, test error of best model 22.180000 %
+epoch 14, minibatch 500/500, validation error 21.610000 %
+     epoch 14, minibatch 500/500, test error of best model 21.990000 %
+epoch 15, minibatch 500/500, validation error 21.450000 %
+     epoch 15, minibatch 500/500, test error of best model 21.810000 %
+epoch 16, minibatch 500/500, validation error 21.360000 %
+     epoch 16, minibatch 500/500, test error of best model 21.620000 %
+epoch 17, minibatch 500/500, validation error 21.070000 %
+     epoch 17, minibatch 500/500, test error of best model 21.430000 %
+epoch 18, minibatch 500/500, validation error 20.860000 %
+     epoch 18, minibatch 500/500, test error of best model 21.250000 %
+epoch 19, minibatch 500/500, validation error 20.720000 %
+     epoch 19, minibatch 500/500, test error of best model 21.100000 %
+epoch 20, minibatch 500/500, validation error 20.500000 %
+     epoch 20, minibatch 500/500, test error of best model 20.880000 %
+epoch 21, minibatch 500/500, validation error 20.300000 %
+     epoch 21, minibatch 500/500, test error of best model 20.680000 %
+epoch 22, minibatch 500/500, validation error 20.100000 %
+     epoch 22, minibatch 500/500, test error of best model 20.560000 %
+epoch 23, minibatch 500/500, validation error 19.880000 %
+     epoch 23, minibatch 500/500, test error of best model 20.450000 %
+epoch 24, minibatch 500/500, validation error 19.680000 %
+     epoch 24, minibatch 500/500, test error of best model 20.300000 %
+epoch 25, minibatch 500/500, validation error 19.500000 %
+     epoch 25, minibatch 500/500, test error of best model 20.180000 %
+epoch 26, minibatch 500/500, validation error 19.330000 %
+     epoch 26, minibatch 500/500, test error of best model 20.000000 %
+epoch 27, minibatch 500/500, validation error 19.250000 %
+     epoch 27, minibatch 500/500, test error of best model 19.920000 %
+epoch 28, minibatch 500/500, validation error 19.050000 %
+     epoch 28, minibatch 500/500, test error of best model 19.750000 %
+epoch 29, minibatch 500/500, validation error 18.920000 %
+     epoch 29, minibatch 500/500, test error of best model 19.630000 %
+epoch 30, minibatch 500/500, validation error 18.770000 %
+     epoch 30, minibatch 500/500, test error of best model 19.480000 %
+epoch 31, minibatch 500/500, validation error 18.610000 %
+     epoch 31, minibatch 500/500, test error of best model 19.410000 %
+epoch 32, minibatch 500/500, validation error 18.400000 %
+     epoch 32, minibatch 500/500, test error of best model 19.260000 %
+epoch 33, minibatch 500/500, validation error 18.260000 %
+     epoch 33, minibatch 500/500, test error of best model 19.110000 %
+epoch 34, minibatch 500/500, validation error 18.090000 %
+     epoch 34, minibatch 500/500, test error of best model 18.980000 %
+epoch 35, minibatch 500/500, validation error 17.990000 %
+     epoch 35, minibatch 500/500, test error of best model 18.960000 %
+epoch 36, minibatch 500/500, validation error 17.940000 %
+     epoch 36, minibatch 500/500, test error of best model 18.800000 %
+epoch 37, minibatch 500/500, validation error 17.850000 %
+     epoch 37, minibatch 500/500, test error of best model 18.700000 %
+epoch 38, minibatch 500/500, validation error 17.750000 %
+     epoch 38, minibatch 500/500, test error of best model 18.530000 %
+epoch 39, minibatch 500/500, validation error 17.720000 %
+     epoch 39, minibatch 500/500, test error of best model 18.390000 %
+epoch 40, minibatch 500/500, validation error 17.650000 %
+     epoch 40, minibatch 500/500, test error of best model 18.300000 %
+Optimization complete. Best validation score of 17.650000 % obtained at iteration 20000, with test performance 18.300000 %
+PARAMS:
+ETA-: 0.1
+ETA+: 1.2
+MIN_DELTA: 1e-07
+MAX_DELTA: 50
+... loading data
+... building the model
+... training
+epoch 1, minibatch 500/500, validation error 26.340000 %
+     epoch 1, minibatch 500/500, test error of best model 26.800000 %
+epoch 2, minibatch 500/500, validation error 24.480000 %
+     epoch 2, minibatch 500/500, test error of best model 25.130000 %
+epoch 3, minibatch 500/500, validation error 23.560000 %
+     epoch 3, minibatch 500/500, test error of best model 24.410000 %
+epoch 4, minibatch 500/500, validation error 22.940000 %
+     epoch 4, minibatch 500/500, test error of best model 23.770000 %
+epoch 5, minibatch 500/500, validation error 22.490000 %
+     epoch 5, minibatch 500/500, test error of best model 23.300000 %
+epoch 6, minibatch 500/500, validation error 22.090000 %
+     epoch 6, minibatch 500/500, test error of best model 22.880000 %
+epoch 7, minibatch 500/500, validation error 21.670000 %
+     epoch 7, minibatch 500/500, test error of best model 22.660000 %
+epoch 8, minibatch 500/500, validation error 21.280000 %
+     epoch 8, minibatch 500/500, test error of best model 22.240000 %
+epoch 9, minibatch 500/500, validation error 21.080000 %
+     epoch 9, minibatch 500/500, test error of best model 22.030000 %
+epoch 10, minibatch 500/500, validation error 20.890000 %
+     epoch 10, minibatch 500/500, test error of best model 21.810000 %
+epoch 11, minibatch 500/500, validation error 20.630000 %
+     epoch 11, minibatch 500/500, test error of best model 21.590000 %
+epoch 12, minibatch 500/500, validation error 20.410000 %
+     epoch 12, minibatch 500/500, test error of best model 21.260000 %
+epoch 13, minibatch 500/500, validation error 20.260000 %
+     epoch 13, minibatch 500/500, test error of best model 21.010000 %
+epoch 14, minibatch 500/500, validation error 20.030000 %
+     epoch 14, minibatch 500/500, test error of best model 20.700000 %
+epoch 15, minibatch 500/500, validation error 19.850000 %
+     epoch 15, minibatch 500/500, test error of best model 20.590000 %
+epoch 16, minibatch 500/500, validation error 19.630000 %
+     epoch 16, minibatch 500/500, test error of best model 20.380000 %
+epoch 17, minibatch 500/500, validation error 19.500000 %
+     epoch 17, minibatch 500/500, test error of best model 20.260000 %
+epoch 18, minibatch 500/500, validation error 19.300000 %
+     epoch 18, minibatch 500/500, test error of best model 20.100000 %
+epoch 19, minibatch 500/500, validation error 19.150000 %
+     epoch 19, minibatch 500/500, test error of best model 20.050000 %
+epoch 20, minibatch 500/500, validation error 18.960000 %
+     epoch 20, minibatch 500/500, test error of best model 19.850000 %
+epoch 21, minibatch 500/500, validation error 18.880000 %
+     epoch 21, minibatch 500/500, test error of best model 19.780000 %
+epoch 22, minibatch 500/500, validation error 18.700000 %
+     epoch 22, minibatch 500/500, test error of best model 19.750000 %
+epoch 23, minibatch 500/500, validation error 18.520000 %
+     epoch 23, minibatch 500/500, test error of best model 19.600000 %
+epoch 24, minibatch 500/500, validation error 18.470000 %
+     epoch 24, minibatch 500/500, test error of best model 19.490000 %
+epoch 25, minibatch 500/500, validation error 18.340000 %
+     epoch 25, minibatch 500/500, test error of best model 19.340000 %
+epoch 26, minibatch 500/500, validation error 18.230000 %
+     epoch 26, minibatch 500/500, test error of best model 19.280000 %
+epoch 27, minibatch 500/500, validation error 18.110000 %
+     epoch 27, minibatch 500/500, test error of best model 19.170000 %
+epoch 28, minibatch 500/500, validation error 18.070000 %
+     epoch 28, minibatch 500/500, test error of best model 19.080000 %
+epoch 29, minibatch 500/500, validation error 18.020000 %
+     epoch 29, minibatch 500/500, test error of best model 18.910000 %
+epoch 30, minibatch 500/500, validation error 17.830000 %
+     epoch 30, minibatch 500/500, test error of best model 18.770000 %
+epoch 31, minibatch 500/500, validation error 17.830000 %
+     epoch 31, minibatch 500/500, test error of best model 18.580000 %
+epoch 32, minibatch 500/500, validation error 17.640000 %
+     epoch 32, minibatch 500/500, test error of best model 18.440000 %
+epoch 33, minibatch 500/500, validation error 17.600000 %
+     epoch 33, minibatch 500/500, test error of best model 18.360000 %
+epoch 34, minibatch 500/500, validation error 17.510000 %
+     epoch 34, minibatch 500/500, test error of best model 18.230000 %
+epoch 35, minibatch 500/500, validation error 17.400000 %
+     epoch 35, minibatch 500/500, test error of best model 18.060000 %
+epoch 36, minibatch 500/500, validation error 17.320000 %
+     epoch 36, minibatch 500/500, test error of best model 18.060000 %
+epoch 37, minibatch 500/500, validation error 17.300000 %
+     epoch 37, minibatch 500/500, test error of best model 18.020000 %
+epoch 38, minibatch 500/500, validation error 17.220000 %
+     epoch 38, minibatch 500/500, test error of best model 17.920000 %
+epoch 39, minibatch 500/500, validation error 17.030000 %
+     epoch 39, minibatch 500/500, test error of best model 17.910000 %
+epoch 40, minibatch 500/500, validation error 17.000000 %
+     epoch 40, minibatch 500/500, test error of best model 17.810000 %
+Optimization complete. Best validation score of 17.000000 % obtained at iteration 20000, with test performance 17.810000 %
+PARAMS:
+ETA-: 0.1
+ETA+: 1.2
+MIN_DELTA: 1e-07
+MAX_DELTA: 500
+... loading data
+... building the model
+... training
+epoch 1, minibatch 500/500, validation error 26.340000 %
+     epoch 1, minibatch 500/500, test error of best model 26.800000 %
+epoch 2, minibatch 500/500, validation error 24.470000 %
+     epoch 2, minibatch 500/500, test error of best model 25.110000 %
+epoch 3, minibatch 500/500, validation error 23.560000 %
+     epoch 3, minibatch 500/500, test error of best model 24.460000 %
+epoch 4, minibatch 500/500, validation error 22.930000 %
+     epoch 4, minibatch 500/500, test error of best model 23.660000 %
+epoch 5, minibatch 500/500, validation error 22.440000 %
+     epoch 5, minibatch 500/500, test error of best model 23.280000 %
+epoch 6, minibatch 500/500, validation error 22.030000 %
+     epoch 6, minibatch 500/500, test error of best model 22.850000 %
+epoch 7, minibatch 500/500, validation error 21.680000 %
+     epoch 7, minibatch 500/500, test error of best model 22.640000 %
+epoch 8, minibatch 500/500, validation error 21.380000 %
+     epoch 8, minibatch 500/500, test error of best model 22.220000 %
+epoch 9, minibatch 500/500, validation error 21.140000 %
+     epoch 9, minibatch 500/500, test error of best model 22.010000 %
+epoch 10, minibatch 500/500, validation error 20.960000 %
+     epoch 10, minibatch 500/500, test error of best model 21.800000 %
+epoch 11, minibatch 500/500, validation error 20.700000 %
+     epoch 11, minibatch 500/500, test error of best model 21.580000 %
+epoch 12, minibatch 500/500, validation error 20.400000 %
+     epoch 12, minibatch 500/500, test error of best model 21.300000 %
+epoch 13, minibatch 500/500, validation error 20.280000 %
+     epoch 13, minibatch 500/500, test error of best model 21.110000 %
+epoch 14, minibatch 500/500, validation error 20.110000 %
+     epoch 14, minibatch 500/500, test error of best model 20.810000 %
+epoch 15, minibatch 500/500, validation error 19.840000 %
+     epoch 15, minibatch 500/500, test error of best model 20.630000 %
+epoch 16, minibatch 500/500, validation error 19.690000 %
+     epoch 16, minibatch 500/500, test error of best model 20.500000 %
+epoch 17, minibatch 500/500, validation error 19.460000 %
+     epoch 17, minibatch 500/500, test error of best model 20.370000 %
+epoch 18, minibatch 500/500, validation error 19.360000 %
+     epoch 18, minibatch 500/500, test error of best model 20.210000 %
+epoch 19, minibatch 500/500, validation error 19.150000 %
+     epoch 19, minibatch 500/500, test error of best model 20.050000 %
+epoch 20, minibatch 500/500, validation error 18.990000 %
+     epoch 20, minibatch 500/500, test error of best model 19.860000 %
+epoch 21, minibatch 500/500, validation error 18.780000 %
+     epoch 21, minibatch 500/500, test error of best model 19.800000 %
+epoch 22, minibatch 500/500, validation error 18.690000 %
+     epoch 22, minibatch 500/500, test error of best model 19.720000 %
+epoch 23, minibatch 500/500, validation error 18.570000 %
+     epoch 23, minibatch 500/500, test error of best model 19.590000 %
+epoch 24, minibatch 500/500, validation error 18.490000 %
+     epoch 24, minibatch 500/500, test error of best model 19.460000 %
+skipping manually to next
+PARAMS:
+ETA-: 0.1
+ETA+: 1.5
+MIN_DELTA: 0.001
+MAX_DELTA: 5
+... loading data
+... building the model
+... training
+epoch 1, minibatch 500/500, validation error 9.310000 %
+     epoch 1, minibatch 500/500, test error of best model 9.980000 %
+epoch 2, minibatch 500/500, validation error 6.800000 %
+     epoch 2, minibatch 500/500, test error of best model 7.410000 %
+epoch 3, minibatch 500/500, validation error 6.400000 %
+     epoch 3, minibatch 500/500, test error of best model 6.470000 %
+epoch 4, minibatch 500/500, validation error 7.950000 %
+epoch 5, minibatch 500/500, validation error 6.730000 %
+epoch 6, minibatch 500/500, validation error 8.880000 %
+epoch 7, minibatch 500/500, validation error 8.200000 %
+epoch 8, minibatch 500/500, validation error 10.280000 %
+epoch 9, minibatch 500/500, validation error 7.700000 %
+epoch 10, minibatch 500/500, validation error 8.430000 %
+epoch 11, minibatch 500/500, validation error 9.330000 %
+epoch 12, minibatch 500/500, validation error 8.490000 %
+epoch 13, minibatch 500/500, validation error 11.240000 %
+epoch 14, minibatch 500/500, validation error 8.200000 %
+epoch 15, minibatch 500/500, validation error 8.250000 %
+epoch 16, minibatch 500/500, validation error 6.950000 %
+epoch 17, minibatch 500/500, validation error 6.120000 %
+     epoch 17, minibatch 500/500, test error of best model 6.890000 %
+epoch 18, minibatch 500/500, validation error 9.260000 %
+epoch 19, minibatch 500/500, validation error 8.210000 %
+epoch 20, minibatch 500/500, validation error 6.300000 %
+epoch 21, minibatch 500/500, validation error 9.720000 %
+epoch 22, minibatch 500/500, validation error 7.720000 %
+skipping manually to next
+PARAMS:
+ETA-: 0.1
+ETA+: 1.5
+MIN_DELTA: 0.001
+MAX_DELTA: 50
+... loading data
+... building the model
+... training
+epoch 1, minibatch 500/500, validation error 8.780000 %
+     epoch 1, minibatch 500/500, test error of best model 9.240000 %
+epoch 2, minibatch 500/500, validation error 5.970000 %
+     epoch 2, minibatch 500/500, test error of best model 6.560000 %
+epoch 3, minibatch 500/500, validation error 6.790000 %
+epoch 4, minibatch 500/500, validation error 7.100000 %
+epoch 5, minibatch 500/500, validation error 6.960000 %
+epoch 6, minibatch 500/500, validation error 7.910000 %
+epoch 7, minibatch 500/500, validation error 6.090000 %
+epoch 8, minibatch 500/500, validation error 7.100000 %
+epoch 9, minibatch 500/500, validation error 6.830000 %
+epoch 10, minibatch 500/500, validation error 6.500000 %
+epoch 11, minibatch 500/500, validation error 6.630000 %
+epoch 12, minibatch 500/500, validation error 8.780000 %
+skipping manually to next
+PARAMS:
+ETA-: 0.1
+ETA+: 1.5
+MIN_DELTA: 0.001
+MAX_DELTA: 500
+... loading data
+... building the model
+... training
+epoch 1, minibatch 500/500, validation error 9.720000 %
+     epoch 1, minibatch 500/500, test error of best model 10.630000 %
+epoch 2, minibatch 500/500, validation error 5.990000 %
+     epoch 2, minibatch 500/500, test error of best model 6.320000 %
+epoch 3, minibatch 500/500, validation error 7.380000 %
+epoch 4, minibatch 500/500, validation error 7.130000 %
+epoch 5, minibatch 500/500, validation error 8.180000 %
+epoch 6, minibatch 500/500, validation error 9.140000 %
+epoch 7, minibatch 500/500, validation error 8.980000 %
+epoch 8, minibatch 500/500, validation error 6.950000 %
+epoch 9, minibatch 500/500, validation error 6.630000 %
+epoch 10, minibatch 500/500, validation error 6.820000 %
+epoch 11, minibatch 500/500, validation error 7.050000 %
+skipping manually to next
+PARAMS:
+ETA-: 0.1
+ETA+: 1.5
+MIN_DELTA: 0.0001
+MAX_DELTA: 5
+... loading data
+... building the model
+... training
+epoch 1, minibatch 500/500, validation error 9.540000 %
+     epoch 1, minibatch 500/500, test error of best model 10.450000 %
+epoch 2, minibatch 500/500, validation error 6.270000 %
+     epoch 2, minibatch 500/500, test error of best model 6.810000 %
+epoch 3, minibatch 500/500, validation error 5.240000 %
+     epoch 3, minibatch 500/500, test error of best model 5.670000 %
+epoch 4, minibatch 500/500, validation error 4.610000 %
+     epoch 4, minibatch 500/500, test error of best model 5.080000 %
+epoch 5, minibatch 500/500, validation error 4.170000 %
+     epoch 5, minibatch 500/500, test error of best model 4.810000 %
+epoch 6, minibatch 500/500, validation error 4.020000 %
+     epoch 6, minibatch 500/500, test error of best model 4.530000 %
