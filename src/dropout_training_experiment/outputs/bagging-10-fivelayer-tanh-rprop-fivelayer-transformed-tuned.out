@@ -53,3 +53,19 @@ training member 4
 epoch 6, minibatch 1166/1166, validation error 2.175000 %
 epoch 7, minibatch 1166/1166, validation error 2.155000 %
 epoch 8, minibatch 1166/1166, validation error 1.955000 %
+epoch 14, minibatch 1166/1166, validation error 1.901667 %
+epoch 15, minibatch 1166/1166, validation error 1.845000 %
+epoch 18, minibatch 1166/1166, validation error 1.818333 %
+epoch 20, minibatch 1166/1166, validation error 1.810000 %
+epoch 21, minibatch 1166/1166, validation error 1.738333 %
+epoch 25, minibatch 1166/1166, validation error 1.725000 %
+epoch 34, minibatch 1166/1166, validation error 1.721667 %
+finished patience
+Selection : Best validation score of 1.72166666667 %
+training member 5
+epoch 1, minibatch 1166/1166, validation error 3.746667 %
+epoch 2, minibatch 1166/1166, validation error 2.328333 %
+epoch 3, minibatch 1166/1166, validation error 2.261667 %
+epoch 4, minibatch 1166/1166, validation error 2.181667 %
+epoch 5, minibatch 1166/1166, validation error 2.160000 %
+epoch 6, minibatch 1166/1166, validation error 1.940000 %

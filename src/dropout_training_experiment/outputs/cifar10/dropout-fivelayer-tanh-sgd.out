@@ -1,0 +1,21 @@
+... building the model
+... training
+epoch 1, minibatch 100/100, validation error 72.838384 %
+     epoch 1, minibatch 100/100, test error of best model 72.393939 %
+epoch 2, minibatch 100/100, validation error 73.636364 %
+epoch 3, minibatch 100/100, validation error 70.474747 %
+     epoch 3, minibatch 100/100, test error of best model 69.585859 %
+epoch 4, minibatch 100/100, validation error 69.141414 %
+     epoch 4, minibatch 100/100, test error of best model 68.404040 %
+epoch 5, minibatch 100/100, validation error 69.393939 %
+epoch 6, minibatch 100/100, validation error 68.949495 %
+     epoch 6, minibatch 100/100, test error of best model 68.414141 %
+epoch 7, minibatch 100/100, validation error 69.313131 %
+epoch 8, minibatch 100/100, validation error 69.171717 %
+epoch 9, minibatch 100/100, validation error 70.181818 %
+epoch 10, minibatch 100/100, validation error 68.797980 %
+     epoch 10, minibatch 100/100, test error of best model 68.444444 %
+epoch 11, minibatch 100/100, validation error 72.151515 %
+epoch 12, minibatch 100/100, validation error 68.414141 %
+     epoch 12, minibatch 100/100, test error of best model 67.696970 %
+epoch 13, minibatch 100/100, validation error 69.121212 %
