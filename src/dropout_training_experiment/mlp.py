@@ -363,9 +363,8 @@ class MLP(object):
         self.params = p
 
 
-def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
-             dataset='mnist.pkl.gz', batch_size=20, n_hidden=(500,0),
-             update_rule=sgd,transform=False,pickled=True):
+def test_mlp(datasets,learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
+             batch_size=20, n_hidden=(500,0), update_rule=sgd):
     """
     Demonstrate stochastic gradient descent optimization for a multilayer
     perceptron
@@ -393,22 +392,6 @@ def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
 
 
    """
-    datasets = data.load_data(dataset, shared = not transform, pickled = pickled)
-
-    train_set_x, train_set_y = datasets[0]
-    valid_set_x, valid_set_y = datasets[1]
-    test_set_x, test_set_y = datasets[2]
-
-    if transform:
-        aggregate_x = numpy.concatenate((train_set_x, valid_set_x), axis=0)
-        aggregate_y = numpy.concatenate((train_set_y, valid_set_y), axis=0)
-        t = Transformer((aggregate_x,aggregate_y),28,28,progress=True)
-        aggregate_train = t.get_data()
-        aggregate_valid = (aggregate_x, aggregate_y)
-        datasets = (data.shared_dataset(aggregate_train),
-                    data.shared_dataset(aggregate_valid),
-                    data.shared_dataset(datasets[2]))
-
     train_set_x, train_set_y = datasets[0]
     valid_set_x, valid_set_y = datasets[1]
     test_set_x, test_set_y = datasets[2]
@@ -721,16 +704,20 @@ def train_and_select(x,y,training_set, validation_set, learning_rate=0.01,
 
 
 if __name__ == '__main__':
+    ###parameters###
     learning_rate=0.01
     L1_reg=0.00
     L2_reg=0.00
     n_epochs=2000
-    dataset='/local/mnist.pkl.gz'
-    pickled=True
-#    dataset='/local/mnist-transformed/'
-#    pickled=False
+#    dataset='/local/mnist.pkl.gz'
+#    pickled=True
+    transform = False
+    dataset='/local/mnist-transformed/'
+    pickled=False
+    datasets = data.load_data(dataset, shared = not transform, pickled = pickled)
     batch_size=100
     update_rule=rprop
+    search = True
     n_hidden=[
 #          (3500,0.5,'h0',T.tanh),
 #          (3000,0.5,'h0',T.tanh),
@@ -740,24 +727,29 @@ if __name__ == '__main__':
               (1000,0.5,'h2',T.tanh),
               (500,0.5,'h3',T.tanh)
              ]
+    ###parameters end###
+
     for arg in sys.argv[1:]:
         if arg[0]=='-':
             exec(arg[1:])
-    mlp=test_mlp(learning_rate, L1_reg, L2_reg, n_epochs,
-        dataset, batch_size, n_hidden, update_rule = update_rule, transform = False, pickled = pickled)
-#    for eta_minus in [0.1,0.5,0.75,0.9]:
-#    for eta_plus in [1.1,1.2,1.5]:
-#        for min_delta in [1e-3,1e-4,1e-5,1e-6,1e-7]:
-#            for max_delta in [5,50,500]:
-#            print "PARAMS:"
-#            print "ETA-: {0}".format(eta_minus)
-#            print "ETA+: {0}".format(eta_plus)
-#            print "MIN_DELTA: {0}".format(min_delta)
-#            print "MAX_DELTA: {0}".format(max_delta)
-#            def update_rule(param,learning_rate,gparam,mask,updates,current_cost,previous_cost):
-#            return rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,eta_plus=eta_plus,eta_minus=eta_minus,max_delta=max_delta,min_delta=min_delta)
-#            try:
-#                mlp=test_mlp(learning_rate, L1_reg, L2_reg, n_epochs,
-#                dataset, batch_size, n_hidden, update_rule = update_rule, transform = False, pickled = pickled)
-#            except KeyboardInterrupt:
-#            print "skipping manually to next"
+    if not search:
+        mlp=test_mlp(learning_rate, L1_reg, L2_reg, n_epochs,
+            dataset, batch_size, n_hidden, update_rule = update_rule, pickled = pickled)
+    else:
+        for eta_minus in [0.1,0.5,0.75,0.9]:
+            for eta_plus in [1.1,1.2,1.5]:
+                for min_delta in [1e-3,1e-4,1e-5,1e-6,1e-7]:
+                    for max_delta in [5,50,500]:
+                        print "PARAMS:"
+                        print "ETA-: {0}".format(eta_minus)
+                        print "ETA+: {0}".format(eta_plus)
+                        print "MIN_DELTA: {0}".format(min_delta)
+                        print "MAX_DELTA: {0}".format(max_delta)
+                    def update_rule(param,learning_rate,gparam,mask,updates,current_cost,previous_cost):
+                        return rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
+                                     eta_plus=eta_plus,eta_minus=eta_minus,max_delta=max_delta,min_delta=min_delta)
+                    try:
+                        mlp=test_mlp(learning_rate, L1_reg, L2_reg, n_epochs, dataset, batch_size,
+                                     n_hidden, update_rule = update_rule, pickled = pickled)
+                    except KeyboardInterrupt:
+                        print "skipping manually to next"
