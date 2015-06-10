@@ -45,7 +45,7 @@ def sgd(param,learning_rate,gparam,mask,updates,current_cost,previous_cost):
     return param - learning_rate * gparam * mask
 
 def old_rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
-          eta_plus=1.2,eta_minus=0.5,max_delta=50, min_delta=10e-6):
+          eta_plus=1.5,eta_minus=0.5,max_delta=50, min_delta=1e-8):
     previous_grad = sharedX(numpy.ones(param.shape.eval()),borrow=True)
     delta = sharedX(learning_rate * numpy.ones(param.shape.eval()),borrow=True)
     previous_inc = sharedX(numpy.zeros(param.shape.eval()),borrow=True)
@@ -89,8 +89,10 @@ def old_rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost
     updates.append((delta,new_delta))
     updates.append((previous_inc,inc))
     return param + inc * mask
+
+
 def rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
-          eta_plus=1.2,eta_minus=0.5,max_delta=50, min_delta=10e-6):
+          eta_plus=1.01,eta_minus=0.1,max_delta=5, min_delta=1e-3):
     previous_grad = sharedX(numpy.ones(param.shape.eval()),borrow=True)
     delta = sharedX(learning_rate * numpy.ones(param.shape.eval()),borrow=True)
     previous_inc = sharedX(numpy.zeros(param.shape.eval()),borrow=True)
@@ -100,7 +102,7 @@ def rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
 
     new_delta = T.clip(
             T.switch(
-                T.eq(mask * gparam,0.),
+                T.eq(gparam,0.),
                 delta,
                 T.switch(
                     T.gt(change,0.),
@@ -148,7 +150,7 @@ def rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
     return param + inc * mask
 
 def irprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
-          eta_plus=1.5,eta_minus=0.25,max_delta=500, min_delta=10e-8):
+          eta_plus=1.5,eta_minus=0.25,max_delta=500, min_delta=1e-8):
     previous_grad = sharedX(numpy.ones(param.shape.eval()),borrow=True)
     delta = sharedX(learning_rate * numpy.ones(param.shape.eval()),borrow=True)
     previous_inc = sharedX(numpy.zeros(param.shape.eval()),borrow=True)
@@ -652,9 +654,9 @@ def train_and_select(x,y,training_set, validation_set, learning_rate=0.01,
 
     # early-stopping parameters
     patience = 10000  # look as this many examples regardless
-    patience_increase = 20  # wait this much longer when a new best is
+    patience_increase = 2  # wait this much longer when a new best is
                            # found
-    improvement_threshold = 0.99999  # a relative improvement of this much is
+    improvement_threshold = 0.99  # a relative improvement of this much is
                                    # considered significant
     validation_frequency = min(n_train_batches, patience / 2)
                                   # go through this many
@@ -723,10 +725,12 @@ if __name__ == '__main__':
     L1_reg=0.00
     L2_reg=0.00
     n_epochs=2000
-#    dataset='/local/mnist.pkl.gz'
-    dataset='mnist-transformed/'
-    pickled=False
+    dataset='/local/mnist.pkl.gz'
+    pickled=True
+#    dataset='/local/mnist-transformed/'
+#    pickled=False
     batch_size=100
+    update_rule=rprop
     n_hidden=[
 #	      (3500,0.5,'h0',T.tanh),
 #	      (3000,0.5,'h0',T.tanh),
@@ -740,4 +744,20 @@ if __name__ == '__main__':
         if arg[0]=='-':
             exec(arg[1:])
     mlp=test_mlp(learning_rate, L1_reg, L2_reg, n_epochs,
-        dataset, batch_size, n_hidden, update_rule = sgd, transform = False, pickled = pickled)
+        dataset, batch_size, n_hidden, update_rule = update_rule, transform = False, pickled = pickled)
+#    for eta_minus in [0.1,0.5,0.75,0.9]:
+#	for eta_plus in [1.1,1.2,1.5]:
+#	    for min_delta in [1e-3,1e-4,1e-5,1e-6,1e-7]:
+#	        for max_delta in [5,50,500]:
+#		    print "PARAMS:"
+#		    print "ETA-: {0}".format(eta_minus)
+#		    print "ETA+: {0}".format(eta_plus)
+#		    print "MIN_DELTA: {0}".format(min_delta)
+#		    print "MAX_DELTA: {0}".format(max_delta)
+#		    def update_rule(param,learning_rate,gparam,mask,updates,current_cost,previous_cost):
+#			return rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,eta_plus=eta_plus,eta_minus=eta_minus,max_delta=max_delta,min_delta=min_delta)
+#		    try:
+#		        mlp=test_mlp(learning_rate, L1_reg, L2_reg, n_epochs,
+#		        dataset, batch_size, n_hidden, update_rule = update_rule, transform = False, pickled = pickled)
+#		    except KeyboardInterrupt:
+#			print "skipping manually to next"
