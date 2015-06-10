@@ -12,7 +12,7 @@ import theano
 import theano.tensor as T
 import gzip
 import cPickle
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 def sharedX(value, name=None, borrow=False, dtype=None):
     """
@@ -194,7 +194,6 @@ class Transformer:
             self.step_no = 0
             curr_x = self.original_x[i].reshape(self.x,self.y)
             curr_y = self.original_y[i]
-            self.add_instance(curr_x,curr_y)
             for dx in xrange(min_trans_x,max_trans_x,x_step):
                 for dy in xrange(min_trans_y,max_trans_y,y_step):
                     if dx != 0 or dy != 0:
@@ -207,10 +206,10 @@ class Transformer:
             for j in xrange(1,gaussian_resamples):
                 for sigma in sigmas:
                     self.add_instance(self.gaussian_noise(curr_x,sigma),curr_y)
-            for scale_x in scalings:
-                for scale_y in scalings:
-                    if scale_x != 1 or scale_y != 1:
-                        self.add_instance(self.scale(curr_x,[scale_x,scale_y]),curr_y)
+#            for scale_x in scalings:
+#                for scale_y in scalings:
+#                    if scale_x != 1 or scale_y != 1:
+#                        self.add_instance(self.scale(curr_x,[scale_x,scale_y]),curr_y)
             for j in range(0,elastic_transforms):
                 self.add_instance(self.elastic_transform(curr_x,elastic_sigma,elastic_alpha),curr_y)
 
@@ -242,10 +241,10 @@ class Transformer:
         return ni.zoom(xval,scaling)
 
     def add_instance(self,xval,yval,plot=False):
-        if plot:
-            plt.gray()
-            plt.imshow(xval)
-            plt.show()
+#        if plot:
+#            plt.gray()
+#            plt.imshow(xval)
+#            plt.show()
         self.final_x.append(xval.flatten())
         self.final_y.append(yval)
         self.step_no += 1
