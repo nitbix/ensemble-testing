@@ -709,13 +709,14 @@ if __name__ == '__main__':
     L1_reg=0.00
     L2_reg=0.00
     n_epochs=2000
+    search_epochs = 40
 #    dataset='/local/mnist.pkl.gz'
 #    pickled=True
     transform = False
     dataset='/local/mnist-transformed/'
     pickled=False
     datasets = data.load_data(dataset, shared = not transform, pickled = pickled)
-    batch_size=100
+    batch_size=300
     update_rule=rprop
     search = True
     n_hidden=[
@@ -733,11 +734,11 @@ if __name__ == '__main__':
         if arg[0]=='-':
             exec(arg[1:])
     if not search:
-        mlp=test_mlp(learning_rate, L1_reg, L2_reg, n_epochs,
-            dataset, batch_size, n_hidden, update_rule = update_rule, pickled = pickled)
+        mlp=test_mlp(datasets,learning_rate, L1_reg, L2_reg, n_epochs,
+            batch_size, n_hidden, update_rule = update_rule)
     else:
-        for eta_minus in [0.1,0.5,0.75,0.9]:
-            for eta_plus in [1.1,1.2,1.5]:
+        for eta_minus in [0.01,0.1,0.5,0.75,0.9]:
+            for eta_plus in [1.001,1.01,1.1,1.2,1.5]:
                 for min_delta in [1e-3,1e-4,1e-5,1e-6,1e-7]:
                     for max_delta in [5,50,500]:
                         print "PARAMS:"
@@ -749,7 +750,8 @@ if __name__ == '__main__':
                         return rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
                                      eta_plus=eta_plus,eta_minus=eta_minus,max_delta=max_delta,min_delta=min_delta)
                     try:
-                        mlp=test_mlp(learning_rate, L1_reg, L2_reg, n_epochs, dataset, batch_size,
-                                     n_hidden, update_rule = update_rule, pickled = pickled)
+                        n_epochs = search_epochs
+                        mlp=test_mlp(datasets,learning_rate, L1_reg, L2_reg, n_epochs, batch_size,
+                                     n_hidden, update_rule = update_rule)
                     except KeyboardInterrupt:
                         print "skipping manually to next"
