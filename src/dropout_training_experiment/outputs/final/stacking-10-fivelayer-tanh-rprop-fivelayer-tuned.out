@@ -1,0 +1,148 @@
+... loading data
+training member 0
+epoch 1, minibatch 166/166, validation error 8.323232 %
+epoch 2, minibatch 166/166, validation error 5.949495 %
+epoch 3, minibatch 166/166, validation error 4.656566 %
+epoch 4, minibatch 166/166, validation error 3.939394 %
+epoch 6, minibatch 166/166, validation error 3.595960 %
+epoch 9, minibatch 166/166, validation error 3.575758 %
+epoch 11, minibatch 166/166, validation error 3.313131 %
+epoch 14, minibatch 166/166, validation error 3.131313 %
+epoch 16, minibatch 166/166, validation error 2.858586 %
+epoch 19, minibatch 166/166, validation error 2.818182 %
+Selection : Best validation score of 2.81818181818 %
+training member 1
+epoch 1, minibatch 166/166, validation error 9.222222 %
+epoch 2, minibatch 166/166, validation error 5.949495 %
+epoch 3, minibatch 166/166, validation error 4.989899 %
+epoch 4, minibatch 166/166, validation error 4.505051 %
+epoch 5, minibatch 166/166, validation error 4.353535 %
+epoch 6, minibatch 166/166, validation error 3.969697 %
+epoch 7, minibatch 166/166, validation error 3.747475 %
+epoch 9, minibatch 166/166, validation error 3.535354 %
+epoch 11, minibatch 166/166, validation error 3.303030 %
+epoch 12, minibatch 166/166, validation error 3.171717 %
+epoch 17, minibatch 166/166, validation error 3.161616 %
+epoch 21, minibatch 166/166, validation error 3.121212 %
+epoch 22, minibatch 166/166, validation error 3.080808 %
+Selection : Best validation score of 3.08080808081 %
+training member 2
+epoch 1, minibatch 166/166, validation error 8.171717 %
+epoch 2, minibatch 166/166, validation error 5.545455 %
+epoch 3, minibatch 166/166, validation error 4.303030 %
+epoch 5, minibatch 166/166, validation error 3.868687 %
+epoch 7, minibatch 166/166, validation error 3.555556 %
+epoch 9, minibatch 166/166, validation error 3.484848 %
+epoch 10, minibatch 166/166, validation error 3.303030 %
+epoch 13, minibatch 166/166, validation error 3.000000 %
+epoch 19, minibatch 166/166, validation error 2.969697 %
+epoch 39, minibatch 166/166, validation error 2.828283 %
+Selection : Best validation score of 2.82828282828 %
+training member 3
+epoch 1, minibatch 166/166, validation error 10.262626 %
+epoch 2, minibatch 166/166, validation error 6.797980 %
+epoch 3, minibatch 166/166, validation error 5.404040 %
+epoch 4, minibatch 166/166, validation error 4.666667 %
+epoch 5, minibatch 166/166, validation error 3.909091 %
+epoch 7, minibatch 166/166, validation error 3.787879 %
+epoch 9, minibatch 166/166, validation error 3.444444 %
+epoch 10, minibatch 166/166, validation error 3.434343 %
+epoch 11, minibatch 166/166, validation error 3.434343 %
+epoch 13, minibatch 166/166, validation error 3.424242 %
+epoch 14, minibatch 166/166, validation error 3.212121 %
+epoch 15, minibatch 166/166, validation error 3.161616 %
+epoch 18, minibatch 166/166, validation error 3.020202 %
+epoch 22, minibatch 166/166, validation error 2.878788 %
+Selection : Best validation score of 2.87878787879 %
+training member 4
+epoch 1, minibatch 166/166, validation error 7.656566 %
+epoch 2, minibatch 166/166, validation error 6.090909 %
+epoch 3, minibatch 166/166, validation error 4.303030 %
+epoch 5, minibatch 166/166, validation error 4.090909 %
+epoch 6, minibatch 166/166, validation error 3.767677 %
+epoch 9, minibatch 166/166, validation error 3.757576 %
+epoch 11, minibatch 166/166, validation error 3.171717 %
+epoch 15, minibatch 166/166, validation error 3.131313 %
+epoch 16, minibatch 166/166, validation error 3.060606 %
+Selection : Best validation score of 3.06060606061 %
+training member 5
+epoch 1, minibatch 166/166, validation error 7.848485 %
+epoch 2, minibatch 166/166, validation error 7.717172 %
+epoch 3, minibatch 166/166, validation error 5.050505 %
+epoch 4, minibatch 166/166, validation error 4.383838 %
+epoch 5, minibatch 166/166, validation error 4.333333 %
+epoch 6, minibatch 166/166, validation error 4.070707 %
+epoch 8, minibatch 166/166, validation error 3.949495 %
+epoch 9, minibatch 166/166, validation error 3.737374 %
+epoch 10, minibatch 166/166, validation error 3.696970 %
+epoch 11, minibatch 166/166, validation error 3.686869 %
+epoch 12, minibatch 166/166, validation error 3.383838 %
+epoch 15, minibatch 166/166, validation error 3.272727 %
+epoch 19, minibatch 166/166, validation error 3.222222 %
+epoch 22, minibatch 166/166, validation error 3.191919 %
+epoch 26, minibatch 166/166, validation error 3.181818 %
+epoch 28, minibatch 166/166, validation error 3.000000 %
+Selection : Best validation score of 3.0 %
+training member 6
+epoch 1, minibatch 166/166, validation error 8.565657 %
+epoch 2, minibatch 166/166, validation error 5.989899 %
+epoch 3, minibatch 166/166, validation error 4.393939 %
+epoch 4, minibatch 166/166, validation error 4.202020 %
+epoch 5, minibatch 166/166, validation error 4.111111 %
+epoch 6, minibatch 166/166, validation error 3.707071 %
+epoch 7, minibatch 166/166, validation error 3.414141 %
+epoch 10, minibatch 166/166, validation error 3.272727 %
+epoch 11, minibatch 166/166, validation error 3.212121 %
+epoch 16, minibatch 166/166, validation error 2.949495 %
+epoch 21, minibatch 166/166, validation error 2.747475 %
+Selection : Best validation score of 2.74747474747 %
+training member 7
+epoch 1, minibatch 166/166, validation error 7.969697 %
+epoch 2, minibatch 166/166, validation error 6.888889 %
+epoch 3, minibatch 166/166, validation error 4.959596 %
+epoch 5, minibatch 166/166, validation error 4.515152 %
+epoch 6, minibatch 166/166, validation error 4.060606 %
+epoch 7, minibatch 166/166, validation error 3.525253 %
+epoch 9, minibatch 166/166, validation error 3.464646 %
+epoch 10, minibatch 166/166, validation error 3.393939 %
+epoch 14, minibatch 166/166, validation error 3.292929 %
+epoch 16, minibatch 166/166, validation error 3.191919 %
+epoch 22, minibatch 166/166, validation error 3.181818 %
+epoch 24, minibatch 166/166, validation error 3.161616 %
+epoch 29, minibatch 166/166, validation error 3.141414 %
+epoch 34, minibatch 166/166, validation error 3.080808 %
+Selection : Best validation score of 3.08080808081 %
+training member 8
+epoch 1, minibatch 166/166, validation error 8.313131 %
+epoch 2, minibatch 166/166, validation error 6.090909 %
+epoch 3, minibatch 166/166, validation error 5.151515 %
+epoch 4, minibatch 166/166, validation error 4.737374 %
+epoch 5, minibatch 166/166, validation error 4.060606 %
+epoch 6, minibatch 166/166, validation error 3.353535 %
+epoch 9, minibatch 166/166, validation error 3.020202 %
+epoch 12, minibatch 166/166, validation error 2.777778 %
+Selection : Best validation score of 2.77777777778 %
+training member 9
+epoch 1, minibatch 166/166, validation error 8.505051 %
+epoch 2, minibatch 166/166, validation error 6.222222 %
+epoch 3, minibatch 166/166, validation error 5.121212 %
+epoch 4, minibatch 166/166, validation error 4.434343 %
+epoch 5, minibatch 166/166, validation error 4.131313 %
+epoch 7, minibatch 166/166, validation error 3.909091 %
+epoch 9, minibatch 166/166, validation error 3.373737 %
+epoch 15, minibatch 166/166, validation error 3.181818 %
+epoch 19, minibatch 166/166, validation error 3.141414 %
+epoch 20, minibatch 166/166, validation error 3.111111 %
+epoch 21, minibatch 166/166, validation error 3.050505 %
+epoch 32, minibatch 166/166, validation error 3.030303 %
+epoch 33, minibatch 166/166, validation error 2.848485 %
+Selection : Best validation score of 2.84848484848 %
+training stack head
+epoch 1, minibatch 166/166, validation error 1.909091 %
+epoch 5, minibatch 166/166, validation error 1.898990 %
+epoch 13, minibatch 166/166, validation error 1.898990 %
+epoch 14, minibatch 166/166, validation error 1.828283 %
+epoch 28, minibatch 166/166, validation error 1.818182 %
+finished patience
+Selection : Best validation score of 1.81818181818 %
+Final error: 2.19 %
