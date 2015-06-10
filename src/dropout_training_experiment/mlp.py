@@ -708,7 +708,7 @@ if __name__ == '__main__':
     learning_rate=0.01
     L1_reg=0.00
     L2_reg=0.00
-    n_epochs=2000
+    n_epochs=500
     search_epochs = 40
 #    dataset='/local/mnist.pkl.gz'
 #    pickled=True
@@ -718,7 +718,11 @@ if __name__ == '__main__':
     datasets = data.load_data(dataset, shared = not transform, pickled = pickled)
     batch_size=300
     update_rule=rprop
-    search = True
+    search = False
+    eta_plus = 1.1
+    eta_minus = 0.01
+    max_delta = 5
+    min_delta = 1e-3
     n_hidden=[
 #          (3500,0.5,'h0',T.tanh),
 #          (3000,0.5,'h0',T.tanh),
@@ -734,24 +738,27 @@ if __name__ == '__main__':
         if arg[0]=='-':
             exec(arg[1:])
     if not search:
+        def update_rule(param,learning_rate,gparam,mask,updates,current_cost,previous_cost):
+            return rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
+                         eta_plus=eta_plus,eta_minus=eta_minus,max_delta=max_delta,min_delta=min_delta)
         mlp=test_mlp(datasets,learning_rate, L1_reg, L2_reg, n_epochs,
             batch_size, n_hidden, update_rule = update_rule)
     else:
         for eta_minus in [0.01,0.1,0.5,0.75,0.9]:
             for eta_plus in [1.001,1.01,1.1,1.2,1.5]:
                 for min_delta in [1e-3,1e-4,1e-5,1e-6,1e-7]:
-                    for max_delta in [5,50,500]:
+                    for max_delta in [50]:
                         print "PARAMS:"
                         print "ETA-: {0}".format(eta_minus)
                         print "ETA+: {0}".format(eta_plus)
                         print "MIN_DELTA: {0}".format(min_delta)
                         print "MAX_DELTA: {0}".format(max_delta)
-                    def update_rule(param,learning_rate,gparam,mask,updates,current_cost,previous_cost):
-                        return rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
-                                     eta_plus=eta_plus,eta_minus=eta_minus,max_delta=max_delta,min_delta=min_delta)
-                    try:
-                        n_epochs = search_epochs
-                        mlp=test_mlp(datasets,learning_rate, L1_reg, L2_reg, n_epochs, batch_size,
-                                     n_hidden, update_rule = update_rule)
-                    except KeyboardInterrupt:
-                        print "skipping manually to next"
+                        def update_rule(param,learning_rate,gparam,mask,updates,current_cost,previous_cost):
+                            return rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
+                                         eta_plus=eta_plus,eta_minus=eta_minus,max_delta=max_delta,min_delta=min_delta)
+                        try:
+                            n_epochs = search_epochs
+                            mlp=test_mlp(datasets,learning_rate, L1_reg, L2_reg, n_epochs, batch_size,
+                                         n_hidden, update_rule = update_rule)
+                        except KeyboardInterrupt:
+                            print "skipping manually to next"

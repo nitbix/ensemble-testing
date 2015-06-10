@@ -76,20 +76,20 @@ if __name__ == '__main__':
     learning_rate=0.01
     L1_reg=0.00
     L2_reg=0.00
-    n_epochs=50
-    dataset='/local/mnist-transformed'
+    n_epochs=200
+    dataset='/local/mnist-transformed/'
     batch_size=300
-    resample_size=50000
+    resample_size=350000
     n_hidden=[(2500,0.5,'h0',T.tanh),
               (2000,0.5,'h1',T.tanh),
               (1500,0.5,'h2',T.tanh),
               (1000,0.5,'h2',T.tanh),
               (500,0.5,'h3',T.tanh)
              ]
-    method = 'bagging'
+    method = 'stacking'
     ensemble_size = 10
-    eta_plus = 1.01
-    eta_minus = 0.1
+    eta_plus = 1.1
+    eta_minus = 0.01
     max_delta = 5
     min_delta = 1e-3
     for arg in sys.argv[1:]:

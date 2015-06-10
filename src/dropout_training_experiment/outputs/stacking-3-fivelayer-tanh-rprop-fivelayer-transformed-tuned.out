@@ -1,0 +1,46 @@
+training member 0
+epoch 1, minibatch 1166/1166, validation error 4.176667 %
+epoch 2, minibatch 1166/1166, validation error 3.140000 %
+epoch 3, minibatch 1166/1166, validation error 2.841667 %
+epoch 4, minibatch 1166/1166, validation error 2.641667 %
+epoch 5, minibatch 1166/1166, validation error 2.348333 %
+epoch 6, minibatch 1166/1166, validation error 2.175000 %
+epoch 9, minibatch 1166/1166, validation error 2.011667 %
+epoch 11, minibatch 1166/1166, validation error 1.955000 %
+epoch 13, minibatch 1166/1166, validation error 1.831667 %
+epoch 14, minibatch 1166/1166, validation error 1.793333 %
+epoch 22, minibatch 1166/1166, validation error 1.785000 %
+epoch 24, minibatch 1166/1166, validation error 1.740000 %
+epoch 34, minibatch 1166/1166, validation error 1.731667 %
+epoch 44, minibatch 1166/1166, validation error 1.695000 %
+finished patience
+Selection : Best validation score of 1.695 %
+training member 1
+epoch 1, minibatch 1166/1166, validation error 3.376667 %
+epoch 2, minibatch 1166/1166, validation error 2.873333 %
+epoch 3, minibatch 1166/1166, validation error 2.266667 %
+epoch 4, minibatch 1166/1166, validation error 2.148333 %
+epoch 5, minibatch 1166/1166, validation error 1.906667 %
+epoch 7, minibatch 1166/1166, validation error 1.768333 %
+finished patience
+Selection : Best validation score of 1.76833333333 %
+training member 2
+epoch 1, minibatch 1166/1166, validation error 3.780000 %
+epoch 2, minibatch 1166/1166, validation error 2.845000 %
+epoch 3, minibatch 1166/1166, validation error 2.395000 %
+epoch 4, minibatch 1166/1166, validation error 2.138333 %
+epoch 6, minibatch 1166/1166, validation error 1.853333 %
+epoch 10, minibatch 1166/1166, validation error 1.801667 %
+epoch 13, minibatch 1166/1166, validation error 1.706667 %
+epoch 15, minibatch 1166/1166, validation error 1.640000 %
+finished patience
+Selection : Best validation score of 1.64 %
+training stack head
+epoch 1, minibatch 1200/1200, validation error 1.233333 %
+epoch 2, minibatch 1200/1200, validation error 1.230000 %
+epoch 4, minibatch 1200/1200, validation error 1.220000 %
+epoch 5, minibatch 1200/1200, validation error 1.208333 %
+epoch 7, minibatch 1200/1200, validation error 1.208333 %
+finished patience
+Selection : Best validation score of 1.20833333333 %
+Final error: 1.28 %
