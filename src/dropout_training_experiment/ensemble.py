@@ -76,7 +76,7 @@ if __name__ == '__main__':
     learning_rate=0.01
     L1_reg=0.00
     L2_reg=0.00
-    n_epochs=200
+    n_epochs=50
     dataset='mnist.pkl.gz'
     batch_size=300
     resample_size=50000
@@ -86,7 +86,12 @@ if __name__ == '__main__':
               (1000,0.5,'h2',T.tanh),
               (500,0.5,'h3',T.tanh)
              ]
-    ensemble_size = 3
+    method = 'bagging'
+    ensemble_size = 10
+    eta_plus = 1.01
+    eta_minus = 0.1
+    max_delta = 5
+    min_delta = 1e-3
     for arg in sys.argv[1:]:
         if arg[0]=='-':
             exec(arg[1:])
@@ -103,6 +108,8 @@ if __name__ == '__main__':
         aggregate_valid = (aggregate_x, aggregate_y)
         return (aggregate_train,aggregate_valid,test)
     #dataset = transform_dataset(dataset)
+    def update_rule(param,learning_rate,gparam,mask,updates,current_cost,previous_cost):
+        return mlp.rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,eta_plus=eta_plus,eta_minus=eta_minus,max_delta=max_delta,min_delta=min_delta)
     resampler = Resampler(dataset)
     x = T.matrix('x')
     y = T.ivector('y')
@@ -111,14 +118,16 @@ if __name__ == '__main__':
         print 'training member {0}'.format(i)
         m=mlp.train_and_select(x,y,resampler.make_new_train(resample_size),
                 resampler.get_valid(),learning_rate, L1_reg, L2_reg, n_epochs,
-                batch_size, n_hidden, update_rule = mlp.rprop)
+                batch_size, n_hidden, update_rule = update_rule)
         members.append(m)
         gc.collect()
-#    mv = Averaging(members,x,y)
-    mv = Stacking(x,y,members,[
-                (ensemble_size * 500,0,'s0',T.tanh),
-                (ensemble_size * 400,0,'s1',T.tanh),
-                (ensemble_size * 300,0,'s2',T.tanh),
+    if method ==  'bagging':
+        mv = Averaging(members,x,y)
+    elif method == 'stacking':
+        mv = Stacking(x,y,members,[
+                #(ensemble_size * 500,0,'s0',T.tanh),
+                #(ensemble_size * 400,0,'s1',T.tanh),
+               # (ensemble_size * 300,0,'s2',T.tanh),
                 (ensemble_size * 200,0,'s3',T.tanh),
                 (ensemble_size * 100,0,'s4',T.tanh),
             ],
