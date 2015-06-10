@@ -77,7 +77,7 @@ if __name__ == '__main__':
     L1_reg=0.00
     L2_reg=0.00
     n_epochs=50
-    dataset='mnist.pkl.gz'
+    dataset='/local/mnist-transformed'
     batch_size=300
     resample_size=50000
     n_hidden=[(2500,0.5,'h0',T.tanh),
@@ -95,7 +95,7 @@ if __name__ == '__main__':
     for arg in sys.argv[1:]:
         if arg[0]=='-':
             exec(arg[1:])
-    dataset = load_data(dataset,shared=False)
+    dataset = load_data(dataset,shared=False,pickled=False)
     def transform_dataset(dataset):
         train,valid,test = dataset
         train_x, train_y = train

@@ -732,9 +732,9 @@ if __name__ == '__main__':
     batch_size=100
     update_rule=rprop
     n_hidden=[
-#	      (3500,0.5,'h0',T.tanh),
-#	      (3000,0.5,'h0',T.tanh),
-	      (2500,0.5,'h0',T.tanh),
+#          (3500,0.5,'h0',T.tanh),
+#          (3000,0.5,'h0',T.tanh),
+          (2500,0.5,'h0',T.tanh),
               (2000,0.5,'h1',T.tanh),
               (1500,0.5,'h2',T.tanh),
               (1000,0.5,'h2',T.tanh),
@@ -746,18 +746,18 @@ if __name__ == '__main__':
     mlp=test_mlp(learning_rate, L1_reg, L2_reg, n_epochs,
         dataset, batch_size, n_hidden, update_rule = update_rule, transform = False, pickled = pickled)
 #    for eta_minus in [0.1,0.5,0.75,0.9]:
-#	for eta_plus in [1.1,1.2,1.5]:
-#	    for min_delta in [1e-3,1e-4,1e-5,1e-6,1e-7]:
-#	        for max_delta in [5,50,500]:
-#		    print "PARAMS:"
-#		    print "ETA-: {0}".format(eta_minus)
-#		    print "ETA+: {0}".format(eta_plus)
-#		    print "MIN_DELTA: {0}".format(min_delta)
-#		    print "MAX_DELTA: {0}".format(max_delta)
-#		    def update_rule(param,learning_rate,gparam,mask,updates,current_cost,previous_cost):
-#			return rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,eta_plus=eta_plus,eta_minus=eta_minus,max_delta=max_delta,min_delta=min_delta)
-#		    try:
-#		        mlp=test_mlp(learning_rate, L1_reg, L2_reg, n_epochs,
-#		        dataset, batch_size, n_hidden, update_rule = update_rule, transform = False, pickled = pickled)
-#		    except KeyboardInterrupt:
-#			print "skipping manually to next"
+#    for eta_plus in [1.1,1.2,1.5]:
+#        for min_delta in [1e-3,1e-4,1e-5,1e-6,1e-7]:
+#            for max_delta in [5,50,500]:
+#            print "PARAMS:"
+#            print "ETA-: {0}".format(eta_minus)
+#            print "ETA+: {0}".format(eta_plus)
+#            print "MIN_DELTA: {0}".format(min_delta)
+#            print "MAX_DELTA: {0}".format(max_delta)
+#            def update_rule(param,learning_rate,gparam,mask,updates,current_cost,previous_cost):
+#            return rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,eta_plus=eta_plus,eta_minus=eta_minus,max_delta=max_delta,min_delta=min_delta)
+#            try:
+#                mlp=test_mlp(learning_rate, L1_reg, L2_reg, n_epochs,
+#                dataset, batch_size, n_hidden, update_rule = update_rule, transform = False, pickled = pickled)
+#            except KeyboardInterrupt:
+#            print "skipping manually to next"
