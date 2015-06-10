@@ -45,7 +45,7 @@ def sgd(param,learning_rate,gparam,mask,updates,current_cost,previous_cost):
     return param - learning_rate * gparam * mask
 
 def old_rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
-          eta_plus=1.5,eta_minus=0.5,max_delta=50, min_delta=1e-8):
+          eta_plus=1.2,eta_minus=0.5,max_delta=50, min_delta=1e-6):
     previous_grad = sharedX(numpy.ones(param.shape.eval()),borrow=True)
     delta = sharedX(learning_rate * numpy.ones(param.shape.eval()),borrow=True)
     previous_inc = sharedX(numpy.zeros(param.shape.eval()),borrow=True)
@@ -364,7 +364,7 @@ class MLP(object):
 
 
 def test_mlp(datasets,learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
-             batch_size=20, n_hidden=(500,0), update_rule=sgd):
+             batch_size=20, n_hidden=(500,0), update_rule=sgd, n_in=28*28):
     """
     Demonstrate stochastic gradient descent optimization for a multilayer
     perceptron
@@ -415,7 +415,7 @@ def test_mlp(datasets,learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1
     rng = numpy.random.RandomState(1234)
 
     # construct the MLP class
-    classifier = MLP(rng=rng, input=x, n_in=28 * 28,
+    classifier = MLP(rng=rng, input=x, n_in=n_in,
                      n_hidden=n_hidden, n_out=10)
 
     # the cost we minimize during training is the negative log likelihood of
@@ -705,34 +705,66 @@ def train_and_select(x,y,training_set, validation_set, learning_rate=0.01,
 
 if __name__ == '__main__':
     ###parameters###
-    learning_rate=0.01
+    dataset_name = 'cifar10'
     L1_reg=0.00
     L2_reg=0.00
     n_epochs=500
     search_epochs = 40
-#    dataset='/local/mnist.pkl.gz'
-#    pickled=True
     transform = False
-    dataset='/local/mnist-transformed/'
-    pickled=False
-    datasets = data.load_data(dataset, shared = not transform, pickled = pickled)
     batch_size=300
     update_rule=rprop
     search = False
-    eta_plus = 1.1
-    eta_minus = 0.01
-    max_delta = 5
-    min_delta = 1e-3
-    n_hidden=[
-#          (3500,0.5,'h0',T.tanh),
-#          (3000,0.5,'h0',T.tanh),
-          (2500,0.5,'h0',T.tanh),
-              (2000,0.5,'h1',T.tanh),
-              (1500,0.5,'h2',T.tanh),
-              (1000,0.5,'h2',T.tanh),
-              (500,0.5,'h3',T.tanh)
-             ]
+
+    if dataset_name == 'mnist':
+        learning_rate=0.01
+        eta_plus = 1.01
+        eta_minus = 0.1
+        max_delta = 5
+        min_delta = 1e-3
+        dataset='/local/mnist.pkl.gz'
+        pickled=True
+        n_hidden=[
+                  (2500,0.5,'h0',T.tanh),
+                  (2000,0.5,'h1',T.tanh),
+                  (1500,0.5,'h2',T.tanh),
+                  (1000,0.5,'h2',T.tanh),
+                  (500,0.5,'h3',T.tanh)
+                 ]
+        n_in = 784
+    elif dataset_name == 'mnist-transformed':
+        learning_rate=0.01
+        eta_plus = 1.1
+        eta_minus = 0.01
+        max_delta = 5
+        min_delta = 1e-3
+        dataset='/local/mnit-transformed/'
+        pickled=False
+        n_hidden=[
+                  (2500,0.5,'h0',T.tanh),
+                  (2000,0.5,'h1',T.tanh),
+                  (1500,0.5,'h2',T.tanh),
+                  (1000,0.5,'h2',T.tanh),
+                  (500,0.5,'h3',T.tanh)
+                 ]
+        n_in = 784
+    elif dataset_name == 'cifar10':
+        learning_rate=0.03
+        dataset='/local/cifar10/'
+        pickled=False
+        n_hidden=[
+                  (3000,0.5,'h0',T.tanh),
+                  (3000,0.5,'h1',T.tanh),
+                  (3000,0.5,'h2',T.tanh),
+                  (3000,0.5,'h3',T.tanh),
+                  (3000,0.5,'h4',T.tanh)
+                 ]
+        n_in = 3072
+    else:
+        print "unknown dataset_name " + dataset_name
+
     ###parameters end###
+
+    datasets = data.load_data(dataset, shared = not transform, pickled = pickled)
 
     for arg in sys.argv[1:]:
         if arg[0]=='-':
@@ -742,7 +774,7 @@ if __name__ == '__main__':
             return rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
                          eta_plus=eta_plus,eta_minus=eta_minus,max_delta=max_delta,min_delta=min_delta)
         mlp=test_mlp(datasets,learning_rate, L1_reg, L2_reg, n_epochs,
-            batch_size, n_hidden, update_rule = update_rule)
+            batch_size, n_hidden, update_rule = sgd, n_in = n_in)
     else:
         for eta_minus in [0.01,0.1,0.5,0.75,0.9]:
             for eta_plus in [1.001,1.01,1.1,1.2,1.5]:
@@ -759,6 +791,6 @@ if __name__ == '__main__':
                         try:
                             n_epochs = search_epochs
                             mlp=test_mlp(datasets,learning_rate, L1_reg, L2_reg, n_epochs, batch_size,
-                                         n_hidden, update_rule = update_rule)
+                                         n_hidden, update_rule = update_rule, n_in = n_in)
                         except KeyboardInterrupt:
                             print "skipping manually to next"
