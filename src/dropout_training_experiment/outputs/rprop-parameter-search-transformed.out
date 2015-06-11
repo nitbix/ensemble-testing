@@ -2319,3 +2319,35 @@ epoch 13, minibatch 1200/1200, validation error 2.581667 %
 epoch 14, minibatch 1200/1200, validation error 2.468333 %
      epoch 14, minibatch 1200/1200, test error of best model 2.767677 %
 epoch 15, minibatch 1200/1200, validation error 2.543333 %
+epoch 16, minibatch 1200/1200, validation error 2.251667 %
+     epoch 16, minibatch 1200/1200, test error of best model 2.444444 %
+epoch 17, minibatch 1200/1200, validation error 2.423333 %
+epoch 18, minibatch 1200/1200, validation error 2.278333 %
+skipping manually to next
+PARAMS:
+ETA-: 0.1
+ETA+: 1.1
+MIN_DELTA: 1e-05
+MAX_DELTA: 50
+... building the model
+skipping manually to next
+PARAMS:
+ETA-: 0.1
+ETA+: 1.1
+MIN_DELTA: 1e-06
+MAX_DELTA: 50
+... building the model
+skipping manually to next
+PARAMS:
+ETA-: 0.1
+ETA+: 1.1
+MIN_DELTA: 1e-07
+MAX_DELTA: 50
+... building the model
+skipping manually to next
+PARAMS:
+ETA-: 0.1
+ETA+: 1.2
+MIN_DELTA: 0.001
+MAX_DELTA: 50
+... building the model
