@@ -748,7 +748,7 @@ if __name__ == '__main__':
                  ]
         n_in = 784
     elif dataset_name == 'cifar10':
-        learning_rate=0.03
+        learning_rate=0.001
         dataset='/local/cifar10/'
         pickled=False
         n_hidden=[
@@ -774,7 +774,7 @@ if __name__ == '__main__':
             return rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
                          eta_plus=eta_plus,eta_minus=eta_minus,max_delta=max_delta,min_delta=min_delta)
         mlp=test_mlp(datasets,learning_rate, L1_reg, L2_reg, n_epochs,
-            batch_size, n_hidden, update_rule = sgd, n_in = n_in)
+            batch_size, n_hidden, update_rule = old_rprop, n_in = n_in)
     else:
         for eta_minus in [0.01,0.1,0.5,0.75,0.9]:
             for eta_plus in [1.001,1.01,1.1,1.2,1.5]:
