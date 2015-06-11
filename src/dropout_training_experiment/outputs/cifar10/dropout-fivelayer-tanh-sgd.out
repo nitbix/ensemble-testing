@@ -1,21 +1,727 @@
 ... building the model
 ... training
-epoch 1, minibatch 100/100, validation error 72.838384 %
-     epoch 1, minibatch 100/100, test error of best model 72.393939 %
-epoch 2, minibatch 100/100, validation error 73.636364 %
-epoch 3, minibatch 100/100, validation error 70.474747 %
-     epoch 3, minibatch 100/100, test error of best model 69.585859 %
-epoch 4, minibatch 100/100, validation error 69.141414 %
-     epoch 4, minibatch 100/100, test error of best model 68.404040 %
-epoch 5, minibatch 100/100, validation error 69.393939 %
-epoch 6, minibatch 100/100, validation error 68.949495 %
-     epoch 6, minibatch 100/100, test error of best model 68.414141 %
-epoch 7, minibatch 100/100, validation error 69.313131 %
-epoch 8, minibatch 100/100, validation error 69.171717 %
-epoch 9, minibatch 100/100, validation error 70.181818 %
-epoch 10, minibatch 100/100, validation error 68.797980 %
-     epoch 10, minibatch 100/100, test error of best model 68.444444 %
-epoch 11, minibatch 100/100, validation error 72.151515 %
-epoch 12, minibatch 100/100, validation error 68.414141 %
-     epoch 12, minibatch 100/100, test error of best model 67.696970 %
-epoch 13, minibatch 100/100, validation error 69.121212 %
+epoch 1, minibatch 100/100, validation error 78.666667 %
+     epoch 1, minibatch 100/100, test error of best model 78.000000 %
+epoch 2, minibatch 100/100, validation error 78.434343 %
+     epoch 2, minibatch 100/100, test error of best model 77.898990 %
+epoch 3, minibatch 100/100, validation error 78.161616 %
+     epoch 3, minibatch 100/100, test error of best model 77.757576 %
+epoch 4, minibatch 100/100, validation error 77.858586 %
+     epoch 4, minibatch 100/100, test error of best model 77.474747 %
+epoch 5, minibatch 100/100, validation error 77.585859 %
+     epoch 5, minibatch 100/100, test error of best model 77.232323 %
+epoch 6, minibatch 100/100, validation error 77.363636 %
+     epoch 6, minibatch 100/100, test error of best model 76.979798 %
+epoch 7, minibatch 100/100, validation error 77.151515 %
+     epoch 7, minibatch 100/100, test error of best model 76.707071 %
+epoch 8, minibatch 100/100, validation error 76.949495 %
+     epoch 8, minibatch 100/100, test error of best model 76.525253 %
+epoch 9, minibatch 100/100, validation error 76.717172 %
+     epoch 9, minibatch 100/100, test error of best model 76.444444 %
+epoch 10, minibatch 100/100, validation error 76.595960 %
+     epoch 10, minibatch 100/100, test error of best model 76.262626 %
+epoch 11, minibatch 100/100, validation error 76.454545 %
+     epoch 11, minibatch 100/100, test error of best model 75.939394 %
+epoch 12, minibatch 100/100, validation error 76.151515 %
+     epoch 12, minibatch 100/100, test error of best model 75.686869 %
+epoch 13, minibatch 100/100, validation error 75.858586 %
+     epoch 13, minibatch 100/100, test error of best model 75.252525 %
+epoch 14, minibatch 100/100, validation error 75.636364 %
+     epoch 14, minibatch 100/100, test error of best model 75.030303 %
+epoch 15, minibatch 100/100, validation error 75.444444 %
+     epoch 15, minibatch 100/100, test error of best model 74.737374 %
+epoch 16, minibatch 100/100, validation error 75.333333 %
+     epoch 16, minibatch 100/100, test error of best model 74.505051 %
+epoch 17, minibatch 100/100, validation error 75.202020 %
+     epoch 17, minibatch 100/100, test error of best model 74.555556 %
+epoch 18, minibatch 100/100, validation error 75.161616 %
+     epoch 18, minibatch 100/100, test error of best model 74.474747 %
+epoch 19, minibatch 100/100, validation error 74.888889 %
+     epoch 19, minibatch 100/100, test error of best model 74.303030 %
+epoch 20, minibatch 100/100, validation error 74.727273 %
+     epoch 20, minibatch 100/100, test error of best model 74.282828 %
+epoch 21, minibatch 100/100, validation error 74.575758 %
+     epoch 21, minibatch 100/100, test error of best model 74.101010 %
+epoch 22, minibatch 100/100, validation error 74.424242 %
+     epoch 22, minibatch 100/100, test error of best model 73.979798 %
+epoch 23, minibatch 100/100, validation error 74.202020 %
+     epoch 23, minibatch 100/100, test error of best model 73.818182 %
+epoch 24, minibatch 100/100, validation error 74.151515 %
+     epoch 24, minibatch 100/100, test error of best model 73.606061 %
+epoch 25, minibatch 100/100, validation error 74.161616 %
+epoch 26, minibatch 100/100, validation error 74.080808 %
+     epoch 26, minibatch 100/100, test error of best model 73.505051 %
+epoch 27, minibatch 100/100, validation error 74.080808 %
+     epoch 27, minibatch 100/100, test error of best model 73.464646 %
+epoch 28, minibatch 100/100, validation error 74.101010 %
+epoch 29, minibatch 100/100, validation error 74.282828 %
+epoch 30, minibatch 100/100, validation error 74.161616 %
+epoch 31, minibatch 100/100, validation error 74.303030 %
+epoch 32, minibatch 100/100, validation error 74.333333 %
+epoch 33, minibatch 100/100, validation error 74.393939 %
+epoch 34, minibatch 100/100, validation error 74.515152 %
+epoch 35, minibatch 100/100, validation error 74.575758 %
+epoch 36, minibatch 100/100, validation error 74.646465 %
+epoch 37, minibatch 100/100, validation error 74.787879 %
+epoch 38, minibatch 100/100, validation error 74.858586 %
+epoch 39, minibatch 100/100, validation error 75.141414 %
+epoch 40, minibatch 100/100, validation error 75.232323 %
+epoch 41, minibatch 100/100, validation error 75.363636 %
+epoch 42, minibatch 100/100, validation error 75.555556 %
+epoch 43, minibatch 100/100, validation error 75.656566 %
+epoch 44, minibatch 100/100, validation error 75.737374 %
+epoch 45, minibatch 100/100, validation error 75.848485 %
+epoch 46, minibatch 100/100, validation error 75.888889 %
+epoch 47, minibatch 100/100, validation error 75.909091 %
+epoch 48, minibatch 100/100, validation error 76.030303 %
+epoch 49, minibatch 100/100, validation error 76.111111 %
+epoch 50, minibatch 100/100, validation error 75.949495 %
+epoch 51, minibatch 100/100, validation error 75.898990 %
+epoch 52, minibatch 100/100, validation error 75.808081 %
+epoch 53, minibatch 100/100, validation error 75.707071 %
+epoch 54, minibatch 100/100, validation error 75.616162 %
+epoch 55, minibatch 100/100, validation error 75.414141 %
+epoch 56, minibatch 100/100, validation error 75.353535 %
+epoch 57, minibatch 100/100, validation error 75.323232 %
+epoch 58, minibatch 100/100, validation error 75.161616 %
+epoch 59, minibatch 100/100, validation error 74.848485 %
+epoch 60, minibatch 100/100, validation error 74.727273 %
+epoch 61, minibatch 100/100, validation error 74.585859 %
+epoch 62, minibatch 100/100, validation error 74.383838 %
+epoch 63, minibatch 100/100, validation error 74.292929 %
+epoch 64, minibatch 100/100, validation error 74.222222 %
+epoch 65, minibatch 100/100, validation error 74.101010 %
+epoch 66, minibatch 100/100, validation error 74.000000 %
+     epoch 66, minibatch 100/100, test error of best model 72.939394 %
+epoch 67, minibatch 100/100, validation error 73.838384 %
+     epoch 67, minibatch 100/100, test error of best model 72.797980 %
+epoch 68, minibatch 100/100, validation error 73.686869 %
+     epoch 68, minibatch 100/100, test error of best model 72.656566 %
+epoch 69, minibatch 100/100, validation error 73.565657 %
+     epoch 69, minibatch 100/100, test error of best model 72.434343 %
+epoch 70, minibatch 100/100, validation error 73.252525 %
+     epoch 70, minibatch 100/100, test error of best model 72.262626 %
+epoch 71, minibatch 100/100, validation error 73.010101 %
+     epoch 71, minibatch 100/100, test error of best model 72.191919 %
+epoch 72, minibatch 100/100, validation error 72.858586 %
+     epoch 72, minibatch 100/100, test error of best model 71.979798 %
+epoch 73, minibatch 100/100, validation error 72.717172 %
+     epoch 73, minibatch 100/100, test error of best model 71.818182 %
+epoch 74, minibatch 100/100, validation error 72.676768 %
+     epoch 74, minibatch 100/100, test error of best model 71.737374 %
+epoch 75, minibatch 100/100, validation error 72.606061 %
+     epoch 75, minibatch 100/100, test error of best model 71.595960 %
+epoch 76, minibatch 100/100, validation error 72.383838 %
+     epoch 76, minibatch 100/100, test error of best model 71.555556 %
+epoch 77, minibatch 100/100, validation error 72.171717 %
+     epoch 77, minibatch 100/100, test error of best model 71.323232 %
+epoch 78, minibatch 100/100, validation error 72.090909 %
+     epoch 78, minibatch 100/100, test error of best model 71.191919 %
+epoch 79, minibatch 100/100, validation error 71.878788 %
+     epoch 79, minibatch 100/100, test error of best model 71.050505 %
+epoch 80, minibatch 100/100, validation error 71.717172 %
+     epoch 80, minibatch 100/100, test error of best model 70.868687 %
+epoch 81, minibatch 100/100, validation error 71.606061 %
+     epoch 81, minibatch 100/100, test error of best model 70.767677 %
+epoch 82, minibatch 100/100, validation error 71.292929 %
+     epoch 82, minibatch 100/100, test error of best model 70.525253 %
+epoch 83, minibatch 100/100, validation error 71.151515 %
+     epoch 83, minibatch 100/100, test error of best model 70.464646 %
+epoch 84, minibatch 100/100, validation error 71.080808 %
+     epoch 84, minibatch 100/100, test error of best model 70.343434 %
+epoch 85, minibatch 100/100, validation error 70.949495 %
+     epoch 85, minibatch 100/100, test error of best model 70.222222 %
+epoch 86, minibatch 100/100, validation error 70.818182 %
+     epoch 86, minibatch 100/100, test error of best model 70.222222 %
+epoch 87, minibatch 100/100, validation error 70.646465 %
+     epoch 87, minibatch 100/100, test error of best model 70.111111 %
+epoch 88, minibatch 100/100, validation error 70.585859 %
+     epoch 88, minibatch 100/100, test error of best model 70.000000 %
+epoch 89, minibatch 100/100, validation error 70.464646 %
+     epoch 89, minibatch 100/100, test error of best model 69.929293 %
+epoch 90, minibatch 100/100, validation error 70.505051 %
+epoch 91, minibatch 100/100, validation error 70.383838 %
+     epoch 91, minibatch 100/100, test error of best model 69.848485 %
+epoch 92, minibatch 100/100, validation error 70.292929 %
+     epoch 92, minibatch 100/100, test error of best model 69.686869 %
+epoch 93, minibatch 100/100, validation error 70.202020 %
+     epoch 93, minibatch 100/100, test error of best model 69.505051 %
+epoch 94, minibatch 100/100, validation error 70.131313 %
+     epoch 94, minibatch 100/100, test error of best model 69.424242 %
+epoch 95, minibatch 100/100, validation error 70.050505 %
+     epoch 95, minibatch 100/100, test error of best model 69.373737 %
+epoch 96, minibatch 100/100, validation error 69.959596 %
+     epoch 96, minibatch 100/100, test error of best model 69.222222 %
+epoch 97, minibatch 100/100, validation error 69.808081 %
+     epoch 97, minibatch 100/100, test error of best model 69.151515 %
+epoch 98, minibatch 100/100, validation error 69.707071 %
+     epoch 98, minibatch 100/100, test error of best model 69.070707 %
+epoch 99, minibatch 100/100, validation error 69.585859 %
+     epoch 99, minibatch 100/100, test error of best model 69.060606 %
+epoch 100, minibatch 100/100, validation error 69.494949 %
+     epoch 100, minibatch 100/100, test error of best model 68.848485 %
+epoch 101, minibatch 100/100, validation error 69.484848 %
+     epoch 101, minibatch 100/100, test error of best model 68.707071 %
+epoch 102, minibatch 100/100, validation error 69.414141 %
+     epoch 102, minibatch 100/100, test error of best model 68.707071 %
+epoch 103, minibatch 100/100, validation error 69.353535 %
+     epoch 103, minibatch 100/100, test error of best model 68.666667 %
+epoch 104, minibatch 100/100, validation error 69.424242 %
+epoch 105, minibatch 100/100, validation error 69.383838 %
+epoch 106, minibatch 100/100, validation error 69.222222 %
+     epoch 106, minibatch 100/100, test error of best model 68.303030 %
+epoch 107, minibatch 100/100, validation error 69.090909 %
+     epoch 107, minibatch 100/100, test error of best model 68.181818 %
+epoch 108, minibatch 100/100, validation error 69.000000 %
+     epoch 108, minibatch 100/100, test error of best model 68.131313 %
+epoch 109, minibatch 100/100, validation error 69.000000 %
+     epoch 109, minibatch 100/100, test error of best model 68.020202 %
+epoch 110, minibatch 100/100, validation error 68.989899 %
+     epoch 110, minibatch 100/100, test error of best model 67.959596 %
+epoch 111, minibatch 100/100, validation error 68.838384 %
+     epoch 111, minibatch 100/100, test error of best model 67.888889 %
+epoch 112, minibatch 100/100, validation error 68.727273 %
+     epoch 112, minibatch 100/100, test error of best model 67.868687 %
+epoch 113, minibatch 100/100, validation error 68.646465 %
+     epoch 113, minibatch 100/100, test error of best model 67.808081 %
+epoch 114, minibatch 100/100, validation error 68.474747 %
+     epoch 114, minibatch 100/100, test error of best model 67.717172 %
+epoch 115, minibatch 100/100, validation error 68.333333 %
+     epoch 115, minibatch 100/100, test error of best model 67.646465 %
+epoch 116, minibatch 100/100, validation error 68.313131 %
+     epoch 116, minibatch 100/100, test error of best model 67.575758 %
+epoch 117, minibatch 100/100, validation error 68.222222 %
+     epoch 117, minibatch 100/100, test error of best model 67.545455 %
+epoch 118, minibatch 100/100, validation error 68.171717 %
+     epoch 118, minibatch 100/100, test error of best model 67.505051 %
+epoch 119, minibatch 100/100, validation error 68.111111 %
+     epoch 119, minibatch 100/100, test error of best model 67.494949 %
+epoch 120, minibatch 100/100, validation error 68.020202 %
+     epoch 120, minibatch 100/100, test error of best model 67.424242 %
+epoch 121, minibatch 100/100, validation error 67.949495 %
+     epoch 121, minibatch 100/100, test error of best model 67.262626 %
+epoch 122, minibatch 100/100, validation error 67.878788 %
+     epoch 122, minibatch 100/100, test error of best model 67.090909 %
+epoch 123, minibatch 100/100, validation error 67.848485 %
+     epoch 123, minibatch 100/100, test error of best model 66.929293 %
+epoch 124, minibatch 100/100, validation error 67.717172 %
+     epoch 124, minibatch 100/100, test error of best model 66.888889 %
+epoch 125, minibatch 100/100, validation error 67.676768 %
+     epoch 125, minibatch 100/100, test error of best model 66.818182 %
+epoch 126, minibatch 100/100, validation error 67.616162 %
+     epoch 126, minibatch 100/100, test error of best model 66.808081 %
+epoch 127, minibatch 100/100, validation error 67.575758 %
+     epoch 127, minibatch 100/100, test error of best model 66.767677 %
+epoch 128, minibatch 100/100, validation error 67.565657 %
+     epoch 128, minibatch 100/100, test error of best model 66.656566 %
+epoch 129, minibatch 100/100, validation error 67.525253 %
+     epoch 129, minibatch 100/100, test error of best model 66.535354 %
+epoch 130, minibatch 100/100, validation error 67.404040 %
+     epoch 130, minibatch 100/100, test error of best model 66.383838 %
+epoch 131, minibatch 100/100, validation error 67.262626 %
+     epoch 131, minibatch 100/100, test error of best model 66.363636 %
+epoch 132, minibatch 100/100, validation error 67.191919 %
+     epoch 132, minibatch 100/100, test error of best model 66.303030 %
+epoch 133, minibatch 100/100, validation error 67.101010 %
+     epoch 133, minibatch 100/100, test error of best model 66.242424 %
+epoch 134, minibatch 100/100, validation error 67.000000 %
+     epoch 134, minibatch 100/100, test error of best model 66.161616 %
+epoch 135, minibatch 100/100, validation error 66.868687 %
+     epoch 135, minibatch 100/100, test error of best model 66.060606 %
+epoch 136, minibatch 100/100, validation error 66.858586 %
+     epoch 136, minibatch 100/100, test error of best model 66.161616 %
+epoch 137, minibatch 100/100, validation error 66.777778 %
+     epoch 137, minibatch 100/100, test error of best model 66.151515 %
+epoch 138, minibatch 100/100, validation error 66.666667 %
+     epoch 138, minibatch 100/100, test error of best model 66.000000 %
+epoch 139, minibatch 100/100, validation error 66.636364 %
+     epoch 139, minibatch 100/100, test error of best model 65.959596 %
+epoch 140, minibatch 100/100, validation error 66.606061 %
+     epoch 140, minibatch 100/100, test error of best model 65.969697 %
+epoch 141, minibatch 100/100, validation error 66.464646 %
+     epoch 141, minibatch 100/100, test error of best model 65.989899 %
+epoch 142, minibatch 100/100, validation error 66.404040 %
+     epoch 142, minibatch 100/100, test error of best model 65.898990 %
+epoch 143, minibatch 100/100, validation error 66.393939 %
+     epoch 143, minibatch 100/100, test error of best model 65.848485 %
+epoch 144, minibatch 100/100, validation error 66.303030 %
+     epoch 144, minibatch 100/100, test error of best model 65.818182 %
+epoch 145, minibatch 100/100, validation error 66.232323 %
+     epoch 145, minibatch 100/100, test error of best model 65.787879 %
+epoch 146, minibatch 100/100, validation error 66.151515 %
+     epoch 146, minibatch 100/100, test error of best model 65.737374 %
+epoch 147, minibatch 100/100, validation error 66.222222 %
+epoch 148, minibatch 100/100, validation error 66.080808 %
+     epoch 148, minibatch 100/100, test error of best model 65.595960 %
+epoch 149, minibatch 100/100, validation error 66.040404 %
+     epoch 149, minibatch 100/100, test error of best model 65.575758 %
+epoch 150, minibatch 100/100, validation error 66.050505 %
+epoch 151, minibatch 100/100, validation error 66.000000 %
+     epoch 151, minibatch 100/100, test error of best model 65.393939 %
+epoch 152, minibatch 100/100, validation error 65.929293 %
+     epoch 152, minibatch 100/100, test error of best model 65.383838 %
+epoch 153, minibatch 100/100, validation error 65.848485 %
+     epoch 153, minibatch 100/100, test error of best model 65.323232 %
+epoch 154, minibatch 100/100, validation error 65.787879 %
+     epoch 154, minibatch 100/100, test error of best model 65.171717 %
+epoch 155, minibatch 100/100, validation error 65.747475 %
+     epoch 155, minibatch 100/100, test error of best model 65.111111 %
+epoch 156, minibatch 100/100, validation error 65.646465 %
+     epoch 156, minibatch 100/100, test error of best model 65.050505 %
+epoch 157, minibatch 100/100, validation error 65.616162 %
+     epoch 157, minibatch 100/100, test error of best model 64.989899 %
+epoch 158, minibatch 100/100, validation error 65.616162 %
+     epoch 158, minibatch 100/100, test error of best model 64.888889 %
+epoch 159, minibatch 100/100, validation error 65.535354 %
+     epoch 159, minibatch 100/100, test error of best model 64.898990 %
+epoch 160, minibatch 100/100, validation error 65.535354 %
+     epoch 160, minibatch 100/100, test error of best model 64.858586 %
+epoch 161, minibatch 100/100, validation error 65.434343 %
+     epoch 161, minibatch 100/100, test error of best model 64.828283 %
+epoch 162, minibatch 100/100, validation error 65.464646 %
+epoch 163, minibatch 100/100, validation error 65.444444 %
+epoch 164, minibatch 100/100, validation error 65.434343 %
+     epoch 164, minibatch 100/100, test error of best model 64.696970 %
+epoch 165, minibatch 100/100, validation error 65.333333 %
+     epoch 165, minibatch 100/100, test error of best model 64.666667 %
+epoch 166, minibatch 100/100, validation error 65.181818 %
+     epoch 166, minibatch 100/100, test error of best model 64.646465 %
+epoch 167, minibatch 100/100, validation error 65.141414 %
+     epoch 167, minibatch 100/100, test error of best model 64.585859 %
+epoch 168, minibatch 100/100, validation error 65.070707 %
+     epoch 168, minibatch 100/100, test error of best model 64.484848 %
+epoch 169, minibatch 100/100, validation error 65.010101 %
+     epoch 169, minibatch 100/100, test error of best model 64.454545 %
+epoch 170, minibatch 100/100, validation error 64.888889 %
+     epoch 170, minibatch 100/100, test error of best model 64.323232 %
+epoch 171, minibatch 100/100, validation error 64.828283 %
+     epoch 171, minibatch 100/100, test error of best model 64.242424 %
+epoch 172, minibatch 100/100, validation error 64.727273 %
+     epoch 172, minibatch 100/100, test error of best model 64.202020 %
+epoch 173, minibatch 100/100, validation error 64.747475 %
+epoch 174, minibatch 100/100, validation error 64.767677 %
+epoch 175, minibatch 100/100, validation error 64.737374 %
+epoch 176, minibatch 100/100, validation error 64.686869 %
+     epoch 176, minibatch 100/100, test error of best model 64.080808 %
+epoch 177, minibatch 100/100, validation error 64.717172 %
+epoch 178, minibatch 100/100, validation error 64.717172 %
+epoch 179, minibatch 100/100, validation error 64.686869 %
+epoch 180, minibatch 100/100, validation error 64.707071 %
+epoch 181, minibatch 100/100, validation error 64.727273 %
+epoch 182, minibatch 100/100, validation error 64.696970 %
+epoch 183, minibatch 100/100, validation error 64.595960 %
+     epoch 183, minibatch 100/100, test error of best model 63.808081 %
+epoch 184, minibatch 100/100, validation error 64.616162 %
+epoch 185, minibatch 100/100, validation error 64.595960 %
+     epoch 185, minibatch 100/100, test error of best model 63.737374 %
+epoch 186, minibatch 100/100, validation error 64.494949 %
+     epoch 186, minibatch 100/100, test error of best model 63.686869 %
+epoch 187, minibatch 100/100, validation error 64.494949 %
+epoch 188, minibatch 100/100, validation error 64.515152 %
+epoch 189, minibatch 100/100, validation error 64.464646 %
+     epoch 189, minibatch 100/100, test error of best model 63.505051 %
+epoch 190, minibatch 100/100, validation error 64.444444 %
+     epoch 190, minibatch 100/100, test error of best model 63.424242 %
+epoch 191, minibatch 100/100, validation error 64.363636 %
+     epoch 191, minibatch 100/100, test error of best model 63.454545 %
+epoch 192, minibatch 100/100, validation error 64.262626 %
+     epoch 192, minibatch 100/100, test error of best model 63.404040 %
+epoch 193, minibatch 100/100, validation error 64.232323 %
+     epoch 193, minibatch 100/100, test error of best model 63.373737 %
+epoch 194, minibatch 100/100, validation error 64.191919 %
+     epoch 194, minibatch 100/100, test error of best model 63.373737 %
+epoch 195, minibatch 100/100, validation error 64.141414 %
+     epoch 195, minibatch 100/100, test error of best model 63.323232 %
+epoch 196, minibatch 100/100, validation error 64.050505 %
+     epoch 196, minibatch 100/100, test error of best model 63.343434 %
+epoch 197, minibatch 100/100, validation error 64.040404 %
+     epoch 197, minibatch 100/100, test error of best model 63.282828 %
+epoch 198, minibatch 100/100, validation error 64.010101 %
+     epoch 198, minibatch 100/100, test error of best model 63.222222 %
+epoch 199, minibatch 100/100, validation error 64.020202 %
+epoch 200, minibatch 100/100, validation error 64.040404 %
+epoch 201, minibatch 100/100, validation error 63.959596 %
+     epoch 201, minibatch 100/100, test error of best model 63.101010 %
+epoch 202, minibatch 100/100, validation error 63.949495 %
+     epoch 202, minibatch 100/100, test error of best model 63.000000 %
+epoch 203, minibatch 100/100, validation error 63.969697 %
+epoch 204, minibatch 100/100, validation error 63.939394 %
+     epoch 204, minibatch 100/100, test error of best model 62.949495 %
+epoch 205, minibatch 100/100, validation error 63.909091 %
+     epoch 205, minibatch 100/100, test error of best model 62.979798 %
+epoch 206, minibatch 100/100, validation error 63.797980 %
+     epoch 206, minibatch 100/100, test error of best model 62.818182 %
+epoch 207, minibatch 100/100, validation error 63.787879 %
+     epoch 207, minibatch 100/100, test error of best model 62.777778 %
+epoch 208, minibatch 100/100, validation error 63.737374 %
+     epoch 208, minibatch 100/100, test error of best model 62.727273 %
+epoch 209, minibatch 100/100, validation error 63.686869 %
+     epoch 209, minibatch 100/100, test error of best model 62.626263 %
+epoch 210, minibatch 100/100, validation error 63.717172 %
+epoch 211, minibatch 100/100, validation error 63.555556 %
+     epoch 211, minibatch 100/100, test error of best model 62.525253 %
+epoch 212, minibatch 100/100, validation error 63.565657 %
+epoch 213, minibatch 100/100, validation error 63.555556 %
+epoch 214, minibatch 100/100, validation error 63.464646 %
+     epoch 214, minibatch 100/100, test error of best model 62.474747 %
+epoch 215, minibatch 100/100, validation error 63.363636 %
+     epoch 215, minibatch 100/100, test error of best model 62.454545 %
+epoch 216, minibatch 100/100, validation error 63.282828 %
+     epoch 216, minibatch 100/100, test error of best model 62.404040 %
+epoch 217, minibatch 100/100, validation error 63.282828 %
+epoch 218, minibatch 100/100, validation error 63.212121 %
+     epoch 218, minibatch 100/100, test error of best model 62.232323 %
+epoch 219, minibatch 100/100, validation error 63.191919 %
+     epoch 219, minibatch 100/100, test error of best model 62.151515 %
+epoch 220, minibatch 100/100, validation error 63.151515 %
+     epoch 220, minibatch 100/100, test error of best model 62.060606 %
+epoch 221, minibatch 100/100, validation error 63.151515 %
+epoch 222, minibatch 100/100, validation error 63.101010 %
+     epoch 222, minibatch 100/100, test error of best model 61.828283 %
+epoch 223, minibatch 100/100, validation error 63.050505 %
+     epoch 223, minibatch 100/100, test error of best model 61.797980 %
+epoch 224, minibatch 100/100, validation error 63.090909 %
+epoch 225, minibatch 100/100, validation error 63.010101 %
+     epoch 225, minibatch 100/100, test error of best model 61.777778 %
+epoch 226, minibatch 100/100, validation error 62.949495 %
+     epoch 226, minibatch 100/100, test error of best model 61.717172 %
+epoch 227, minibatch 100/100, validation error 62.969697 %
+epoch 228, minibatch 100/100, validation error 62.858586 %
+     epoch 228, minibatch 100/100, test error of best model 61.737374 %
+epoch 229, minibatch 100/100, validation error 62.838384 %
+     epoch 229, minibatch 100/100, test error of best model 61.767677 %
+epoch 230, minibatch 100/100, validation error 62.767677 %
+     epoch 230, minibatch 100/100, test error of best model 61.696970 %
+epoch 231, minibatch 100/100, validation error 62.666667 %
+     epoch 231, minibatch 100/100, test error of best model 61.636364 %
+epoch 232, minibatch 100/100, validation error 62.656566 %
+     epoch 232, minibatch 100/100, test error of best model 61.646465 %
+epoch 233, minibatch 100/100, validation error 62.606061 %
+     epoch 233, minibatch 100/100, test error of best model 61.525253 %
+epoch 234, minibatch 100/100, validation error 62.525253 %
+     epoch 234, minibatch 100/100, test error of best model 61.505051 %
+epoch 235, minibatch 100/100, validation error 62.484848 %
+     epoch 235, minibatch 100/100, test error of best model 61.494949 %
+epoch 236, minibatch 100/100, validation error 62.404040 %
+     epoch 236, minibatch 100/100, test error of best model 61.343434 %
+epoch 237, minibatch 100/100, validation error 62.404040 %
+     epoch 237, minibatch 100/100, test error of best model 61.323232 %
+epoch 238, minibatch 100/100, validation error 62.363636 %
+     epoch 238, minibatch 100/100, test error of best model 61.262626 %
+epoch 239, minibatch 100/100, validation error 62.232323 %
+     epoch 239, minibatch 100/100, test error of best model 61.282828 %
+epoch 240, minibatch 100/100, validation error 62.191919 %
+     epoch 240, minibatch 100/100, test error of best model 61.212121 %
+epoch 241, minibatch 100/100, validation error 62.212121 %
+epoch 242, minibatch 100/100, validation error 62.161616 %
+     epoch 242, minibatch 100/100, test error of best model 61.101010 %
+epoch 243, minibatch 100/100, validation error 62.101010 %
+     epoch 243, minibatch 100/100, test error of best model 61.050505 %
+epoch 244, minibatch 100/100, validation error 62.050505 %
+     epoch 244, minibatch 100/100, test error of best model 60.989899 %
+epoch 245, minibatch 100/100, validation error 62.131313 %
+epoch 246, minibatch 100/100, validation error 62.080808 %
+epoch 247, minibatch 100/100, validation error 62.030303 %
+     epoch 247, minibatch 100/100, test error of best model 60.767677 %
+epoch 248, minibatch 100/100, validation error 62.020202 %
+     epoch 248, minibatch 100/100, test error of best model 60.727273 %
+epoch 249, minibatch 100/100, validation error 61.969697 %
+     epoch 249, minibatch 100/100, test error of best model 60.656566 %
+epoch 250, minibatch 100/100, validation error 61.909091 %
+     epoch 250, minibatch 100/100, test error of best model 60.626263 %
+epoch 251, minibatch 100/100, validation error 61.757576 %
+     epoch 251, minibatch 100/100, test error of best model 60.565657 %
+epoch 252, minibatch 100/100, validation error 61.767677 %
+epoch 253, minibatch 100/100, validation error 61.777778 %
+epoch 254, minibatch 100/100, validation error 61.606061 %
+     epoch 254, minibatch 100/100, test error of best model 60.494949 %
+epoch 255, minibatch 100/100, validation error 61.494949 %
+     epoch 255, minibatch 100/100, test error of best model 60.515152 %
+epoch 256, minibatch 100/100, validation error 61.535354 %
+epoch 257, minibatch 100/100, validation error 61.414141 %
+     epoch 257, minibatch 100/100, test error of best model 60.393939 %
+epoch 258, minibatch 100/100, validation error 61.292929 %
+     epoch 258, minibatch 100/100, test error of best model 60.363636 %
+epoch 259, minibatch 100/100, validation error 61.303030 %
+epoch 260, minibatch 100/100, validation error 61.262626 %
+     epoch 260, minibatch 100/100, test error of best model 60.151515 %
+epoch 261, minibatch 100/100, validation error 61.191919 %
+     epoch 261, minibatch 100/100, test error of best model 60.111111 %
+epoch 262, minibatch 100/100, validation error 61.090909 %
+     epoch 262, minibatch 100/100, test error of best model 60.101010 %
+epoch 263, minibatch 100/100, validation error 61.010101 %
+     epoch 263, minibatch 100/100, test error of best model 60.000000 %
+epoch 264, minibatch 100/100, validation error 61.060606 %
+epoch 265, minibatch 100/100, validation error 60.878788 %
+     epoch 265, minibatch 100/100, test error of best model 60.070707 %
+epoch 266, minibatch 100/100, validation error 60.979798 %
+epoch 267, minibatch 100/100, validation error 60.969697 %
+epoch 268, minibatch 100/100, validation error 60.848485 %
+     epoch 268, minibatch 100/100, test error of best model 59.888889 %
+epoch 269, minibatch 100/100, validation error 60.959596 %
+epoch 270, minibatch 100/100, validation error 60.818182 %
+     epoch 270, minibatch 100/100, test error of best model 59.777778 %
+epoch 271, minibatch 100/100, validation error 60.777778 %
+     epoch 271, minibatch 100/100, test error of best model 59.787879 %
+epoch 272, minibatch 100/100, validation error 60.767677 %
+     epoch 272, minibatch 100/100, test error of best model 59.757576 %
+epoch 273, minibatch 100/100, validation error 60.727273 %
+     epoch 273, minibatch 100/100, test error of best model 59.636364 %
+epoch 274, minibatch 100/100, validation error 60.818182 %
+epoch 275, minibatch 100/100, validation error 60.696970 %
+     epoch 275, minibatch 100/100, test error of best model 59.626263 %
+epoch 276, minibatch 100/100, validation error 60.696970 %
+     epoch 276, minibatch 100/100, test error of best model 59.555556 %
+epoch 277, minibatch 100/100, validation error 60.737374 %
+epoch 278, minibatch 100/100, validation error 60.606061 %
+     epoch 278, minibatch 100/100, test error of best model 59.373737 %
+epoch 279, minibatch 100/100, validation error 60.555556 %
+     epoch 279, minibatch 100/100, test error of best model 59.363636 %
+epoch 280, minibatch 100/100, validation error 60.595960 %
+epoch 281, minibatch 100/100, validation error 60.525253 %
+     epoch 281, minibatch 100/100, test error of best model 59.343434 %
+epoch 282, minibatch 100/100, validation error 60.494949 %
+     epoch 282, minibatch 100/100, test error of best model 59.363636 %
+epoch 283, minibatch 100/100, validation error 60.434343 %
+     epoch 283, minibatch 100/100, test error of best model 59.333333 %
+epoch 284, minibatch 100/100, validation error 60.272727 %
+     epoch 284, minibatch 100/100, test error of best model 59.212121 %
+epoch 285, minibatch 100/100, validation error 60.252525 %
+     epoch 285, minibatch 100/100, test error of best model 59.272727 %
+epoch 286, minibatch 100/100, validation error 60.313131 %
+epoch 287, minibatch 100/100, validation error 60.353535 %
+epoch 288, minibatch 100/100, validation error 60.353535 %
+epoch 289, minibatch 100/100, validation error 60.343434 %
+epoch 290, minibatch 100/100, validation error 60.191919 %
+     epoch 290, minibatch 100/100, test error of best model 59.161616 %
+epoch 291, minibatch 100/100, validation error 60.161616 %
+     epoch 291, minibatch 100/100, test error of best model 59.202020 %
+epoch 292, minibatch 100/100, validation error 60.050505 %
+     epoch 292, minibatch 100/100, test error of best model 59.232323 %
+epoch 293, minibatch 100/100, validation error 59.989899 %
+     epoch 293, minibatch 100/100, test error of best model 59.171717 %
+epoch 294, minibatch 100/100, validation error 59.979798 %
+     epoch 294, minibatch 100/100, test error of best model 59.090909 %
+epoch 295, minibatch 100/100, validation error 59.909091 %
+     epoch 295, minibatch 100/100, test error of best model 59.050505 %
+epoch 296, minibatch 100/100, validation error 59.777778 %
+     epoch 296, minibatch 100/100, test error of best model 59.020202 %
+epoch 297, minibatch 100/100, validation error 59.828283 %
+epoch 298, minibatch 100/100, validation error 59.878788 %
+epoch 299, minibatch 100/100, validation error 59.898990 %
+epoch 300, minibatch 100/100, validation error 59.848485 %
+epoch 301, minibatch 100/100, validation error 59.929293 %
+epoch 302, minibatch 100/100, validation error 59.929293 %
+epoch 303, minibatch 100/100, validation error 59.959596 %
+epoch 304, minibatch 100/100, validation error 59.878788 %
+epoch 305, minibatch 100/100, validation error 59.868687 %
+epoch 306, minibatch 100/100, validation error 59.747475 %
+     epoch 306, minibatch 100/100, test error of best model 58.727273 %
+epoch 307, minibatch 100/100, validation error 59.797980 %
+epoch 308, minibatch 100/100, validation error 59.838384 %
+epoch 309, minibatch 100/100, validation error 59.767677 %
+epoch 310, minibatch 100/100, validation error 59.878788 %
+epoch 311, minibatch 100/100, validation error 59.636364 %
+     epoch 311, minibatch 100/100, test error of best model 58.565657 %
+epoch 312, minibatch 100/100, validation error 59.767677 %
+epoch 313, minibatch 100/100, validation error 59.757576 %
+epoch 314, minibatch 100/100, validation error 59.747475 %
+epoch 315, minibatch 100/100, validation error 59.777778 %
+epoch 316, minibatch 100/100, validation error 59.545455 %
+     epoch 316, minibatch 100/100, test error of best model 58.565657 %
+epoch 317, minibatch 100/100, validation error 59.545455 %
+     epoch 317, minibatch 100/100, test error of best model 58.454545 %
+epoch 318, minibatch 100/100, validation error 59.555556 %
+epoch 319, minibatch 100/100, validation error 59.656566 %
+epoch 320, minibatch 100/100, validation error 59.636364 %
+epoch 321, minibatch 100/100, validation error 59.494949 %
+     epoch 321, minibatch 100/100, test error of best model 58.515152 %
+epoch 322, minibatch 100/100, validation error 59.565657 %
+epoch 323, minibatch 100/100, validation error 59.464646 %
+     epoch 323, minibatch 100/100, test error of best model 58.414141 %
+epoch 324, minibatch 100/100, validation error 59.666667 %
+epoch 325, minibatch 100/100, validation error 59.676768 %
+epoch 326, minibatch 100/100, validation error 59.767677 %
+epoch 327, minibatch 100/100, validation error 59.515152 %
+epoch 328, minibatch 100/100, validation error 59.707071 %
+epoch 329, minibatch 100/100, validation error 59.666667 %
+epoch 330, minibatch 100/100, validation error 59.606061 %
+epoch 331, minibatch 100/100, validation error 59.454545 %
+     epoch 331, minibatch 100/100, test error of best model 58.494949 %
+epoch 332, minibatch 100/100, validation error 59.858586 %
+epoch 333, minibatch 100/100, validation error 59.676768 %
+epoch 334, minibatch 100/100, validation error 59.777778 %
+epoch 335, minibatch 100/100, validation error 59.606061 %
+epoch 336, minibatch 100/100, validation error 59.787879 %
+epoch 337, minibatch 100/100, validation error 59.828283 %
+epoch 338, minibatch 100/100, validation error 59.383838 %
+     epoch 338, minibatch 100/100, test error of best model 58.484848 %
+epoch 339, minibatch 100/100, validation error 59.717172 %
+epoch 340, minibatch 100/100, validation error 59.535354 %
+epoch 341, minibatch 100/100, validation error 59.454545 %
+epoch 342, minibatch 100/100, validation error 60.515152 %
+epoch 343, minibatch 100/100, validation error 60.393939 %
+epoch 344, minibatch 100/100, validation error 59.565657 %
+epoch 345, minibatch 100/100, validation error 60.010101 %
+epoch 346, minibatch 100/100, validation error 60.111111 %
+epoch 347, minibatch 100/100, validation error 59.454545 %
+epoch 348, minibatch 100/100, validation error 59.606061 %
+epoch 349, minibatch 100/100, validation error 59.454545 %
+epoch 350, minibatch 100/100, validation error 59.303030 %
+     epoch 350, minibatch 100/100, test error of best model 58.393939 %
+epoch 351, minibatch 100/100, validation error 59.191919 %
+     epoch 351, minibatch 100/100, test error of best model 58.363636 %
+epoch 352, minibatch 100/100, validation error 60.707071 %
+epoch 353, minibatch 100/100, validation error 60.414141 %
+epoch 354, minibatch 100/100, validation error 59.303030 %
+epoch 355, minibatch 100/100, validation error 60.141414 %
+epoch 356, minibatch 100/100, validation error 60.575758 %
+epoch 357, minibatch 100/100, validation error 60.030303 %
+epoch 358, minibatch 100/100, validation error 59.545455 %
+epoch 359, minibatch 100/100, validation error 59.464646 %
+epoch 360, minibatch 100/100, validation error 59.666667 %
+epoch 361, minibatch 100/100, validation error 59.424242 %
+epoch 362, minibatch 100/100, validation error 59.767677 %
+epoch 363, minibatch 100/100, validation error 59.969697 %
+epoch 364, minibatch 100/100, validation error 59.696970 %
+epoch 365, minibatch 100/100, validation error 59.050505 %
+     epoch 365, minibatch 100/100, test error of best model 58.323232 %
+epoch 366, minibatch 100/100, validation error 59.282828 %
+epoch 367, minibatch 100/100, validation error 59.969697 %
+epoch 368, minibatch 100/100, validation error 59.303030 %
+epoch 369, minibatch 100/100, validation error 59.161616 %
+epoch 370, minibatch 100/100, validation error 59.595960 %
+epoch 371, minibatch 100/100, validation error 60.222222 %
+epoch 372, minibatch 100/100, validation error 60.242424 %
+epoch 373, minibatch 100/100, validation error 59.545455 %
+epoch 374, minibatch 100/100, validation error 58.868687 %
+     epoch 374, minibatch 100/100, test error of best model 58.161616 %
+epoch 375, minibatch 100/100, validation error 61.050505 %
+epoch 376, minibatch 100/100, validation error 59.262626 %
+epoch 377, minibatch 100/100, validation error 58.828283 %
+     epoch 377, minibatch 100/100, test error of best model 58.141414 %
+epoch 378, minibatch 100/100, validation error 60.070707 %
+epoch 379, minibatch 100/100, validation error 58.919192 %
+epoch 380, minibatch 100/100, validation error 59.030303 %
+epoch 381, minibatch 100/100, validation error 58.939394 %
+epoch 382, minibatch 100/100, validation error 63.707071 %
+epoch 383, minibatch 100/100, validation error 59.808081 %
+epoch 384, minibatch 100/100, validation error 58.939394 %
+epoch 385, minibatch 100/100, validation error 58.525253 %
+     epoch 385, minibatch 100/100, test error of best model 58.181818 %
+epoch 386, minibatch 100/100, validation error 60.696970 %
+epoch 387, minibatch 100/100, validation error 58.888889 %
+epoch 388, minibatch 100/100, validation error 60.080808 %
+epoch 389, minibatch 100/100, validation error 59.232323 %
+epoch 390, minibatch 100/100, validation error 58.838384 %
+epoch 391, minibatch 100/100, validation error 58.616162 %
+epoch 392, minibatch 100/100, validation error 59.777778 %
+epoch 393, minibatch 100/100, validation error 61.909091 %
+epoch 394, minibatch 100/100, validation error 59.343434 %
+epoch 395, minibatch 100/100, validation error 58.535354 %
+epoch 396, minibatch 100/100, validation error 59.787879 %
+epoch 397, minibatch 100/100, validation error 59.868687 %
+epoch 398, minibatch 100/100, validation error 58.919192 %
+epoch 399, minibatch 100/100, validation error 58.909091 %
+epoch 400, minibatch 100/100, validation error 59.242424 %
+epoch 401, minibatch 100/100, validation error 58.727273 %
+epoch 402, minibatch 100/100, validation error 59.575758 %
+epoch 403, minibatch 100/100, validation error 58.747475 %
+epoch 404, minibatch 100/100, validation error 58.727273 %
+epoch 405, minibatch 100/100, validation error 58.595960 %
+epoch 406, minibatch 100/100, validation error 60.171717 %
+epoch 407, minibatch 100/100, validation error 58.686869 %
+epoch 408, minibatch 100/100, validation error 60.949495 %
+epoch 409, minibatch 100/100, validation error 61.333333 %
+epoch 410, minibatch 100/100, validation error 59.373737 %
+epoch 411, minibatch 100/100, validation error 58.646465 %
+epoch 412, minibatch 100/100, validation error 60.535354 %
+epoch 413, minibatch 100/100, validation error 59.383838 %
+epoch 414, minibatch 100/100, validation error 59.181818 %
+epoch 415, minibatch 100/100, validation error 59.050505 %
+epoch 416, minibatch 100/100, validation error 59.717172 %
+epoch 417, minibatch 100/100, validation error 59.191919 %
+epoch 418, minibatch 100/100, validation error 60.777778 %
+epoch 419, minibatch 100/100, validation error 61.636364 %
+epoch 420, minibatch 100/100, validation error 59.242424 %
+epoch 421, minibatch 100/100, validation error 59.555556 %
+epoch 422, minibatch 100/100, validation error 59.202020 %
+epoch 423, minibatch 100/100, validation error 59.141414 %
+epoch 424, minibatch 100/100, validation error 59.616162 %
+epoch 425, minibatch 100/100, validation error 59.111111 %
+epoch 426, minibatch 100/100, validation error 59.292929 %
+epoch 427, minibatch 100/100, validation error 59.828283 %
+epoch 428, minibatch 100/100, validation error 60.292929 %
+epoch 429, minibatch 100/100, validation error 59.424242 %
+epoch 430, minibatch 100/100, validation error 59.333333 %
+epoch 431, minibatch 100/100, validation error 58.858586 %
+epoch 432, minibatch 100/100, validation error 59.141414 %
+epoch 433, minibatch 100/100, validation error 59.424242 %
+epoch 434, minibatch 100/100, validation error 61.030303 %
+epoch 435, minibatch 100/100, validation error 60.666667 %
+epoch 436, minibatch 100/100, validation error 60.858586 %
+epoch 437, minibatch 100/100, validation error 59.080808 %
+epoch 438, minibatch 100/100, validation error 59.222222 %
+epoch 439, minibatch 100/100, validation error 59.090909 %
+epoch 440, minibatch 100/100, validation error 59.525253 %
+epoch 441, minibatch 100/100, validation error 59.202020 %
+epoch 442, minibatch 100/100, validation error 60.070707 %
+epoch 443, minibatch 100/100, validation error 59.464646 %
+epoch 444, minibatch 100/100, validation error 59.888889 %
+epoch 445, minibatch 100/100, validation error 59.343434 %
+epoch 446, minibatch 100/100, validation error 60.161616 %
+epoch 447, minibatch 100/100, validation error 59.424242 %
+epoch 448, minibatch 100/100, validation error 58.676768 %
+epoch 449, minibatch 100/100, validation error 59.373737 %
+epoch 450, minibatch 100/100, validation error 59.333333 %
+epoch 451, minibatch 100/100, validation error 60.919192 %
+epoch 452, minibatch 100/100, validation error 59.616162 %
+epoch 453, minibatch 100/100, validation error 61.232323 %
+epoch 454, minibatch 100/100, validation error 59.535354 %
+epoch 455, minibatch 100/100, validation error 59.424242 %
+epoch 456, minibatch 100/100, validation error 59.393939 %
+epoch 457, minibatch 100/100, validation error 59.464646 %
+epoch 458, minibatch 100/100, validation error 59.303030 %
+epoch 459, minibatch 100/100, validation error 58.727273 %
+epoch 460, minibatch 100/100, validation error 59.161616 %
+epoch 461, minibatch 100/100, validation error 62.919192 %
+epoch 462, minibatch 100/100, validation error 59.868687 %
+epoch 463, minibatch 100/100, validation error 59.979798 %
+epoch 464, minibatch 100/100, validation error 60.353535 %
+epoch 465, minibatch 100/100, validation error 60.646465 %
+epoch 466, minibatch 100/100, validation error 59.707071 %
+epoch 467, minibatch 100/100, validation error 59.737374 %
+epoch 468, minibatch 100/100, validation error 60.494949 %
+epoch 469, minibatch 100/100, validation error 60.090909 %
+epoch 470, minibatch 100/100, validation error 59.898990 %
+epoch 471, minibatch 100/100, validation error 60.575758 %
+epoch 472, minibatch 100/100, validation error 59.202020 %
+epoch 473, minibatch 100/100, validation error 59.818182 %
+epoch 474, minibatch 100/100, validation error 60.555556 %
+epoch 475, minibatch 100/100, validation error 59.595960 %
+epoch 476, minibatch 100/100, validation error 60.727273 %
+epoch 477, minibatch 100/100, validation error 59.858586 %
+epoch 478, minibatch 100/100, validation error 59.505051 %
+epoch 479, minibatch 100/100, validation error 59.737374 %
+epoch 480, minibatch 100/100, validation error 60.282828 %
+epoch 481, minibatch 100/100, validation error 59.222222 %
+epoch 482, minibatch 100/100, validation error 59.606061 %
+epoch 483, minibatch 100/100, validation error 60.757576 %
+epoch 484, minibatch 100/100, validation error 60.505051 %
+epoch 485, minibatch 100/100, validation error 60.010101 %
+epoch 486, minibatch 100/100, validation error 59.808081 %
+epoch 487, minibatch 100/100, validation error 59.555556 %
+epoch 488, minibatch 100/100, validation error 61.202020 %
+epoch 489, minibatch 100/100, validation error 59.565657 %
+epoch 490, minibatch 100/100, validation error 59.777778 %
+epoch 491, minibatch 100/100, validation error 60.878788 %
+epoch 492, minibatch 100/100, validation error 60.505051 %
+epoch 493, minibatch 100/100, validation error 59.676768 %
+epoch 494, minibatch 100/100, validation error 60.313131 %
+epoch 495, minibatch 100/100, validation error 60.363636 %
+epoch 496, minibatch 100/100, validation error 61.747475 %
+epoch 497, minibatch 100/100, validation error 60.343434 %
+epoch 498, minibatch 100/100, validation error 60.474747 %
+epoch 499, minibatch 100/100, validation error 61.282828 %
+epoch 500, minibatch 100/100, validation error 59.979798 %
+Optimization complete. Best validation score of 58.525253 % obtained at iteration 38500, with test performance 58.181818 %
