@@ -25,7 +25,6 @@ if __name__ == '__main__':
     aggregate_train = t.get_data()
     aggregate_valid = (aggregate_x, aggregate_y)
     atx,aty = aggregate_train
-#    transformed_dataset = (aggregate_train,aggregate_valid,test)
     print "... saving"
     np.savez_compressed(fileName + 'train',x=atx,y=aty)
     np.savez_compressed(fileName + 'valid',x=aggregate_x,y=aggregate_y)
