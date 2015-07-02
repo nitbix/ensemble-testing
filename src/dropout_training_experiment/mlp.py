@@ -1,23 +1,12 @@
 #!/usr/bin/python
 """
-This tutorial introduces the multilayer perceptron using Theano.
+Representation of a Multi-Layer Perceptron
 
- A multilayer perceptron is a logistic regressor where
-instead of feeding the input to the logistic regression you insert a
-intermediate layer, called the hidden layer, that has a nonlinear
-activation function (usually tanh or sigmoid) . One can use many such
-hidden layers making the architecture deep. The tutorial will also tackle
-the problem of MNIST digit classification.
+Alan Mosca
+Department of Computer Science and Information Systems
+Birkbeck, University of London
 
-.. math::
-
-    f(x) = G( b^{(2)} + W^{(2)}( s( b^{(1)} + W^{(1)} x))),
-
-References:
-
-    - textbooks: "Pattern Recognition and Machine Learning" -
-                 Christopher M. Bishop, section 5
-
+All code released under GPLv2.0 licensing.
 """
 __docformat__ = 'restructedtext en'
 
@@ -37,246 +26,8 @@ from theano.sandbox.rng_mrg import MRG_RandomStreams
 from logistic_sgd import LogisticRegression
 import data
 from data import Resampler, Transformer, sharedX
-
-rectifier = lambda x: T.maximum(0, x)
-softsign = lambda x: x / (1 + abs(x))
-
-def sgd(param,learning_rate,gparam,mask,updates,current_cost,previous_cost):
-    return param - learning_rate * gparam * mask
-
-def old_rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
-          eta_plus=1.2,eta_minus=0.5,max_delta=50, min_delta=1e-6):
-    previous_grad = sharedX(numpy.ones(param.shape.eval()),borrow=True)
-    delta = sharedX(learning_rate * numpy.ones(param.shape.eval()),borrow=True)
-    previous_inc = sharedX(numpy.zeros(param.shape.eval()),borrow=True)
-    zero = T.zeros_like(param)
-    one = T.ones_like(param)
-    change = previous_grad * gparam
-
-    new_delta = T.clip(
-            T.switch(
-                T.gt(change,0.),
-                delta*eta_plus,
-                T.switch(
-                    T.lt(change,0.),
-                    delta*eta_minus,
-                    delta
-                )
-            ),
-            min_delta,
-            max_delta
-    )
-    new_previous_grad = T.switch(
-            T.gt(change,0.),
-            gparam,
-            T.switch(
-                T.lt(change,0.),
-                zero,
-                gparam
-            )
-    )
-    inc = T.switch(
-            T.gt(change,0.),
-            - T.sgn(gparam) * new_delta,
-            T.switch(
-                T.lt(change,0.),
-                zero,
-                - T.sgn(gparam) * new_delta
-            )
-    )
-
-    updates.append((previous_grad,new_previous_grad))
-    updates.append((delta,new_delta))
-    updates.append((previous_inc,inc))
-    return param + inc * mask
-
-
-def rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
-          eta_plus=1.01,eta_minus=0.1,max_delta=5, min_delta=1e-3):
-    previous_grad = sharedX(numpy.ones(param.shape.eval()),borrow=True)
-    delta = sharedX(learning_rate * numpy.ones(param.shape.eval()),borrow=True)
-    previous_inc = sharedX(numpy.zeros(param.shape.eval()),borrow=True)
-    zero = T.zeros_like(param)
-    one = T.ones_like(param)
-    change = previous_grad * gparam
-
-    new_delta = T.clip(
-            T.switch(
-                T.eq(gparam,0.),
-                delta,
-                T.switch(
-                    T.gt(change,0.),
-                    delta*eta_plus,
-                    T.switch(
-                        T.lt(change,0.),
-                        delta*eta_minus,
-                        delta
-                    )
-                )
-            ),
-            min_delta,
-            max_delta
-    )
-    new_previous_grad = T.switch(
-            T.eq(mask * gparam,0.),
-            previous_grad,
-            T.switch(
-                T.gt(change,0.),
-                gparam,
-                T.switch(
-                    T.lt(change,0.),
-                    zero,
-                    gparam
-                )
-            )
-    )
-    inc = T.switch(
-            T.eq(mask * gparam,0.),
-            zero,
-            T.switch(
-                T.gt(change,0.),
-                - T.sgn(gparam) * new_delta,
-                T.switch(
-                    T.lt(change,0.),
-                    zero,
-                    - T.sgn(gparam) * new_delta
-                )
-            )
-    )
-
-    updates.append((previous_grad,new_previous_grad))
-    updates.append((delta,new_delta))
-    updates.append((previous_inc,inc))
-    return param + inc * mask
-
-def irprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
-          eta_plus=1.5,eta_minus=0.25,max_delta=500, min_delta=1e-8):
-    previous_grad = sharedX(numpy.ones(param.shape.eval()),borrow=True)
-    delta = sharedX(learning_rate * numpy.ones(param.shape.eval()),borrow=True)
-    previous_inc = sharedX(numpy.zeros(param.shape.eval()),borrow=True)
-    zero = T.zeros_like(param)
-    one = T.ones_like(param)
-    change = previous_grad * gparam
-
-    new_delta = T.clip(
-            T.switch(
-                T.eq(mask * gparam,0.),
-                delta,
-                T.switch(
-                    T.gt(change,0.),
-                    delta*eta_plus,
-                    T.switch(
-                        T.lt(change,0.),
-                        delta*eta_minus,
-                        delta
-                    )
-                )
-            ),
-            min_delta,
-            max_delta
-    )
-    new_previous_grad = T.switch(
-            T.eq(mask * gparam,0.),
-            previous_grad,
-            T.switch(
-                T.gt(change,0.),
-                gparam,
-                T.switch(
-                    T.lt(change,0.),
-                    zero,
-                    gparam
-                )
-            )
-    )
-    inc = T.switch(
-            T.eq(mask * gparam,0.),
-            zero,
-            T.switch(
-                T.gt(change,0.),
-                - T.sgn(gparam) * new_delta,
-                T.switch(
-                    T.lt(change,0.),
-                    zero,
-#                    - T.sgn(gparam) * new_delta
-                    T.switch( 
-                        T.gt(current_cost, previous_cost),
-                        - T.sgn(gparam) * new_delta,
-                        zero
-                    )
-                )
-            )
-    )
-
-    updates.append((previous_grad,new_previous_grad))
-    updates.append((delta,new_delta))
-    updates.append((previous_inc,inc))
-    return param + inc * mask
-
-class HiddenLayer(object):
-    def __init__(self, rng, input, n_in, n_out, W=None, b=None,
-                 activation=T.tanh,dropout_rate=0,layerName='hidden'):
-        """
-        Typical hidden layer of a MLP: units are fully-connected and have
-        sigmoidal activation function. Weight matrix W is of shape (n_in,n_out)
-        and the bias vector b is of shape (n_out,).
-
-        NOTE : The nonlinearity used here is tanh
-
-        Hidden unit activation is given by: tanh(dot(input,W) + b)
-
-        :type rng: numpy.random.RandomState
-        :param rng: a random number generator used to initialize weights
-
-        :type input: theano.tensor.dmatrix
-        :param input: a symbolic tensor of shape (n_examples, n_in)
-
-        :type n_in: int
-        :param n_in: dimensionality of input
-
-        :type n_out: int
-        :param n_out: number of hidden units
-
-        :type activation: theano.Op or function
-        :param activation: Non linearity to be applied in the hidden
-                           layer
-        """
-        self.input = input
-        self.dropout_rate=dropout_rate
-        self.layerName=layerName
-
-        # `W` is initialized with `W_values` which is uniformely sampled
-        # from sqrt(-6./(n_in+n_hidden)) and sqrt(6./(n_in+n_hidden))
-        # for tanh activation function
-        # the output of uniform if converted using asarray to dtype
-        #        activation function used (among other things).
-        #        For example, results presented in [Xavier10] suggest that you
-        #        should use 4 times larger initial weights for sigmoid
-        #        compared to tanh
-        #        We have no info for other function, so we use the same as
-        #        tanh.
-        if W is None:
-            W_values = numpy.asarray(rng.uniform(
-                    low=-numpy.sqrt(6. / (n_in + n_out)),
-                    high=numpy.sqrt(6. / (n_in + n_out)),
-                    size=(n_in, n_out)), dtype=theano.config.floatX)
-            if activation == theano.tensor.nnet.sigmoid:
-                W_values *= 4
-
-            W = theano.shared(value=W_values, name=layerName + '_W', borrow=True)
-
-        if b is None:
-            b_values = numpy.zeros((n_out,), dtype=theano.config.floatX)
-            b = theano.shared(value=b_values, name=layerName + '_b', borrow=True)
-
-        self.W = W
-        self.b = b
-
-        lin_output = T.dot(input, self.W) * (1 - self.dropout_rate) + self.b
-        self.output = (lin_output if activation is None
-                       else activation(lin_output))
-        # parameters of the model
-        self.params = [self.W, self.b]
-
+import update_rules
+import layers
 
 class MLP(object):
     """Multi-Layer Perceptron Class
@@ -313,19 +64,29 @@ class MLP(object):
 
         """
 
-        # Since we are dealing with a one hidden layer MLP, this will translate
-        # into a HiddenLayer with a tanh activation function connected to the
-        # LogisticRegression layer; the activation function can be replaced by
-        # sigmoid or any other nonlinear function
+		#TODO:
+		# - rename *n_in to *input_shape
+		# - flatten shapes for flat layer
+
         self.hiddenLayers = []
         chain_n_in = n_in
         chain_in = input
-        for (n_this,drop_this,name_this,activation_this) in n_hidden:
-            l = HiddenLayer(rng=rng, input=chain_in, n_in=chain_n_in, n_out=n_this,
-                    activation=activation_this,dropout_rate=drop_this,layerName=name_this)
-            chain_n_in=n_this
-            chain_in=l.output
-            self.hiddenLayers.append(l)
+        for (type,desc) in n_hidden:
+        	if(type == 'flat'):
+	        	for (n_this,drop_this,name_this,activation_this) in desc:
+		            l = HiddenLayer(rng=rng, input=chain_in.flatten(), n_in=numpy.prod(chain_n_in), n_out=numpy.prod(n_this),
+	    	                activation=activation_this,dropout_rate=drop_this,layer_name=name_this)
+	        	    chain_n_in=n_this
+	            	chain_in=l.output
+	            	self.hiddenLayers.append(l)
+	        if(type == 'conv'):
+	        	for (input_shape,filter_shape,pool_size,drop_this,name_this,activation_this) in desc:
+	        		l = ConvolutionalLayer(rng=rng, input=chain_in, input_shape=input_shape, 
+	        				pool_size=pool_size, activation=activation_this, dropout_rate=drop_this,
+	        				layer_name = name_this)
+	        		chain_n_in=input_shape
+	        		chain_in = l.output
+	        		self.hiddenLayers.append(l)
 
         # The logistic regression layer gets as input the hidden units
         # of the last hidden layer
