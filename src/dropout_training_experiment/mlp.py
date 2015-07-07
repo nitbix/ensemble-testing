@@ -64,29 +64,34 @@ class MLP(object):
 
         """
 
-		#TODO:
-		# - rename *n_in to *input_shape
-		# - flatten shapes for flat layer
+        #TODO:
+        # - rename *n_in to *input_shape
+        # - flatten shapes for flat layer
 
         self.hiddenLayers = []
         chain_n_in = n_in
         chain_in = input
-        for (type,desc) in n_hidden:
-        	if(type == 'flat'):
-	        	for (n_this,drop_this,name_this,activation_this) in desc:
-		            l = HiddenLayer(rng=rng, input=chain_in.flatten(), n_in=numpy.prod(chain_n_in), n_out=numpy.prod(n_this),
-	    	                activation=activation_this,dropout_rate=drop_this,layer_name=name_this)
-	        	    chain_n_in=n_this
-	            	chain_in=l.output
-	            	self.hiddenLayers.append(l)
-	        if(type == 'conv'):
-	        	for (input_shape,filter_shape,pool_size,drop_this,name_this,activation_this) in desc:
-	        		l = ConvolutionalLayer(rng=rng, input=chain_in, input_shape=input_shape, 
-	        				pool_size=pool_size, activation=activation_this, dropout_rate=drop_this,
-	        				layer_name = name_this)
-	        		chain_n_in=input_shape
-	        		chain_in = l.output
-	        		self.hiddenLayers.append(l)
+        for layer_type,desc in n_hidden:
+            if(layer_type == 'flat'):
+                n_this,drop_this,name_this,activation_this = desc
+                l = layers.HiddenLayer(rng=rng, inputs=chain_in.flatten(),
+                                n_in=numpy.prod(chain_n_in), n_out=numpy.prod(n_this),
+                                activation=activation_this,dropout_rate=drop_this,
+                                layer_name=name_this)
+                chain_n_in=n_this
+                chain_in=l.output
+                self.hiddenLayers.append(l)
+            if(layer_type == 'conv'):
+                input_shape,filter_shape,pool_size,drop_this,name_this,activation_this = desc
+                l = ConvolutionalLayer(rng=rng, inputs=chain_in, 
+                                       input_shape=input_shape, 
+                                       pool_size=pool_size,
+                                       activation=activation_this,
+                                       dropout_rate=drop_this,
+                                       layer_name = name_this)
+                chain_n_in=input_shape
+                chain_in = l.output
+                self.hiddenLayers.append(l)
 
         # The logistic regression layer gets as input the hidden units
         # of the last hidden layer
@@ -125,7 +130,7 @@ class MLP(object):
 
 
 def test_mlp(datasets,learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
-             batch_size=20, n_hidden=(500,0), update_rule=sgd, n_in=28*28):
+             batch_size=20, n_hidden=(500,0), update_rule=update_rules.sgd, n_in=28*28):
     """
     Demonstrate stochastic gradient descent optimization for a multilayer
     perceptron
@@ -320,7 +325,7 @@ def test_mlp(datasets,learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1
 def train_and_select(x,y,training_set, validation_set, learning_rate=0.01,
                      L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
                      batch_size=20, n_hidden=(500,0),
-                     update_rule=sgd,n_in=28*28):
+                     update_rule=update_rules.sgd,n_in=28*28):
     """
     Train a classifier and select the version with the best validation
     error
@@ -473,7 +478,7 @@ if __name__ == '__main__':
     search_epochs = 40
     transform = False
     batch_size=300
-    update_rule=rprop
+    update_rule=update_rules.rprop
     search = False
 
     if dataset_name == 'mnist':
@@ -513,11 +518,11 @@ if __name__ == '__main__':
         dataset='/local/cifar10/'
         pickled=False
         n_hidden=[
-                  (3000,0.5,'h0',T.tanh),
-                  (3000,0.5,'h1',T.tanh),
-                  (3000,0.5,'h2',T.tanh),
-                  (3000,0.5,'h3',T.tanh),
-                  (3000,0.5,'h4',T.tanh)
+                  ('flat',(3000,0.5,'h0',T.tanh)),
+                  ('flat',(3000,0.5,'h1',T.tanh)),
+                  ('flat',(3000,0.5,'h2',T.tanh)),
+                  ('flat',(3000,0.5,'h3',T.tanh)),
+                  ('flat',(3000,0.5,'h4',T.tanh))
                  ]
         n_in = 3072
     else:
@@ -531,11 +536,14 @@ if __name__ == '__main__':
         if arg[0]=='-':
             exec(arg[1:])
     if not search:
-        def update_rule(param,learning_rate,gparam,mask,updates,current_cost,previous_cost):
-            return rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
-                         eta_plus=eta_plus,eta_minus=eta_minus,max_delta=max_delta,min_delta=min_delta)
+        def update_rule(param,learning_rate,gparam,mask,updates,
+                        current_cost,previous_cost):
+            return update_rules.rprop(param,learning_rate,gparam,mask,updates,
+                                      current_cost,previous_cost,
+                                      eta_plus=eta_plus,eta_minus=eta_minus,
+                                      max_delta=max_delta,min_delta=min_delta)
         mlp=test_mlp(datasets,learning_rate, L1_reg, L2_reg, n_epochs,
-            batch_size, n_hidden, update_rule = old_rprop, n_in = n_in)
+            batch_size, n_hidden, update_rule = update_rules.old_rprop, n_in = n_in)
     else:
         for eta_minus in [0.01,0.1,0.5,0.75,0.9]:
             for eta_plus in [1.001,1.01,1.1,1.2,1.5]:
