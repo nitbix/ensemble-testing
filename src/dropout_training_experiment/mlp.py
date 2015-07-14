@@ -71,29 +71,32 @@ class MLP(object):
         self.hiddenLayers = []
         chain_n_in = n_in
         chain_in = input
+        first_layer = True
         for layer_type,desc in n_hidden:
             if(layer_type == 'flat'):
                 n_this,drop_this,name_this,activation_this = desc
                 l = layers.FlatLayer(rng=rng, inputs=chain_in,
-                                n_in=chain_n_in, n_out=n_this,
+                                n_in=numpy.prod(chain_n_in), n_out=numpy.prod(n_this),
                                 activation=activation_this,dropout_rate=drop_this,
                                 layer_name=name_this)
-                chain_n_in=n_this
+                chain_n_in = n_this
                 chain_in=l.output
                 self.hiddenLayers.append(l)
+                first_layer = False
             if(layer_type == 'conv'):
                 input_shape,filter_shape,pool_size,drop_this,name_this,activation_this = desc
                 l = layers.ConvolutionalLayer(rng=rng,
-                                       inputs=chain_in.reshape(input_shape), 
+                                       inputs=chain_in, 
                                        input_shape=input_shape, 
                                        filter_shape=filter_shape,
                                        pool_size=pool_size,
                                        activation=activation_this,
                                        dropout_rate=drop_this,
                                        layer_name = name_this)
-                chain_n_in=input_shape
+                chain_n_in = input_shape
                 chain_in = l.output
                 self.hiddenLayers.append(l)
+                first_layer = False
 
         # The logistic regression layer gets as input the hidden units
         # of the last hidden layer
@@ -521,7 +524,7 @@ if __name__ == '__main__':
         pickled=False
         n_hidden=[
                   #input_shape,filter_shape,pool_size,drop_this,name_this,activation_this
-                  ('conv',([batch_size,1,32,32],[5,1,10,10],4,0.5,'c1',T.tanh)),
+                  ('conv',([batch_size,3,32,32],[5,3,10,10],[4,4],0.5,'c1',T.tanh)),
                   ('flat',(3000,0.5,'f0',T.tanh))
                  ]
         n_in = 3072

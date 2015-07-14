@@ -110,13 +110,30 @@ class ConvolutionalLayer(Layer):
                            layer
         """
         assert input_shape[1] == filter_shape[1]
-        Layer.__init__(self,rng,inputs.reshape(input_shape),filter_shape[0],
-                filter_shape[1], activation,dropout_rate,layer_name,W,b)
+
         self.filter_shape = filter_shape
         self.pool_size = pool_size
         self.border_mode = border_mode
         self.fan_in = numpy.prod(self.filter_shape[1:])
         self.fan_out = filter_shape[0] * numpy.prod(filter_shape[2:]) / numpy.prod(pool_size)
+
+        #W and b are slightly different
+        if W is None:
+                W_bound = numpy.sqrt(6. / (self.fan_in + self.fan_out))
+                initial_W = numpy.asarray( rng.uniform(
+                                       low=-W_bound, high=W_bound,
+                                       size=filter_shape),
+                                       dtype=theano.config.floatX)
+
+                if activation == T.nnet.sigmoid:
+                    initial_W *= 4
+                W = theano.shared(value = initial_W, name = 'W')
+        if b is None:
+                b_values = numpy.zeros((filter_shape[0],), dtype=theano.config.floatX)
+                b = theano.shared(value=b_values, name='b')
+
+        Layer.__init__(self,rng,T.reshape(inputs,input_shape,ndim=4),filter_shape[0],
+                filter_shape[1], activation,dropout_rate,layer_name,W,b)
         self.delta_W = sharedX(
             value=numpy.zeros(filter_shape),
             name='{0}_delta_W'.format(self.layer_name))
@@ -124,10 +141,11 @@ class ConvolutionalLayer(Layer):
             value=numpy.zeros_like(self.b.get_value(borrow=True)),
             name='{0}_delta_b'.format(self.layer_name))
         self.conv_out = conv.conv2d(
-            input=inputs, filters=self.W,
+            input=self.inputs,
+            filters=self.W,
             filter_shape=filter_shape,
             image_shape=input_shape,
             border_mode=self.border_mode)
-        self.y_out = self.activation(self.conv_out + self.b.dimshuffle('x',0,'x','x'))
-        self.pooled_out = downsample.max_pool_2d(input=y_out,ds=self.pool_size,ignore_border=True)
+        self.y_out = activation(self.conv_out + self.b.dimshuffle('x',0,'x','x'))
+        self.pooled_out = downsample.max_pool_2d(input=self.y_out,ds=self.pool_size,ignore_border=True)
         self.output = self.pooled_out
