@@ -74,8 +74,8 @@ class MLP(object):
         for layer_type,desc in n_hidden:
             if(layer_type == 'flat'):
                 n_this,drop_this,name_this,activation_this = desc
-                l = layers.HiddenLayer(rng=rng, inputs=chain_in.flatten(),
-                                n_in=numpy.prod(chain_n_in), n_out=numpy.prod(n_this),
+                l = layers.FlatLayer(rng=rng, inputs=chain_in,
+                                n_in=chain_n_in, n_out=n_this,
                                 activation=activation_this,dropout_rate=drop_this,
                                 layer_name=name_this)
                 chain_n_in=n_this
@@ -83,8 +83,10 @@ class MLP(object):
                 self.hiddenLayers.append(l)
             if(layer_type == 'conv'):
                 input_shape,filter_shape,pool_size,drop_this,name_this,activation_this = desc
-                l = ConvolutionalLayer(rng=rng, inputs=chain_in, 
+                l = layers.ConvolutionalLayer(rng=rng,
+                                       inputs=chain_in.reshape(input_shape), 
                                        input_shape=input_shape, 
+                                       filter_shape=filter_shape,
                                        pool_size=pool_size,
                                        activation=activation_this,
                                        dropout_rate=drop_this,
@@ -490,11 +492,11 @@ if __name__ == '__main__':
         dataset='/local/mnist.pkl.gz'
         pickled=True
         n_hidden=[
-                  (2500,0.5,'h0',T.tanh),
-                  (2000,0.5,'h1',T.tanh),
-                  (1500,0.5,'h2',T.tanh),
-                  (1000,0.5,'h2',T.tanh),
-                  (500,0.5,'h3',T.tanh)
+                  ('flat',(2500,0.5,'h0',T.tanh)),
+                  ('flat',(2000,0.5,'h1',T.tanh)),
+                  ('flat',(1500,0.5,'h2',T.tanh)),
+                  ('flat',(1000,0.5,'h2',T.tanh)),
+                  ('flat',(500,0.5,'h3',T.tanh))
                  ]
         n_in = 784
     elif dataset_name == 'mnist-transformed':
@@ -506,11 +508,11 @@ if __name__ == '__main__':
         dataset='/local/mnit-transformed/'
         pickled=False
         n_hidden=[
-                  (2500,0.5,'h0',T.tanh),
-                  (2000,0.5,'h1',T.tanh),
-                  (1500,0.5,'h2',T.tanh),
-                  (1000,0.5,'h2',T.tanh),
-                  (500,0.5,'h3',T.tanh)
+                  ('flat',(2500,0.5,'h0',T.tanh)),
+                  ('flat',(2000,0.5,'h1',T.tanh)),
+                  ('flat',(1500,0.5,'h2',T.tanh)),
+                  ('flat',(1000,0.5,'h2',T.tanh)),
+                  ('flat',(500,0.5,'h3',T.tanh))
                  ]
         n_in = 784
     elif dataset_name == 'cifar10':
@@ -518,11 +520,9 @@ if __name__ == '__main__':
         dataset='/local/cifar10/'
         pickled=False
         n_hidden=[
-                  ('flat',(3000,0.5,'h0',T.tanh)),
-                  ('flat',(3000,0.5,'h1',T.tanh)),
-                  ('flat',(3000,0.5,'h2',T.tanh)),
-                  ('flat',(3000,0.5,'h3',T.tanh)),
-                  ('flat',(3000,0.5,'h4',T.tanh))
+                  #input_shape,filter_shape,pool_size,drop_this,name_this,activation_this
+                  ('conv',([batch_size,1,32,32],[5,1,10,10],4,0.5,'c1',T.tanh)),
+                  ('flat',(3000,0.5,'f0',T.tanh))
                  ]
         n_in = 3072
     else:

@@ -11,6 +11,7 @@ __docformat__ = 'restructedtext en'
 import numpy
 import theano
 import theano.tensor as T
+from data import sharedX
 
 def sgd(param,learning_rate,gparam,mask,updates,current_cost,previous_cost):
     return param - learning_rate * gparam * mask

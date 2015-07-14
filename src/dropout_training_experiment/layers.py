@@ -13,14 +13,16 @@ import theano
 import theano.tensor as T
 from theano.tensor.signal import downsample
 from theano.tensor.nnet import conv
+from data import sharedX
 
 
-class Layer(object):
-    def __init__(self,rng,inputs,activation,
-                 dropoutRate,layerName,W=None,b=None):
+class Layer:
+    def __init__(self,rng,inputs,n_in,n_out,activation,
+                 dropout_rate,layer_name,W=None,b=None):
         self.inputs = inputs
-        self.dropoutRate=dropoutRate
-        self.layerName=layerName
+        self.dropout_rate=dropout_rate
+        self.layer_name=layer_name
+
         if W is None:
             W_values = numpy.asarray(rng.uniform(
                     low=-numpy.sqrt(6. / (n_in + n_out)),
@@ -28,18 +30,18 @@ class Layer(object):
                     size=(n_in, n_out)), dtype=theano.config.floatX)
             if activation == theano.tensor.nnet.sigmoid:
                 W_values *= 4
-            W = theano.shared(value=W_values, name=layerName + '_W', borrow=True)
+            W = theano.shared(value=W_values, name=layer_name + '_W', borrow=True)
 
         if b is None:
             b_values = numpy.zeros((n_out,), dtype=theano.config.floatX)
-            b = theano.shared(value=b_values, name=layerName + '_b', borrow=True)
+            b = theano.shared(value=b_values, name=layer_name + '_b', borrow=True)
 
         self.W = W
         self.b = b
         self.params = [self.W, self.b]
 
 
-class HiddenLayer(object):
+class FlatLayer(Layer):
     def __init__(self, rng, inputs, n_in, n_out, W=None, b=None,
                  activation=T.tanh,dropout_rate=0,layer_name='hidden'):
         """
@@ -67,7 +69,7 @@ class HiddenLayer(object):
         :param activation: Non linearity to be applied in the hidden
                            layer
         """
-        super.__init__(rng,inputs,activation,dropout_rate,layer_name,W,b)
+        Layer.__init__(self,rng,inputs,n_in,n_out,activation,dropout_rate,layer_name,W,b)
          
         # `W` is initialized with `W_values` which is uniformely sampled
         # from sqrt(-6./(n_in+n_hidden)) and sqrt(6./(n_in+n_hidden))
@@ -79,7 +81,7 @@ class HiddenLayer(object):
         #        compared to tanh
         #        We have no info for other function, so we use the same as
         #        tanh.
-        lin_output = T.dot(inputs, self.W) * (1 - self.dropout_rate) + self.b
+        lin_output = T.dot(self.inputs, self.W) * (1 - self.dropout_rate) + self.b
         self.output = (lin_output if activation is None
                        else activation(lin_output))
         # parameters of the model
@@ -88,8 +90,8 @@ class ConvolutionalLayer(Layer):
     """
     A Convolutional Layer, as per Convolutional Neural Networks. Includes filter, and pooling.
     """
-    def __init__(self, rng, inputs, input_shape, filter_shape, poolSize, W=None, b=None,
-             activation=T.tanh,dropout_rate=0,layer_name='hidden',border_mode='valid'):
+    def __init__(self, rng, inputs, input_shape, filter_shape, pool_size, W=None, b=None,
+             activation=T.tanh,dropout_rate=0,layer_name='conv',border_mode='valid'):
         """
         :type rng: numpy.random.RandomState
         :param rng: a random number generator used to initialize weights
@@ -108,7 +110,8 @@ class ConvolutionalLayer(Layer):
                            layer
         """
         assert input_shape[1] == filter_shape[1]
-        super.__init__(rng,inputs.reshape(input_shape),activation,dropout_rate,layer_name,W,b)
+        Layer.__init__(self,rng,inputs.reshape(input_shape),filter_shape[0],
+                filter_shape[1], activation,dropout_rate,layer_name,W,b)
         self.filter_shape = filter_shape
         self.pool_size = pool_size
         self.border_mode = border_mode
@@ -121,8 +124,10 @@ class ConvolutionalLayer(Layer):
             value=numpy.zeros_like(self.b.get_value(borrow=True)),
             name='{0}_delta_b'.format(self.layer_name))
         self.conv_out = conv.conv2d(
-            inputs=self.inputs, filters=self.W, filter_shape=filter_shape,
-            image_shape=input_shape, border_mode=self.border_mode)
+            input=inputs, filters=self.W,
+            filter_shape=filter_shape,
+            image_shape=input_shape,
+            border_mode=self.border_mode)
         self.y_out = self.activation(self.conv_out + self.b.dimshuffle('x',0,'x','x'))
         self.pooled_out = downsample.max_pool_2d(input=y_out,ds=self.pool_size,ignore_border=True)
         self.output = self.pooled_out
