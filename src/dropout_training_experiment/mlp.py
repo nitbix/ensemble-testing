@@ -72,10 +72,11 @@ class MLP(object):
         chain_n_in = n_in
         chain_in = input
         first_layer = True
+        prev_dim = None
         for layer_type,desc in n_hidden:
             if(layer_type == 'flat'):
                 n_this,drop_this,name_this,activation_this = desc
-                l = layers.FlatLayer(rng=rng, inputs=chain_in,
+                l = layers.FlatLayer(rng=rng, inputs=chain_in.flatten(ndim=2),
                                 n_in=numpy.prod(chain_n_in), n_out=numpy.prod(n_this),
                                 activation=activation_this,dropout_rate=drop_this,
                                 layer_name=name_this)
@@ -85,6 +86,8 @@ class MLP(object):
                 first_layer = False
             if(layer_type == 'conv'):
                 input_shape,filter_shape,pool_size,drop_this,name_this,activation_this = desc
+                if prev_dim is None:
+                    prev_dim = (input_shape[0],input_shape[1],input_shape[2])
                 l = layers.ConvolutionalLayer(rng=rng,
                                        inputs=chain_in, 
                                        input_shape=input_shape, 
@@ -93,7 +96,12 @@ class MLP(object):
                                        activation=activation_this,
                                        dropout_rate=drop_this,
                                        layer_name = name_this)
-                chain_n_in = input_shape
+                prev_map_number,dim_x,dim_y = prev_dim
+                curr_map_number = filter_shape[0]
+                output_dim_x = (dim_x - filter_shape[2] + 1) / pool_size[0]
+                output_dim_y = (dim_y - filter_shape[3] + 1) / pool_size[1]
+                chain_n_in = (curr_map_number,dim_x,dim_y)
+                prev_dim = (curr_map_number,dim_x,dim_y)
                 chain_in = l.output
                 self.hiddenLayers.append(l)
                 first_layer = False
@@ -225,7 +233,7 @@ def test_mlp(datasets,learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1
 
     dropout_rates = {}
     for layer in classifier.hiddenLayers:
-        dropout_rates[layer.layerName + '_W'] = layer.dropout_rate
+        dropout_rates[layer.layer_name + '_W'] = layer.dropout_rate
     for param, gparam in zip(classifier.params, gparams):
         if param in dropout_rates:
             include_prob = 1 - dropout_rates[param]
@@ -379,7 +387,7 @@ def train_and_select(x,y,training_set, validation_set, learning_rate=0.01,
 
     dropout_rates = {}
     for layer in classifier.hiddenLayers:
-        dropout_rates[layer.layerName + '_W'] = layer.dropout_rate
+        dropout_rates[layer.layer_name + '_W'] = layer.dropout_rate
     for param, gparam in zip(classifier.params, gparams):
         if param in dropout_rates:
             include_prob = 1 - dropout_rates[param]

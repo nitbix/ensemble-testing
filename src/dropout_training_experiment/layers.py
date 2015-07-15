@@ -24,6 +24,8 @@ class Layer:
         self.layer_name=layer_name
 
         if W is None:
+            print n_in
+            print n_out
             W_values = numpy.asarray(rng.uniform(
                     low=-numpy.sqrt(6. / (n_in + n_out)),
                     high=numpy.sqrt(6. / (n_in + n_out)),
@@ -69,7 +71,7 @@ class FlatLayer(Layer):
         :param activation: Non linearity to be applied in the hidden
                            layer
         """
-        Layer.__init__(self,rng,inputs,n_in,n_out,activation,dropout_rate,layer_name,W,b)
+        Layer.__init__(self,rng,inputs.flatten(ndim=2),n_in,n_out,activation,dropout_rate,layer_name,W,b)
          
         # `W` is initialized with `W_values` which is uniformely sampled
         # from sqrt(-6./(n_in+n_hidden)) and sqrt(6./(n_in+n_hidden))
