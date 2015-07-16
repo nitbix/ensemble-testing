@@ -87,7 +87,7 @@ class MLP(object):
             if(layer_type == 'conv'):
                 input_shape,filter_shape,pool_size,drop_this,name_this,activation_this = desc
                 if prev_dim is None:
-                    prev_dim = (input_shape[0],input_shape[1],input_shape[2])
+                    prev_dim = (input_shape[1],input_shape[2],input_shape[3])
                 l = layers.ConvolutionalLayer(rng=rng,
                                        inputs=chain_in, 
                                        input_shape=input_shape, 
@@ -100,8 +100,8 @@ class MLP(object):
                 curr_map_number = filter_shape[0]
                 output_dim_x = (dim_x - filter_shape[2] + 1) / pool_size[0]
                 output_dim_y = (dim_y - filter_shape[3] + 1) / pool_size[1]
-                chain_n_in = (curr_map_number,dim_x,dim_y)
-                prev_dim = (curr_map_number,dim_x,dim_y)
+                chain_n_in = (curr_map_number,output_dim_x,output_dim_y)
+                prev_dim = (curr_map_number,output_dim_x,output_dim_y)
                 chain_in = l.output
                 self.hiddenLayers.append(l)
                 first_layer = False
@@ -532,7 +532,7 @@ if __name__ == '__main__':
         pickled=False
         n_hidden=[
                   #input_shape,filter_shape,pool_size,drop_this,name_this,activation_this
-                  ('conv',([batch_size,3,32,32],[5,3,10,10],[4,4],0.5,'c1',T.tanh)),
+                  ('conv',([batch_size,3,32,32],[100,3,5,5],[2,2],0.5,'c1',T.tanh)),
                   ('flat',(3000,0.5,'f0',T.tanh))
                  ]
         n_in = 3072
