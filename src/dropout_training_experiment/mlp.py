@@ -532,7 +532,7 @@ if __name__ == '__main__':
         pickled=False
         n_hidden=[
                   #input_shape,filter_shape,pool_size,drop_this,name_this,activation_this
-                  ('conv',([batch_size,3,32,32],[100,3,5,5],[2,2],0.5,'c1',T.tanh)),
+                  ('conv',([batch_size,3,32,32],[10,3,5,5],[2,2],0.5,'c1',T.tanh)),
                   ('flat',(3000,0.5,'f0',T.tanh))
                  ]
         n_in = 3072
@@ -554,7 +554,7 @@ if __name__ == '__main__':
                                       eta_plus=eta_plus,eta_minus=eta_minus,
                                       max_delta=max_delta,min_delta=min_delta)
         mlp=test_mlp(datasets,learning_rate, L1_reg, L2_reg, n_epochs,
-            batch_size, n_hidden, update_rule = update_rules.old_rprop, n_in = n_in)
+            batch_size, n_hidden, update_rule = update_rule, n_in = n_in)
     else:
         for eta_minus in [0.01,0.1,0.5,0.75,0.9]:
             for eta_plus in [1.001,1.01,1.1,1.2,1.5]:
