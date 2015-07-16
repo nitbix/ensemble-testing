@@ -24,8 +24,6 @@ class Layer:
         self.layer_name=layer_name
 
         if W is None:
-            print n_in
-            print n_out
             W_values = numpy.asarray(rng.uniform(
                     low=-numpy.sqrt(6. / (n_in + n_out)),
                     high=numpy.sqrt(6. / (n_in + n_out)),
