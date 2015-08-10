@@ -38,8 +38,23 @@ class Layer:
 
         self.W = W
         self.b = b
+        self.y = T.dot(inputs, self.W) + self.b
         self.params = [self.W, self.b]
 
+    def MSE(self, y):
+        """Return a float representing the number of errors in the minibatch
+        over the total number of examples of the minibatch ; zero one
+        loss over the size of the minibatch
+
+        :type y: theano.tensor.TensorType
+        :param y: corresponds to a vector that gives for each example the
+                  correct label
+        """
+
+        if y.ndim != self.y.ndim:
+            raise TypeError('y should have the same shape as self.y',
+                ('y', y.type, 'y_pred', self.y.type))
+        return T.mean((self.y - y) ** 2)
 
 class FlatLayer(Layer):
     def __init__(self, rng, inputs, n_in, n_out, W=None, b=None,
@@ -91,7 +106,7 @@ class ConvolutionalLayer(Layer):
     A Convolutional Layer, as per Convolutional Neural Networks. Includes filter, and pooling.
     """
     def __init__(self, rng, inputs, input_shape, filter_shape, pool_size, W=None, b=None,
-             activation=T.tanh,dropout_rate=0,layer_name='conv',border_mode='valid'):
+             activation=T.tanh,dropout_rate=0,layer_name='conv',border_mode='valid',pooling='max'):
         """
         :type rng: numpy.random.RandomState
         :param rng: a random number generator used to initialize weights
@@ -147,5 +162,5 @@ class ConvolutionalLayer(Layer):
             image_shape=input_shape,
             border_mode=self.border_mode)
         self.y_out = activation(self.conv_out + self.b.dimshuffle('x',0,'x','x'))
-        self.pooled_out = downsample.max_pool_2d(input=self.y_out,ds=self.pool_size,ignore_border=True)
+        self.pooled_out = downsample.max_pool_2d(input=self.y_out,ds=self.pool_size,ignore_border=True,mode=pooling)
         self.output = self.pooled_out

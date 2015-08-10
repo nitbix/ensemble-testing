@@ -40,7 +40,9 @@ class MLP(object):
     class).
     """
 
-    def __init__(self, rng, input, n_in, n_hidden, n_out):
+    def __init__(self, rng, input, n_in, n_hidden, n_out, L1_reg, L2_reg,
+            update_rule, index, x, y, pretraining_set = None,
+            pretraining_passes = 1, batch_size = 100):
         """Initialize the parameters for the multilayer perceptron
 
         :type rng: numpy.random.RandomState
@@ -70,9 +72,50 @@ class MLP(object):
 
         self.hiddenLayers = []
         chain_n_in = n_in
+        chain_input_shape = None
         chain_in = input
-        first_layer = True
         prev_dim = None
+        self.update_rule = update_rule
+        self.rng = rng
+        self.batch_size = batch_size
+
+        def make_top_layer(n_out,layer_type='log'):
+            """
+            Finalize the construction by making a top layer (either to use in
+            pretraining or to use in the final version)
+            """
+            if layer_type == 'log':
+                self.logRegressionLayer = LogisticRegression(
+                    input=chain_in.flatten(ndim=2),
+                    n_in=numpy.prod(chain_n_in),
+                    n_out=n_out)
+                self.negative_log_likelihood = self.logRegressionLayer.negative_log_likelihood
+                self.p_y_given_x = self.logRegressionLayer.p_y_given_x
+                self.errors = self.logRegressionLayer.errors
+                self.y_pred = self.logRegressionLayer.y_pred
+            elif layer_type == 'flat':
+                self.logRegressionLayer = layers.FlatLayer(rng=rng,
+                    inputs=chain_in.flatten(ndim=2),
+                    n_in=numpy.prod(chain_n_in), n_out=n_out,
+                    activation=activation_this,dropout_rate=drop_this,
+                    layer_name=name_this)
+                self.negative_log_likelihood = self.logRegressionLayer.MSE
+
+            self.L1 = sum([abs(hiddenLayer.W).sum()
+                        for hiddenLayer in self.hiddenLayers]) \
+                    + abs(self.logRegressionLayer.W).sum()
+            self.L2_sqr = sum([(hiddenLayer.W ** 2).sum() for hiddenLayer in
+                            self.hiddenLayers]) \
+                        + (self.logRegressionLayer.W ** 2).sum()
+
+
+            p = self.logRegressionLayer.params
+            for hiddenLayer in self.hiddenLayers:
+                p += hiddenLayer.params
+            self.params = p
+
+
+        layer_number = 0
         for layer_type,desc in n_hidden:
             if(layer_type == 'flat'):
                 n_this,drop_this,name_this,activation_this = desc
@@ -83,9 +126,14 @@ class MLP(object):
                 chain_n_in = n_this
                 chain_in=l.output
                 self.hiddenLayers.append(l)
-                first_layer = False
-            if(layer_type == 'conv'):
-                input_shape,filter_shape,pool_size,drop_this,name_this,activation_this = desc
+            elif(layer_type == 'conv'):
+                input_shape,filter_shape,pool_size,drop_this,name_this,activation_this,pooling = desc
+                if input_shape is None:
+                    if chain_input_shape is None:
+                        raise Exception("must specify first input shape")
+                    input_shape = chain_input_shape
+                else:
+                    chain_input_shape = input_shape
                 if prev_dim is None:
                     prev_dim = (input_shape[1],input_shape[2],input_shape[3])
                 l = layers.ConvolutionalLayer(rng=rng,
@@ -95,7 +143,8 @@ class MLP(object):
                                        pool_size=pool_size,
                                        activation=activation_this,
                                        dropout_rate=drop_this,
-                                       layer_name = name_this)
+                                       layer_name = name_this,
+                                       pooling = pooling)
                 prev_map_number,dim_x,dim_y = prev_dim
                 curr_map_number = filter_shape[0]
                 output_dim_x = (dim_x - filter_shape[2] + 1) / pool_size[0]
@@ -103,53 +152,87 @@ class MLP(object):
                 chain_n_in = (curr_map_number,output_dim_x,output_dim_y)
                 prev_dim = (curr_map_number,output_dim_x,output_dim_y)
                 chain_in = l.output
+                chain_input_shape = [chain_input_shape[0],
+                        curr_map_number,
+                        output_dim_x,
+                        output_dim_y]
                 self.hiddenLayers.append(l)
-                first_layer = False
 
-        # The logistic regression layer gets as input the hidden units
-        # of the last hidden layer
-        self.logRegressionLayer = LogisticRegression(
-            input=chain_in,
-            n_in=chain_n_in,
-            n_out=n_out)
+            def pretrain(pretraining_set,supervised = False):
+                pretraining_batch_size = self.batch_size
+                if(supervised):
+                    pretraining_set_x, pretraining_set_y = pretraining_set
+                    x_pretraining = x
+                    y_pretraining = y
+                    make_top_layer(n_out)
+                else:
+                    pretraining_set_x = pretraining_set
+                    pretraining_set_y = pretraining_set
+                    ptylen = pretraining_set.get_value(borrow=True).shape[1]
+                    x_pretraining = x
+                    y_pretraining = T.matrix('y_pretraining')
+                    make_top_layer(ptylen,'flat')
+                ptxlen = pretraining_set_x.get_value(borrow=True).shape[0]
+                n_batches =  ptxlen / pretraining_batch_size
+                train_model = self.train_function(index, pretraining_set_x,
+                    pretraining_set_y, x_pretraining, y_pretraining, pretraining_batch_size)
+                for p in range(pretraining_passes):
+                    print "... pretraining layer {0}, pass {1}".format(layer_number,p)
+                    for minibatch_index in xrange(n_batches):
+                        #print "...... minibatch {0} / {1}".format(minibatch_index,n_batches)
+                        minibatch_avg_cost = train_model(minibatch_index,1)
 
-        # L1 norm ; one regularization option is to enforce L1 norm to
-        # be small
-        self.L1 = sum([abs(hiddenLayer.W).sum()
-                    for hiddenLayer in self.hiddenLayers]) \
-                + abs(self.logRegressionLayer.W).sum()
+            if pretraining_set is not None:
+                if not isinstance(pretraining_set,tuple):
+                    #unsupervised
+                    pretrain(pretraining_set,False)
+                elif len(pretraining_set) == 2:
+                    #supervised
+                    pretrain(pretraining_set,True)
+                elif len(pretraining_set) == 3:
+                    #both
+                    pretrain(pretraining_set[2],False)
+                    pretrain((pretraining_set[0],pretraining_set[1]),True)
+            layer_number += 1
+        make_top_layer(n_out)
 
-        # square of L2 norm ; one regularization option is to enforce
-        # square of L2 norm to be small
-        self.L2_sqr = sum([(hiddenLayer.W ** 2).sum() for hiddenLayer in
-                        self.hiddenLayers]) \
-                    + (self.logRegressionLayer.W ** 2).sum()
+    def train_function(self, index, train_set_x, train_set_y, x, y, batch_size):
+        self.cost = self.negative_log_likelihood(y) \
+             + L1_reg * self.L1 \
+             + L2_reg * self.L2_sqr
+        gparams = []
+        for param in self.params:
+            gparam = T.grad(self.cost, param)
+            gparams.append(gparam)
+        previous_cost = T.lscalar()
+        updates = []
+        theano_rng = MRG_RandomStreams(max(self.rng.randint(2 ** 15), 1))
 
-        # negative log likelihood of the MLP is given by the negative
-        # log likelihood of the output of the model, computed in the
-        # logistic regression layer
-        self.negative_log_likelihood = self.logRegressionLayer.negative_log_likelihood
-        # same holds for the function computing the number of errors
-        self.p_y_given_x = self.logRegressionLayer.p_y_given_x
-        self.errors = self.logRegressionLayer.errors
-        self.y_pred = self.logRegressionLayer.y_pred
-
-        # the parameters of the model are the parameters of the two layer it is
-        # made out of
-        p = self.logRegressionLayer.params
-        for hiddenLayer in self.hiddenLayers:
-            p += hiddenLayer.params
-        self.params = p
-
+        dropout_rates = {}
+        for layer in self.hiddenLayers:
+            dropout_rates[layer.layer_name + '_W'] = layer.dropout_rate
+        for param, gparam in zip(self.params, gparams):
+            if param in dropout_rates:
+                include_prob = 1 - dropout_rates[param]
+            else:
+                include_prob = 1
+            mask = theano_rng.binomial(p=include_prob,
+                                       size=param.shape,dtype=param.dtype)    
+            new_update = self.update_rule(param, learning_rate, gparam, mask, updates,
+                    self.cost,previous_cost)
+            updates.append((param, new_update))
+        return theano.function(inputs=[index,previous_cost],
+                outputs=self.cost,
+                on_unused_input='warn',
+                updates=updates,
+                givens={
+                    x: train_set_x[index * batch_size:(index + 1) * batch_size],
+                    y: train_set_y[index * batch_size:(index + 1) * batch_size]})
 
 def test_mlp(datasets,learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
-             batch_size=20, n_hidden=(500,0), update_rule=update_rules.sgd, n_in=28*28):
+             batch_size=20, n_hidden=(500,0), update_rule=update_rules.sgd,
+             n_in=28*28, pretraining_set=None, pretraining_passes=0):
     """
-    Demonstrate stochastic gradient descent optimization for a multilayer
-    perceptron
-
-    This is demonstrated on MNIST.
-
     :type learning_rate: float
     :param learning_rate: learning rate used (factor for the stochastic
     gradient
@@ -194,15 +277,10 @@ def test_mlp(datasets,learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1
     rng = numpy.random.RandomState(1234)
 
     # construct the MLP class
-    classifier = MLP(rng=rng, input=x, n_in=n_in,
-                     n_hidden=n_hidden, n_out=10)
-
-    # the cost we minimize during training is the negative log likelihood of
-    # the model plus the regularization terms (L1 and L2); cost is expressed
-    # here symbolically
-    cost = classifier.negative_log_likelihood(y) \
-         + L1_reg * classifier.L1 \
-         + L2_reg * classifier.L2_sqr
+    classifier = MLP(rng=rng, input=x, n_in=n_in, n_hidden=n_hidden, n_out=10,
+            L1_reg=L1_reg, L2_reg=L2_reg, update_rule=update_rule, index=index,
+            x=x, y=y, pretraining_set=pretraining_set,
+            pretraining_passes=pretraining_passes, batch_size=batch_size)
 
     # compiling a Theano function that computes the mistakes that are made
     # by the model on a minibatch
@@ -218,44 +296,7 @@ def test_mlp(datasets,learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1
                 x: valid_set_x[index * batch_size:(index + 1) * batch_size],
                 y: valid_set_y[index * batch_size:(index + 1) * batch_size]})
 
-    # compute the gradient of cost with respect to theta (sorted in params)
-    # the resulting gradients will be stored in a list gparams
-    gparams = []
-    for param in classifier.params:
-        gparam = T.grad(cost, param)
-        gparams.append(gparam)
-
-    # specify how to update the parameters of the model as a list of
-    # (variable, update expression) pairs
-    previous_cost = T.lscalar()
-    updates = []
-    theano_rng = MRG_RandomStreams(max(rng.randint(2 ** 15), 1))
-
-    dropout_rates = {}
-    for layer in classifier.hiddenLayers:
-        dropout_rates[layer.layer_name + '_W'] = layer.dropout_rate
-    for param, gparam in zip(classifier.params, gparams):
-        if param in dropout_rates:
-            include_prob = 1 - dropout_rates[param]
-        else:
-            include_prob = 1
-        mask = theano_rng.binomial(p=include_prob,
-                                   size=param.shape,dtype=param.dtype)    
-        new_update = update_rule(param, learning_rate, gparam, mask, updates,
-                cost,previous_cost)
-        updates.append((param, new_update))
-
-    # compiling a Theano function `train_model` that returns the cost, but
-    # in the same time updates the parameter of the model based on the rules
-    # defined in `updates`
-    train_model = theano.function(inputs=[index,previous_cost],
-            outputs=cost,
-            on_unused_input='warn',
-            updates=updates,
-            givens={
-                x: train_set_x[index * batch_size:(index + 1) * batch_size],
-                y: train_set_y[index * batch_size:(index + 1) * batch_size]})
-
+    train_model = classifier.train_function(index,train_set_x,train_set_y,x,y,batch_size)
     ###############
     # TRAIN MODEL #
     ###############
@@ -356,60 +397,21 @@ def train_and_select(x,y,training_set, validation_set, learning_rate=0.01,
     rng = numpy.random.RandomState(1234)
 
     # construct the MLP class
-    classifier = MLP(rng=rng, input=x, n_in=n_in,
-                     n_hidden=n_hidden, n_out=10)
+    classifier = MLP(rng=rng, input=x, n_in=n_in, n_hidden=n_hidden, n_out=10,
+            L1_reg=L1_reg, L2_reg=L2_reg, update_rule=update_rule, index=index,
+            x=x, y=y, pretraining_set=pretraining_set,
+            pretraining_passes=pretraining_passes, batch_size=batch_size)
 
     # the cost we minimize during training is the negative log likelihood of
     # the model plus the regularization terms (L1 and L2); cost is expressed
     # here symbolically
-    cost = classifier.negative_log_likelihood(y) \
-         + L1_reg * classifier.L1 \
-         + L2_reg * classifier.L2_sqr
-
     validate_model = theano.function(inputs=[index],
             outputs=classifier.errors(y),
             givens={
                 x: valid_set_x[index * batch_size:(index + 1) * batch_size],
                 y: valid_set_y[index * batch_size:(index + 1) * batch_size]})
 
-    # compute the gradient of cost with respect to theta (sorted in params)
-    # the resulting gradients will be stored in a list gparams
-    gparams = []
-    for param in classifier.params:
-        gparam = T.grad(cost, param)
-        gparams.append(gparam)
-
-    # specify how to update the parameters of the model as a list of
-    # (variable, update expression) pairs
-    previous_cost = T.lscalar()
-    updates = []
-    theano_rng = MRG_RandomStreams(max(rng.randint(2 ** 15), 1))
-
-    dropout_rates = {}
-    for layer in classifier.hiddenLayers:
-        dropout_rates[layer.layer_name + '_W'] = layer.dropout_rate
-    for param, gparam in zip(classifier.params, gparams):
-        if param in dropout_rates:
-            include_prob = 1 - dropout_rates[param]
-        else:
-            include_prob = 1
-        mask = theano_rng.binomial(p=include_prob,
-                                   size=param.shape,dtype=param.dtype)    
-        new_update = update_rule(param, learning_rate, gparam, mask, updates,
-                cost,previous_cost)
-        updates.append((param, new_update))
-
-    # compiling a Theano function `train_model` that returns the cost, but
-    # in the same time updates the parameter of the model based on the rules
-    # defined in `updates`
-    train_model = theano.function(inputs=[index,previous_cost],
-            outputs=cost,
-            on_unused_input='ignore',
-            updates=updates,
-            givens={
-                x: train_set_x[index * batch_size:(index + 1) * batch_size],
-                y: train_set_y[index * batch_size:(index + 1) * batch_size]
-            })
+    train_model = classifier.train_function(index,train_set_x,train_set_y,x,y,batch_size)
     ###############
     # TRAIN MODEL #
     ###############
@@ -487,11 +489,10 @@ if __name__ == '__main__':
     dataset_name = 'cifar10'
     L1_reg=0.00
     L2_reg=0.00
-    n_epochs=500
+    n_epochs=100
     search_epochs = 40
     transform = False
     batch_size=300
-    update_rule=update_rules.rprop
     search = False
 
     if dataset_name == 'mnist':
@@ -528,33 +529,54 @@ if __name__ == '__main__':
         n_in = 784
     elif dataset_name == 'cifar10':
         learning_rate=0.001
+        eta_plus = 1.1
+        eta_minus = 0.01
+        max_delta = 5
+        min_delta = 1e-3
         dataset='/local/cifar10/'
         pickled=False
         n_hidden=[
                   #input_shape,filter_shape,pool_size,drop_this,name_this,activation_this
-                  ('conv',([batch_size,3,32,32],[10,3,5,5],[2,2],0.5,'c1',T.tanh)),
-                  ('flat',(3000,0.5,'f0',T.tanh))
+                  ('conv',([batch_size,3,32,32],[32,3,5,5],[3,3],0.,'c1',T.tanh,'max')),
+#                  ('conv',(None,[32,32,5,5],[3,3],0.,'c2',T.tanh,'average_exc_pad')),
+#                  ('conv',(None,[64,32,5,5],[3,3],0.,'c3',T.tanh,'average_exc_pad')),
+#                  ('flat',(1000,0.5,'f1',T.tanh)),
+#                  ('flat',(500,0.5,'f2',T.tanh)),
+                  ('flat',(100,0.5,'f3',T.tanh)),
+#                  ('flat',(2000,0.5,'f2',T.tanh))
                  ]
         n_in = 3072
     else:
         print "unknown dataset_name " + dataset_name
 
+
+    pretraining_passes = 1
+    pretraining_mode = 'both'
+    #update_rule=update_rules.sgd
+    def update_rule(param,learning_rate,gparam,mask,updates,
+                    current_cost,previous_cost):
+        return update_rules.rprop(param,learning_rate,gparam,mask,updates,
+                                  current_cost,previous_cost,
+                                  eta_plus=eta_plus,eta_minus=eta_minus,
+                                  max_delta=max_delta,min_delta=min_delta)
     ###parameters end###
 
     datasets = data.load_data(dataset, shared = not transform, pickled = pickled)
-
+    pretraining_set = None
+    if pretraining_mode == 'unsupervised':
+        pretraining_set = datasets[0][0]
+    elif pretraining_mode == 'supervised':
+        pretraining_set = datasets[0]
+    elif pretraining_mode == 'both':
+        pretraining_set = (datasets[0][0],datasets[0][1],datasets[0][0])
     for arg in sys.argv[1:]:
         if arg[0]=='-':
             exec(arg[1:])
     if not search:
-        def update_rule(param,learning_rate,gparam,mask,updates,
-                        current_cost,previous_cost):
-            return update_rules.rprop(param,learning_rate,gparam,mask,updates,
-                                      current_cost,previous_cost,
-                                      eta_plus=eta_plus,eta_minus=eta_minus,
-                                      max_delta=max_delta,min_delta=min_delta)
         mlp=test_mlp(datasets,learning_rate, L1_reg, L2_reg, n_epochs,
-            batch_size, n_hidden, update_rule = update_rule, n_in = n_in)
+            batch_size, n_hidden, update_rule = update_rule, n_in = n_in,
+            pretraining_set = pretraining_set, pretraining_passes =
+            pretraining_passes)
     else:
         for eta_minus in [0.01,0.1,0.5,0.75,0.9]:
             for eta_plus in [1.001,1.01,1.1,1.2,1.5]:
