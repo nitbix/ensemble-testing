@@ -16,7 +16,7 @@ import gzip
 import os
 import sys
 import time
-
+import copy
 import numpy
 
 import theano
@@ -79,41 +79,6 @@ class MLP(object):
         self.rng = rng
         self.batch_size = batch_size
 
-        def make_top_layer(n_out,layer_type='log'):
-            """
-            Finalize the construction by making a top layer (either to use in
-            pretraining or to use in the final version)
-            """
-            if layer_type == 'log':
-                self.logRegressionLayer = LogisticRegression(
-                    input=chain_in.flatten(ndim=2),
-                    n_in=numpy.prod(chain_n_in),
-                    n_out=n_out)
-                self.negative_log_likelihood = self.logRegressionLayer.negative_log_likelihood
-                self.p_y_given_x = self.logRegressionLayer.p_y_given_x
-                self.errors = self.logRegressionLayer.errors
-                self.y_pred = self.logRegressionLayer.y_pred
-            elif layer_type == 'flat':
-                self.logRegressionLayer = layers.FlatLayer(rng=rng,
-                    inputs=chain_in.flatten(ndim=2),
-                    n_in=numpy.prod(chain_n_in), n_out=n_out,
-                    activation=activation_this,dropout_rate=drop_this,
-                    layer_name=name_this)
-                self.negative_log_likelihood = self.logRegressionLayer.MSE
-
-            self.L1 = sum([abs(hiddenLayer.W).sum()
-                        for hiddenLayer in self.hiddenLayers]) \
-                    + abs(self.logRegressionLayer.W).sum()
-            self.L2_sqr = sum([(hiddenLayer.W ** 2).sum() for hiddenLayer in
-                            self.hiddenLayers]) \
-                        + (self.logRegressionLayer.W ** 2).sum()
-
-
-            p = self.logRegressionLayer.params
-            for hiddenLayer in self.hiddenLayers:
-                p += hiddenLayer.params
-            self.params = p
-
 
         layer_number = 0
         for layer_type,desc in n_hidden:
@@ -124,6 +89,7 @@ class MLP(object):
                                 activation=activation_this,dropout_rate=drop_this,
                                 layer_name=name_this)
                 chain_n_in = n_this
+                l.output_shape = chain_n_in
                 chain_in=l.output
                 self.hiddenLayers.append(l)
             elif(layer_type == 'conv'):
@@ -150,6 +116,7 @@ class MLP(object):
                 output_dim_x = (dim_x - filter_shape[2] + 1) / pool_size[0]
                 output_dim_y = (dim_y - filter_shape[3] + 1) / pool_size[1]
                 chain_n_in = (curr_map_number,output_dim_x,output_dim_y)
+                l.output_shape = chain_n_in
                 prev_dim = (curr_map_number,output_dim_x,output_dim_y)
                 chain_in = l.output
                 chain_input_shape = [chain_input_shape[0],
@@ -164,14 +131,14 @@ class MLP(object):
                     pretraining_set_x, pretraining_set_y = pretraining_set
                     x_pretraining = x
                     y_pretraining = y
-                    make_top_layer(n_out)
+                    self.make_top_layer(n_out,chain_in,chain_n_in)
                 else:
                     pretraining_set_x = pretraining_set
                     pretraining_set_y = pretraining_set
                     ptylen = pretraining_set.get_value(borrow=True).shape[1]
                     x_pretraining = x
                     y_pretraining = T.matrix('y_pretraining')
-                    make_top_layer(ptylen,'flat')
+                    self.make_top_layer(ptylen,chain_in,chain_n_in,'flat')
                 ptxlen = pretraining_set_x.get_value(borrow=True).shape[0]
                 n_batches =  ptxlen / pretraining_batch_size
                 train_model = self.train_function(index, pretraining_set_x,
@@ -194,7 +161,42 @@ class MLP(object):
                     pretrain(pretraining_set[2],False)
                     pretrain((pretraining_set[0],pretraining_set[1]),True)
             layer_number += 1
-        make_top_layer(n_out)
+        self.make_top_layer(n_out,chain_in,chain_n_in)
+
+    def make_top_layer(self,n_out,chain_in,chain_n_in,layer_type='log'):
+        """
+        Finalize the construction by making a top layer (either to use in
+        pretraining or to use in the final version)
+        """
+        if layer_type == 'log':
+            self.logRegressionLayer = LogisticRegression(
+                input=chain_in.flatten(ndim=2),
+                n_in=numpy.prod(chain_n_in),
+                n_out=n_out)
+            self.negative_log_likelihood = self.logRegressionLayer.negative_log_likelihood
+            self.p_y_given_x = self.logRegressionLayer.p_y_given_x
+            self.errors = self.logRegressionLayer.errors
+            self.y_pred = self.logRegressionLayer.y_pred
+        elif layer_type == 'flat':
+            self.logRegressionLayer = layers.FlatLayer(rng=rng,
+                inputs=chain_in.flatten(ndim=2),
+                n_in=numpy.prod(chain_n_in), n_out=n_out,
+                activation=activation_this,dropout_rate=drop_this,
+                layer_name=name_this)
+            self.negative_log_likelihood = self.logRegressionLayer.MSE
+
+        self.L1 = sum([abs(hiddenLayer.W).sum()
+                    for hiddenLayer in self.hiddenLayers]) \
+                + abs(self.logRegressionLayer.W).sum()
+        self.L2_sqr = sum([(hiddenLayer.W ** 2).sum() for hiddenLayer in
+                        self.hiddenLayers]) \
+                    + (self.logRegressionLayer.W ** 2).sum()
+
+
+        p = self.logRegressionLayer.params
+        for hiddenLayer in self.hiddenLayers:
+            p += hiddenLayer.params
+        self.params = p
 
     def eval_function(self,index,eval_set_x,eval_set_y,x,y,batch_size):
         return theano.function(inputs=[index],
@@ -204,6 +206,7 @@ class MLP(object):
                 y: eval_set_y[index * batch_size:(index + 1) * batch_size]})
 
     def train_function(self, index, train_set_x, train_set_y, x, y, batch_size):
+        print len(self.hiddenLayers)
         self.cost = self.negative_log_likelihood(y) \
              + L1_reg * self.L1 \
              + L2_reg * self.L2_sqr
@@ -238,7 +241,8 @@ class MLP(object):
 
 def test_mlp(datasets,learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
              batch_size=20, n_hidden=(500,0), update_rule=update_rules.sgd,
-             n_in=28*28, pretraining_set=None, pretraining_passes=0):
+             n_in=28*28, pretraining_set=None, pretraining_passes=0,
+             training_method='normal'):
     """
     :type learning_rate: float
     :param learning_rate: learning rate used (factor for the stochastic
@@ -261,6 +265,7 @@ def test_mlp(datasets,learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1
 
 
    """
+    n_out = 10 #hardcoded for now
     train_set_x, train_set_y = datasets[0]
     valid_set_x, valid_set_y = datasets[1]
     test_set_x, test_set_y = datasets[2]
@@ -276,20 +281,24 @@ def test_mlp(datasets,learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1
 
     rng = numpy.random.RandomState(1234)
 
-    classifier = MLP(rng=rng, input=x, n_in=n_in, n_hidden=n_hidden, n_out=10,
+    classifier = MLP(rng=rng, input=x, n_in=n_in, n_hidden=n_hidden, n_out=n_out,
             L1_reg=L1_reg, L2_reg=L2_reg, update_rule=update_rule, index=index,
             x=x, y=y, pretraining_set=pretraining_set,
             pretraining_passes=pretraining_passes, batch_size=batch_size)
 
-    validate_model = classifier.eval_function(index,valid_set_x,valid_set_y,x,y,batch_size)
-    train_model = classifier.train_function(index,train_set_x,train_set_y,x,y,batch_size)
     if len(datasets) > 2:
         n_test_batches = test_set_x.get_value(borrow=True).shape[0] / batch_size
-        test_model = classifier.eval_function(index,test_set_x,test_set_y,x,y,batch_size)
-    else:
-        test_model = None
 
-    print '... training'
+    def make_models(classifier):
+        validate_model = classifier.eval_function(index,valid_set_x,valid_set_y,x,y,batch_size)
+        train_model = classifier.train_function(index,train_set_x,train_set_y,x,y,batch_size)
+        if len(datasets) > 2:
+            test_model = classifier.eval_function(index,test_set_x,test_set_y,x,y,batch_size)
+        else:
+            test_model = None
+        return (train_model, validate_model, test_model)
+
+    print '... {0} training'.format(training_method)
 
     # early-stopping parameters
     patience = 10000  # look as this many examples regardless
@@ -313,52 +322,110 @@ def test_mlp(datasets,learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1
     done_looping = False
 
     previous_minibatch_avg_cost = 1
-    while (epoch < n_epochs) and (not done_looping):
-        epoch = epoch + 1
-        for minibatch_index in xrange(n_train_batches):
+    if training_method == 'normal':
+        train_model, validate_model, test_model = make_models(classifier)
+        while (epoch < n_epochs) and (not done_looping):
+            epoch = epoch + 1
+            for minibatch_index in xrange(n_train_batches):
 
-            minibatch_avg_cost = train_model(minibatch_index,previous_minibatch_avg_cost)
-            iter = (epoch - 1) * n_train_batches + minibatch_index
+                minibatch_avg_cost = train_model(minibatch_index,previous_minibatch_avg_cost)
+                iter = (epoch - 1) * n_train_batches + minibatch_index
 
-            if (iter + 1) % validation_frequency == 0:
-                validation_losses = [validate_model(i) for i
-                                     in xrange(n_valid_batches)]
-                this_validation_loss = numpy.mean(validation_losses)
+                if (iter + 1) % validation_frequency == 0:
+                    validation_losses = [validate_model(i) for i
+                                         in xrange(n_valid_batches)]
+                    this_validation_loss = numpy.mean(validation_losses)
 
-                print('epoch %i, minibatch %i/%i, validation error %f %%' %
-                     (epoch, minibatch_index + 1, n_train_batches,
-                      this_validation_loss * 100.))
+                    print('epoch %i, minibatch %i/%i, validation error %f %%' %
+                         (epoch, minibatch_index + 1, n_train_batches,
+                          this_validation_loss * 100.))
 
-                if this_validation_loss < best_validation_loss:
-                    if this_validation_loss < best_validation_loss *  \
-                           improvement_threshold:
-                        patience = max(patience, iter * patience_increase)
+                    if this_validation_loss < best_validation_loss:
+                        if this_validation_loss < best_validation_loss *  \
+                               improvement_threshold:
+                            patience = max(patience, iter * patience_increase)
 
-                    best_validation_loss = this_validation_loss
-                    best_iter = iter
-                    best_classifier = classifier
+                        best_validation_loss = this_validation_loss
+                        best_iter = iter
+                        best_classifier = classifier
 
-                    # test it on the test set
-                    if test_model is not None:
-                        test_losses = [test_model(i) for i
-                                       in xrange(n_test_batches)]
-                        test_score = numpy.mean(test_losses)
+                        # test it on the test set
+                        if test_model is not None:
+                            test_losses = [test_model(i) for i
+                                           in xrange(n_test_batches)]
+                            test_score = numpy.mean(test_losses)
 
-                        print(('     epoch %i, minibatch %i/%i, test error of '
-                               'best model %f %%') %
-                              (epoch, minibatch_index + 1, n_train_batches,
-                               test_score * 100.))
-                    else:
-                        print("\repoch %i, minibatch %i/%i, validation error %f %%" %
+                            print(('     epoch %i, minibatch %i/%i, test error of '
+                                   'best model %f %%') %
+                                  (epoch, minibatch_index + 1, n_train_batches,
+                                   test_score * 100.))
+                        else:
+                            print("\repoch %i, minibatch %i/%i, validation error %f %%" %
+                                 (epoch, minibatch_index + 1, n_train_batches,
+                                  this_validation_loss * 100.))
+
+
+                if patience <= iter:
+                        print('finished patience')
+                        done_looping = True
+                        break
+    elif training_method == 'greedy':
+        full_classifier = copy.copy(classifier)
+        for l in xrange(len(full_classifier.hiddenLayers)):
+            print "training {0} layers\n".format(l)
+            classifier = copy.copy(full_classifier)
+            classifier.hiddenLayers = classifier.hiddenLayers[:l+1]
+            classifier.make_top_layer(n_out,classifier.hiddenLayers[l].output,
+                    classifier.hiddenLayers[l].output_shape)
+            train_model, validate_model, test_model = make_models(classifier)
+            while (epoch < n_epochs) and (not done_looping):
+                epoch = epoch + 1
+                for minibatch_index in xrange(n_train_batches):
+
+                    minibatch_avg_cost = train_model(minibatch_index,previous_minibatch_avg_cost)
+                    iter = (epoch - 1) * n_train_batches + minibatch_index
+
+                    if (iter + 1) % validation_frequency == 0:
+                        validation_losses = [validate_model(i) for i
+                                             in xrange(n_valid_batches)]
+                        this_validation_loss = numpy.mean(validation_losses)
+
+                        print('epoch %i, minibatch %i/%i, validation error %f %%' %
                              (epoch, minibatch_index + 1, n_train_batches,
                               this_validation_loss * 100.))
 
+                        if this_validation_loss < best_validation_loss:
+                            if this_validation_loss < best_validation_loss *  \
+                                   improvement_threshold:
+                                patience = max(patience, iter * patience_increase)
 
-            if patience <= iter:
-                    print('finished patience')
-                    done_looping = True
-                    break
+                            best_validation_loss = this_validation_loss
+                            best_iter = iter
+                            best_classifier = copy.deepcopy(classifier)
 
+                            # test it on the test set
+                            if test_model is not None:
+                                test_losses = [test_model(i) for i
+                                               in xrange(n_test_batches)]
+                                test_score = numpy.mean(test_losses)
+
+                                print(('     epoch %i, minibatch %i/%i, test error of '
+                                       'best model %f %%') %
+                                      (epoch, minibatch_index + 1, n_train_batches,
+                                       test_score * 100.))
+                            else:
+                                print("\repoch %i, minibatch %i/%i, validation error %f %%" %
+                                     (epoch, minibatch_index + 1, n_train_batches,
+                                      this_validation_loss * 100.))
+
+
+                    if patience <= iter:
+                            print('finished patience')
+                            done_looping = True
+                            break
+
+            full_classifier.hiddenLayers[:l] = best_classifier.hiddenLayers[:l]
+        classifier = best_classifier
     end_time = time.clock()
     if test_set is not None:
         print(('Optimization complete. Best validation score of %f %% '
@@ -441,6 +508,7 @@ if __name__ == '__main__':
 
     pretraining_passes = 1
     pretraining_mode = 'none'
+    training_method = 'greedy'
     #update_rule=update_rules.sgd
     def update_rule(param,learning_rate,gparam,mask,updates,
                     current_cost,previous_cost):
@@ -465,7 +533,7 @@ if __name__ == '__main__':
         mlp=test_mlp(datasets,learning_rate, L1_reg, L2_reg, n_epochs,
             batch_size, n_hidden, update_rule = update_rule, n_in = n_in,
             pretraining_set = pretraining_set, pretraining_passes =
-            pretraining_passes)
+            pretraining_passes, training_method = training_method)
     else:
         for eta_minus in [0.01,0.1,0.5,0.75,0.9]:
             for eta_plus in [1.001,1.01,1.1,1.2,1.5]:
@@ -482,6 +550,8 @@ if __name__ == '__main__':
                         try:
                             n_epochs = search_epochs
                             mlp=test_mlp(datasets,learning_rate, L1_reg, L2_reg, n_epochs, batch_size,
-                                         n_hidden, update_rule = update_rule, n_in = n_in)
+                                         n_hidden, update_rule = update_rule,
+                                         n_in = n_in,
+                                         training_method = training_method)
                         except KeyboardInterrupt:
                             print "skipping manually to next"
