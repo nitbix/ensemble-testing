@@ -131,14 +131,15 @@ class MLP(object):
                     pretraining_set_x, pretraining_set_y = pretraining_set
                     x_pretraining = x
                     y_pretraining = y
-                    self.make_top_layer(n_out,chain_in,chain_n_in)
+                    self.make_top_layer(n_out,chain_in,chain_n_in,rng)
                 else:
                     pretraining_set_x = pretraining_set
                     pretraining_set_y = pretraining_set
                     ptylen = pretraining_set.get_value(borrow=True).shape[1]
                     x_pretraining = x
                     y_pretraining = T.matrix('y_pretraining')
-                    self.make_top_layer(ptylen,chain_in,chain_n_in,'flat')
+                    self.make_top_layer(ptylen, chain_in, chain_n_in, rng,
+                            'flat', activation_this)
                 ptxlen = pretraining_set_x.get_value(borrow=True).shape[0]
                 n_batches =  ptxlen / pretraining_batch_size
                 train_model = self.train_function(index, pretraining_set_x,
@@ -161,9 +162,10 @@ class MLP(object):
                     pretrain(pretraining_set[2],False)
                     pretrain((pretraining_set[0],pretraining_set[1]),True)
             layer_number += 1
-        self.make_top_layer(n_out,chain_in,chain_n_in)
+        self.make_top_layer(n_out,chain_in,chain_n_in,rng)
 
-    def make_top_layer(self,n_out,chain_in,chain_n_in,layer_type='log'):
+    def make_top_layer(self, n_out, chain_in, chain_n_in, rng, layer_type='log', 
+            activation=None, name_this='temp_top'):
         """
         Finalize the construction by making a top layer (either to use in
         pretraining or to use in the final version)
@@ -181,7 +183,7 @@ class MLP(object):
             self.logRegressionLayer = layers.FlatLayer(rng=rng,
                 inputs=chain_in.flatten(ndim=2),
                 n_in=numpy.prod(chain_n_in), n_out=n_out,
-                activation=activation_this,dropout_rate=drop_this,
+                activation=activation,dropout_rate=0,
                 layer_name=name_this)
             self.negative_log_likelihood = self.logRegressionLayer.MSE
 
@@ -312,15 +314,14 @@ def test_mlp(datasets,learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1
                                   # on the validation set; in this case we
                                   # check every epoch
 
+    start_time = time.clock()
     best_params = None
     best_classifier = None
     best_validation_loss = numpy.inf
     best_iter = 0
     test_score = 0.
-    start_time = time.clock()
     epoch = 0
     done_looping = False
-
     previous_minibatch_avg_cost = 1
     if training_method == 'normal':
         train_model, validate_model, test_model = make_models(classifier)
@@ -370,13 +371,19 @@ def test_mlp(datasets,learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1
                         done_looping = True
                         break
     elif training_method == 'greedy':
-        full_classifier = copy.copy(classifier)
-        for l in xrange(len(full_classifier.hiddenLayers)):
-            print "training {0} layers\n".format(l)
-            classifier = copy.copy(full_classifier)
-            classifier.hiddenLayers = classifier.hiddenLayers[:l+1]
+        all_layers = classifier.hiddenLayers
+        for l in xrange(len(all_layers) - 1):
+            best_params = None
+            best_classifier = None
+            best_validation_loss = numpy.inf
+            best_iter = 0
+            test_score = 0.
+            epoch = 0
+            done_looping = False
+            print "training {0} layers\n".format(l + 1)
+            classifier.hiddenLayers = all_layers[:l+1]
             classifier.make_top_layer(n_out,classifier.hiddenLayers[l].output,
-                    classifier.hiddenLayers[l].output_shape)
+                    classifier.hiddenLayers[l].output_shape,rng)
             train_model, validate_model, test_model = make_models(classifier)
             while (epoch < n_epochs) and (not done_looping):
                 epoch = epoch + 1
@@ -401,7 +408,7 @@ def test_mlp(datasets,learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1
 
                             best_validation_loss = this_validation_loss
                             best_iter = iter
-                            best_classifier = copy.deepcopy(classifier)
+                            best_classifier = classifier
 
                             # test it on the test set
                             if test_model is not None:
@@ -418,16 +425,13 @@ def test_mlp(datasets,learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1
                                      (epoch, minibatch_index + 1, n_train_batches,
                                       this_validation_loss * 100.))
 
-
                     if patience <= iter:
                             print('finished patience')
                             done_looping = True
                             break
-
-            full_classifier.hiddenLayers[:l] = best_classifier.hiddenLayers[:l]
-        classifier = best_classifier
+            classifier = best_classifier
     end_time = time.clock()
-    if test_set is not None:
+    if test_set_x is not None:
         print(('Optimization complete. Best validation score of %f %% '
                'obtained at iteration %i, with test performance %f %%') %
               (best_validation_loss * 100., best_iter + 1, test_score * 100.))
@@ -445,7 +449,7 @@ if __name__ == '__main__':
     dataset_name = 'mnist'
     L1_reg=0.00
     L2_reg=0.00
-    n_epochs=100
+    n_epochs=50
     search_epochs = 40
     transform = False
     batch_size=300
@@ -507,7 +511,7 @@ if __name__ == '__main__':
 
 
     pretraining_passes = 1
-    pretraining_mode = 'none'
+    pretraining_mode = 'unsupervised'
     training_method = 'greedy'
     #update_rule=update_rules.sgd
     def update_rule(param,learning_rate,gparam,mask,updates,
