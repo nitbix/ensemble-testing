@@ -28,6 +28,7 @@ import data
 from data import Resampler, Transformer, sharedX
 import update_rules
 import layers
+import parameters
 
 class MLP(object):
     """Multi-Layer Perceptron Class
@@ -445,6 +446,7 @@ def test_mlp(datasets,learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1
         return best_classifier
 
 if __name__ == '__main__':
+    params = parameters.load_parameters(sys.argv[1])
     ###parameters###
     dataset_name = 'mnist'
     L1_reg=0.00
