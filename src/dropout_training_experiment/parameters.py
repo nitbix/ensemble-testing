@@ -29,5 +29,5 @@ class Parameters(object):
 
 def load_parameters(filename):
     with open(filename) as f:
-        r = yaml.safe_load(f)
-    return Parameters(r)
+        r = yaml.load(f)
+    return Parameters(**r)

@@ -13,6 +13,24 @@ import theano
 import theano.tensor as T
 from data import sharedX
 
+class UpdateRule(object):
+
+    def __init__(self):
+        pass
+
+    def __call__(self, param, learning_rate, gparam, mask, updates,
+                 current_cost, previous_cost):
+        raise NotImplementedError()
+
+class SGD(UpdateRule):
+
+    def __init__(self):
+        pass
+
+    def __call__(self, param, learning_rate, gparam, mask, updates,
+                 current_cost, previous_cost):
+        return param - learning_rate * gparam * mask
+
 def sgd(param,learning_rate,gparam,mask,updates,current_cost,previous_cost):
     return param - learning_rate * gparam * mask
 
