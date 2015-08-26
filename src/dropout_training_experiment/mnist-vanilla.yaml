@@ -1,22 +1,22 @@
 ---
-parameters:
-    dataset: mnist
-    L1_reg: 0.0
-    L2_reg: 0.0
-    n_epochs: 50
-    transform: false
-    learning_rate: 0.01
-    pretraining: !!null
-    pretraining_passes: 1
-    training_method: normal
-    update_rule: !!python/object/new:update_rules.SGD {}
-    batch_size: 300
-    n_hidden: [
-                  ['flat',[2500,0.5,'h0',T.tanh]],
-                  ['flat',[2000,0.5,'h1',T.tanh]],
-                  ['flat',[1500,0.5,'h2',T.tanh]],
-                  ['flat',[1000,0.5,'h2',T.tanh]],
-                  ['flat',[500,0.5,'h3',T.tanh]]
-              ]
-    n_in: 784
-    n_out: 10
+dataset: /local/mnist.pkl.gz
+pickled: true
+L1_reg: 0.0
+L2_reg: 0.0
+n_epochs: 50
+transform: false
+learning_rate: 0.01
+pretraining: !!null
+pretraining_passes: 1
+training_method: normal
+update_rule: !!python/object/new:update_rules.RProp []
+batch_size: 300
+n_hidden: [
+              ['flat',[2500,0.5,'h0',!!python/name:activations.tanh ]],
+              ['flat',[2000,0.5,'h1',!!python/name:activations.tanh ]],
+              ['flat',[1500,0.5,'h2',!!python/name:activations.tanh ]],
+              ['flat',[1000,0.5,'h2',!!python/name:activations.tanh ]],
+              ['flat',[ 500,0.5,'h3',!!python/name:activations.tanh ]]
+          ]
+n_in: 784
+n_out: 10

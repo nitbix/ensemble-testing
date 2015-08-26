@@ -1,4 +1,5 @@
 import yaml 
+import activations
 import update_rules
 
 class Parameters(object):

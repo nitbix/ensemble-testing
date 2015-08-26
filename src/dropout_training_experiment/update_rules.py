@@ -31,86 +31,45 @@ class SGD(UpdateRule):
                  current_cost, previous_cost):
         return param - learning_rate * gparam * mask
 
-def sgd(param,learning_rate,gparam,mask,updates,current_cost,previous_cost):
-    return param - learning_rate * gparam * mask
+class RPropVariant(UpdateRule):
 
-def old_rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
-          eta_plus=1.2,eta_minus=0.5,max_delta=50, min_delta=1e-6):
-    previous_grad = sharedX(numpy.ones(param.shape.eval()),borrow=True)
-    delta = sharedX(learning_rate * numpy.ones(param.shape.eval()),borrow=True)
-    previous_inc = sharedX(numpy.zeros(param.shape.eval()),borrow=True)
-    zero = T.zeros_like(param)
-    one = T.ones_like(param)
-    change = previous_grad * gparam
+    def __init__(self):
+        self.eta_plus = 1.2
+        self.eta_minus = 0.5
+        self.max_delta=50
+        self.min_delta=1e-6
 
-    new_delta = T.clip(
-            T.switch(
-                T.gt(change,0.),
-                delta*eta_plus,
-                T.switch(
-                    T.lt(change,0.),
-                    delta*eta_minus,
-                    delta
-                )
-            ),
-            min_delta,
-            max_delta
-    )
-    new_previous_grad = T.switch(
-            T.gt(change,0.),
-            gparam,
-            T.switch(
-                T.lt(change,0.),
-                zero,
-                gparam
-            )
-    )
-    inc = T.switch(
-            T.gt(change,0.),
-            - T.sgn(gparam) * new_delta,
-            T.switch(
-                T.lt(change,0.),
-                zero,
-                - T.sgn(gparam) * new_delta
-            )
-    )
+    def __init__(self,eta_plus,eta_minus,max_delta,min_delta):
+        self.eta_plus = eta_plus
+        self.eta_minus = eta_minus
+        self.max_delta = max_delta
+        self.min_delta = min_delta
 
-    updates.append((previous_grad,new_previous_grad))
-    updates.append((delta,new_delta))
-    updates.append((previous_inc,inc))
-    return param + inc * mask
+class OldRProp(RPropVariant):
 
+    def __call__(self, param, learning_rate, gparam, mask, updates,
+                 current_cost, previous_cost):
+        previous_grad = sharedX(numpy.ones(param.shape.eval()),borrow=True)
+        delta = sharedX(learning_rate * numpy.ones(param.shape.eval()),borrow=True)
+        previous_inc = sharedX(numpy.zeros(param.shape.eval()),borrow=True)
+        zero = T.zeros_like(param)
+        one = T.ones_like(param)
+        change = previous_grad * gparam
 
-def rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
-          eta_plus=1.01,eta_minus=0.1,max_delta=5, min_delta=1e-3):
-    previous_grad = sharedX(numpy.ones(param.shape.eval()),borrow=True)
-    delta = sharedX(learning_rate * numpy.ones(param.shape.eval()),borrow=True)
-    previous_inc = sharedX(numpy.zeros(param.shape.eval()),borrow=True)
-    zero = T.zeros_like(param)
-    one = T.ones_like(param)
-    change = previous_grad * gparam
-
-    new_delta = T.clip(
-            T.switch(
-                T.eq(gparam,0.),
-                delta,
+        new_delta = T.clip(
                 T.switch(
                     T.gt(change,0.),
-                    delta*eta_plus,
+                    delta * self.eta_plus,
                     T.switch(
                         T.lt(change,0.),
-                        delta*eta_minus,
+                        delta * self.eta_minus,
                         delta
                     )
-                )
-            ),
-            min_delta,
-            max_delta
-    )
-    new_previous_grad = T.switch(
-            T.eq(mask * gparam,0.),
-            previous_grad,
-            T.switch(
+                ),
+                self.min_delta,
+                self.max_delta
+        )
+        new_previous_grad = T.switch(
                 T.gt(change,0.),
                 gparam,
                 T.switch(
@@ -118,12 +77,8 @@ def rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
                     zero,
                     gparam
                 )
-            )
-    )
-    inc = T.switch(
-            T.eq(mask * gparam,0.),
-            zero,
-            T.switch(
+        )
+        inc = T.switch(
                 T.gt(change,0.),
                 - T.sgn(gparam) * new_delta,
                 T.switch(
@@ -131,73 +86,147 @@ def rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
                     zero,
                     - T.sgn(gparam) * new_delta
                 )
-            )
-    )
+        )
 
-    updates.append((previous_grad,new_previous_grad))
-    updates.append((delta,new_delta))
-    updates.append((previous_inc,inc))
-    return param + inc * mask
+        updates.append((previous_grad,new_previous_grad))
+        updates.append((delta,new_delta))
+        updates.append((previous_inc,inc))
+        return param + inc * mask
 
-def irprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
-          eta_plus=1.5,eta_minus=0.25,max_delta=500, min_delta=1e-8):
-    previous_grad = sharedX(numpy.ones(param.shape.eval()),borrow=True)
-    delta = sharedX(learning_rate * numpy.ones(param.shape.eval()),borrow=True)
-    previous_inc = sharedX(numpy.zeros(param.shape.eval()),borrow=True)
-    zero = T.zeros_like(param)
-    one = T.ones_like(param)
-    change = previous_grad * gparam
 
-    new_delta = T.clip(
-            T.switch(
+class RProp(RPropVariant):
+
+    def __init__(self):
+        self.eta_plus = 1.01
+        self.eta_minus = 0.1
+        self.max_delta=5
+        self.min_delta=1e-3
+
+    def __call__(self, param, learning_rate, gparam, mask, updates,
+                 current_cost, previous_cost):
+        previous_grad = sharedX(numpy.ones(param.shape.eval()),borrow=True)
+        delta = sharedX(learning_rate * numpy.ones(param.shape.eval()),borrow=True)
+        previous_inc = sharedX(numpy.zeros(param.shape.eval()),borrow=True)
+        zero = T.zeros_like(param)
+        one = T.ones_like(param)
+        change = previous_grad * gparam
+
+        new_delta = T.clip(
+                T.switch(
+                    T.eq(gparam,0.),
+                    delta,
+                    T.switch(
+                        T.gt(change,0.),
+                        delta * self.eta_plus,
+                        T.switch(
+                            T.lt(change,0.),
+                            delta * self.eta_minus,
+                            delta
+                        )
+                    )
+                ),
+                self.min_delta,
+                self.max_delta
+        )
+        new_previous_grad = T.switch(
                 T.eq(mask * gparam,0.),
-                delta,
+                previous_grad,
                 T.switch(
                     T.gt(change,0.),
-                    delta*eta_plus,
+                    gparam,
                     T.switch(
                         T.lt(change,0.),
-                        delta*eta_minus,
-                        delta
+                        zero,
+                        gparam
                     )
                 )
-            ),
-            min_delta,
-            max_delta
-    )
-    new_previous_grad = T.switch(
-            T.eq(mask * gparam,0.),
-            previous_grad,
-            T.switch(
-                T.gt(change,0.),
-                gparam,
+        )
+        inc = T.switch(
+                T.eq(mask * gparam,0.),
+                zero,
                 T.switch(
-                    T.lt(change,0.),
-                    zero,
-                    gparam
-                )
-            )
-    )
-    inc = T.switch(
-            T.eq(mask * gparam,0.),
-            zero,
-            T.switch(
-                T.gt(change,0.),
-                - T.sgn(gparam) * new_delta,
-                T.switch(
-                    T.lt(change,0.),
-                    zero,
-#                    - T.sgn(gparam) * new_delta
-                    T.switch( 
-                        T.gt(current_cost, previous_cost),
-                        - T.sgn(gparam) * new_delta,
-                        zero
+                    T.gt(change,0.),
+                    - T.sgn(gparam) * new_delta,
+                    T.switch(
+                        T.lt(change,0.),
+                        zero,
+                        - T.sgn(gparam) * new_delta
                     )
                 )
-            )
-    )
+        )
 
-    updates.append((previous_grad,new_previous_grad))
-    updates.append((delta,new_delta))
-    updates.append((previous_inc,inc))
-    return param + inc * mask
+        updates.append((previous_grad,new_previous_grad))
+        updates.append((delta,new_delta))
+        updates.append((previous_inc,inc))
+        return param + inc * mask
+
+class RProp(RPropVariant):
+
+    def __init__(self):
+        self.eta_plus = 1.5
+        self.eta_minus = 0.25
+        self.max_delta=500
+        self.min_delta=1e-8
+
+    def __call__(self, param, learning_rate, gparam, mask, updates,
+                 current_cost, previous_cost):
+        previous_grad = sharedX(numpy.ones(param.shape.eval()),borrow=True)
+        delta = sharedX(learning_rate * numpy.ones(param.shape.eval()),borrow=True)
+        previous_inc = sharedX(numpy.zeros(param.shape.eval()),borrow=True)
+        zero = T.zeros_like(param)
+        one = T.ones_like(param)
+        change = previous_grad * gparam
+
+        new_delta = T.clip(
+                T.switch(
+                    T.eq(mask * gparam,0.),
+                    delta,
+                    T.switch(
+                        T.gt(change,0.),
+                        delta * self.eta_plus,
+                        T.switch(
+                            T.lt(change,0.),
+                            delta * self.eta_minus,
+                            delta
+                        )
+                    )
+                ),
+                self.min_delta,
+                self.max_delta
+        )
+        new_previous_grad = T.switch(
+                T.eq(mask * gparam,0.),
+                previous_grad,
+                T.switch(
+                    T.gt(change,0.),
+                    gparam,
+                    T.switch(
+                        T.lt(change,0.),
+                        zero,
+                        gparam
+                    )
+                )
+        )
+        inc = T.switch(
+                T.eq(mask * gparam,0.),
+                zero,
+                T.switch(
+                    T.gt(change,0.),
+                    - T.sgn(gparam) * new_delta,
+                    T.switch(
+                        T.lt(change,0.),
+                        zero,
+#                    - T.sgn(gparam) * new_delta
+                        T.switch( 
+                            T.gt(current_cost, previous_cost),
+                            - T.sgn(gparam) * new_delta,
+                            zero
+                        )
+                    )
+                )
+        )
+
+        updates.append((previous_grad,new_previous_grad))
+        updates.append((delta,new_delta))
+        updates.append((previous_inc,inc))
+        return param + inc * mask

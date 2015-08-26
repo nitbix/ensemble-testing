@@ -41,9 +41,7 @@ class MLP(object):
     class).
     """
 
-    def __init__(self, rng, input, n_in, n_hidden, n_out, L1_reg, L2_reg,
-            update_rule, index, x, y, pretraining_set = None,
-            pretraining_passes = 1, batch_size = 100):
+    def __init__(self, params, rng, input, index, x, y, pretraining_set = None):
         """Initialize the parameters for the multilayer perceptron
 
         :type rng: numpy.random.RandomState
@@ -67,23 +65,19 @@ class MLP(object):
 
         """
 
-        #TODO:
-        # - rename *n_in to *input_shape
-        # - flatten shapes for flat layer
-
         self.hiddenLayers = []
-        chain_n_in = n_in
+        chain_n_in = params.n_in
         chain_input_shape = None
         chain_in = input
         prev_dim = None
-        self.update_rule = update_rule
+        self.params = params
         self.rng = rng
-        self.batch_size = batch_size
 
 
         layer_number = 0
-        for layer_type,desc in n_hidden:
+        for layer_type,desc in params.n_hidden:
             if(layer_type == 'flat'):
+                #TODO: Activations aren't read in as objects as of yet
                 n_this,drop_this,name_this,activation_this = desc
                 l = layers.FlatLayer(rng=rng, inputs=chain_in.flatten(ndim=2),
                                 n_in=numpy.prod(chain_n_in), n_out=numpy.prod(n_this),
@@ -127,12 +121,11 @@ class MLP(object):
                 self.hiddenLayers.append(l)
 
             def pretrain(pretraining_set,supervised = False):
-                pretraining_batch_size = self.batch_size
                 if(supervised):
                     pretraining_set_x, pretraining_set_y = pretraining_set
                     x_pretraining = x
                     y_pretraining = y
-                    self.make_top_layer(n_out,chain_in,chain_n_in,rng)
+                    self.make_top_layer(self.params.n_out,chain_in,chain_n_in,rng)
                 else:
                     pretraining_set_x = pretraining_set
                     pretraining_set_y = pretraining_set
@@ -142,9 +135,9 @@ class MLP(object):
                     self.make_top_layer(ptylen, chain_in, chain_n_in, rng,
                             'flat', activation_this)
                 ptxlen = pretraining_set_x.get_value(borrow=True).shape[0]
-                n_batches =  ptxlen / pretraining_batch_size
+                n_batches =  ptxlen / self.params.batch_size
                 train_model = self.train_function(index, pretraining_set_x,
-                    pretraining_set_y, x_pretraining, y_pretraining, pretraining_batch_size)
+                    pretraining_set_y, x_pretraining, y_pretraining)
                 for p in range(pretraining_passes):
                     print "... pretraining layer {0}, pass {1}".format(layer_number,p)
                     for minibatch_index in xrange(n_batches):
@@ -163,7 +156,7 @@ class MLP(object):
                     pretrain(pretraining_set[2],False)
                     pretrain((pretraining_set[0],pretraining_set[1]),True)
             layer_number += 1
-        self.make_top_layer(n_out,chain_in,chain_n_in,rng)
+        self.make_top_layer(self.params.n_out,chain_in,chain_n_in,rng)
 
     def make_top_layer(self, n_out, chain_in, chain_n_in, rng, layer_type='log', 
             activation=None, name_this='temp_top'):
@@ -199,22 +192,21 @@ class MLP(object):
         p = self.logRegressionLayer.params
         for hiddenLayer in self.hiddenLayers:
             p += hiddenLayer.params
-        self.params = p
+        self.opt_params = p
 
-    def eval_function(self,index,eval_set_x,eval_set_y,x,y,batch_size):
+    def eval_function(self,index,eval_set_x,eval_set_y,x,y):
         return theano.function(inputs=[index],
             outputs=self.errors(y),
             givens={
-                x: eval_set_x[index * batch_size:(index + 1) * batch_size],
-                y: eval_set_y[index * batch_size:(index + 1) * batch_size]})
+                x: eval_set_x[index * self.params.batch_size:(index + 1) * self.params.batch_size],
+                y: eval_set_y[index * self.params.batch_size:(index + 1) * self.params.batch_size]})
 
-    def train_function(self, index, train_set_x, train_set_y, x, y, batch_size):
-        print len(self.hiddenLayers)
+    def train_function(self, index, train_set_x, train_set_y, x, y):
         self.cost = self.negative_log_likelihood(y) \
-             + L1_reg * self.L1 \
-             + L2_reg * self.L2_sqr
+             + self.params.L1_reg * self.L1 \
+             + self.params.L2_reg * self.L2_sqr
         gparams = []
-        for param in self.params:
+        for param in self.opt_params:
             gparam = T.grad(self.cost, param)
             gparams.append(gparam)
         previous_cost = T.lscalar()
@@ -224,14 +216,14 @@ class MLP(object):
         dropout_rates = {}
         for layer in self.hiddenLayers:
             dropout_rates[layer.layer_name + '_W'] = layer.dropout_rate
-        for param, gparam in zip(self.params, gparams):
+        for param, gparam in zip(self.opt_params, gparams):
             if param in dropout_rates:
                 include_prob = 1 - dropout_rates[param]
             else:
                 include_prob = 1
             mask = theano_rng.binomial(p=include_prob,
                                        size=param.shape,dtype=param.dtype)    
-            new_update = self.update_rule(param, learning_rate, gparam, mask, updates,
+            new_update = self.params.update_rule(param, self.params.learning_rate, gparam, mask, updates,
                     self.cost,previous_cost)
             updates.append((param, new_update))
         return theano.function(inputs=[index,previous_cost],
@@ -239,42 +231,18 @@ class MLP(object):
                 on_unused_input='warn',
                 updates=updates,
                 givens={
-                    x: train_set_x[index * batch_size:(index + 1) * batch_size],
-                    y: train_set_y[index * batch_size:(index + 1) * batch_size]})
+                    x: train_set_x[index * self.params.batch_size:(index + 1) *
+                        self.params.batch_size],
+                    y: train_set_y[index * self.params.batch_size:(index + 1) *
+                        self.params.batch_size]})
 
-def test_mlp(datasets,learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
-             batch_size=20, n_hidden=(500,0), update_rule=update_rules.sgd,
-             n_in=28*28, pretraining_set=None, pretraining_passes=0,
-             training_method='normal'):
-    """
-    :type learning_rate: float
-    :param learning_rate: learning rate used (factor for the stochastic
-    gradient
-
-    :type L1_reg: float
-    :param L1_reg: L1-norm's weight when added to the cost (see
-    regularization)
-
-    :type L2_reg: float
-    :param L2_reg: L2-norm's weight when added to the cost (see
-    regularization)
-
-    :type n_epochs: int
-    :param n_epochs: maximal number of epochs to run the optimizer
-
-    :type dataset: string
-    :param dataset: the path of the MNIST dataset file from
-                 http://www.iro.umontreal.ca/~lisa/deep/data/mnist/mnist.pkl.gz
-
-
-   """
-    n_out = 10 #hardcoded for now
+def test_mlp(datasets, params, pretraining_set=None):
     train_set_x, train_set_y = datasets[0]
     valid_set_x, valid_set_y = datasets[1]
     test_set_x, test_set_y = datasets[2]
 
-    n_train_batches = train_set_x.get_value(borrow=True).shape[0] / batch_size
-    n_valid_batches = valid_set_x.get_value(borrow=True).shape[0] / batch_size
+    n_train_batches = train_set_x.get_value(borrow=True).shape[0] / params.batch_size
+    n_valid_batches = valid_set_x.get_value(borrow=True).shape[0] / params.batch_size
 
     print '... building the model'
 
@@ -284,24 +252,22 @@ def test_mlp(datasets,learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1
 
     rng = numpy.random.RandomState(1234)
 
-    classifier = MLP(rng=rng, input=x, n_in=n_in, n_hidden=n_hidden, n_out=n_out,
-            L1_reg=L1_reg, L2_reg=L2_reg, update_rule=update_rule, index=index,
-            x=x, y=y, pretraining_set=pretraining_set,
-            pretraining_passes=pretraining_passes, batch_size=batch_size)
+    classifier = MLP(params=params, rng=rng, input=x, index=index, x=x, y=y,
+            pretraining_set=pretraining_set)
 
     if len(datasets) > 2:
-        n_test_batches = test_set_x.get_value(borrow=True).shape[0] / batch_size
+        n_test_batches = test_set_x.get_value(borrow=True).shape[0] / params.batch_size
 
     def make_models(classifier):
-        validate_model = classifier.eval_function(index,valid_set_x,valid_set_y,x,y,batch_size)
-        train_model = classifier.train_function(index,train_set_x,train_set_y,x,y,batch_size)
+        validate_model = classifier.eval_function(index,valid_set_x,valid_set_y,x,y)
+        train_model = classifier.train_function(index,train_set_x,train_set_y,x,y)
         if len(datasets) > 2:
-            test_model = classifier.eval_function(index,test_set_x,test_set_y,x,y,batch_size)
+            test_model = classifier.eval_function(index,test_set_x,test_set_y,x,y)
         else:
             test_model = None
         return (train_model, validate_model, test_model)
 
-    print '... {0} training'.format(training_method)
+    print '... {0} training'.format(params.training_method)
 
     # early-stopping parameters
     patience = 10000  # look as this many examples regardless
@@ -316,7 +282,6 @@ def test_mlp(datasets,learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1
                                   # check every epoch
 
     start_time = time.clock()
-    best_params = None
     best_classifier = None
     best_validation_loss = numpy.inf
     best_iter = 0
@@ -324,10 +289,10 @@ def test_mlp(datasets,learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1
     epoch = 0
     done_looping = False
     previous_minibatch_avg_cost = 1
-    if training_method == 'normal':
+    if params.training_method == 'normal':
         train_model, validate_model, test_model = make_models(classifier)
-        while (epoch < n_epochs) and (not done_looping):
-            epoch = epoch + 1
+        while (epoch < params.n_epochs) and (not done_looping):
+            epoch += 1
             for minibatch_index in xrange(n_train_batches):
 
                 minibatch_avg_cost = train_model(minibatch_index,previous_minibatch_avg_cost)
@@ -371,10 +336,9 @@ def test_mlp(datasets,learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1
                         print('finished patience')
                         done_looping = True
                         break
-    elif training_method == 'greedy':
+    elif params.training_method == 'greedy':
         all_layers = classifier.hiddenLayers
         for l in xrange(len(all_layers) - 1):
-            best_params = None
             best_classifier = None
             best_validation_loss = numpy.inf
             best_iter = 0
@@ -383,10 +347,10 @@ def test_mlp(datasets,learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1
             done_looping = False
             print "training {0} layers\n".format(l + 1)
             classifier.hiddenLayers = all_layers[:l+1]
-            classifier.make_top_layer(n_out,classifier.hiddenLayers[l].output,
+            classifier.make_top_layer(params.n_out,classifier.hiddenLayers[l].output,
                     classifier.hiddenLayers[l].output_shape,rng)
             train_model, validate_model, test_model = make_models(classifier)
-            while (epoch < n_epochs) and (not done_looping):
+            while (epoch < params.n_epochs) and (not done_looping):
                 epoch = epoch + 1
                 for minibatch_index in xrange(n_train_batches):
 
@@ -446,118 +410,42 @@ def test_mlp(datasets,learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1
         return best_classifier
 
 if __name__ == '__main__':
-    params = parameters.load_parameters(sys.argv[1])
-    ###parameters###
-    dataset_name = 'mnist'
-    L1_reg=0.00
-    L2_reg=0.00
-    n_epochs=50
+    #turn this on only if you want to do parameter search
     search_epochs = 40
-    transform = False
-    batch_size=300
     search = False
 
-    if dataset_name == 'mnist':
-        learning_rate=0.01
-        eta_plus = 1.01
-        eta_minus = 0.1
-        max_delta = 5
-        min_delta = 1e-3
-        dataset='/local/mnist.pkl.gz'
-        pickled=True
-        n_hidden=[
-                  ('flat',(2500,0.5,'h0',T.tanh)),
-                  ('flat',(2000,0.5,'h1',T.tanh)),
-                  ('flat',(1500,0.5,'h2',T.tanh)),
-                  ('flat',(1000,0.5,'h2',T.tanh)),
-                  ('flat',(500,0.5,'h3',T.tanh))
-                 ]
-        n_in = 784
-    elif dataset_name == 'mnist-transformed':
-        learning_rate=0.01
-        eta_plus = 1.1
-        eta_minus = 0.01
-        max_delta = 5
-        min_delta = 1e-3
-        dataset='/local/mnit-transformed/'
-        pickled=False
-        n_hidden=[
-                  ('flat',(2500,0.5,'h0',T.tanh)),
-                  ('flat',(2000,0.5,'h1',T.tanh)),
-                  ('flat',(1500,0.5,'h2',T.tanh)),
-                  ('flat',(1000,0.5,'h2',T.tanh)),
-                  ('flat',(500,0.5,'h3',T.tanh))
-                 ]
-        n_in = 784
-    elif dataset_name == 'cifar10':
-        learning_rate=0.001
-        eta_plus = 1.1
-        eta_minus = 0.01
-        max_delta = 5
-        min_delta = 1e-3
-        dataset='/local/cifar10/'
-        pickled=False
-        n_hidden=[
-                  #input_shape,filter_shape,pool_size,drop_this,name_this,activation_this
-                  ('conv',([batch_size,3,32,32],[32,3,5,5],[3,3],0.,'c1',T.tanh,'max')),
-                  ('conv',(None,[32,32,4,4],[3,3],0.,'c2',T.tanh,'average_exc_pad')),
-#                  ('conv',(None,[64,32,5,5],[3,3],0.,'c3',T.tanh,'average_exc_pad')),
-#                  ('flat',(1000,0.5,'f1',T.tanh)),
-#                  ('flat',(500,0.5,'f2',T.tanh)),
-                  ('flat',(100,0.5,'f3',T.tanh)),
-#                  ('flat',(2000,0.5,'f2',T.tanh))
-                 ]
-        n_in = 3072
-    else:
-        print "unknown dataset_name " + dataset_name
-
-
-    pretraining_passes = 1
-    pretraining_mode = 'unsupervised'
-    training_method = 'greedy'
-    #update_rule=update_rules.sgd
-    def update_rule(param,learning_rate,gparam,mask,updates,
-                    current_cost,previous_cost):
-        return update_rules.rprop(param,learning_rate,gparam,mask,updates,
-                                  current_cost,previous_cost,
-                                  eta_plus=eta_plus,eta_minus=eta_minus,
-                                  max_delta=max_delta,min_delta=min_delta)
-    ###parameters end###
-
-    datasets = data.load_data(dataset, shared = not transform, pickled = pickled)
+    params = parameters.load_parameters(sys.argv[1])
+    datasets = data.load_data(params.dataset,
+                              shared = not params.transform,
+                              pickled = params.pickled)
     pretraining_set = None
-    if pretraining_mode == 'unsupervised':
+    if params.pretraining == 'unsupervised':
         pretraining_set = datasets[0][0]
-    elif pretraining_mode == 'supervised':
+    elif params.pretraining == 'supervised':
         pretraining_set = datasets[0]
-    elif pretraining_mode == 'both':
+    elif params.pretraining == 'both':
         pretraining_set = (datasets[0][0],datasets[0][1],datasets[0][0])
-    for arg in sys.argv[1:]:
-        if arg[0]=='-':
-            exec(arg[1:])
+#    for arg in sys.argv[2:]:
+#        if arg[0]=='-':
+#            exec(arg[2:])
     if not search:
-        mlp=test_mlp(datasets,learning_rate, L1_reg, L2_reg, n_epochs,
-            batch_size, n_hidden, update_rule = update_rule, n_in = n_in,
-            pretraining_set = pretraining_set, pretraining_passes =
-            pretraining_passes, training_method = training_method)
+        mlp=test_mlp(datasets, params, pretraining_set = pretraining_set)
     else:
+        params.n_epochs = search_epochs
         for eta_minus in [0.01,0.1,0.5,0.75,0.9]:
+            params.update_rule.eta_minus = eta_minus
             for eta_plus in [1.001,1.01,1.1,1.2,1.5]:
+                params.update_rule.eta_plus = eta_plus
                 for min_delta in [1e-3,1e-4,1e-5,1e-6,1e-7]:
+                    params.update_rule.min_delta = min_delta
                     for max_delta in [50]:
                         print "PARAMS:"
                         print "ETA-: {0}".format(eta_minus)
                         print "ETA+: {0}".format(eta_plus)
                         print "MIN_DELTA: {0}".format(min_delta)
                         print "MAX_DELTA: {0}".format(max_delta)
-                        def update_rule(param,learning_rate,gparam,mask,updates,current_cost,previous_cost):
-                            return rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
-                                         eta_plus=eta_plus,eta_minus=eta_minus,max_delta=max_delta,min_delta=min_delta)
+                        params.update_rule.max_delta = max_delta
                         try:
-                            n_epochs = search_epochs
-                            mlp=test_mlp(datasets,learning_rate, L1_reg, L2_reg, n_epochs, batch_size,
-                                         n_hidden, update_rule = update_rule,
-                                         n_in = n_in,
-                                         training_method = training_method)
+                            mlp=test_mlp(datasets, params, pretraining_set = pretraining_set)
                         except KeyboardInterrupt:
                             print "skipping manually to next"
