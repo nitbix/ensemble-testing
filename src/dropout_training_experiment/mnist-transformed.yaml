@@ -1,15 +1,15 @@
 ---
-dataset: /local/mnist.pkl.gz
-pickled: true
+dataset: /local/mnist-transformed/
+pickled: false
 L1_reg: 0.0
 L2_reg: 0.0
 n_epochs: 50
 transform: false
 learning_rate: 0.01
-pretraining: !!null
-pretraining_passes: 1
-training_method: greedy 
-update_rule: !RProp {eta_minus: 0.1, eta_plus: 1.01, max_delta: 5, min_delta: 0.001} 
+pretraining: unsupervised
+pretraining_passes: 2
+training_method: greedy
+update_rule: !RProp {eta_minus: 0.01, eta_plus: 1.1, max_delta: 5, min_delta: 0.001} 
 batch_size: 300
 n_hidden: [
               ['flat',[2500,0.5,'h0',!!python/name:activations.tanh ]],
