@@ -11,9 +11,10 @@ __docformat__ = 'restructedtext en'
 import numpy
 import theano
 import theano.tensor as T
+import yaml
 from data import sharedX
 
-class UpdateRule(object):
+class UpdateRule(yaml.YAMLObject):
 
     def __init__(self):
         pass
@@ -24,6 +25,7 @@ class UpdateRule(object):
 
 class SGD(UpdateRule):
 
+    yaml_tag = u'!SGD'
     def __init__(self):
         pass
 
@@ -45,8 +47,14 @@ class RPropVariant(UpdateRule):
         self.max_delta = max_delta
         self.min_delta = min_delta
 
+    def __repr__(self):
+        return "%s(eta_plus=%r,eta_minus=%r,max_delta=%r,min_delta=%r)" % (
+                self.__class__.__name__, self.eta_plus,self.eta_minus,
+                self.max_delta,self.min_delta)
+                
 class OldRProp(RPropVariant):
 
+    yaml_tag = u'!OldRProp'
     def __call__(self, param, learning_rate, gparam, mask, updates,
                  current_cost, previous_cost):
         previous_grad = sharedX(numpy.ones(param.shape.eval()),borrow=True)
@@ -96,6 +104,7 @@ class OldRProp(RPropVariant):
 
 class RProp(RPropVariant):
 
+    yaml_tag = u'!RProp'
     def __init__(self):
         self.eta_plus = 1.01
         self.eta_minus = 0.1
@@ -160,8 +169,9 @@ class RProp(RPropVariant):
         updates.append((previous_inc,inc))
         return param + inc * mask
 
-class RProp(RPropVariant):
+class iRProp(RPropVariant):
 
+    yaml_tag = u'!iRProp'
     def __init__(self):
         self.eta_plus = 1.5
         self.eta_minus = 0.25
