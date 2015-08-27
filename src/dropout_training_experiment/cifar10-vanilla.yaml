@@ -11,14 +11,27 @@ pretraining_passes: 2
 training_method: normal
 update_rule: !RProp {eta_minus: 0.01, eta_plus: 1.1, max_delta: 5, min_delta: 0.001} 
 batch_size: 300
-n_hidden: [
-    #input_shape,filter_shape,pool_size,drop_this,name_this,activation_this
-    ['conv',[[300,3,32,32],[32,3,5,5],[3,3],0.,'c1',!!python/name:activations.tanh,'max']],
-    ['conv',[None,[32,32,4,4],[3,3],0.,'c2',!!python/name:activations.tanh,'average_exc_pad']],
-    ['flat',[100,0.5,'f3',!!python/name:activations.tanh]],
-          ]
-n_in: 784
+n_in: 3072
 n_out: 10
-        n_hidden=[
-                 ]
-        n_in = 3072
+n_hidden: [
+            #input_shape,filter_shape,pool_size,drop_this,name_this,activation_this
+            ['conv', [
+                [300,3,32,32],
+                [32,3,5,5],
+                [3,3],
+                0.0,
+                'c1',
+                !!python/name:activations.tanh ,
+                'max'
+            ]],
+            ['conv', [
+                !!null ,
+                [32,32,4,4],
+                [3,3],
+                0.0,
+                'c2',
+                !!python/name:activations.tanh ,
+                'average_exc_pad'
+            ]],
+            ['flat', [100, 0.5, 'f3', !!python/name:activations.tanh ]]
+          ]

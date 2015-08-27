@@ -138,7 +138,7 @@ class MLP(object):
                 n_batches =  ptxlen / self.params.batch_size
                 train_model = self.train_function(index, pretraining_set_x,
                     pretraining_set_y, x_pretraining, y_pretraining)
-                for p in range(pretraining_passes):
+                for p in range(self.params.pretraining_passes):
                     print "... pretraining layer {0}, pass {1}".format(layer_number,p)
                     for minibatch_index in xrange(n_batches):
                         #print "...... minibatch {0} / {1}".format(minibatch_index,n_batches)
@@ -425,9 +425,6 @@ if __name__ == '__main__':
         pretraining_set = datasets[0]
     elif params.pretraining == 'both':
         pretraining_set = (datasets[0][0],datasets[0][1],datasets[0][0])
-#    for arg in sys.argv[2:]:
-#        if arg[0]=='-':
-#            exec(arg[2:])
     if not search:
         mlp=test_mlp(datasets, params, pretraining_set = pretraining_set)
     else:
