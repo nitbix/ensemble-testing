@@ -18,6 +18,7 @@ import sys
 import time
 import copy
 import numpy
+import scipy
 
 import theano
 import theano.tensor as T
@@ -217,12 +218,17 @@ class MLP(object):
         for layer in self.hiddenLayers:
             dropout_rates[layer.layer_name + '_W'] = layer.dropout_rate
         for param, gparam in zip(self.opt_params, gparams):
-            if param in dropout_rates:
-                include_prob = 1 - dropout_rates[param]
+            if str(param) in dropout_rates.keys():
+                include_prob = 1. - dropout_rates[str(param)]
             else:
-                include_prob = 1
+                include_prob = 1.
             mask = theano_rng.binomial(p=include_prob,
                                        size=param.shape,dtype=param.dtype)    
+            try:
+                scipy.misc.imsave('dropoutmask-{0}.jpg'.format(param),mask.eval()
+                        * 256)
+            except:
+                pass
             new_update = self.params.update_rule(param, self.params.learning_rate, gparam, mask, updates,
                     self.cost,previous_cost)
             updates.append((param, new_update))
