@@ -338,7 +338,7 @@ def test_mlp(datasets, params, pretraining_set=None):
                         break
     elif params.training_method == 'greedy':
         all_layers = classifier.hiddenLayers
-        for l in xrange(len(all_layers) - 1):
+        for l in xrange(len(all_layers)):
             best_classifier = None
             best_validation_loss = numpy.inf
             best_iter = 0
