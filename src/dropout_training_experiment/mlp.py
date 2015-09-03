@@ -29,7 +29,7 @@ import data
 from data import Resampler, Transformer, sharedX
 import update_rules
 import layers
-import parameters
+import config 
 
 class MLP(object):
     """Multi-Layer Perceptron Class
@@ -242,9 +242,9 @@ class MLP(object):
                     y: train_set_y[index * self.params.batch_size:(index + 1) *
                         self.params.batch_size]})
 
-def test_mlp(datasets, params, pretraining_set=None):
-    train_set_x, train_set_y = datasets[0]
-    valid_set_x, valid_set_y = datasets[1]
+def test_mlp(dataset, params, pretraining_set=None, x=None, y=None):
+    train_set_x, train_set_y = dataset[0]
+    valid_set_x, valid_set_y = dataset[1]
     test_set_x, test_set_y = (None,None)
 
     n_train_batches = train_set_x.get_value(borrow=True).shape[0] / params.batch_size
@@ -253,22 +253,24 @@ def test_mlp(datasets, params, pretraining_set=None):
     print '... building the model'
 
     index = T.lscalar()
-    x = T.matrix('x')
-    y = T.ivector('y')
+    if x is None:
+        x = T.matrix('x')
+    if y is None:
+        y = T.ivector('y')
 
     rng = numpy.random.RandomState(1234)
 
     classifier = MLP(params=params, rng=rng, input=x, index=index, x=x, y=y,
             pretraining_set=pretraining_set)
 
-    if len(datasets) > 2:
+    if len(dataset) > 2:
         n_test_batches = test_set_x.get_value(borrow=True).shape[0] / params.batch_size
 
     def make_models(classifier):
         validate_model = classifier.eval_function(index,valid_set_x,valid_set_y,x,y)
         train_model = classifier.train_function(index,train_set_x,train_set_y,x,y)
-        if len(datasets) > 2:
-            test_set_x, test_set_y = datasets[2]
+        if len(dataset) > 2:
+            test_set_x, test_set_y = dataset[2]
             test_model = classifier.eval_function(index,test_set_x,test_set_y,x,y)
         else:
             test_model = None
@@ -387,10 +389,6 @@ def test_mlp(datasets, params, pretraining_set=None):
                                        'best model %f %%') %
                                       (epoch, minibatch_index + 1, n_train_batches,
                                        test_score * 100.))
-                            else:
-                                print("\repoch %i, minibatch %i/%i, validation error %f %%" %
-                                     (epoch, minibatch_index + 1, n_train_batches,
-                                      this_validation_loss * 100.))
 
                     if patience <= iter:
                             print('finished patience')
@@ -416,13 +414,13 @@ if __name__ == '__main__':
     search_epochs = 40
     search = False
 
-    params = parameters.load_parameters(sys.argv[1])
-    datasets = data.load_data(params.dataset,
+    params = config.load_parameters(sys.argv[1])
+    dataset = data.load_data(params.dataset,
                               shared = True,
                               pickled = params.pickled)
     pretraining_set = data.make_pretraining_set(dataset,params.pretraining)
     if not search:
-        mlp=test_mlp(datasets, params, pretraining_set = pretraining_set)
+        mlp=test_mlp(dataset, params, pretraining_set = pretraining_set)
     else:
         params.n_epochs = search_epochs
         for eta_minus in [0.01,0.1,0.5,0.75,0.9]:
@@ -439,6 +437,6 @@ if __name__ == '__main__':
                         print "MAX_DELTA: {0}".format(max_delta)
                         params.update_rule.max_delta = max_delta
                         try:
-                            mlp=test_mlp(datasets, params, pretraining_set = pretraining_set)
+                            mlp=test_mlp(dataset, params, pretraining_set = pretraining_set)
                         except KeyboardInterrupt:
                             print "skipping manually to next"
