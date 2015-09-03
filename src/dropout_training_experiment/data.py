@@ -60,28 +60,13 @@ def load_data(dataset, shared=True, pickled=True):
     :param dataset: the path to the dataset (here MNIST)
     '''
 
-    #############
-    # LOAD DATA #
-    #############
-
-    # Download the MNIST dataset if it is not present
     data_dir, data_file = os.path.split(dataset)
     if pickled:
         if data_dir == "" and not os.path.isfile(dataset):
-            # Check if dataset is in the data directory.
             new_path = os.path.join(os.path.split(__file__)[0], "..", "data", dataset)
             if os.path.isfile(new_path) or data_file == 'mnist.pkl.gz':
                 dataset = new_path
-
-        if (not os.path.isfile(dataset)) and data_file == 'mnist.pkl.gz':
-            import urllib
-            origin = 'http://www.iro.umontreal.ca/~lisa/deep/data/mnist/mnist.pkl.gz'
-            print('Downloading data from {0}'.format(origin))
-            urllib.urlretrieve(origin, dataset)
-
         print('... loading data')
-
-        # Load the dataset
         f = gzip.open(dataset, 'rb')
         train_set, valid_set, test_set = cPickle.load(f)
         f.close()
@@ -92,12 +77,6 @@ def load_data(dataset, shared=True, pickled=True):
         train_set = (tr['x'],tr['y'])
         valid_set = (v['x'],v['y'])
         test_set = (te['x'],te['y'])
-    #train_set, valid_set, test_set format: tuple(input, target)
-    #input is an numpy.ndarray of 2 dimensions (a matrix)
-    #witch row's correspond to an example. target is a
-    #numpy.ndarray of 1 dimensions (vector)) that have the same length as
-    #the number of rows in the input. It should give the target
-    #target to the example with the same index in the input.
 
     if shared:
         test_set_x, test_set_y = shared_dataset(test_set)
@@ -112,6 +91,17 @@ def load_data(dataset, shared=True, pickled=True):
     rval = [(train_set_x, train_set_y), (valid_set_x, valid_set_y),
             (test_set_x, test_set_y)]
     return rval
+
+
+def make_pretraining_set(datasets,mode):
+    pretraining_set = None
+    if mode == 'unsupervised':
+        pretraining_set = datasets[0][0]
+    elif mode == 'supervised':
+        pretraining_set = datasets[0]
+    elif mode == 'both':
+        pretraining_set = (datasets[0][0],datasets[0][1],datasets[0][0])
+    return pretraining_set
 
 
 class Resampler:
@@ -254,3 +244,15 @@ class Transformer:
 
     def get_data(self):
         return (np.array(self.final_x),np.array(self.final_y))
+
+    def transform_dataset(dataset):
+        train,valid,test = dataset
+        train_x, train_y = train
+        valid_x, valid_y = valid
+        test_x, test_y = test
+        aggregate_x = np.concatenate((train_x, valid_x), axis=0)
+        aggregate_y = np.concatenate((train_y, valid_y), axis=0)
+        t = Transformer((aggregate_x,aggregate_y),28,28)
+        aggregate_train = t.get_data()
+        aggregate_valid = (aggregate_x, aggregate_y)
+        return (aggregate_train,aggregate_valid,test)

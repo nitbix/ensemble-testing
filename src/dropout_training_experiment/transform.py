@@ -12,7 +12,7 @@ if __name__ == '__main__':
         dataset = sys.argv[1]
         fileName = sys.argv[2]
     else:
-        dataset='mnist.pkl.gz'
+        dataset='/local/mnist.pkl.gz'
         fileName='/local/mnist-transformed/'
     dataset = data.load_data(dataset,shared=False)
     train,valid,test = dataset

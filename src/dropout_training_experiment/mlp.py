@@ -245,7 +245,7 @@ class MLP(object):
 def test_mlp(datasets, params, pretraining_set=None):
     train_set_x, train_set_y = datasets[0]
     valid_set_x, valid_set_y = datasets[1]
-    test_set_x, test_set_y = datasets[2]
+    test_set_x, test_set_y = (None,None)
 
     n_train_batches = train_set_x.get_value(borrow=True).shape[0] / params.batch_size
     n_valid_batches = valid_set_x.get_value(borrow=True).shape[0] / params.batch_size
@@ -268,6 +268,7 @@ def test_mlp(datasets, params, pretraining_set=None):
         validate_model = classifier.eval_function(index,valid_set_x,valid_set_y,x,y)
         train_model = classifier.train_function(index,train_set_x,train_set_y,x,y)
         if len(datasets) > 2:
+            test_set_x, test_set_y = datasets[2]
             test_model = classifier.eval_function(index,test_set_x,test_set_y,x,y)
         else:
             test_model = None
@@ -320,7 +321,7 @@ def test_mlp(datasets, params, pretraining_set=None):
 
                         best_validation_loss = this_validation_loss
                         best_iter = iter
-                        best_classifier = classifier
+                        best_classifier = copy.copy(classifier)
 
                         # test it on the test set
                         if test_model is not None:
@@ -332,11 +333,6 @@ def test_mlp(datasets, params, pretraining_set=None):
                                    'best model %f %%') %
                                   (epoch, minibatch_index + 1, n_train_batches,
                                    test_score * 100.))
-                        else:
-                            print("\repoch %i, minibatch %i/%i, validation error %f %%" %
-                                 (epoch, minibatch_index + 1, n_train_batches,
-                                  this_validation_loss * 100.))
-
 
                 if patience <= iter:
                         print('finished patience')
@@ -422,15 +418,9 @@ if __name__ == '__main__':
 
     params = parameters.load_parameters(sys.argv[1])
     datasets = data.load_data(params.dataset,
-                              shared = not params.transform,
+                              shared = True,
                               pickled = params.pickled)
-    pretraining_set = None
-    if params.pretraining == 'unsupervised':
-        pretraining_set = datasets[0][0]
-    elif params.pretraining == 'supervised':
-        pretraining_set = datasets[0]
-    elif params.pretraining == 'both':
-        pretraining_set = (datasets[0][0],datasets[0][1],datasets[0][0])
+    pretraining_set = data.make_pretraining_set(dataset,params.pretraining)
     if not search:
         mlp=test_mlp(datasets, params, pretraining_set = pretraining_set)
     else:

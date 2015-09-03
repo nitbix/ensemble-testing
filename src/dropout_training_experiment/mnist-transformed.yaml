@@ -4,7 +4,6 @@ pickled: false
 L1_reg: 0.0
 L2_reg: 0.0
 n_epochs: 50
-transform: false
 learning_rate: 0.01
 pretraining: unsupervised
 pretraining_passes: 2

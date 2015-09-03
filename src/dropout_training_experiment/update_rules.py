@@ -16,9 +16,6 @@ from data import sharedX
 
 class UpdateRule(yaml.YAMLObject):
 
-    def __init__(self):
-        pass
-
     def __call__(self, param, learning_rate, gparam, mask, updates,
                  current_cost, previous_cost):
         raise NotImplementedError()
