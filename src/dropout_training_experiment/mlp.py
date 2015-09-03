@@ -264,13 +264,13 @@ def test_mlp(dataset, params, pretraining_set=None, x=None, y=None):
             pretraining_set=pretraining_set)
 
     if len(dataset) > 2:
+        test_set_x, test_set_y = dataset[2]
         n_test_batches = test_set_x.get_value(borrow=True).shape[0] / params.batch_size
 
     def make_models(classifier):
         validate_model = classifier.eval_function(index,valid_set_x,valid_set_y,x,y)
         train_model = classifier.train_function(index,train_set_x,train_set_y,x,y)
         if len(dataset) > 2:
-            test_set_x, test_set_y = dataset[2]
             test_model = classifier.eval_function(index,test_set_x,test_set_y,x,y)
         else:
             test_model = None
