@@ -14,6 +14,7 @@ import numpy.random
 import theano
 import theano.tensor as T
 import yaml
+from theano.sandbox.rng_mrg import MRG_RandomStreams                                                                                                                    
 
 import mlp
 from logistic_sgd import LogisticRegression
@@ -53,7 +54,7 @@ class MajorityVotingRunner:
 
 class StackingRunner:
     """
-    Take an ensemble and produce the majority vote output on a dataset
+    Take an ensemble and produce the stacked output on a dataset
     """
 
     def __init__(self,members,x,y,train_set,valid_set,params):
@@ -84,6 +85,46 @@ class StackingRunner:
         self.errors = self.stack_head.errors(y)
 
 
+class DropStackingRunner:
+    """
+    Take an ensemble and produce the dropstacked output on a dataset
+    """
+
+    def __init__(self,members,x,y,train_set,valid_set,params):
+        self.rng = numpy.random.RandomState(params.random_seed)
+        self.theano_rng = MRG_RandomStreams(max(self.rng.randint(2 ** 15), 1))
+        self.members=members
+        train_set_x,train_set_y = train_set
+        valid_set_x,valid_set_y = valid_set
+        self.train_input_x = theano.function(inputs=[],
+                on_unused_input='warn',
+                outputs=self.make_masked_input(params.dropstack_prob),
+                givens={x:train_set_x})
+        self.valid_input_x = theano.function(inputs=[],
+                on_unused_input='warn',
+                outputs=self.make_masked_input(params.dropstack_prob),
+                givens={x:valid_set_x})
+        print 'training stack head'
+        self.head_x = T.concatenate([m.p_y_given_x
+            for m in self.members],axis=1)
+        dataset = ((sharedX(self.train_input_x(),borrow=True),train_set_y),
+                   (sharedX(self.valid_input_x(),borrow=True),valid_set_y))
+        pretraining_set = make_pretraining_set(dataset,params.pretraining)
+        params.n_in = len(members) * params.main_params.n_out
+        params.n_out = params.main_params.n_out
+        self.stack_head = mlp.test_mlp(dataset, params,
+                pretraining_set = pretraining_set, x = self.head_x, y = y)
+        self.y_pred = self.stack_head.y_pred
+        self.errors = self.stack_head.errors(y)
+
+    def make_masked_input(self,prob):
+        masked = []
+        theano_rng = MRG_RandomStreams(max(self.members[0].rng.randint(2 ** 15), 1))
+        mask = theano_rng.binomial(p=1-prob, size=(len(self.members),1))
+        for i,m in enumerate(self.members):
+            masked.append(m.p_y_given_x * mask[i,0])
+        return T.concatenate(masked,axis=1)
+
 class EnsembleMethod(yaml.YAMLObject):
 
     def create(self,params,members,x,y,train_set,valid_set):
@@ -108,10 +149,11 @@ class Bagging(EnsembleMethod):
 
 class Stacking(EnsembleMethod):
     """
-    Create a Bagging Runner from parameters
+    Create a Stacking Runner from parameters
     """
 
     yaml_tag = u'!Stacking'
+
     def __init__(self,n_hidden,update_rule,n_epochs,batch_size,learning_rate,
             pretraining=None,pretraining_passes=1,training_method='normal',
             L1_reg=0.0,L2_reg=0.0):
@@ -128,7 +170,21 @@ class Stacking(EnsembleMethod):
 
     def create(self,params,members,x,y,train_set,valid_set):
         self.main_params = params
+        self.random_seed = params.random_seed
         return StackingRunner(members,x,y,train_set,valid_set,
                 Parameters(**self.__dict__))
 
+
+class DropStacking(Stacking):
+    """
+    Create a DropStacking Runner from parameters
+    """
+
+    yaml_tag = u'!DropStacking'
+
+    def create(self,params,members,x,y,train_set,valid_set):
+        self.main_params = params
+        self.random_seed = params.random_seed
+        return DropStackingRunner(members,x,y,train_set,valid_set,
+                Parameters(**self.__dict__))
 
