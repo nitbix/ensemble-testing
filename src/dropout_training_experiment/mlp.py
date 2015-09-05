@@ -258,7 +258,7 @@ def test_mlp(dataset, params, pretraining_set=None, x=None, y=None):
     if y is None:
         y = T.ivector('y')
 
-    rng = numpy.random.RandomState(1234)
+    rng = numpy.random.RandomState(params.random_seed)
 
     classifier = MLP(params=params, rng=rng, input=x, index=index, x=x, y=y,
             pretraining_set=pretraining_set)

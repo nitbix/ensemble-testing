@@ -17,4 +17,6 @@ import parameters
 def load_parameters(filename):
     with open(filename) as f:
         r = yaml.load(f)
+    if 'random_seed' not in r:
+        r['random_seed'] = [2013,1,4]
     return parameters.Parameters(**r)
