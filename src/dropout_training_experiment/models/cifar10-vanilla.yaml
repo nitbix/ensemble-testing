@@ -8,7 +8,7 @@ transform: false
 learning_rate: 0.001
 pretraining: unsupervised
 pretraining_passes: 2
-training_method: normal
+training_method: greedy 
 update_rule: !RProp {eta_minus: 0.01, eta_plus: 1.1, max_delta: 5, min_delta: 0.001} 
 batch_size: 300
 n_in: 3072
