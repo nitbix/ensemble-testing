@@ -52,6 +52,23 @@ class MajorityVotingRunner:
         self.errors = T.mean(T.neq(self.y_pred, y))
 
 
+class WeightedAveraging:
+    """
+    Take an Ensemble and produce a weighted average, usually done in AdaBoost
+    """
+
+    def __init__(self,members,x,y):
+        self.members=members
+        self.x = x
+        self.y = y
+#TODO: make this a Theano variable
+        self.weights = [0 for x in members] + (1. / len(members))
+        self.p_y_given_x = 0.
+        self.p_y_given_x = sum([T.eq(T.max(m.p_y_given_x),m.p_y_given_x)
+            for m in self.members])
+        self.y_pred = T.argmax(self.p_y_given_x, axis=1)
+        self.errors = T.mean(T.neq(self.y_pred, y))
+
 class StackingRunner:
     """
     Take an ensemble and produce the stacked output on a dataset
@@ -128,7 +145,13 @@ class DropStackingRunner:
 
 class EnsembleMethod(yaml.YAMLObject):
 
-    def create(self,params,members,x,y,train_set,valid_set):
+    def create_aggregator(self,x,y,train_set,valid_set):
+        raise NotImplementedException()
+
+    def create_member(self,params,x,y,train_set,valid_set):
+        raise NotImplementedException()
+
+    def prepare(self, dataset):
         raise NotImplementedException()
 
 
@@ -140,12 +163,57 @@ class Bagging(EnsembleMethod):
     yaml_tag = u'!Bagging'
     def __init__(self,voting=False):
         self.voting = voting
+        self.resampler = None
 
-    def create(self,params,members,x,y,train_set,valid_set):
+    def create_aggregator(self,members,x,y,train_set,valid_set):
         if 'voting' in self.__dict__ and self.voting:
             return MajorityVotingRunner(members,x,y)
         else:
             return AveragingRunner(members,x,y)
+
+    def create_member(self,x,y):
+        mlp_training_dataset = (self.resampler.make_new_train(self.params.resample_size),
+                self.resampler.get_valid())
+        pretraining_set = make_pretraining_set(mlp_training_dataset,self.params.pretraining)
+        m = mlp.test_mlp(mlp_training_dataset, self.params,
+                pretraining_set = pretraining_set, x=x, y=y)
+        self.members.append(m)
+        return m
+
+
+    def prepare(self, params, dataset):
+        self.params = params
+        self.dataset = dataset
+        self.resampler = Resampler(dataset)
+        self.members = []
+
+
+class AdaBoost(EnsembleMethod):
+    """
+    Create an AdaBoost Ensemble from parameters
+    """
+
+    yaml_tag = u'!AdaBoost'
+
+    def create_aggregator(self,members,x,y,train_set,valid_set):
+        #TODO: create weighted aggregator
+        pass
+
+    def create_member(self,x,y):
+        mlp_training_dataset = (self.resampler.make_new_train(self.params.resample_size),
+                self.resampler.get_valid())
+        pretraining_set = make_pretraining_set(mlp_training_dataset,self.params.pretraining)
+        m = mlp.test_mlp(mlp_training_dataset, self.params,
+                pretraining_set = pretraining_set, x=x, y=y)
+        self.members.append(m)
+        return m
+
+    def prepare(self, params, dataset):
+        #TODO: create weighted resampler
+        self.params = params
+        self.dataset = dataset
+        self.resampler = Resampler(dataset)
+        self.members = []
 
 
 class Stacking(EnsembleMethod):
@@ -169,11 +237,26 @@ class Stacking(EnsembleMethod):
         self.L1_reg = self.L1_reg
         self.L2_reg = self.L2_reg
 
-    def create(self,params,members,x,y,train_set,valid_set):
-        self.main_params = params
-        self.random_seed = params.random_seed
+    def create_aggregator(self,members,x,y,train_set,valid_set):
+        self.main_params = self.params
+        self.random_seed = self.params.random_seed
         return StackingRunner(members,x,y,train_set,valid_set,
                 Parameters(**self.__dict__))
+
+    def create_member(self,x,y):
+        mlp_training_dataset = (self.resampler.make_new_train(self.params.resample_size),
+                self.resampler.get_valid())
+        pretraining_set = make_pretraining_set(mlp_training_dataset,self.params.pretraining)
+        m = mlp.test_mlp(mlp_training_dataset, self.params,
+                pretraining_set = pretraining_set, x=x, y=y)
+        self.members.append(m)
+        return m
+
+    def prepare(self, params, dataset):
+        self.params = params
+        self.dataset = dataset
+        self.resampler = Resampler(dataset)
+        self.members = []
 
 
 class DropStacking(Stacking):
@@ -183,9 +266,23 @@ class DropStacking(Stacking):
 
     yaml_tag = u'!DropStacking'
 
-    def create(self,params,members,x,y,train_set,valid_set):
+    def create_aggregator(self,params,members,x,y,train_set,valid_set):
         self.main_params = params
         self.random_seed = params.random_seed
         return DropStackingRunner(members,x,y,train_set,valid_set,
                 Parameters(**self.__dict__))
 
+    def create_member(self,x,y):
+        mlp_training_dataset = (self.resampler.make_new_train(self.params.resample_size),
+                self.resampler.get_valid())
+        pretraining_set = make_pretraining_set(mlp_training_dataset,self.params.pretraining)
+        m = mlp.test_mlp(mlp_training_dataset, self.params,
+                pretraining_set = pretraining_set, x=x, y=y)
+        self.members.append(m)
+        return m
+
+    def prepare(self, params, dataset):
+        self.params = params
+        self.dataset = dataset
+        self.resampler = Resampler(dataset)
+        self.members = []

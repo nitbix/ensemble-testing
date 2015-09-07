@@ -156,6 +156,17 @@ class Resampler:
         return self.s_test
 
 
+class WeightedResampler(Resampler):
+#WORK IN PROGRESS
+
+    def update_weights(self,new_weights):
+        pass
+
+    def make_new_train(self,sample_size):
+        pass
+
+
+
 class Transformer:
     """
     Apply translation, scaling, rotation and other transformations to a 
