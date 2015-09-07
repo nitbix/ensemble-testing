@@ -90,6 +90,7 @@ class DropStackingRunner:
     Take an ensemble and produce the dropstacked output on a dataset
     """
 
+    #TODO: should this be resampling a larger subset?
     def __init__(self,members,x,y,train_set,valid_set,params):
         self.rng = numpy.random.RandomState(params.random_seed)
         self.theano_rng = MRG_RandomStreams(max(self.rng.randint(2 ** 15), 1))
