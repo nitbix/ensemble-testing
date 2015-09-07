@@ -1,0 +1,31 @@
+... loading data
+... building the model
+... training
+epoch 1, minibatch 500/500, validation error 17.250000 %
+     epoch 1, minibatch 500/500, test error of best model 18.570000 %
+epoch 2, minibatch 500/500, validation error 14.540000 %
+     epoch 2, minibatch 500/500, test error of best model 15.580000 %
+epoch 3, minibatch 500/500, validation error 13.200000 %
+     epoch 3, minibatch 500/500, test error of best model 14.390000 %
+epoch 4, minibatch 500/500, validation error 12.440000 %
+     epoch 4, minibatch 500/500, test error of best model 13.470000 %
+epoch 5, minibatch 500/500, validation error 11.760000 %
+     epoch 5, minibatch 500/500, test error of best model 12.710000 %
+epoch 6, minibatch 500/500, validation error 11.190000 %
+     epoch 6, minibatch 500/500, test error of best model 12.270000 %
+epoch 7, minibatch 500/500, validation error 10.780000 %
+     epoch 7, minibatch 500/500, test error of best model 11.810000 %
+epoch 8, minibatch 500/500, validation error 10.420000 %
+     epoch 8, minibatch 500/500, test error of best model 11.360000 %
+epoch 9, minibatch 500/500, validation error 10.200000 %
+     epoch 9, minibatch 500/500, test error of best model 10.980000 %
+epoch 10, minibatch 500/500, validation error 9.890000 %
+     epoch 10, minibatch 500/500, test error of best model 10.650000 %
+epoch 11, minibatch 500/500, validation error 9.580000 %
+     epoch 11, minibatch 500/500, test error of best model 10.370000 %
+epoch 12, minibatch 500/500, validation error 9.330000 %
+     epoch 12, minibatch 500/500, test error of best model 10.140000 %
+epoch 13, minibatch 500/500, validation error 9.090000 %
+     epoch 13, minibatch 500/500, test error of best model 9.970000 %
+epoch 14, minibatch 500/500, validation error 8.870000 %
+     epoch 14, minibatch 500/500, test error of best model 9.730000 %

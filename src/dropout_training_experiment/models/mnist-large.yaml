@@ -1,0 +1,26 @@
+---
+#dataset: /local/mnist-transformed/
+dataset: /local/mnist.pkl.gz
+pickled: true
+L1_reg: 0.0
+L2_reg: 0.0
+n_epochs: 50
+learning_rate: 0.01
+pretraining: unsupervised
+pretraining_passes: 2
+training_method: greedy
+update_rule: !RProp {eta_minus: 0.01, eta_plus: 1.1, max_delta: 5, min_delta: 0.001} 
+batch_size: 300
+n_hidden: [
+    #              ['flat',[2500,0.5,'h0',!!python/name:activations.tanh ]],
+    #          ['flat',[2500,0.5,'h2',!!python/name:activations.tanh ]],
+    #          ['flat',[2500,0.5,'h3',!!python/name:activations.tanh ]],
+              ['flat',[2500,0.5,'h4',!!python/name:activations.tanh ]],
+              ['flat',[2000,0.5,'h5',!!python/name:activations.tanh ]],
+              ['flat',[1500,0.5,'h6',!!python/name:activations.tanh ]],
+              ['flat',[1000,0.5,'h7',!!python/name:activations.tanh ]],
+              ['flat',[ 500,0.5,'h8',!!python/name:activations.tanh ]],
+              ['flat',[ 250,0.5,'h9',!!python/name:activations.tanh ]]
+          ]
+n_in: 784
+n_out: 10

@@ -1,0 +1,40 @@
+training member 0
+epoch 1, minibatch 1166/1166, validation error 4.016667 %
+epoch 2, minibatch 1166/1166, validation error 2.625000 %
+epoch 3, minibatch 1166/1166, validation error 2.115000 %
+epoch 4, minibatch 1166/1166, validation error 2.045000 %
+epoch 5, minibatch 1166/1166, validation error 1.980000 %
+epoch 6, minibatch 1166/1166, validation error 1.948333 %
+epoch 7, minibatch 1166/1166, validation error 1.820000 %
+epoch 10, minibatch 1166/1166, validation error 1.643333 %
+finished patience
+Selection : Best validation score of 1.64333333333 %
+training member 1
+epoch 1, minibatch 1166/1166, validation error 3.406667 %
+epoch 2, minibatch 1166/1166, validation error 2.758333 %
+epoch 3, minibatch 1166/1166, validation error 2.475000 %
+epoch 4, minibatch 1166/1166, validation error 2.093333 %
+epoch 6, minibatch 1166/1166, validation error 1.948333 %
+epoch 7, minibatch 1166/1166, validation error 1.833333 %
+epoch 10, minibatch 1166/1166, validation error 1.798333 %
+epoch 11, minibatch 1166/1166, validation error 1.700000 %
+epoch 15, minibatch 1166/1166, validation error 1.676667 %
+epoch 16, minibatch 1166/1166, validation error 1.675000 %
+epoch 18, minibatch 1166/1166, validation error 1.658333 %
+epoch 22, minibatch 1166/1166, validation error 1.603333 %
+finished patience
+Selection : Best validation score of 1.60333333333 %
+training member 2
+epoch 1, minibatch 1166/1166, validation error 5.080000 %
+epoch 2, minibatch 1166/1166, validation error 3.003333 %
+epoch 3, minibatch 1166/1166, validation error 2.786667 %
+epoch 4, minibatch 1166/1166, validation error 2.613333 %
+epoch 5, minibatch 1166/1166, validation error 2.113333 %
+epoch 7, minibatch 1166/1166, validation error 1.991667 %
+epoch 8, minibatch 1166/1166, validation error 1.898333 %
+epoch 9, minibatch 1166/1166, validation error 1.866667 %
+epoch 13, minibatch 1166/1166, validation error 1.791667 %
+epoch 19, minibatch 1166/1166, validation error 1.781667 %
+finished patience
+Selection : Best validation score of 1.78166666667 %
+Final error: 1.31 %

@@ -1,0 +1,42 @@
+---
+#MLP params
+dataset: /local/mnist.pkl.gz
+pickled: true
+L1_reg: 0.0
+L2_reg: 0.0
+n_epochs: 30
+learning_rate: 0.01
+pretraining: unsupervised
+pretraining_passes: 3
+training_method: greedy 
+update_rule: !RProp {eta_minus: 0.1, eta_plus: 1.01, max_delta: 5, min_delta: 0.001} 
+batch_size: 300
+n_hidden: [
+              ['flat',[2500,0.5,'h0',!!python/name:activations.tanh ]],
+              ['flat',[2000,0.5,'h1',!!python/name:activations.tanh ]],
+              ['flat',[1500,0.5,'h2',!!python/name:activations.tanh ]],
+              ['flat',[1000,0.5,'h2',!!python/name:activations.tanh ]],
+              ['flat',[ 500,0.5,'h3',!!python/name:activations.tanh ]]
+          ]
+n_in: 784
+n_out: 10
+
+#Ensemble params
+resample_size: 50000
+method: !Bagging {}
+#method: !Stacking {
+#    n_hidden: [
+#                  ['flat',[200,0.5,'s1',!!python/name:activations.tanh ]],
+#                  ['flat',[100,0.5,'s2',!!python/name:activations.tanh ]],
+#              ],
+#    update_rule: !RProp {eta_minus: 0.1, eta_plus: 1.01, max_delta: 5, min_delta: 0.001},
+#    n_epochs: 50,
+#    batch_size: 300,
+#    learning_rate: 0.01,
+#    pretraining: !!null ,
+#    pretraining_passes: 1,
+#    training_method: greedy,
+#    L1_reg: 0.0,
+#    L2_reg: 0.0
+#}
+ensemble_size: 10

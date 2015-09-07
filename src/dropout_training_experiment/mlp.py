@@ -1,23 +1,12 @@
 #!/usr/bin/python
 """
-This tutorial introduces the multilayer perceptron using Theano.
+Representation of a Multi-Layer Perceptron
 
- A multilayer perceptron is a logistic regressor where
-instead of feeding the input to the logistic regression you insert a
-intermediate layer, called the hidden layer, that has a nonlinear
-activation function (usually tanh or sigmoid) . One can use many such
-hidden layers making the architecture deep. The tutorial will also tackle
-the problem of MNIST digit classification.
+Alan Mosca
+Department of Computer Science and Information Systems
+Birkbeck, University of London
 
-.. math::
-
-    f(x) = G( b^{(2)} + W^{(2)}( s( b^{(1)} + W^{(1)} x))),
-
-References:
-
-    - textbooks: "Pattern Recognition and Machine Learning" -
-                 Christopher M. Bishop, section 5
-
+All code released under GPLv2.0 licensing.
 """
 __docformat__ = 'restructedtext en'
 
@@ -27,8 +16,9 @@ import gzip
 import os
 import sys
 import time
-
+import copy
 import numpy
+import scipy
 
 import theano
 import theano.tensor as T
@@ -37,244 +27,9 @@ from theano.sandbox.rng_mrg import MRG_RandomStreams
 from logistic_sgd import LogisticRegression
 import data
 from data import Resampler, Transformer, sharedX
-
-rectifier = lambda x: T.maximum(0, x)
-softsign = lambda x: x / (1 + abs(x))
-
-def sgd(param,learning_rate,gparam,mask,updates,current_cost,previous_cost):
-    return param - learning_rate * gparam * mask
-
-def old_rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
-          eta_plus=1.2,eta_minus=0.5,max_delta=50, min_delta=10e-6):
-    previous_grad = sharedX(numpy.ones(param.shape.eval()),borrow=True)
-    delta = sharedX(learning_rate * numpy.ones(param.shape.eval()),borrow=True)
-    previous_inc = sharedX(numpy.zeros(param.shape.eval()),borrow=True)
-    zero = T.zeros_like(param)
-    one = T.ones_like(param)
-    change = previous_grad * gparam
-
-    new_delta = T.clip(
-            T.switch(
-                T.gt(change,0.),
-                delta*eta_plus,
-                T.switch(
-                    T.lt(change,0.),
-                    delta*eta_minus,
-                    delta
-                )
-            ),
-            min_delta,
-            max_delta
-    )
-    new_previous_grad = T.switch(
-            T.gt(change,0.),
-            gparam,
-            T.switch(
-                T.lt(change,0.),
-                zero,
-                gparam
-            )
-    )
-    inc = T.switch(
-            T.gt(change,0.),
-            - T.sgn(gparam) * new_delta,
-            T.switch(
-                T.lt(change,0.),
-                zero,
-                - T.sgn(gparam) * new_delta
-            )
-    )
-
-    updates.append((previous_grad,new_previous_grad))
-    updates.append((delta,new_delta))
-    updates.append((previous_inc,inc))
-    return param + inc * mask
-def rprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
-          eta_plus=1.2,eta_minus=0.5,max_delta=50, min_delta=10e-6):
-    previous_grad = sharedX(numpy.ones(param.shape.eval()),borrow=True)
-    delta = sharedX(learning_rate * numpy.ones(param.shape.eval()),borrow=True)
-    previous_inc = sharedX(numpy.zeros(param.shape.eval()),borrow=True)
-    zero = T.zeros_like(param)
-    one = T.ones_like(param)
-    change = previous_grad * gparam
-
-    new_delta = T.clip(
-            T.switch(
-                T.eq(mask * gparam,0.),
-                delta,
-                T.switch(
-                    T.gt(change,0.),
-                    delta*eta_plus,
-                    T.switch(
-                        T.lt(change,0.),
-                        delta*eta_minus,
-                        delta
-                    )
-                )
-            ),
-            min_delta,
-            max_delta
-    )
-    new_previous_grad = T.switch(
-            T.eq(mask * gparam,0.),
-            previous_grad,
-            T.switch(
-                T.gt(change,0.),
-                gparam,
-                T.switch(
-                    T.lt(change,0.),
-                    zero,
-                    gparam
-                )
-            )
-    )
-    inc = T.switch(
-            T.eq(mask * gparam,0.),
-            zero,
-            T.switch(
-                T.gt(change,0.),
-                - T.sgn(gparam) * new_delta,
-                T.switch(
-                    T.lt(change,0.),
-                    zero,
-                    - T.sgn(gparam) * new_delta
-                )
-            )
-    )
-
-    updates.append((previous_grad,new_previous_grad))
-    updates.append((delta,new_delta))
-    updates.append((previous_inc,inc))
-    return param + inc * mask
-
-def irprop(param,learning_rate,gparam,mask,updates,current_cost,previous_cost,
-          eta_plus=1.5,eta_minus=0.25,max_delta=500, min_delta=10e-8):
-    previous_grad = sharedX(numpy.ones(param.shape.eval()),borrow=True)
-    delta = sharedX(learning_rate * numpy.ones(param.shape.eval()),borrow=True)
-    previous_inc = sharedX(numpy.zeros(param.shape.eval()),borrow=True)
-    zero = T.zeros_like(param)
-    one = T.ones_like(param)
-    change = previous_grad * gparam
-
-    new_delta = T.clip(
-            T.switch(
-                T.eq(mask * gparam,0.),
-                delta,
-                T.switch(
-                    T.gt(change,0.),
-                    delta*eta_plus,
-                    T.switch(
-                        T.lt(change,0.),
-                        delta*eta_minus,
-                        delta
-                    )
-                )
-            ),
-            min_delta,
-            max_delta
-    )
-    new_previous_grad = T.switch(
-            T.eq(mask * gparam,0.),
-            previous_grad,
-            T.switch(
-                T.gt(change,0.),
-                gparam,
-                T.switch(
-                    T.lt(change,0.),
-                    zero,
-                    gparam
-                )
-            )
-    )
-    inc = T.switch(
-            T.eq(mask * gparam,0.),
-            zero,
-            T.switch(
-                T.gt(change,0.),
-                - T.sgn(gparam) * new_delta,
-                T.switch(
-                    T.lt(change,0.),
-                    zero,
-#                    - T.sgn(gparam) * new_delta
-                    T.switch( 
-                        T.gt(current_cost, previous_cost),
-                        - T.sgn(gparam) * new_delta,
-                        zero
-                    )
-                )
-            )
-    )
-
-    updates.append((previous_grad,new_previous_grad))
-    updates.append((delta,new_delta))
-    updates.append((previous_inc,inc))
-    return param + inc * mask
-
-class HiddenLayer(object):
-    def __init__(self, rng, input, n_in, n_out, W=None, b=None,
-                 activation=T.tanh,dropout_rate=0,layerName='hidden'):
-        """
-        Typical hidden layer of a MLP: units are fully-connected and have
-        sigmoidal activation function. Weight matrix W is of shape (n_in,n_out)
-        and the bias vector b is of shape (n_out,).
-
-        NOTE : The nonlinearity used here is tanh
-
-        Hidden unit activation is given by: tanh(dot(input,W) + b)
-
-        :type rng: numpy.random.RandomState
-        :param rng: a random number generator used to initialize weights
-
-        :type input: theano.tensor.dmatrix
-        :param input: a symbolic tensor of shape (n_examples, n_in)
-
-        :type n_in: int
-        :param n_in: dimensionality of input
-
-        :type n_out: int
-        :param n_out: number of hidden units
-
-        :type activation: theano.Op or function
-        :param activation: Non linearity to be applied in the hidden
-                           layer
-        """
-        self.input = input
-        self.dropout_rate=dropout_rate
-        self.layerName=layerName
-
-        # `W` is initialized with `W_values` which is uniformely sampled
-        # from sqrt(-6./(n_in+n_hidden)) and sqrt(6./(n_in+n_hidden))
-        # for tanh activation function
-        # the output of uniform if converted using asarray to dtype
-        #        activation function used (among other things).
-        #        For example, results presented in [Xavier10] suggest that you
-        #        should use 4 times larger initial weights for sigmoid
-        #        compared to tanh
-        #        We have no info for other function, so we use the same as
-        #        tanh.
-        if W is None:
-            W_values = numpy.asarray(rng.uniform(
-                    low=-numpy.sqrt(6. / (n_in + n_out)),
-                    high=numpy.sqrt(6. / (n_in + n_out)),
-                    size=(n_in, n_out)), dtype=theano.config.floatX)
-            if activation == theano.tensor.nnet.sigmoid:
-                W_values *= 4
-
-            W = theano.shared(value=W_values, name=layerName + '_W', borrow=True)
-
-        if b is None:
-            b_values = numpy.zeros((n_out,), dtype=theano.config.floatX)
-            b = theano.shared(value=b_values, name=layerName + '_b', borrow=True)
-
-        self.W = W
-        self.b = b
-
-        lin_output = T.dot(input, self.W) * (1 - self.dropout_rate) + self.b
-        self.output = (lin_output if activation is None
-                       else activation(lin_output))
-        # parameters of the model
-        self.params = [self.W, self.b]
-
+import update_rules
+import layers
+import config 
 
 class MLP(object):
     """Multi-Layer Perceptron Class
@@ -287,7 +42,7 @@ class MLP(object):
     class).
     """
 
-    def __init__(self, rng, input, n_in, n_hidden, n_out):
+    def __init__(self, params, rng, input, index, x, y, pretraining_set = None):
         """Initialize the parameters for the multilayer perceptron
 
         :type rng: numpy.random.RandomState
@@ -311,191 +66,217 @@ class MLP(object):
 
         """
 
-        # Since we are dealing with a one hidden layer MLP, this will translate
-        # into a HiddenLayer with a tanh activation function connected to the
-        # LogisticRegression layer; the activation function can be replaced by
-        # sigmoid or any other nonlinear function
         self.hiddenLayers = []
-        chain_n_in = n_in
+        chain_n_in = params.n_in
+        chain_input_shape = None
         chain_in = input
-        for (n_this,drop_this,name_this,activation_this) in n_hidden:
-            l = HiddenLayer(rng=rng, input=chain_in, n_in=chain_n_in, n_out=n_this,
-                    activation=activation_this,dropout_rate=drop_this,layerName=name_this)
-            chain_n_in=n_this
-            chain_in=l.output
-            self.hiddenLayers.append(l)
+        prev_dim = None
+        self.params = params
+        self.rng = rng
 
-        # The logistic regression layer gets as input the hidden units
-        # of the last hidden layer
-        self.logRegressionLayer = LogisticRegression(
-            input=chain_in,
-            n_in=chain_n_in,
-            n_out=n_out)
 
-        # L1 norm ; one regularization option is to enforce L1 norm to
-        # be small
+        layer_number = 0
+        for layer_type,desc in params.n_hidden:
+            if(layer_type == 'flat'):
+                #TODO: Activations aren't read in as objects as of yet
+                n_this,drop_this,name_this,activation_this = desc
+                l = layers.FlatLayer(rng=rng, inputs=chain_in.flatten(ndim=2),
+                                n_in=numpy.prod(chain_n_in), n_out=numpy.prod(n_this),
+                                activation=activation_this,dropout_rate=drop_this,
+                                layer_name=name_this)
+                chain_n_in = n_this
+                l.output_shape = chain_n_in
+                chain_in=l.output
+                self.hiddenLayers.append(l)
+            elif(layer_type == 'conv'):
+                input_shape,filter_shape,pool_size,drop_this,name_this,activation_this,pooling = desc
+                if input_shape is None:
+                    if chain_input_shape is None:
+                        raise Exception("must specify first input shape")
+                    input_shape = chain_input_shape
+                else:
+                    chain_input_shape = input_shape
+                if prev_dim is None:
+                    prev_dim = (input_shape[1],input_shape[2],input_shape[3])
+                l = layers.ConvolutionalLayer(rng=rng,
+                                       inputs=chain_in, 
+                                       input_shape=input_shape, 
+                                       filter_shape=filter_shape,
+                                       pool_size=pool_size,
+                                       activation=activation_this,
+                                       dropout_rate=drop_this,
+                                       layer_name = name_this,
+                                       pooling = pooling)
+                prev_map_number,dim_x,dim_y = prev_dim
+                curr_map_number = filter_shape[0]
+                output_dim_x = (dim_x - filter_shape[2] + 1) / pool_size[0]
+                output_dim_y = (dim_y - filter_shape[3] + 1) / pool_size[1]
+                chain_n_in = (curr_map_number,output_dim_x,output_dim_y)
+                l.output_shape = chain_n_in
+                prev_dim = (curr_map_number,output_dim_x,output_dim_y)
+                chain_in = l.output
+                chain_input_shape = [chain_input_shape[0],
+                        curr_map_number,
+                        output_dim_x,
+                        output_dim_y]
+                self.hiddenLayers.append(l)
+
+            def pretrain(pretraining_set,supervised = False):
+                if(supervised):
+                    pretraining_set_x, pretraining_set_y = pretraining_set
+                    x_pretraining = x
+                    y_pretraining = y
+                    self.make_top_layer(self.params.n_out,chain_in,chain_n_in,rng)
+                else:
+                    pretraining_set_x = pretraining_set
+                    pretraining_set_y = pretraining_set
+                    ptylen = pretraining_set.get_value(borrow=True).shape[1]
+                    x_pretraining = x
+                    y_pretraining = T.matrix('y_pretraining')
+                    self.make_top_layer(ptylen, chain_in, chain_n_in, rng,
+                            'flat', activation_this)
+                ptxlen = pretraining_set_x.get_value(borrow=True).shape[0]
+                n_batches =  ptxlen / self.params.batch_size
+                train_model = self.train_function(index, pretraining_set_x,
+                    pretraining_set_y, x_pretraining, y_pretraining)
+                for p in range(self.params.pretraining_passes):
+                    print "... pretraining layer {0}, pass {1}".format(layer_number,p)
+                    for minibatch_index in xrange(n_batches):
+                        #print "...... minibatch {0} / {1}".format(minibatch_index,n_batches)
+                        minibatch_avg_cost = train_model(minibatch_index,1)
+
+            if pretraining_set is not None:
+                if not isinstance(pretraining_set,tuple):
+                    #unsupervised
+                    pretrain(pretraining_set,False)
+                elif len(pretraining_set) == 2:
+                    #supervised
+                    pretrain(pretraining_set,True)
+                elif len(pretraining_set) == 3:
+                    #both
+                    pretrain(pretraining_set[2],False)
+                    pretrain((pretraining_set[0],pretraining_set[1]),True)
+            layer_number += 1
+        self.make_top_layer(self.params.n_out,chain_in,chain_n_in,rng)
+
+    def make_top_layer(self, n_out, chain_in, chain_n_in, rng, layer_type='log', 
+            activation=None, name_this='temp_top'):
+        """
+        Finalize the construction by making a top layer (either to use in
+        pretraining or to use in the final version)
+        """
+        if layer_type == 'log':
+            self.logRegressionLayer = LogisticRegression(
+                input=chain_in.flatten(ndim=2),
+                n_in=numpy.prod(chain_n_in),
+                n_out=n_out)
+            self.negative_log_likelihood = self.logRegressionLayer.negative_log_likelihood
+            self.p_y_given_x = self.logRegressionLayer.p_y_given_x
+            self.errors = self.logRegressionLayer.errors
+            self.y_pred = self.logRegressionLayer.y_pred
+        elif layer_type == 'flat':
+            self.logRegressionLayer = layers.FlatLayer(rng=rng,
+                inputs=chain_in.flatten(ndim=2),
+                n_in=numpy.prod(chain_n_in), n_out=n_out,
+                activation=activation,dropout_rate=0,
+                layer_name=name_this)
+            self.negative_log_likelihood = self.logRegressionLayer.MSE
+
         self.L1 = sum([abs(hiddenLayer.W).sum()
                     for hiddenLayer in self.hiddenLayers]) \
                 + abs(self.logRegressionLayer.W).sum()
-
-        # square of L2 norm ; one regularization option is to enforce
-        # square of L2 norm to be small
         self.L2_sqr = sum([(hiddenLayer.W ** 2).sum() for hiddenLayer in
                         self.hiddenLayers]) \
                     + (self.logRegressionLayer.W ** 2).sum()
 
-        # negative log likelihood of the MLP is given by the negative
-        # log likelihood of the output of the model, computed in the
-        # logistic regression layer
-        self.negative_log_likelihood = self.logRegressionLayer.negative_log_likelihood
-        # same holds for the function computing the number of errors
-        self.p_y_given_x = self.logRegressionLayer.p_y_given_x
-        self.errors = self.logRegressionLayer.errors
-        self.y_pred = self.logRegressionLayer.y_pred
 
-        # the parameters of the model are the parameters of the two layer it is
-        # made out of
         p = self.logRegressionLayer.params
         for hiddenLayer in self.hiddenLayers:
             p += hiddenLayer.params
-        self.params = p
+        self.opt_params = p
 
+    def eval_function(self,index,eval_set_x,eval_set_y,x,y):
+        return theano.function(inputs=[index],
+            outputs=self.errors(y),
+            givens={
+                x: eval_set_x[index * self.params.batch_size:(index + 1) * self.params.batch_size],
+                y: eval_set_y[index * self.params.batch_size:(index + 1) * self.params.batch_size]})
 
-def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
-             dataset='mnist.pkl.gz', batch_size=20, n_hidden=(500,0),
-             update_rule=sgd,transform=False,pickled=True):
-    """
-    Demonstrate stochastic gradient descent optimization for a multilayer
-    perceptron
+    def train_function(self, index, train_set_x, train_set_y, x, y):
+        self.cost = self.negative_log_likelihood(y) \
+             + self.params.L1_reg * self.L1 \
+             + self.params.L2_reg * self.L2_sqr
+        gparams = []
+        for param in self.opt_params:
+            gparam = T.grad(self.cost, param)
+            gparams.append(gparam)
+        previous_cost = T.lscalar()
+        updates = []
+        theano_rng = MRG_RandomStreams(max(self.rng.randint(2 ** 15), 1))
 
-    This is demonstrated on MNIST.
+        dropout_rates = {}
+        for layer in self.hiddenLayers:
+            dropout_rates[layer.layer_name + '_W'] = layer.dropout_rate
+        for param, gparam in zip(self.opt_params, gparams):
+            if str(param) in dropout_rates.keys():
+                include_prob = 1. - dropout_rates[str(param)]
+            else:
+                include_prob = 1.
+            mask = theano_rng.binomial(p=include_prob,
+                                       size=param.shape,dtype=param.dtype)    
+            try:
+                scipy.misc.imsave('dropoutmask-{0}.jpg'.format(param),mask.eval()
+                        * 256)
+            except:
+                pass
+            new_update = self.params.update_rule(param, self.params.learning_rate, gparam, mask, updates,
+                    self.cost,previous_cost)
+            updates.append((param, new_update))
+        return theano.function(inputs=[index,previous_cost],
+                outputs=self.cost,
+                on_unused_input='warn',
+                updates=updates,
+                givens={
+                    x: train_set_x[index * self.params.batch_size:(index + 1) *
+                        self.params.batch_size],
+                    y: train_set_y[index * self.params.batch_size:(index + 1) *
+                        self.params.batch_size]})
 
-    :type learning_rate: float
-    :param learning_rate: learning rate used (factor for the stochastic
-    gradient
+def test_mlp(dataset, params, pretraining_set=None, x=None, y=None):
+    train_set_x, train_set_y = dataset[0]
+    valid_set_x, valid_set_y = dataset[1]
+    test_set_x, test_set_y = (None,None)
 
-    :type L1_reg: float
-    :param L1_reg: L1-norm's weight when added to the cost (see
-    regularization)
+    n_train_batches = train_set_x.get_value(borrow=True).shape[0] / params.batch_size
+    n_valid_batches = valid_set_x.get_value(borrow=True).shape[0] / params.batch_size
 
-    :type L2_reg: float
-    :param L2_reg: L2-norm's weight when added to the cost (see
-    regularization)
-
-    :type n_epochs: int
-    :param n_epochs: maximal number of epochs to run the optimizer
-
-    :type dataset: string
-    :param dataset: the path of the MNIST dataset file from
-                 http://www.iro.umontreal.ca/~lisa/deep/data/mnist/mnist.pkl.gz
-
-
-   """
-    datasets = data.load_data(dataset, shared = not transform, pickled = pickled)
-
-    train_set_x, train_set_y = datasets[0]
-    valid_set_x, valid_set_y = datasets[1]
-    test_set_x, test_set_y = datasets[2]
-
-    if transform:
-        aggregate_x = numpy.concatenate((train_set_x, valid_set_x), axis=0)
-        aggregate_y = numpy.concatenate((train_set_y, valid_set_y), axis=0)
-        t = Transformer((aggregate_x,aggregate_y),28,28,progress=True)
-        aggregate_train = t.get_data()
-        aggregate_valid = (aggregate_x, aggregate_y)
-        datasets = (data.shared_dataset(aggregate_train),
-                    data.shared_dataset(aggregate_valid),
-                    data.shared_dataset(datasets[2]))
-
-    train_set_x, train_set_y = datasets[0]
-    valid_set_x, valid_set_y = datasets[1]
-    test_set_x, test_set_y = datasets[2]
-
-    # compute number of minibatches for training, validation and testing
-    n_train_batches = train_set_x.get_value(borrow=True).shape[0] / batch_size
-    n_valid_batches = valid_set_x.get_value(borrow=True).shape[0] / batch_size
-    n_test_batches = test_set_x.get_value(borrow=True).shape[0] / batch_size
-
-    ######################
-    # BUILD ACTUAL MODEL #
-    ######################
     print '... building the model'
 
-    # allocate symbolic variables for the data
-    index = T.lscalar()  # index to a [mini]batch
-    x = T.matrix('x')  # the data is presented as rasterized images
-    y = T.ivector('y')  # the labels are presented as 1D vector of
-                        # [int] labels
+    index = T.lscalar()
+    if x is None:
+        x = T.matrix('x')
+    if y is None:
+        y = T.ivector('y')
 
-    rng = numpy.random.RandomState(1234)
+    rng = numpy.random.RandomState(params.random_seed)
 
-    # construct the MLP class
-    classifier = MLP(rng=rng, input=x, n_in=28 * 28,
-                     n_hidden=n_hidden, n_out=10)
+    classifier = MLP(params=params, rng=rng, input=x, index=index, x=x, y=y,
+            pretraining_set=pretraining_set)
 
-    # the cost we minimize during training is the negative log likelihood of
-    # the model plus the regularization terms (L1 and L2); cost is expressed
-    # here symbolically
-    cost = classifier.negative_log_likelihood(y) \
-         + L1_reg * classifier.L1 \
-         + L2_reg * classifier.L2_sqr
+    if len(dataset) > 2:
+        test_set_x, test_set_y = dataset[2]
+        n_test_batches = test_set_x.get_value(borrow=True).shape[0] / params.batch_size
 
-    # compiling a Theano function that computes the mistakes that are made
-    # by the model on a minibatch
-    test_model = theano.function(inputs=[index],
-            outputs=classifier.errors(y),
-            givens={
-                x: test_set_x[index * batch_size:(index + 1) * batch_size],
-                y: test_set_y[index * batch_size:(index + 1) * batch_size]})
-
-    validate_model = theano.function(inputs=[index],
-            outputs=classifier.errors(y),
-            givens={
-                x: valid_set_x[index * batch_size:(index + 1) * batch_size],
-                y: valid_set_y[index * batch_size:(index + 1) * batch_size]})
-
-    # compute the gradient of cost with respect to theta (sorted in params)
-    # the resulting gradients will be stored in a list gparams
-    gparams = []
-    for param in classifier.params:
-        gparam = T.grad(cost, param)
-        gparams.append(gparam)
-
-    # specify how to update the parameters of the model as a list of
-    # (variable, update expression) pairs
-    previous_cost = T.lscalar()
-    updates = []
-    theano_rng = MRG_RandomStreams(max(rng.randint(2 ** 15), 1))
-
-    dropout_rates = {}
-    for layer in classifier.hiddenLayers:
-        dropout_rates[layer.layerName + '_W'] = layer.dropout_rate
-    for param, gparam in zip(classifier.params, gparams):
-        if param in dropout_rates:
-            include_prob = 1 - dropout_rates[param]
+    def make_models(classifier):
+        validate_model = classifier.eval_function(index,valid_set_x,valid_set_y,x,y)
+        train_model = classifier.train_function(index,train_set_x,train_set_y,x,y)
+        if len(dataset) > 2:
+            test_model = classifier.eval_function(index,test_set_x,test_set_y,x,y)
         else:
-            include_prob = 1
-        mask = theano_rng.binomial(p=include_prob,
-                                   size=param.shape,dtype=param.dtype)    
-        new_update = update_rule(param, learning_rate, gparam, mask, updates,
-                cost,previous_cost)
-        updates.append((param, new_update))
+            test_model = None
+        return (train_model, validate_model, test_model)
 
-    # compiling a Theano function `train_model` that returns the cost, but
-    # in the same time updates the parameter of the model based on the rules
-    # defined in `updates`
-    train_model = theano.function(inputs=[index,previous_cost],
-            outputs=cost,
-            on_unused_input='warn',
-            updates=updates,
-            givens={
-                x: train_set_x[index * batch_size:(index + 1) * batch_size],
-                y: train_set_y[index * batch_size:(index + 1) * batch_size]})
-
-    ###############
-    # TRAIN MODEL #
-    ###############
-    print '... training'
+    print '... {0} training'.format(params.training_method)
 
     # early-stopping parameters
     patience = 10000  # look as this many examples regardless
@@ -509,235 +290,153 @@ def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
                                   # on the validation set; in this case we
                                   # check every epoch
 
-    best_params = None
-    best_validation_loss = numpy.inf
-    best_iter = 0
-    test_score = 0.
     start_time = time.clock()
-
-    epoch = 0
-    done_looping = False
-
-    previous_minibatch_avg_cost = 1
-    while (epoch < n_epochs) and (not done_looping):
-        epoch = epoch + 1
-        for minibatch_index in xrange(n_train_batches):
-
-            minibatch_avg_cost = train_model(minibatch_index,previous_minibatch_avg_cost)
-            # iteration number
-            iter = (epoch - 1) * n_train_batches + minibatch_index
-
-            if (iter + 1) % validation_frequency == 0:
-                # compute zero-one loss on validation set
-                validation_losses = [validate_model(i) for i
-                                     in xrange(n_valid_batches)]
-                this_validation_loss = numpy.mean(validation_losses)
-
-                print('epoch %i, minibatch %i/%i, validation error %f %%' %
-                     (epoch, minibatch_index + 1, n_train_batches,
-                      this_validation_loss * 100.))
-
-                # if we got the best validation score until now
-                if this_validation_loss < best_validation_loss:
-                    #improve patience if loss improvement is good enough
-                    if this_validation_loss < best_validation_loss *  \
-                           improvement_threshold:
-                        patience = max(patience, iter * patience_increase)
-
-                    best_validation_loss = this_validation_loss
-                    best_iter = iter
-
-                    # test it on the test set
-                    test_losses = [test_model(i) for i
-                                   in xrange(n_test_batches)]
-                    test_score = numpy.mean(test_losses)
-
-                    print(('     epoch %i, minibatch %i/%i, test error of '
-                           'best model %f %%') %
-                          (epoch, minibatch_index + 1, n_train_batches,
-                           test_score * 100.))
-
-            if patience <= iter:
-                    print('finished patience')
-                    done_looping = True
-                    break
-
-    end_time = time.clock()
-    print(('Optimization complete. Best validation score of %f %% '
-           'obtained at iteration %i, with test performance %f %%') %
-          (best_validation_loss * 100., best_iter + 1, test_score * 100.))
-    print >> sys.stderr, ('The code for file ' +
-                          os.path.split(__file__)[1] +
-                          ' ran for %.2fm' % ((end_time - start_time) / 60.))
-    return classifier
-
-def train_and_select(x,y,training_set, validation_set, learning_rate=0.01,
-                     L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
-                     batch_size=20, n_hidden=(500,0),
-                     update_rule=sgd,n_in=28*28):
-    """
-    Train a classifier and select the version with the best validation
-    error
-    """
-    train_set_x, train_set_y = training_set
-    valid_set_x, valid_set_y = validation_set
-
-    # compute number of minibatches for training, validation and testing
-    n_train_batches = train_set_x.get_value(borrow=True).shape[0] / batch_size
-    n_valid_batches = valid_set_x.get_value(borrow=True).shape[0] / batch_size
-
-    # allocate symbolic variables for the data
-    index = T.lscalar()  # index to a [mini]batch
-
-    rng = numpy.random.RandomState(1234)
-
-    # construct the MLP class
-    classifier = MLP(rng=rng, input=x, n_in=n_in,
-                     n_hidden=n_hidden, n_out=10)
-
-    # the cost we minimize during training is the negative log likelihood of
-    # the model plus the regularization terms (L1 and L2); cost is expressed
-    # here symbolically
-    cost = classifier.negative_log_likelihood(y) \
-         + L1_reg * classifier.L1 \
-         + L2_reg * classifier.L2_sqr
-
-    validate_model = theano.function(inputs=[index],
-            outputs=classifier.errors(y),
-            givens={
-                x: valid_set_x[index * batch_size:(index + 1) * batch_size],
-                y: valid_set_y[index * batch_size:(index + 1) * batch_size]})
-
-    # compute the gradient of cost with respect to theta (sorted in params)
-    # the resulting gradients will be stored in a list gparams
-    gparams = []
-    for param in classifier.params:
-        gparam = T.grad(cost, param)
-        gparams.append(gparam)
-
-    # specify how to update the parameters of the model as a list of
-    # (variable, update expression) pairs
-    previous_cost = T.lscalar()
-    updates = []
-    theano_rng = MRG_RandomStreams(max(rng.randint(2 ** 15), 1))
-
-    dropout_rates = {}
-    for layer in classifier.hiddenLayers:
-        dropout_rates[layer.layerName + '_W'] = layer.dropout_rate
-    for param, gparam in zip(classifier.params, gparams):
-        if param in dropout_rates:
-            include_prob = 1 - dropout_rates[param]
-        else:
-            include_prob = 1
-        mask = theano_rng.binomial(p=include_prob,
-                                   size=param.shape,dtype=param.dtype)    
-        new_update = update_rule(param, learning_rate, gparam, mask, updates,
-                cost,previous_cost)
-        updates.append((param, new_update))
-
-    # compiling a Theano function `train_model` that returns the cost, but
-    # in the same time updates the parameter of the model based on the rules
-    # defined in `updates`
-    train_model = theano.function(inputs=[index,previous_cost],
-            outputs=cost,
-            on_unused_input='ignore',
-            updates=updates,
-            givens={
-                x: train_set_x[index * batch_size:(index + 1) * batch_size],
-                y: train_set_y[index * batch_size:(index + 1) * batch_size]
-            })
-    ###############
-    # TRAIN MODEL #
-    ###############
-
-    # early-stopping parameters
-    patience = 10000  # look as this many examples regardless
-    patience_increase = 20  # wait this much longer when a new best is
-                           # found
-    improvement_threshold = 0.99999  # a relative improvement of this much is
-                                   # considered significant
-    validation_frequency = min(n_train_batches, patience / 2)
-                                  # go through this many
-                                  # minibatche before checking the network
-                                  # on the validation set; in this case we
-                                  # check every epoch
-
-    best_params = None
     best_classifier = None
     best_validation_loss = numpy.inf
     best_iter = 0
     test_score = 0.
-    start_time = time.clock()
-
     epoch = 0
     done_looping = False
-
     previous_minibatch_avg_cost = 1
-    while (epoch < n_epochs) and (not done_looping):
-        epoch = epoch + 1
-        for minibatch_index in xrange(n_train_batches):
+    if params.training_method == 'normal':
+        train_model, validate_model, test_model = make_models(classifier)
+        while (epoch < params.n_epochs) and (not done_looping):
+            epoch += 1
+            for minibatch_index in xrange(n_train_batches):
 
-            minibatch_avg_cost = train_model(minibatch_index,previous_minibatch_avg_cost)
-            # iteration number
-            iter = (epoch - 1) * n_train_batches + minibatch_index
+                minibatch_avg_cost = train_model(minibatch_index,previous_minibatch_avg_cost)
+                iter = (epoch - 1) * n_train_batches + minibatch_index
 
-            if (iter + 1) % validation_frequency == 0:
-                # compute zero-one loss on validation set
-                validation_losses = [validate_model(i) for i
-                                     in xrange(n_valid_batches)]
-                this_validation_loss = numpy.mean(validation_losses)
+                if (iter + 1) % validation_frequency == 0:
+                    validation_losses = [validate_model(i) for i
+                                         in xrange(n_valid_batches)]
+                    this_validation_loss = numpy.mean(validation_losses)
 
-                # if we got the best validation score until now
-                if this_validation_loss < best_validation_loss:
-                    #improve patience if loss improvement is good enough
-                    if this_validation_loss < best_validation_loss *  \
-                           improvement_threshold:
-                        patience = max(patience, iter * patience_increase)
-
-                    best_validation_loss = this_validation_loss
-                    best_iter = iter
-                    best_classifier = classifier
-
-                    print("\repoch %i, minibatch %i/%i, validation error %f %%" %
+                    print('epoch %i, minibatch %i/%i, validation error %f %%' %
                          (epoch, minibatch_index + 1, n_train_batches,
                           this_validation_loss * 100.))
 
-#                    print(('     epoch %i, minibatch %i/%i, test error of '
-#                           'best model %f %%') %
-#                          (epoch, minibatch_index + 1, n_train_batches,
-#                           test_score * 100.))
+                    if this_validation_loss < best_validation_loss:
+                        if this_validation_loss < best_validation_loss *  \
+                               improvement_threshold:
+                            patience = max(patience, iter * patience_increase)
 
-            if patience <= iter:
-                    print('finished patience')
-                    done_looping = True
-                    break
+                        best_validation_loss = this_validation_loss
+                        best_iter = iter
+                        best_classifier = copy.copy(classifier)
 
+                        # test it on the test set
+                        if test_model is not None:
+                            test_losses = [test_model(i) for i
+                                           in xrange(n_test_batches)]
+                            test_score = numpy.mean(test_losses)
+
+                            print(('     epoch %i, minibatch %i/%i, test error of '
+                                   'best model %f %%') %
+                                  (epoch, minibatch_index + 1, n_train_batches,
+                                   test_score * 100.))
+
+                if patience <= iter:
+                        print('finished patience')
+                        done_looping = True
+                        break
+    elif params.training_method == 'greedy':
+        all_layers = classifier.hiddenLayers
+        for l in xrange(len(all_layers)):
+            best_classifier = None
+            best_validation_loss = numpy.inf
+            best_iter = 0
+            test_score = 0.
+            epoch = 0
+            done_looping = False
+            print "training {0} layers\n".format(l + 1)
+            classifier.hiddenLayers = all_layers[:l+1]
+            classifier.make_top_layer(params.n_out,classifier.hiddenLayers[l].output,
+                    classifier.hiddenLayers[l].output_shape,rng)
+            train_model, validate_model, test_model = make_models(classifier)
+            while (epoch < params.n_epochs) and (not done_looping):
+                epoch = epoch + 1
+                for minibatch_index in xrange(n_train_batches):
+
+                    minibatch_avg_cost = train_model(minibatch_index,previous_minibatch_avg_cost)
+                    iter = (epoch - 1) * n_train_batches + minibatch_index
+
+                    if (iter + 1) % validation_frequency == 0:
+                        validation_losses = [validate_model(i) for i
+                                             in xrange(n_valid_batches)]
+                        this_validation_loss = numpy.mean(validation_losses)
+
+                        print('epoch %i, minibatch %i/%i, validation error %f %%' %
+                             (epoch, minibatch_index + 1, n_train_batches,
+                              this_validation_loss * 100.))
+
+                        if this_validation_loss < best_validation_loss:
+                            if this_validation_loss < best_validation_loss *  \
+                                   improvement_threshold:
+                                patience = max(patience, iter * patience_increase)
+
+                            best_validation_loss = this_validation_loss
+                            best_iter = iter
+                            best_classifier = classifier
+
+                            # test it on the test set
+                            if test_model is not None:
+                                test_losses = [test_model(i) for i
+                                               in xrange(n_test_batches)]
+                                test_score = numpy.mean(test_losses)
+
+                                print(('     epoch %i, minibatch %i/%i, test error of '
+                                       'best model %f %%') %
+                                      (epoch, minibatch_index + 1, n_train_batches,
+                                       test_score * 100.))
+
+                    if patience <= iter:
+                            print('finished patience')
+                            done_looping = True
+                            break
+            classifier = best_classifier
     end_time = time.clock()
-    print('Selection : Best validation score of {0} %'.format(
-          best_validation_loss * 100.))
-    return best_classifier
-
+    if test_set_x is not None:
+        print(('Optimization complete. Best validation score of %f %% '
+               'obtained at iteration %i, with test performance %f %%') %
+              (best_validation_loss * 100., best_iter + 1, test_score * 100.))
+        print >> sys.stderr, ('The code for file ' +
+                              os.path.split(__file__)[1] +
+                              ' ran for %.2fm' % ((end_time - start_time) / 60.))
+        return classifier
+    else:
+        print('Selection : Best validation score of {0} %'.format(
+              best_validation_loss * 100.))
+        return best_classifier
 
 if __name__ == '__main__':
-    learning_rate=0.01
-    L1_reg=0.00
-    L2_reg=0.00
-    n_epochs=2000
-#    dataset='/local/mnist.pkl.gz'
-    dataset='mnist-transformed/'
-    pickled=False
-    batch_size=100
-    n_hidden=[
-#	      (3500,0.5,'h0',T.tanh),
-#	      (3000,0.5,'h0',T.tanh),
-	      (2500,0.5,'h0',T.tanh),
-              (2000,0.5,'h1',T.tanh),
-              (1500,0.5,'h2',T.tanh),
-              (1000,0.5,'h2',T.tanh),
-              (500,0.5,'h3',T.tanh)
-             ]
-    for arg in sys.argv[1:]:
-        if arg[0]=='-':
-            exec(arg[1:])
-    mlp=test_mlp(learning_rate, L1_reg, L2_reg, n_epochs,
-        dataset, batch_size, n_hidden, update_rule = sgd, transform = False, pickled = pickled)
+    #turn this on only if you want to do parameter search
+    search_epochs = 40
+    search = False
+
+    params = config.load_parameters(sys.argv[1])
+    dataset = data.load_data(params.dataset,
+                              shared = True,
+                              pickled = params.pickled)
+    pretraining_set = data.make_pretraining_set(dataset,params.pretraining)
+    if not search:
+        mlp=test_mlp(dataset, params, pretraining_set = pretraining_set)
+    else:
+        params.n_epochs = search_epochs
+        for eta_minus in [0.01,0.1,0.5,0.75,0.9]:
+            params.update_rule.eta_minus = eta_minus
+            for eta_plus in [1.001,1.01,1.1,1.2,1.5]:
+                params.update_rule.eta_plus = eta_plus
+                for min_delta in [1e-3,1e-4,1e-5,1e-6,1e-7]:
+                    params.update_rule.min_delta = min_delta
+                    for max_delta in [50]:
+                        print "PARAMS:"
+                        print "ETA-: {0}".format(eta_minus)
+                        print "ETA+: {0}".format(eta_plus)
+                        print "MIN_DELTA: {0}".format(min_delta)
+                        print "MAX_DELTA: {0}".format(max_delta)
+                        params.update_rule.max_delta = max_delta
+                        try:
+                            mlp=test_mlp(dataset, params, pretraining_set = pretraining_set)
+                        except KeyboardInterrupt:
+                            print "skipping manually to next"

@@ -1,14 +1,6 @@
 #!/usr/bin/python
+
 from __future__ import print_function
-
-"""
-Alan Mosca
-Department of Computer Science and Information Systems
-Birkbeck, University of London
-
-All code released under GPLv2.0 licensing.
-"""
-__docformat__ = 'restructedtext en'
 
 import os
 import gc
@@ -20,7 +12,8 @@ import theano
 import theano.tensor as T
 import gzip
 import cPickle
-import matplotlib.pyplot as plt
+import multiprocessing
+#import matplotlib.pyplot as plt
 
 def sharedX(value, name=None, borrow=False, dtype=None):
     """
@@ -68,13 +61,28 @@ def load_data(dataset, shared=True, pickled=True):
     :param dataset: the path to the dataset (here MNIST)
     '''
 
+    #############
+    # LOAD DATA #
+    #############
+
+    # Download the MNIST dataset if it is not present
     data_dir, data_file = os.path.split(dataset)
     if pickled:
         if data_dir == "" and not os.path.isfile(dataset):
+            # Check if dataset is in the data directory.
             new_path = os.path.join(os.path.split(__file__)[0], "..", "data", dataset)
             if os.path.isfile(new_path) or data_file == 'mnist.pkl.gz':
                 dataset = new_path
+
+        if (not os.path.isfile(dataset)) and data_file == 'mnist.pkl.gz':
+            import urllib
+            origin = 'http://www.iro.umontreal.ca/~lisa/deep/data/mnist/mnist.pkl.gz'
+            print('Downloading data from {0}'.format(origin))
+            urllib.urlretrieve(origin, dataset)
+
         print('... loading data')
+
+        # Load the dataset
         f = gzip.open(dataset, 'rb')
         train_set, valid_set, test_set = cPickle.load(f)
         f.close()
@@ -82,9 +90,15 @@ def load_data(dataset, shared=True, pickled=True):
         tr = np.load(dataset + 'train.npz')
         v = np.load(dataset + 'valid.npz')
         te = np.load(dataset + 'test.npz')
-        train_set = (tr['x'],tr['y'])
-        valid_set = (v['x'],v['y'])
-        test_set = (te['x'],te['y'])
+	train_set = (tr['x'],tr['y'])
+	valid_set = (v['x'],v['y'])
+	test_set = (te['x'],te['y'])
+    #train_set, valid_set, test_set format: tuple(input, target)
+    #input is an numpy.ndarray of 2 dimensions (a matrix)
+    #witch row's correspond to an example. target is a
+    #numpy.ndarray of 1 dimensions (vector)) that have the same length as
+    #the number of rows in the input. It should give the target
+    #target to the example with the same index in the input.
 
     if shared:
         test_set_x, test_set_y = shared_dataset(test_set)
@@ -99,17 +113,6 @@ def load_data(dataset, shared=True, pickled=True):
     rval = [(train_set_x, train_set_y), (valid_set_x, valid_set_y),
             (test_set_x, test_set_y)]
     return rval
-
-
-def make_pretraining_set(datasets,mode):
-    pretraining_set = None
-    if mode == 'unsupervised':
-        pretraining_set = datasets[0][0]
-    elif mode == 'supervised':
-        pretraining_set = datasets[0]
-    elif mode == 'both':
-        pretraining_set = (datasets[0][0],datasets[0][1],datasets[0][0])
-    return pretraining_set
 
 
 class Resampler:
@@ -184,35 +187,94 @@ class Transformer:
         self.final_y = []
         self.instance_no = 0
         instances = len(self.original_x)
+	instances = 10
         elastic_sigma = 6.
-        elastic_alpha = 4.
+        elastic_alpha = 5.
         elastic_transforms = 2
         rng = numpy.random.RandomState(42)
-        for i in xrange(0,instances):
-            self.step_no = 0
-            curr_x = self.original_x[i].reshape(self.x,self.y)
-            curr_y = self.original_y[i]
-            for dx in xrange(min_trans_x,max_trans_x,x_step):
-                for dy in xrange(min_trans_y,max_trans_y,y_step):
-                    if dx != 0 or dy != 0:
-                        self.add_instance(
-                                self.translate_instance(curr_x,dx,dy),
-                                curr_y)
-            for angle in xrange(min_angle,max_angle,angle_step):
-                if angle != 0:
-                    self.add_instance(self.rotate_instance(curr_x,angle),curr_y)
-            for j in xrange(1,gaussian_resamples):
-                for sigma in sigmas:
-                    self.add_instance(self.gaussian_noise(curr_x,sigma),curr_y)
-            for scale_x in scalings:
-                for scale_y in scalings:
-                    if scale_x != 1 or scale_y != 1:
-                        self.add_instance(self.scale(curr_x,[scale_x,scale_y]),curr_y)
-            for j in range(0,elastic_transforms):
-                self.add_instance(self.elastic_transform(curr_x,elastic_sigma,elastic_alpha),curr_y)
+	jobs = []
+	q = multiprocessing.Queue()
+	def translate_loop(instances,s,q):
+		r = []
+		for i in xrange(0,instances):
+		    curr_x = s.original_x[i].reshape(s.x,s.y)
+		    curr_y = s.original_y[i]
+		    for dx in xrange(min_trans_x,max_trans_x,x_step):
+			for dy in xrange(min_trans_y,max_trans_y,y_step):
+			    if dx != 0 or dy != 0:
+				r.append((s.translate_instance(curr_x,dx,dy),curr_y))
+		q.put(r)
+		print("finished")
+		return True
+	def rotate_loop(instances,s,q):
+		r = []
+		for i in xrange(0,instances):
+		    curr_x = s.original_x[i].reshape(s.x,s.y)
+		    curr_y = s.original_y[i]
+		    for angle in xrange(min_angle,max_angle,angle_step):
+			if angle != 0:
+			    r.append((s.rotate_instance(curr_x,angle),curr_y))
+		q.put(r)
+		return True
+	def noise_loop(instances,s,q):
+		r = []
+		for i in xrange(0,instances):
+		    curr_x = s.original_x[i].reshape(s.x,s.y)
+		    curr_y = s.original_y[i]
+		    for j in xrange(1,gaussian_resamples):
+			for sigma in sigmas:
+			    r.append((s.gaussian_noise(curr_x,sigma),curr_y))
+		q.put(r)
+		return True
+	def scale_loop(instances,s,q):
+		r = []
+		for i in xrange(0,instances):
+		    s.step_no = 0
+		    curr_x = s.original_x[i].reshape(s.x,s.y)
+		    curr_y = s.original_y[i]
+		    for scale_x in scalings:
+			for scale_y in scalings:
+			    if scale_x != 1 or scale_y != 1:
+				r.append((s.scale(curr_x,[scale_x,scale_y]),curr_y))
+		q.put(r)
+		return True
+	def elastic_loop(instances,s,q):
+		r = []
+		for i in xrange(0,instances):
+		    curr_x = s.original_x[i].reshape(s.x,s.y)
+		    curr_y = s.original_y[i]
+		    for j in range(0,elastic_transforms):
+			r.append((s.elastic_transform(curr_x,elastic_sigma,elastic_alpha),curr_y))
+		q.put(r)
+		return True
 
-            self.instance_no += 1
-            gc.collect()
+	p = multiprocessing.Process(target=translate_loop,args=(instances,self,q))
+	jobs.append(p)
+	p = multiprocessing.Process(target=rotate_loop,args=(instances,self,q))
+	jobs.append(p)
+	p = multiprocessing.Process(target=noise_loop,args=(instances,self,q))
+	jobs.append(p)
+	p = multiprocessing.Process(target=scale_loop,args=(instances,self,q))
+	jobs.append(p)
+	p = multiprocessing.Process(target=elastic_loop,args=(instances,self,q))
+	jobs.append(p)
+	for j in jobs:
+		j.start()
+	for new_tuple in q.get():
+		self.add_instance(new_tuple)
+	while(not q.empty):
+	    for new_tuple in q.get():
+		self.add_instance(new_tuple)
+	for j in jobs:
+		print("joining")
+		j.join()
+		q.put('STOP')
+		print("joined")
+	for a in iter(q.get,'STOP'):
+	    for new_tuple in a:
+		self.add_instance(new_tuple)
+	print("finished joining")
+	print(len(self.final_x))
 
     def elastic_transform(self,xval,sigma,alpha):
             field_x = numpy.random.rand(28,28) * 2. - 1.
@@ -238,29 +300,18 @@ class Transformer:
     def scale(self,xval,scaling):
         return ni.zoom(xval,scaling)
 
-    def add_instance(self,xval,yval,plot=False):
-        if plot:
-            plt.gray()
-            plt.imshow(xval)
-            plt.show()
+    def add_instance(self,tuple,plot=False):
+	xval,yval = tuple
+#        if plot:
+#            plt.gray()
+#            plt.imshow(xval)
+#            plt.show()
         self.final_x.append(xval.flatten())
         self.final_y.append(yval)
-        self.step_no += 1
-        if self.progress:
-            print("instance {0}, step {1}".format(
-                    self.instance_no, self.step_no), end="\r")
+#        self.step_no += 1
+#        if self.progress:
+#            print("instance {0}, step {1}".format(
+#                    self.instance_no, self.step_no), end="\r")
 
     def get_data(self):
         return (np.array(self.final_x),np.array(self.final_y))
-
-    def transform_dataset(dataset):
-        train,valid,test = dataset
-        train_x, train_y = train
-        valid_x, valid_y = valid
-        test_x, test_y = test
-        aggregate_x = np.concatenate((train_x, valid_x), axis=0)
-        aggregate_y = np.concatenate((train_y, valid_y), axis=0)
-        t = Transformer((aggregate_x,aggregate_y),28,28)
-        aggregate_train = t.get_data()
-        aggregate_valid = (aggregate_x, aggregate_y)
-        return (aggregate_train,aggregate_valid,test)
