@@ -7,10 +7,8 @@ import numpy.random
 import theano
 import theano.tensor as T
 
-import mlp
-import config
-from logistic_sgd import LogisticRegression
-from data import *
+from toupee import config
+from toupee.data import *
 
 if __name__ == '__main__':
     params = config.load_parameters(sys.argv[1])
