@@ -18,7 +18,7 @@ if __name__ == '__main__':
     x = T.matrix('x')
     y = T.ivector('y')
     method = params.method
-    method.prepare(dataset)
+    method.prepare(params,dataset)
     train_set = method.resampler.get_train()
     valid_set = method.resampler.get_valid()
     members = []
