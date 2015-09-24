@@ -24,7 +24,6 @@ import theano
 import theano.tensor as T
 from theano.ifelse import ifelse
 from theano.sandbox.rng_mrg import MRG_RandomStreams                                                                                                                    
-from toupee.logistic_sgd import LogisticRegression
 from toupee import data
 from toupee.data import Resampler, Transformer, sharedX
 from toupee import update_rules
