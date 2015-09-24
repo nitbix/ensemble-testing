@@ -28,7 +28,7 @@ if __name__ == '__main__':
         members.append(new_member)
         gc.collect()
     ensemble = params.method.create_aggregator(params,members,x,y,train_set,valid_set)
-    test_set_x, test_set_y = resampler.get_test()
+    test_set_x, test_set_y = method.resampler.get_test()
     test_model = theano.function(inputs=[],
         on_unused_input='warn',
         outputs=ensemble.errors,
