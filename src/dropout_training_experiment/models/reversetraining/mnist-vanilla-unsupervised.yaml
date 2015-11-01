@@ -8,16 +8,17 @@ n_epochs: 50
 pretraining: unsupervised 
 pretraining_passes: 5
 training_method: normal
-learning_rate: !LinearDecayLearningRate { start: 0.01, stop: 0.001, steps: 1000 }
+learning_rate: !LinearDecayLearningRate { start: 0.05, stop: 0.02, steps: 50 }
+#learning_rate: !LinearDecayLearningRate { start: 0.1, stop: 0.001, steps: 1000 }
 update_rule: !SGD { momentum: 0.9 }
 batch_size: 100
 cost_function: !CrossEntropy { }
 n_hidden: [
-    ['flat',[2500,0.,'h0',!ReLU { rate: 0.01 } ]],
-    ['flat',[2000,0.,'h1',!ReLU { rate: 0.01 } ]],
-    ['flat',[1500,0.,'h2',!ReLU { rate: 0.01 } ]],
-    ['flat',[1000,0.,'h2',!ReLU { rate: 0.01 } ]],
-    ['flat',[ 500,0.,'h3',!ReLU { rate: 0.01 } ]]
+    ['flat',[2500,0.,'h0',!ReLU { } ]],
+    ['flat',[2000,0.,'h1',!ReLU { } ]],
+    ['flat',[1500,0.,'h2',!ReLU { } ]],
+    ['flat',[1000,0.,'h2',!ReLU { } ]],
+    ['flat',[ 500,0.,'h3',!ReLU { } ]]
           ]
 n_in: 784
 n_out: 10
