@@ -1,18 +1,18 @@
 ---
-save_images: False
+save_images: false
+detailed_stats: false
 dataset: /local/cifar10/
 pickled: false
 L1_reg: 0.0
 L2_reg: 0.0
-n_epochs: 50
+n_epochs: 300
 transform: false
-learning_rate: 0.001
 pretraining: !!null
 pretraining_passes: 2
 training_method: normal
-update_rule: !RProp {eta_minus: 0.5, eta_plus: 1.2, max_delta: 50, min_delta: 0.001} 
-#update_rule: !SGD { momentum: 0.9 }
-learning_rate: !LinearDecayLearningRate { start: 0.01, stop: 0.0001, steps: 1000 }
+#update_rule: !RProp {eta_minus: 0.5, eta_plus: 1.2, max_delta: 50, min_delta: 0.001} 
+update_rule: !SGD { momentum: 0.5 }
+learning_rate: !LinearDecayLearningRate { start: 0.01, stop: 0.001, steps: 100 }
 batch_size: 100
 cost_function: !CrossEntropy { }
 n_hidden: [
@@ -23,29 +23,29 @@ n_hidden: [
             #pool_size: [x,y]
             ['conv', [
                 [3,32,32],
-                [32,2,2],
+                [16,2,2],
                 [2,2],
-                0.0,
+                0.,
                 'c1',
-                !ReLU { },
+                !TanH { },
                 'max'
             ]],
             ['conv', [
                 !!null ,
-                [32,4,4],
+                [16,4,4],
                 [2,2],
-                0.0,
+                0.,
                 'c2',
-                !ReLU { },
+                !TanH { },
                 'max'
             ]],
             ['conv', [
                 !!null ,
-                [32,4,4],
+                [16,5,5],
                 [2,2],
-                0.0,
+                0.,
                 'c3',
-                !ReLU { },
+                !TanH { },
                 'max'
             ]],
             ['flat', [100, 0.5, 'f3', !ReLU { } ]]
