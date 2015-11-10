@@ -13,14 +13,14 @@ n_epochs: 2000
 pretraining: !!null 
 pretraining_passes: 5
 training_method: normal
-learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-6, multiplier: 0.996 }
+learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-2, stop: 1.0e-6, multiplier: 0.99 }
 update_rule: !SGD { momentum: 0.5 }
 batch_size: 100
 cost_function: !NegLogLikelihood { }
 n_hidden: [
             ['conv', [
                 [1,29,29],
-                [32,2,2],
+                [32,5,5],
                 [2,2],
                 0.0,
                 'c1',
@@ -30,7 +30,7 @@ n_hidden: [
             ]],
             ['conv', [
                 !!null ,
-                [32,4,4],
+                [64,5,5],
                 [2,2],
                 0.0,
                 'c2',
@@ -38,18 +38,8 @@ n_hidden: [
                 'max',
                 !GlorotWeightInit { }
             ]],
-            ['conv', [
-                !!null ,
-                [32,4,4],
-                [2,2],
-                0.0,
-                'c3',
-                !ReLU { },
-                'max',
-                !GlorotWeightInit { }
-            ]],
-            ['flat', [100, 0.5, 'f1', !ReLU { }, !GlorotWeightInit { }]],
-            ['flat', [100, 0.5, 'f2', !ReLU { }, !GlorotWeightInit { }]]
+            ['flat', [1024, 0., 'f1', !ReLU { }, !GlorotWeightInit { }]],
+            ['flat', [1024, 0., 'f2', !ReLU { }, !GlorotWeightInit { }]]
           ]
 n_in: 841
 n_out: 10
