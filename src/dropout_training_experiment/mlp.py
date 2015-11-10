@@ -40,6 +40,7 @@ if __name__ == '__main__':
 
     params = config.load_parameters(sys.argv[1])
     dataset = data.load_data(params.dataset,
+                              resize_to = params.resize_data_to,
                               shared = True,
                               pickled = params.pickled)
     pretraining_set = data.make_pretraining_set(dataset,params.pretraining)
