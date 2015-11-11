@@ -3,8 +3,8 @@ save_images: false
 detailed_stats: false
 dataset: /local/mnist.pkl.gz
 pickled: true
-online_transform: { alpha: 5.0 , beta: 7.5 , gamma: 20.0 ,
-                    sigma: 5 , pflip: 0. , translation: 0 ,
+online_transform: { alpha: 20.0 , beta: 7.5 , gamma: 20.0 ,
+                    sigma: 5 , pflip: 0. , translation: 1 ,
                     bilinear: false }
 resize_data_to: 29
 L1_reg: 0.0
@@ -38,8 +38,8 @@ n_hidden: [
                 'max',
                 !GlorotWeightInit { }
             ]],
-            ['flat', [1024, 0., 'f1', !ReLU { }, !GlorotWeightInit { }]],
-            ['flat', [1024, 0., 'f2', !ReLU { }, !GlorotWeightInit { }]]
+            ['flat', [1024, 0.5, 'f1', !ReLU { }, !GlorotWeightInit { }]],
+            ['flat', [1024, 0.5, 'f2', !ReLU { }, !GlorotWeightInit { }]]
           ]
 n_in: 841
 n_out: 10
