@@ -1,0 +1,447 @@
+... loading data
+training samples: 60000
+... building the model
+... normal training
+.... generating models
+..... eval
+..... train
+..... test
+.... started
+..transforming dataset
+epoch 1, minibatch 600/600, validation error 8.216669 %
+     epoch 1, minibatch 600/600, test error of best model 7.770002 %
+..transforming dataset
+epoch 2, minibatch 600/600, validation error 4.950006 %
+     epoch 2, minibatch 600/600, test error of best model 4.500001 %
+..transforming dataset
+epoch 3, minibatch 600/600, validation error 2.920010 %
+     epoch 3, minibatch 600/600, test error of best model 2.719999 %
+..transforming dataset
+epoch 4, minibatch 600/600, validation error 3.375011 %
+..transforming dataset
+epoch 5, minibatch 600/600, validation error 2.541673 %
+     epoch 5, minibatch 600/600, test error of best model 2.319999 %
+..transforming dataset
+epoch 6, minibatch 600/600, validation error 2.078341 %
+     epoch 6, minibatch 600/600, test error of best model 1.989999 %
+..transforming dataset
+epoch 7, minibatch 600/600, validation error 3.071678 %
+..transforming dataset
+epoch 8, minibatch 600/600, validation error 1.448338 %
+     epoch 8, minibatch 600/600, test error of best model 1.509999 %
+..transforming dataset
+epoch 9, minibatch 600/600, validation error 1.420005 %
+     epoch 9, minibatch 600/600, test error of best model 1.399999 %
+..transforming dataset
+epoch 10, minibatch 600/600, validation error 1.288337 %
+     epoch 10, minibatch 600/600, test error of best model 1.399999 %
+..transforming dataset
+epoch 11, minibatch 600/600, validation error 1.286671 %
+     epoch 11, minibatch 600/600, test error of best model 1.359999 %
+..transforming dataset
+epoch 12, minibatch 600/600, validation error 1.401671 %
+..transforming dataset
+epoch 13, minibatch 600/600, validation error 1.125003 %
+     epoch 13, minibatch 600/600, test error of best model 1.360000 %
+..transforming dataset
+epoch 14, minibatch 600/600, validation error 0.918335 %
+     epoch 14, minibatch 600/600, test error of best model 1.010000 %
+..transforming dataset
+epoch 15, minibatch 600/600, validation error 0.821668 %
+     epoch 15, minibatch 600/600, test error of best model 0.960000 %
+..transforming dataset
+epoch 16, minibatch 600/600, validation error 1.040003 %
+..transforming dataset
+epoch 17, minibatch 600/600, validation error 1.050002 %
+..transforming dataset
+epoch 18, minibatch 600/600, validation error 0.891668 %
+..transforming dataset
+epoch 19, minibatch 600/600, validation error 1.163337 %
+..transforming dataset
+epoch 20, minibatch 600/600, validation error 0.656666 %
+     epoch 20, minibatch 600/600, test error of best model 0.860000 %
+..transforming dataset
+epoch 21, minibatch 600/600, validation error 0.790001 %
+..transforming dataset
+epoch 22, minibatch 600/600, validation error 0.611666 %
+     epoch 22, minibatch 600/600, test error of best model 0.930000 %
+..transforming dataset
+epoch 23, minibatch 600/600, validation error 0.616666 %
+..transforming dataset
+epoch 24, minibatch 600/600, validation error 0.706667 %
+..transforming dataset
+epoch 25, minibatch 600/600, validation error 0.571666 %
+     epoch 25, minibatch 600/600, test error of best model 0.880000 %
+..transforming dataset
+epoch 26, minibatch 600/600, validation error 0.498333 %
+     epoch 26, minibatch 600/600, test error of best model 0.960000 %
+..transforming dataset
+epoch 27, minibatch 600/600, validation error 0.540000 %
+..transforming dataset
+epoch 28, minibatch 600/600, validation error 0.436666 %
+     epoch 28, minibatch 600/600, test error of best model 0.850000 %
+..transforming dataset
+epoch 29, minibatch 600/600, validation error 1.120003 %
+..transforming dataset
+epoch 30, minibatch 600/600, validation error 0.685000 %
+..transforming dataset
+epoch 31, minibatch 600/600, validation error 0.428333 %
+     epoch 31, minibatch 600/600, test error of best model 0.790000 %
+..transforming dataset
+epoch 32, minibatch 600/600, validation error 0.458333 %
+..transforming dataset
+epoch 33, minibatch 600/600, validation error 0.561666 %
+..transforming dataset
+epoch 34, minibatch 600/600, validation error 1.295003 %
+..transforming dataset
+epoch 35, minibatch 600/600, validation error 0.351666 %
+     epoch 35, minibatch 600/600, test error of best model 0.780000 %
+..transforming dataset
+epoch 36, minibatch 600/600, validation error 0.445000 %
+..transforming dataset
+epoch 37, minibatch 600/600, validation error 0.603333 %
+..transforming dataset
+epoch 38, minibatch 600/600, validation error 0.405000 %
+..transforming dataset
+epoch 39, minibatch 600/600, validation error 0.410000 %
+..transforming dataset
+epoch 40, minibatch 600/600, validation error 0.273333 %
+     epoch 40, minibatch 600/600, test error of best model 0.750000 %
+..transforming dataset
+epoch 41, minibatch 600/600, validation error 0.360000 %
+..transforming dataset
+epoch 42, minibatch 600/600, validation error 0.550000 %
+..transforming dataset
+epoch 43, minibatch 600/600, validation error 0.385000 %
+..transforming dataset
+epoch 44, minibatch 600/600, validation error 0.270000 %
+     epoch 44, minibatch 600/600, test error of best model 0.650000 %
+..transforming dataset
+epoch 45, minibatch 600/600, validation error 0.460000 %
+..transforming dataset
+epoch 46, minibatch 600/600, validation error 0.278333 %
+..transforming dataset
+epoch 47, minibatch 600/600, validation error 0.370000 %
+..transforming dataset
+epoch 48, minibatch 600/600, validation error 0.370000 %
+..transforming dataset
+epoch 49, minibatch 600/600, validation error 0.168333 %
+     epoch 49, minibatch 600/600, test error of best model 0.640000 %
+..transforming dataset
+epoch 50, minibatch 600/600, validation error 0.276666 %
+..transforming dataset
+epoch 51, minibatch 600/600, validation error 0.268333 %
+..transforming dataset
+epoch 52, minibatch 600/600, validation error 0.465000 %
+..transforming dataset
+epoch 53, minibatch 600/600, validation error 0.436666 %
+..transforming dataset
+epoch 54, minibatch 600/600, validation error 0.283333 %
+..transforming dataset
+epoch 55, minibatch 600/600, validation error 0.295000 %
+..transforming dataset
+epoch 56, minibatch 600/600, validation error 0.150000 %
+     epoch 56, minibatch 600/600, test error of best model 0.640000 %
+..transforming dataset
+epoch 57, minibatch 600/600, validation error 0.208333 %
+..transforming dataset
+epoch 58, minibatch 600/600, validation error 0.280000 %
+..transforming dataset
+epoch 59, minibatch 600/600, validation error 0.241666 %
+..transforming dataset
+epoch 60, minibatch 600/600, validation error 0.240000 %
+..transforming dataset
+epoch 61, minibatch 600/600, validation error 0.278333 %
+..transforming dataset
+epoch 62, minibatch 600/600, validation error 0.316666 %
+..transforming dataset
+epoch 63, minibatch 600/600, validation error 0.213333 %
+..transforming dataset
+epoch 64, minibatch 600/600, validation error 0.146667 %
+     epoch 64, minibatch 600/600, test error of best model 0.590000 %
+..transforming dataset
+epoch 65, minibatch 600/600, validation error 0.361666 %
+..transforming dataset
+epoch 66, minibatch 600/600, validation error 0.350000 %
+..transforming dataset
+epoch 67, minibatch 600/600, validation error 0.116667 %
+     epoch 67, minibatch 600/600, test error of best model 0.630000 %
+..transforming dataset
+epoch 68, minibatch 600/600, validation error 0.221667 %
+..transforming dataset
+epoch 69, minibatch 600/600, validation error 0.156667 %
+..transforming dataset
+epoch 70, minibatch 600/600, validation error 0.231667 %
+..transforming dataset
+epoch 71, minibatch 600/600, validation error 0.236667 %
+..transforming dataset
+epoch 72, minibatch 600/600, validation error 0.165000 %
+..transforming dataset
+epoch 73, minibatch 600/600, validation error 0.135000 %
+..transforming dataset
+epoch 74, minibatch 600/600, validation error 0.226666 %
+..transforming dataset
+epoch 75, minibatch 600/600, validation error 0.201667 %
+..transforming dataset
+epoch 76, minibatch 600/600, validation error 0.368333 %
+..transforming dataset
+epoch 77, minibatch 600/600, validation error 0.173333 %
+..transforming dataset
+epoch 78, minibatch 600/600, validation error 0.131667 %
+..transforming dataset
+epoch 79, minibatch 600/600, validation error 0.103333 %
+     epoch 79, minibatch 600/600, test error of best model 0.620000 %
+..transforming dataset
+epoch 80, minibatch 600/600, validation error 0.138333 %
+..transforming dataset
+epoch 81, minibatch 600/600, validation error 0.106667 %
+..transforming dataset
+epoch 82, minibatch 600/600, validation error 0.163333 %
+..transforming dataset
+epoch 83, minibatch 600/600, validation error 0.146667 %
+..transforming dataset
+epoch 84, minibatch 600/600, validation error 0.198333 %
+..transforming dataset
+epoch 85, minibatch 600/600, validation error 0.383333 %
+..transforming dataset
+epoch 86, minibatch 600/600, validation error 0.093333 %
+     epoch 86, minibatch 600/600, test error of best model 0.620000 %
+..transforming dataset
+epoch 87, minibatch 600/600, validation error 0.193333 %
+..transforming dataset
+epoch 88, minibatch 600/600, validation error 0.115000 %
+..transforming dataset
+epoch 89, minibatch 600/600, validation error 0.106667 %
+..transforming dataset
+epoch 90, minibatch 600/600, validation error 0.235000 %
+..transforming dataset
+epoch 91, minibatch 600/600, validation error 0.125000 %
+..transforming dataset
+epoch 92, minibatch 600/600, validation error 0.113333 %
+..transforming dataset
+epoch 93, minibatch 600/600, validation error 0.116667 %
+..transforming dataset
+epoch 94, minibatch 600/600, validation error 0.193333 %
+..transforming dataset
+epoch 95, minibatch 600/600, validation error 0.080000 %
+     epoch 95, minibatch 600/600, test error of best model 0.640000 %
+..transforming dataset
+epoch 96, minibatch 600/600, validation error 0.190000 %
+..transforming dataset
+epoch 97, minibatch 600/600, validation error 0.136667 %
+..transforming dataset
+epoch 98, minibatch 600/600, validation error 0.235000 %
+..transforming dataset
+epoch 99, minibatch 600/600, validation error 0.070000 %
+     epoch 99, minibatch 600/600, test error of best model 0.700000 %
+..transforming dataset
+epoch 100, minibatch 600/600, validation error 0.066667 %
+     epoch 100, minibatch 600/600, test error of best model 0.550000 %
+..transforming dataset
+epoch 101, minibatch 600/600, validation error 0.113333 %
+..transforming dataset
+epoch 102, minibatch 600/600, validation error 0.121667 %
+..transforming dataset
+epoch 103, minibatch 600/600, validation error 0.110000 %
+..transforming dataset
+epoch 104, minibatch 600/600, validation error 0.110000 %
+..transforming dataset
+epoch 105, minibatch 600/600, validation error 0.215000 %
+..transforming dataset
+epoch 106, minibatch 600/600, validation error 0.206667 %
+..transforming dataset
+epoch 107, minibatch 600/600, validation error 0.080000 %
+..transforming dataset
+epoch 108, minibatch 600/600, validation error 0.110000 %
+..transforming dataset
+epoch 109, minibatch 600/600, validation error 0.158333 %
+..transforming dataset
+epoch 110, minibatch 600/600, validation error 0.215000 %
+..transforming dataset
+epoch 111, minibatch 600/600, validation error 0.076667 %
+..transforming dataset
+epoch 112, minibatch 600/600, validation error 0.118333 %
+..transforming dataset
+epoch 113, minibatch 600/600, validation error 0.165000 %
+..transforming dataset
+epoch 114, minibatch 600/600, validation error 0.185000 %
+..transforming dataset
+epoch 115, minibatch 600/600, validation error 0.130000 %
+..transforming dataset
+epoch 116, minibatch 600/600, validation error 0.066667 %
+..transforming dataset
+epoch 117, minibatch 600/600, validation error 0.080000 %
+..transforming dataset
+epoch 118, minibatch 600/600, validation error 0.161667 %
+..transforming dataset
+epoch 119, minibatch 600/600, validation error 0.078333 %
+..transforming dataset
+epoch 120, minibatch 600/600, validation error 0.151667 %
+..transforming dataset
+epoch 121, minibatch 600/600, validation error 0.070000 %
+..transforming dataset
+epoch 122, minibatch 600/600, validation error 0.211667 %
+..transforming dataset
+epoch 123, minibatch 600/600, validation error 0.065000 %
+     epoch 123, minibatch 600/600, test error of best model 0.660000 %
+..transforming dataset
+epoch 124, minibatch 600/600, validation error 0.083333 %
+..transforming dataset
+epoch 125, minibatch 600/600, validation error 0.176667 %
+..transforming dataset
+epoch 126, minibatch 600/600, validation error 0.096667 %
+..transforming dataset
+epoch 127, minibatch 600/600, validation error 0.091667 %
+..transforming dataset
+epoch 128, minibatch 600/600, validation error 0.036667 %
+     epoch 128, minibatch 600/600, test error of best model 0.490000 %
+..transforming dataset
+epoch 129, minibatch 600/600, validation error 0.095000 %
+..transforming dataset
+epoch 130, minibatch 600/600, validation error 0.081667 %
+..transforming dataset
+epoch 131, minibatch 600/600, validation error 0.080000 %
+..transforming dataset
+epoch 132, minibatch 600/600, validation error 0.035000 %
+     epoch 132, minibatch 600/600, test error of best model 0.510000 %
+..transforming dataset
+epoch 133, minibatch 600/600, validation error 0.121667 %
+..transforming dataset
+epoch 134, minibatch 600/600, validation error 0.085000 %
+..transforming dataset
+epoch 135, minibatch 600/600, validation error 0.058333 %
+..transforming dataset
+epoch 136, minibatch 600/600, validation error 0.093333 %
+..transforming dataset
+epoch 137, minibatch 600/600, validation error 0.100000 %
+..transforming dataset
+epoch 138, minibatch 600/600, validation error 0.041667 %
+..transforming dataset
+epoch 139, minibatch 600/600, validation error 0.073333 %
+..transforming dataset
+epoch 140, minibatch 600/600, validation error 0.163333 %
+..transforming dataset
+epoch 141, minibatch 600/600, validation error 0.051667 %
+..transforming dataset
+epoch 142, minibatch 600/600, validation error 0.045000 %
+..transforming dataset
+epoch 143, minibatch 600/600, validation error 0.056667 %
+..transforming dataset
+epoch 144, minibatch 600/600, validation error 0.043333 %
+..transforming dataset
+epoch 145, minibatch 600/600, validation error 0.200000 %
+..transforming dataset
+epoch 146, minibatch 600/600, validation error 0.040000 %
+..transforming dataset
+epoch 147, minibatch 600/600, validation error 0.095000 %
+..transforming dataset
+epoch 148, minibatch 600/600, validation error 0.043333 %
+..transforming dataset
+epoch 149, minibatch 600/600, validation error 0.203333 %
+..transforming dataset
+epoch 150, minibatch 600/600, validation error 0.251666 %
+..transforming dataset
+epoch 151, minibatch 600/600, validation error 0.063333 %
+..transforming dataset
+epoch 152, minibatch 600/600, validation error 0.075000 %
+..transforming dataset
+epoch 153, minibatch 600/600, validation error 0.053333 %
+..transforming dataset
+epoch 154, minibatch 600/600, validation error 0.066667 %
+..transforming dataset
+epoch 155, minibatch 600/600, validation error 0.038333 %
+..transforming dataset
+epoch 156, minibatch 600/600, validation error 0.045000 %
+..transforming dataset
+epoch 157, minibatch 600/600, validation error 0.055000 %
+..transforming dataset
+epoch 158, minibatch 600/600, validation error 0.031667 %
+     epoch 158, minibatch 600/600, test error of best model 0.530000 %
+..transforming dataset
+epoch 159, minibatch 600/600, validation error 0.076667 %
+..transforming dataset
+epoch 160, minibatch 600/600, validation error 0.098333 %
+..transforming dataset
+epoch 161, minibatch 600/600, validation error 0.086667 %
+..transforming dataset
+epoch 162, minibatch 600/600, validation error 0.128333 %
+..transforming dataset
+epoch 163, minibatch 600/600, validation error 0.071667 %
+..transforming dataset
+epoch 164, minibatch 600/600, validation error 0.115000 %
+..transforming dataset
+epoch 165, minibatch 600/600, validation error 0.045000 %
+..transforming dataset
+epoch 166, minibatch 600/600, validation error 0.020000 %
+     epoch 166, minibatch 600/600, test error of best model 0.470000 %
+..transforming dataset
+epoch 167, minibatch 600/600, validation error 0.031667 %
+..transforming dataset
+epoch 168, minibatch 600/600, validation error 0.048333 %
+..transforming dataset
+epoch 169, minibatch 600/600, validation error 0.100000 %
+..transforming dataset
+epoch 170, minibatch 600/600, validation error 0.056667 %
+..transforming dataset
+epoch 171, minibatch 600/600, validation error 0.078333 %
+..transforming dataset
+epoch 172, minibatch 600/600, validation error 0.026667 %
+..transforming dataset
+epoch 173, minibatch 600/600, validation error 0.038333 %
+..transforming dataset
+epoch 174, minibatch 600/600, validation error 0.083333 %
+..transforming dataset
+epoch 175, minibatch 600/600, validation error 0.023333 %
+..transforming dataset
+epoch 176, minibatch 600/600, validation error 0.040000 %
+..transforming dataset
+epoch 177, minibatch 600/600, validation error 0.023333 %
+..transforming dataset
+epoch 178, minibatch 600/600, validation error 0.076667 %
+..transforming dataset
+epoch 179, minibatch 600/600, validation error 0.030000 %
+..transforming dataset
+epoch 180, minibatch 600/600, validation error 0.020000 %
+..transforming dataset
+epoch 181, minibatch 600/600, validation error 0.096667 %
+..transforming dataset
+epoch 182, minibatch 600/600, validation error 0.033333 %
+..transforming dataset
+epoch 183, minibatch 600/600, validation error 0.028333 %
+..transforming dataset
+epoch 184, minibatch 600/600, validation error 0.055000 %
+..transforming dataset
+epoch 185, minibatch 600/600, validation error 0.020000 %
+..transforming dataset
+epoch 186, minibatch 600/600, validation error 0.053333 %
+..transforming dataset
+epoch 187, minibatch 600/600, validation error 0.025000 %
+..transforming dataset
+epoch 188, minibatch 600/600, validation error 0.263333 %
+..transforming dataset
+epoch 189, minibatch 600/600, validation error 0.016667 %
+     epoch 189, minibatch 600/600, test error of best model 0.570000 %
+..transforming dataset
+epoch 190, minibatch 600/600, validation error 0.013333 %
+     epoch 190, minibatch 600/600, test error of best model 0.530000 %
+..transforming dataset
+epoch 191, minibatch 600/600, validation error 0.111667 %
+..transforming dataset
+epoch 192, minibatch 600/600, validation error 0.043333 %
+..transforming dataset
+epoch 193, minibatch 600/600, validation error 0.100000 %
+..transforming dataset
+epoch 194, minibatch 600/600, validation error 0.133333 %
+..transforming dataset
+epoch 195, minibatch 600/600, validation error 0.066667 %
+..transforming dataset
+epoch 196, minibatch 600/600, validation error 0.031667 %
+..transforming dataset
+epoch 197, minibatch 600/600, validation error 0.038333 %
+..transforming dataset
+epoch 198, minibatch 600/600, validation error 0.028333 %
+..transforming dataset
+epoch 199, minibatch 600/600, validation error 0.051667 %
+..transforming dataset
+epoch 200, minibatch 600/600, validation error 0.023333 %
+Optimization complete. Best validation score of 0.013333 % obtained at iteration 114000, epoch 200, with test performance 0.530000 %
