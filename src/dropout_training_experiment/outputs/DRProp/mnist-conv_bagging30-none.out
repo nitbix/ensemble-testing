@@ -1,0 +1,18 @@
+... loading data
+training member 0
+training samples: 70000
+... building the model
+... normal training
+.... generating models
+..... eval
+..... train
+.... started
+..transforming dataset
+epoch 1, minibatch 700/700, validation error 20.297156 %
+..transforming dataset
+epoch 2, minibatch 700/700, validation error 5.967146 %
+..transforming dataset
+epoch 3, minibatch 700/700, validation error 9.282863 %
+..transforming dataset
+epoch 4, minibatch 700/700, validation error 5.221434 %
+..transforming dataset
