@@ -1,7 +1,7 @@
 ---
 save_images: false
 detailed_stats: false
-dataset: /local/cifar10/
+dataset: /local/cifar10-augmented/
 pickled: false
 L1_reg: 0.0
 L2_reg: 0.0
@@ -11,7 +11,7 @@ pretraining_passes: 2
 training_method: normal
 #update_rule: !RProp {eta_minus: 0.5, eta_plus: 1.2, max_delta: 50, min_delta: 0.001} 
 update_rule: !SGD { momentum: 0.3 }
-learning_rate: !MultiplicativeDecayLearningRate { start: 0.1, stop: 1.0e-6, multiplier: 0.9 }
+learning_rate: !MultiplicativeDecayLearningRate { start: 0.1, stop: 1.0e-4, multiplier: 0.9 }
 batch_size: 100
 cost_function: !CrossEntropy { }
 n_hidden: [
@@ -33,7 +33,7 @@ n_hidden: [
             ]],
             ['conv', [
                 !!null ,
-                [200,4,4],
+                [256,4,4],
                 [2,2],
                 0.,
                 'c2',
@@ -43,7 +43,7 @@ n_hidden: [
             ]],
             ['conv', [
                 !!null ,
-                [200,5,5],
+                [512,5,5],
                 [2,2],
                 0.,
                 'c3',
@@ -51,8 +51,8 @@ n_hidden: [
                 'max',
                 !GlorotWeightInit { }
             ]],
-            ['flat', [1024, 0.5, 'f1', !ReLU { }, !GlorotWeightInit { } ]],
-            ['flat', [1024, 0.5, 'f2', !ReLU { }, !GlorotWeightInit { } ]]
+            ['flat', [2048, 0.5, 'f1', !ReLU { }, !GlorotWeightInit { } ]],
+            ['flat', [2048, 0.5, 'f2', !ReLU { }, !GlorotWeightInit { } ]]
           ]
 n_in: 3072
 n_out: 10
