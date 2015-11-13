@@ -19,6 +19,7 @@ import time
 import copy
 import numpy
 import scipy
+import dill
 
 import theano
 import theano.tensor as T
@@ -46,6 +47,8 @@ if __name__ == '__main__':
     pretraining_set = data.make_pretraining_set(dataset,params.pretraining)
     if not search:
         mlp = test_mlp(dataset, params, pretraining_set = pretraining_set)
+        if len(sys.argv) > 2:
+            dill.dump(mlp,open(sys.argv[2],"wb"))
     else:
         params.n_epochs = search_epochs
         for eta_minus in [0.01,0.1,0.5,0.75,0.9]:
