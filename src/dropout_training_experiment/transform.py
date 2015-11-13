@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import data
+from toupee import data
 import sys
 import cPickle
 import gzip
