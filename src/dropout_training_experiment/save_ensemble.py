@@ -14,6 +14,7 @@ from toupee.data import *
 if __name__ == '__main__':
     params = config.load_parameters(sys.argv[1])
     dataset = load_data(params.dataset,
+                              resize_to = params.resize_data_to,
                               shared = False,
                               pickled = params.pickled)
     x = T.matrix('x')
