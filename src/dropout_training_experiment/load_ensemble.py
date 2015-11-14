@@ -10,20 +10,29 @@ import dill
 
 from toupee import config
 from toupee.data import *
+from toupee.mlp import test_mlp
 
 if __name__ == '__main__':
     params = config.load_parameters(sys.argv[1])
+    #force to not train the members
+    params.n_epochs = 0
+    params.pretraining = None
     dataset = load_data(params.dataset,
+                              resize_to = params.resize_data_to,
                               shared = False,
                               pickled = params.pickled)
-    members = dill.load(open(sys.argv[2]))
-    x = members[0].x
-    y = members[0].y
+    x = T.matrix('x')
+    y = T.ivector('y')
     index = T.lscalar('index')
     method = params.method
     method.prepare(params,dataset)
     train_set = method.resampler.get_train()
     valid_set = method.resampler.get_valid()
+    test_set = method.resampler.get_test()
+    shared_dataset = [train_set,valid_set,test_set]
+    continuations = dill.load(open(sys.argv[2]))
+    members = [test_mlp(shared_dataset, params, continuation = c, x=x, y=y,
+        index=index) for c in continuations]
     ensemble = params.method.create_aggregator(params,members,x,y,train_set,valid_set)
     test_set_x, test_set_y = method.resampler.get_test()
     test_model = theano.function(inputs=[index],
