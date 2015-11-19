@@ -15,7 +15,7 @@ pretraining_passes: 2
 training_method: normal
 learning_rate: !MultiplicativeDecayLearningRate { start: 0.1, stop: 1.0e-6, multiplier: 0.99 }
 update_rule: !SGD { momentum: 0.5 }
-batch_size: 100
+batch_size: 128
 cost_function: !NegLogLikelihood { }
 n_hidden: [
             ['conv', [
