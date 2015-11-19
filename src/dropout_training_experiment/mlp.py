@@ -43,6 +43,7 @@ if __name__ == '__main__':
     dataset = data.load_data(params.dataset,
                               resize_to = params.resize_data_to,
                               shared = True,
+                              subtract_mean = params.subtract_mean,
                               pickled = params.pickled)
     pretraining_set = data.make_pretraining_set(dataset,params.pretraining)
     if not search:
