@@ -32,4 +32,5 @@ for d in errors.keys():
             print "    {0}:".format(m)
             data = numpy.asarray(errors[d][p][m])
             print "      mean: {0}".format(data.mean())
+            print "      min : {0}".format(min(data))
             print "      std : {0}".format(numpy.std(data))
