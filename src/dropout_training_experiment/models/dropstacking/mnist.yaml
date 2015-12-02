@@ -46,6 +46,6 @@ n_in: 841
 n_out: 10
 
 #Ensemble params
-resample_size: 60000
+resample_size: 50000
 method: !Bagging {}
 ensemble_size: 10
