@@ -45,6 +45,5 @@ n_in: 841
 n_out: 10
 
 #Saving to mongodb
-results_db: amosca02
-results_table: reverse_pretraining
-
+#results_db: amosca02
+#results_table: reverse_pretraining
