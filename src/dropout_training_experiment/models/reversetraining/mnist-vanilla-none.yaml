@@ -1,0 +1,29 @@
+---
+save_images: false
+detailed_stats: true
+dataset: /local/mnist.pkl.gz
+pickled: true
+L1_reg: 0.0
+L2_reg: 0.0
+n_epochs: 30
+pretraining: !!null 
+pretraining_passes: 5
+training_method: normal
+learning_rate: !LinearDecayLearningRate { start: 0.01, stop: 0.002, steps: 50 }
+#update_rule: !DRProp {eta_minus: 0.1, eta_plus: 1.5, max_delta: 50,
+#                      start_min_delta: 1.0e-4, stop_min_delta: 1.0e-6,
+#                      steps_min_delta: 5, momentum: 0., momentum_decay: 0.5}
+#update_rule: !ARProp {eta_minus: 0.1, eta_plus: 1.2, max_delta: 50, min_delta: 5.0e-4}
+#update_rule: !RProp { eta_minus: 0.1, eta_plus: 1.2, max_delta: 50, min_delta: 5.0e-6 }
+update_rule: !SGD { momentum: 0.9 }
+batch_size: 100
+cost_function: !CrossEntropy { }
+n_hidden: [
+    ['flat',[2500,0.5,'h0',!TanH { } ]],
+    ['flat',[2000,0.5,'h1',!TanH { } ]],
+    ['flat',[1500,0.5,'h2',!TanH { } ]],
+    ['flat',[1000,0.5,'h3',!TanH { } ]],
+    ['flat',[ 500,0.5,'h4',!TanH { } ]]
+          ]
+n_in: 784
+n_out: 10

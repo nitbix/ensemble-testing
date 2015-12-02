@@ -1,23 +1,26 @@
 ---
-save_images: False
+save_images: false
+detailed_stats: true
 dataset: /local/mnist.pkl.gz
 pickled: true
 L1_reg: 0.0
 L2_reg: 0.0
-n_epochs: 50
+n_epochs: 100
 pretraining: reverse
-pretraining_passes: 5
+pretraining_passes: 1
 training_method: normal
-learning_rate: !LinearDecayLearningRate { start: 0.01, stop: 0.001, steps: 1000 }
+pretrain_learning_rate: !FixedLearningRate { rate: 0.00001 }
+learning_rate: !LinearDecayLearningRate { start: 0.01, stop: 0.002, steps: 50 }
+#learning_rate: !LinearDecayLearningRate { start: 0.1, stop: 0.001, steps: 1000 }
 update_rule: !SGD { momentum: 0.9 }
 batch_size: 100
 cost_function: !CrossEntropy { }
 n_hidden: [
-    ['flat',[2500,0.,'h0',!ReLU { rate: 0.01 } ]],
-    ['flat',[2000,0.,'h1',!ReLU { rate: 0.01 } ]],
-    ['flat',[1500,0.,'h2',!ReLU { rate: 0.01 } ]],
-    ['flat',[1000,0.,'h2',!ReLU { rate: 0.01 } ]],
-    ['flat',[ 500,0.,'h3',!ReLU { rate: 0.01 } ]]
+    ['flat',[2500,0.,'h0',!TanH { } ]],
+    ['flat',[2000,0.,'h1',!TanH { } ]],
+    ['flat',[1500,0.,'h2',!TanH { } ]],
+    ['flat',[1000,0.,'h3',!TanH { } ]],
+    ['flat',[ 500,0.,'h4',!TanH { } ]]
           ]
 n_in: 784
 n_out: 10
