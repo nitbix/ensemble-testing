@@ -1,0 +1,29 @@
+---
+save_images: false
+detailed_stats: false
+dataset: /local/mnist.pkl.gz
+pickled: true
+random_seed: 42
+online_transform: { alpha: 20.0 , beta: 7.5 , gamma: 20.0 ,
+                    sigma: 5 , pflip: 0. , translation: 1 ,
+                    bilinear: false }
+resize_data_to: 29
+L1_reg: 0.0
+L2_reg: 0.0
+n_epochs: 600
+pretraining: !!null 
+pretraining_passes: 5
+training_method: normal
+batch_size: 256
+cost_function: !NegLogLikelihood { }
+learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-7, multiplier: 0.9}
+update_rule: !RMSProp { }
+n_hidden: [
+    ['flat',[2500,0.5,'h0',!ReLU { },!UniformWeightInit { min_w: -0.05 , max_w: 0.05 } ]],
+    ['flat',[2000,0.5,'h1',!ReLU { },!UniformWeightInit { min_w: -0.05 , max_w: 0.05 } ]],
+    ['flat',[1500,0.5,'h2',!ReLU { },!UniformWeightInit { min_w: -0.05 , max_w: 0.05 } ]],
+    ['flat',[1000,0.5,'h3',!ReLU { },!UniformWeightInit { min_w: -0.05 , max_w: 0.05 } ]],
+    ['flat',[ 500,0.5,'h4',!ReLU { },!UniformWeightInit { min_w: -0.05 , max_w: 0.05 } ]]
+          ]
+n_in: 841
+n_out: 10
