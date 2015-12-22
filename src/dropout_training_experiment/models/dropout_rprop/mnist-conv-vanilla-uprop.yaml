@@ -13,7 +13,9 @@ training_method: normal
 batch_size: 256
 cost_function: !NegLogLikelihood { }
 learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-7, multiplier: 0.9}
-update_rule: !RMSProp { }
+#learning_rate: !MultiplicativeDecayLearningRate { start: 0.1, stop: 1.0e-5, multiplier: 0.99 }
+#update_rule: !RMSProp { }
+update_rule: !UProp { eta_plus: 1.1, eta_minus: 0.9 }
 n_hidden: [
             ['conv', [
                 [1,28,28],
