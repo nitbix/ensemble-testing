@@ -1,0 +1,263 @@
+... loading data
+training samples: 50000
+... normal training
+.... generating models
+.... started
+epoch 1, minibatch 195/195:
+  train err: 3.185096 %
+  valid err: 2.754407 %
+  test  err: 3.054888 %
+  current best
+t: 9.772948
+epoch 2, minibatch 195/195:
+  train err: 1.284054 %
+  valid err: 1.442308 %
+  test  err: 1.432292 %
+  current best
+t: 9.837539
+epoch 3, minibatch 195/195:
+  train err: 0.548878 %
+  valid err: 0.931490 %
+  test  err: 0.901442 %
+  current best
+t: 9.70556
+epoch 4, minibatch 195/195:
+  train err: 0.420673 %
+  valid err: 0.961538 %
+  test  err: 0.891426 %
+t: 9.938388
+epoch 5, minibatch 195/195:
+  train err: 0.222356 %
+  valid err: 0.861378 %
+  test  err: 0.731170 %
+  current best
+t: 9.852205
+epoch 6, minibatch 195/195:
+  train err: 0.220353 %
+  valid err: 0.891426 %
+  test  err: 0.771234 %
+t: 9.608367
+epoch 7, minibatch 195/195:
+  train err: 0.084135 %
+  valid err: 0.761218 %
+  test  err: 0.671074 %
+  current best
+t: 9.712438
+epoch 8, minibatch 195/195:
+  train err: 0.200321 %
+  valid err: 0.901442 %
+  test  err: 0.751202 %
+t: 9.499981
+epoch 9, minibatch 195/195:
+  train err: 0.058093 %
+  valid err: 0.831330 %
+  test  err: 0.691106 %
+t: 9.828765
+epoch 10, minibatch 195/195:
+  train err: 0.018029 %
+  valid err: 0.831330 %
+  test  err: 0.721154 %
+t: 9.512155
+epoch 11, minibatch 195/195:
+  train err: 0.040064 %
+  valid err: 0.811298 %
+  test  err: 0.681090 %
+t: 9.706321
+epoch 12, minibatch 195/195:
+  train err: 0.014022 %
+  valid err: 0.771234 %
+  test  err: 0.681090 %
+t: 9.516212
+epoch 13, minibatch 195/195:
+  train err: 0.002003 %
+  valid err: 0.771234 %
+  test  err: 0.691106 %
+t: 9.755598
+epoch 14, minibatch 195/195:
+  train err: 0.006010 %
+  valid err: 0.751202 %
+  test  err: 0.701122 %
+  current best
+t: 9.844524
+epoch 15, minibatch 195/195:
+  train err: 0.004006 %
+  valid err: 0.811298 %
+  test  err: 0.651042 %
+t: 9.671972
+epoch 16, minibatch 195/195:
+  train err: 0.002003 %
+  valid err: 0.751202 %
+  test  err: 0.620994 %
+t: 9.499432
+epoch 17, minibatch 195/195:
+  train err: 0.002003 %
+  valid err: 0.781250 %
+  test  err: 0.651042 %
+t: 9.576467
+epoch 18, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.731170 %
+  test  err: 0.651042 %
+  current best
+t: 9.959367
+epoch 19, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.731170 %
+  test  err: 0.631010 %
+t: 9.596058
+epoch 20, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.731170 %
+  test  err: 0.620994 %
+t: 9.489856
+epoch 21, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.731170 %
+  test  err: 0.631010 %
+t: 9.633121
+epoch 22, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.731170 %
+  test  err: 0.631010 %
+t: 9.572025
+epoch 23, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.731170 %
+  test  err: 0.641026 %
+t: 9.718955
+epoch 24, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.731170 %
+  test  err: 0.641026 %
+t: 9.487576
+epoch 25, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.731170 %
+  test  err: 0.641026 %
+t: 9.593439
+epoch 26, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.731170 %
+  test  err: 0.651042 %
+t: 9.542146
+epoch 27, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.731170 %
+  test  err: 0.651042 %
+t: 9.485722
+epoch 28, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.731170 %
+  test  err: 0.651042 %
+t: 9.570804
+epoch 29, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.731170 %
+  test  err: 0.651042 %
+t: 9.498442
+epoch 30, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.741186 %
+  test  err: 0.651042 %
+t: 9.605032
+epoch 31, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.741186 %
+  test  err: 0.651042 %
+t: 9.491775
+epoch 32, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.741186 %
+  test  err: 0.651042 %
+t: 9.636162
+epoch 33, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.741186 %
+  test  err: 0.651042 %
+t: 9.707362
+epoch 34, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.741186 %
+  test  err: 0.651042 %
+t: 9.503977
+epoch 35, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.741186 %
+  test  err: 0.651042 %
+t: 9.635697
+epoch 36, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.741186 %
+  test  err: 0.651042 %
+t: 9.493085
+epoch 37, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.741186 %
+  test  err: 0.651042 %
+t: 9.602526
+epoch 38, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.741186 %
+  test  err: 0.651042 %
+t: 9.567329
+epoch 39, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.741186 %
+  test  err: 0.651042 %
+t: 9.487473
+epoch 40, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.741186 %
+  test  err: 0.651042 %
+t: 9.577411
+epoch 41, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.741186 %
+  test  err: 0.651042 %
+t: 9.80489
+epoch 42, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.741186 %
+  test  err: 0.651042 %
+t: 9.485189
+epoch 43, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.741186 %
+  test  err: 0.651042 %
+t: 9.690617
+epoch 44, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.741186 %
+  test  err: 0.651042 %
+t: 9.656444
+epoch 45, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.741186 %
+  test  err: 0.651042 %
+t: 9.714215
+epoch 46, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.741186 %
+  test  err: 0.651042 %
+t: 9.770036
+epoch 47, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.741186 %
+  test  err: 0.651042 %
+t: 9.609319
+epoch 48, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.741186 %
+  test  err: 0.651042 %
+t: 9.754858
+epoch 49, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.741186 %
+  test  err: 0.651042 %
+t: 9.724708
+epoch 50, minibatch 195/195:
+  train err: 0.000000 %
+  valid err: 0.741186 %
+  test  err: 0.651042 %
+t: 9.488609
+Optimization complete. Best valid score of 0.731170 % obtained at iteration 3510, epoch 18, with test performance 0.651042 %
