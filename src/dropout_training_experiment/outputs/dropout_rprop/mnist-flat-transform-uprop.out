@@ -1,0 +1,3032 @@
+... loading data
+..transforming dataset
+training samples: 60000
+... normal training
+.... generating models
+.... started
+epoch 1, minibatch 234/234:
+  train err: 4.934562 %
+  valid err: 23.746328 %
+  test  err: 22.716346 %
+  current best
+t: 19.263075
+epoch 2, minibatch 234/234:
+  train err: 3.240184 %
+  valid err: 16.282719 %
+  test  err: 16.165866 %
+  current best
+t: 18.908177
+epoch 3, minibatch 234/234:
+  train err: 2.373798 %
+  valid err: 7.598825 %
+  test  err: 7.171474 %
+  current best
+t: 18.77625
+epoch 4, minibatch 234/234:
+  train err: 2.625868 %
+  valid err: 10.358240 %
+  test  err: 10.236378 %
+t: 19.411993
+epoch 5, minibatch 234/234:
+  train err: 2.111712 %
+  valid err: 10.633680 %
+  test  err: 11.588541 %
+t: 18.361356
+epoch 6, minibatch 234/234:
+  train err: 1.921408 %
+  valid err: 3.205128 %
+  test  err: 3.195112 %
+  current best
+t: 19.167144
+epoch 7, minibatch 234/234:
+  train err: 2.029915 %
+  valid err: 5.503806 %
+  test  err: 5.448718 %
+t: 19.268576
+epoch 8, minibatch 234/234:
+  train err: 1.502404 %
+  valid err: 3.624132 %
+  test  err: 4.076523 %
+t: 19.095341
+epoch 9, minibatch 234/234:
+  train err: 1.866319 %
+  valid err: 8.046208 %
+  test  err: 8.393429 %
+t: 18.797324
+epoch 10, minibatch 234/234:
+  train err: 0.999933 %
+  valid err: 2.680956 %
+  test  err: 3.195112 %
+  current best
+t: 18.999419
+epoch 11, minibatch 234/234:
+  train err: 1.312099 %
+  valid err: 3.437166 %
+  test  err: 3.876202 %
+t: 18.269311
+epoch 12, minibatch 234/234:
+  train err: 1.383881 %
+  valid err: 4.861111 %
+  test  err: 5.999599 %
+t: 18.222454
+epoch 13, minibatch 234/234:
+  train err: 1.091747 %
+  valid err: 2.001536 %
+  test  err: 2.373798 %
+  current best
+t: 18.853807
+epoch 14, minibatch 234/234:
+  train err: 2.171808 %
+  valid err: 3.959669 %
+  test  err: 4.136619 %
+t: 19.25624
+epoch 15, minibatch 234/234:
+  train err: 1.287059 %
+  valid err: 3.782719 %
+  test  err: 4.156651 %
+t: 18.596174
+epoch 16, minibatch 234/234:
+  train err: 1.418937 %
+  valid err: 2.837874 %
+  test  err: 3.625801 %
+t: 18.214881
+epoch 17, minibatch 234/234:
+  train err: 1.751135 %
+  valid err: 3.505609 %
+  test  err: 4.016426 %
+t: 18.388943
+epoch 18, minibatch 234/234:
+  train err: 1.901376 %
+  valid err: 3.330329 %
+  test  err: 3.365385 %
+t: 18.356383
+epoch 19, minibatch 234/234:
+  train err: 1.433961 %
+  valid err: 3.879540 %
+  test  err: 4.086538 %
+t: 18.311222
+epoch 20, minibatch 234/234:
+  train err: 1.145166 %
+  valid err: 1.786191 %
+  test  err: 2.193510 %
+  current best
+t: 19.016017
+epoch 21, minibatch 234/234:
+  train err: 1.330462 %
+  valid err: 2.539062 %
+  test  err: 3.094952 %
+t: 18.638028
+epoch 22, minibatch 234/234:
+  train err: 1.205262 %
+  valid err: 2.448918 %
+  test  err: 2.654247 %
+t: 18.471182
+epoch 23, minibatch 234/234:
+  train err: 1.238649 %
+  valid err: 1.183560 %
+  test  err: 1.622596 %
+  current best
+t: 18.72313
+epoch 24, minibatch 234/234:
+  train err: 1.864650 %
+  valid err: 1.407252 %
+  test  err: 1.933093 %
+t: 18.339112
+epoch 25, minibatch 234/234:
+  train err: 1.345486 %
+  valid err: 1.140158 %
+  test  err: 1.512420 %
+  current best
+t: 18.874196
+epoch 26, minibatch 234/234:
+  train err: 1.061699 %
+  valid err: 1.405582 %
+  test  err: 1.862981 %
+t: 19.053
+epoch 27, minibatch 234/234:
+  train err: 1.146835 %
+  valid err: 1.572516 %
+  test  err: 2.123397 %
+t: 18.432159
+epoch 28, minibatch 234/234:
+  train err: 2.405515 %
+  valid err: 2.093349 %
+  test  err: 2.694311 %
+t: 18.545652
+epoch 29, minibatch 234/234:
+  train err: 1.063368 %
+  valid err: 1.368857 %
+  test  err: 1.953125 %
+t: 18.533949
+epoch 30, minibatch 234/234:
+  train err: 1.479033 %
+  valid err: 1.829594 %
+  test  err: 2.323718 %
+t: 18.684702
+epoch 31, minibatch 234/234:
+  train err: 1.078392 %
+  valid err: 0.762887 %
+  test  err: 1.181891 %
+  current best
+t: 18.832141
+epoch 32, minibatch 234/234:
+  train err: 1.923077 %
+  valid err: 1.510751 %
+  test  err: 2.203526 %
+t: 18.636588
+epoch 33, minibatch 234/234:
+  train err: 1.756143 %
+  valid err: 0.884749 %
+  test  err: 1.342147 %
+t: 18.447632
+epoch 34, minibatch 234/234:
+  train err: 1.216947 %
+  valid err: 0.839677 %
+  test  err: 1.191907 %
+t: 19.353096
+epoch 35, minibatch 234/234:
+  train err: 2.570780 %
+  valid err: 1.013288 %
+  test  err: 1.522436 %
+t: 19.004722
+epoch 36, minibatch 234/234:
+  train err: 2.455596 %
+  valid err: 1.026643 %
+  test  err: 1.512420 %
+t: 18.816433
+epoch 37, minibatch 234/234:
+  train err: 1.966480 %
+  valid err: 0.903112 %
+  test  err: 1.442308 %
+t: 18.654
+epoch 38, minibatch 234/234:
+  train err: 3.180088 %
+  valid err: 2.170139 %
+  test  err: 2.714343 %
+t: 18.915807
+epoch 39, minibatch 234/234:
+  train err: 1.293737 %
+  valid err: 0.966546 %
+  test  err: 1.662660 %
+t: 18.897924
+epoch 40, minibatch 234/234:
+  train err: 1.241987 %
+  valid err: 0.686098 %
+  test  err: 1.171875 %
+  current best
+t: 19.228728
+epoch 41, minibatch 234/234:
+  train err: 1.580863 %
+  valid err: 0.968216 %
+  test  err: 1.432292 %
+t: 18.933996
+epoch 42, minibatch 234/234:
+  train err: 2.437233 %
+  valid err: 0.886418 %
+  test  err: 1.241987 %
+t: 18.579772
+epoch 43, minibatch 234/234:
+  train err: 2.313702 %
+  valid err: 0.729501 %
+  test  err: 1.051683 %
+t: 18.836539
+epoch 44, minibatch 234/234:
+  train err: 2.649239 %
+  valid err: 0.943176 %
+  test  err: 1.342147 %
+t: 18.835981
+epoch 45, minibatch 234/234:
+  train err: 2.904647 %
+  valid err: 0.831330 %
+  test  err: 1.332131 %
+t: 18.661124
+epoch 46, minibatch 234/234:
+  train err: 3.382078 %
+  valid err: 1.357171 %
+  test  err: 1.652644 %
+t: 18.809616
+epoch 47, minibatch 234/234:
+  train err: 1.999866 %
+  valid err: 0.934829 %
+  test  err: 1.342147 %
+t: 18.924725
+epoch 48, minibatch 234/234:
+  train err: 3.196782 %
+  valid err: 0.951522 %
+  test  err: 1.252003 %
+t: 18.923157
+epoch 49, minibatch 234/234:
+  train err: 2.619191 %
+  valid err: 1.126803 %
+  test  err: 1.352163 %
+t: 18.848899
+epoch 50, minibatch 234/234:
+  train err: 4.580662 %
+  valid err: 1.008280 %
+  test  err: 1.262019 %
+t: 18.738529
+epoch 51, minibatch 234/234:
+  train err: 3.677551 %
+  valid err: 0.797943 %
+  test  err: 1.191907 %
+t: 18.94332
+epoch 52, minibatch 234/234:
+  train err: 5.265091 %
+  valid err: 1.599225 %
+  test  err: 1.852965 %
+t: 18.757599
+epoch 53, minibatch 234/234:
+  train err: 1.916400 %
+  valid err: 0.744525 %
+  test  err: 1.101763 %
+t: 19.209337
+epoch 54, minibatch 234/234:
+  train err: 5.932826 %
+  valid err: 0.946514 %
+  test  err: 1.552484 %
+t: 19.184229
+epoch 55, minibatch 234/234:
+  train err: 3.427150 %
+  valid err: 1.312099 %
+  test  err: 1.602564 %
+t: 18.889276
+epoch 56, minibatch 234/234:
+  train err: 3.518964 %
+  valid err: 0.631010 %
+  test  err: 0.971554 %
+  current best
+t: 19.394122
+epoch 57, minibatch 234/234:
+  train err: 3.014824 %
+  valid err: 0.741186 %
+  test  err: 1.171875 %
+t: 19.040983
+epoch 58, minibatch 234/234:
+  train err: 5.500467 %
+  valid err: 0.617655 %
+  test  err: 1.061699 %
+  current best
+t: 19.227643
+epoch 59, minibatch 234/234:
+  train err: 2.462273 %
+  valid err: 0.629340 %
+  test  err: 0.961538 %
+t: 18.736732
+epoch 60, minibatch 234/234:
+  train err: 16.070713 %
+  valid err: 0.714476 %
+  test  err: 1.091747 %
+t: 19.151595
+epoch 61, minibatch 234/234:
+  train err: 4.236779 %
+  valid err: 0.764557 %
+  test  err: 1.091747 %
+t: 19.007592
+epoch 62, minibatch 234/234:
+  train err: 3.482238 %
+  valid err: 0.570913 %
+  test  err: 0.921474 %
+  current best
+t: 19.222174
+epoch 63, minibatch 234/234:
+  train err: 6.864316 %
+  valid err: 0.619324 %
+  test  err: 1.011619 %
+t: 18.804861
+epoch 64, minibatch 234/234:
+  train err: 7.533721 %
+  valid err: 0.697783 %
+  test  err: 1.061699 %
+t: 19.114494
+epoch 65, minibatch 234/234:
+  train err: 5.179955 %
+  valid err: 0.572583 %
+  test  err: 0.991587 %
+t: 19.061437
+epoch 66, minibatch 234/234:
+  train err: 10.184629 %
+  valid err: 0.707799 %
+  test  err: 1.081731 %
+t: 19.920498
+epoch 67, minibatch 234/234:
+  train err: 4.475494 %
+  valid err: 0.604300 %
+  test  err: 0.961538 %
+t: 19.001137
+epoch 68, minibatch 234/234:
+  train err: 12.822182 %
+  valid err: 0.622663 %
+  test  err: 0.971554 %
+t: 19.357812
+epoch 69, minibatch 234/234:
+  train err: 2.505676 %
+  valid err: 0.654380 %
+  test  err: 0.971554 %
+t: 19.492152
+epoch 70, minibatch 234/234:
+  train err: 3.821114 %
+  valid err: 0.619324 %
+  test  err: 0.971554 %
+t: 18.830803
+epoch 71, minibatch 234/234:
+  train err: 7.625534 %
+  valid err: 0.607639 %
+  test  err: 0.971554 %
+t: 19.211893
+epoch 72, minibatch 234/234:
+  train err: 3.143363 %
+  valid err: 0.622663 %
+  test  err: 1.001603 %
+t: 19.335826
+epoch 73, minibatch 234/234:
+  train err: 5.104835 %
+  valid err: 0.609308 %
+  test  err: 0.981571 %
+t: 18.900945
+epoch 74, minibatch 234/234:
+  train err: 3.872863 %
+  valid err: 0.632679 %
+  test  err: 0.981571 %
+t: 19.446061
+epoch 75, minibatch 234/234:
+  train err: 3.445513 %
+  valid err: 0.626002 %
+  test  err: 0.991587 %
+t: 18.617792
+epoch 76, minibatch 234/234:
+  train err: 3.472222 %
+  valid err: 0.634348 %
+  test  err: 0.981571 %
+t: 19.019401
+epoch 77, minibatch 234/234:
+  train err: 3.709268 %
+  valid err: 0.620994 %
+  test  err: 1.001603 %
+t: 19.395756
+epoch 78, minibatch 234/234:
+  train err: 10.268096 %
+  valid err: 0.617655 %
+  test  err: 1.021635 %
+t: 19.476708
+epoch 79, minibatch 234/234:
+  train err: 9.273171 %
+  valid err: 0.595954 %
+  test  err: 1.031651 %
+t: 19.19941
+epoch 80, minibatch 234/234:
+  train err: 5.096488 %
+  valid err: 0.627671 %
+  test  err: 1.011619 %
+t: 19.379673
+epoch 81, minibatch 234/234:
+  train err: 8.213141 %
+  valid err: 0.620994 %
+  test  err: 1.011619 %
+t: 19.191962
+epoch 82, minibatch 234/234:
+  train err: 7.947716 %
+  valid err: 0.585938 %
+  test  err: 0.991587 %
+t: 19.496342
+epoch 83, minibatch 234/234:
+  train err: 2.799479 %
+  valid err: 0.580929 %
+  test  err: 0.991587 %
+t: 18.992964
+epoch 84, minibatch 234/234:
+  train err: 5.737513 %
+  valid err: 0.589276 %
+  test  err: 1.011619 %
+t: 19.27406
+epoch 85, minibatch 234/234:
+  train err: 5.373598 %
+  valid err: 0.592615 %
+  test  err: 1.011619 %
+t: 19.764253
+epoch 86, minibatch 234/234:
+  train err: 6.118122 %
+  valid err: 0.592615 %
+  test  err: 1.031651 %
+t: 19.133371
+epoch 87, minibatch 234/234:
+  train err: 4.343617 %
+  valid err: 0.592615 %
+  test  err: 1.011619 %
+t: 19.305051
+epoch 88, minibatch 234/234:
+  train err: 4.635751 %
+  valid err: 0.597623 %
+  test  err: 1.011619 %
+t: 19.238591
+epoch 89, minibatch 234/234:
+  train err: 4.485510 %
+  valid err: 0.584268 %
+  test  err: 1.011619 %
+t: 19.122583
+epoch 90, minibatch 234/234:
+  train err: 3.650841 %
+  valid err: 0.575921 %
+  test  err: 1.001603 %
+t: 19.289865
+epoch 91, minibatch 234/234:
+  train err: 3.298611 %
+  valid err: 0.585938 %
+  test  err: 1.011619 %
+t: 19.406014
+epoch 92, minibatch 234/234:
+  train err: 6.275040 %
+  valid err: 0.585938 %
+  test  err: 1.001603 %
+t: 18.879077
+epoch 93, minibatch 234/234:
+  train err: 7.946047 %
+  valid err: 0.592615 %
+  test  err: 1.021635 %
+t: 19.483933
+epoch 94, minibatch 234/234:
+  train err: 8.331664 %
+  valid err: 0.590946 %
+  test  err: 1.021635 %
+t: 19.795828
+epoch 95, minibatch 234/234:
+  train err: 2.645900 %
+  valid err: 0.589276 %
+  test  err: 1.021635 %
+t: 18.977855
+epoch 96, minibatch 234/234:
+  train err: 4.649105 %
+  valid err: 0.587607 %
+  test  err: 1.021635 %
+t: 18.956452
+epoch 97, minibatch 234/234:
+  train err: 3.579060 %
+  valid err: 0.592615 %
+  test  err: 1.021635 %
+t: 19.026712
+epoch 98, minibatch 234/234:
+  train err: 4.917869 %
+  valid err: 0.589276 %
+  test  err: 1.021635 %
+t: 19.55004
+epoch 99, minibatch 234/234:
+  train err: 7.729033 %
+  valid err: 0.587607 %
+  test  err: 1.011619 %
+t: 19.103307
+epoch 100, minibatch 234/234:
+  train err: 3.582399 %
+  valid err: 0.585938 %
+  test  err: 1.031651 %
+t: 19.247645
+epoch 101, minibatch 234/234:
+  train err: 9.480168 %
+  valid err: 0.594284 %
+  test  err: 1.041667 %
+t: 18.779868
+epoch 102, minibatch 234/234:
+  train err: 2.468950 %
+  valid err: 0.592615 %
+  test  err: 1.051683 %
+t: 19.046919
+epoch 103, minibatch 234/234:
+  train err: 7.316707 %
+  valid err: 0.589276 %
+  test  err: 1.031651 %
+t: 18.959286
+epoch 104, minibatch 234/234:
+  train err: 4.113248 %
+  valid err: 0.587607 %
+  test  err: 1.021635 %
+t: 19.408146
+epoch 105, minibatch 234/234:
+  train err: 4.460470 %
+  valid err: 0.589276 %
+  test  err: 1.011619 %
+t: 19.134533
+epoch 106, minibatch 234/234:
+  train err: 2.963074 %
+  valid err: 0.590946 %
+  test  err: 1.011619 %
+t: 19.481777
+epoch 107, minibatch 234/234:
+  train err: 3.463876 %
+  valid err: 0.577591 %
+  test  err: 1.001603 %
+t: 18.895269
+epoch 108, minibatch 234/234:
+  train err: 9.161325 %
+  valid err: 0.585938 %
+  test  err: 0.991587 %
+t: 19.395099
+epoch 109, minibatch 234/234:
+  train err: 2.861245 %
+  valid err: 0.580929 %
+  test  err: 0.991587 %
+t: 18.976367
+epoch 110, minibatch 234/234:
+  train err: 6.126469 %
+  valid err: 0.580929 %
+  test  err: 1.001603 %
+t: 19.723868
+epoch 111, minibatch 234/234:
+  train err: 14.055823 %
+  valid err: 0.572583 %
+  test  err: 0.981571 %
+t: 19.503031
+epoch 112, minibatch 234/234:
+  train err: 2.549079 %
+  valid err: 0.582599 %
+  test  err: 0.991587 %
+t: 19.865113
+epoch 113, minibatch 234/234:
+  train err: 5.393630 %
+  valid err: 0.570913 %
+  test  err: 0.991587 %
+t: 19.186332
+epoch 114, minibatch 234/234:
+  train err: 3.734308 %
+  valid err: 0.569244 %
+  test  err: 1.011619 %
+  current best
+t: 20.008027
+epoch 115, minibatch 234/234:
+  train err: 2.951389 %
+  valid err: 0.572583 %
+  test  err: 1.021635 %
+t: 19.360724
+epoch 116, minibatch 234/234:
+  train err: 3.512286 %
+  valid err: 0.570913 %
+  test  err: 1.011619 %
+t: 19.206949
+epoch 117, minibatch 234/234:
+  train err: 4.887820 %
+  valid err: 0.577591 %
+  test  err: 1.021635 %
+t: 18.944931
+epoch 118, minibatch 234/234:
+  train err: 2.789463 %
+  valid err: 0.567575 %
+  test  err: 1.001603 %
+  current best
+t: 20.146685
+epoch 119, minibatch 234/234:
+  train err: 4.822716 %
+  valid err: 0.567575 %
+  test  err: 1.021635 %
+t: 18.977821
+epoch 120, minibatch 234/234:
+  train err: 5.642361 %
+  valid err: 0.572583 %
+  test  err: 1.021635 %
+t: 19.713545
+epoch 121, minibatch 234/234:
+  train err: 41.972154 %
+  valid err: 0.572583 %
+  test  err: 1.011619 %
+t: 19.441323
+epoch 122, minibatch 234/234:
+  train err: 10.460070 %
+  valid err: 0.582599 %
+  test  err: 1.021635 %
+t: 19.459355
+epoch 123, minibatch 234/234:
+  train err: 15.484776 %
+  valid err: 0.579260 %
+  test  err: 1.011619 %
+t: 19.218833
+epoch 124, minibatch 234/234:
+  train err: 9.678820 %
+  valid err: 0.580929 %
+  test  err: 1.021635 %
+t: 19.28725
+epoch 125, minibatch 234/234:
+  train err: 4.765959 %
+  valid err: 0.579260 %
+  test  err: 1.021635 %
+t: 19.571366
+epoch 126, minibatch 234/234:
+  train err: 5.582265 %
+  valid err: 0.584268 %
+  test  err: 1.031651 %
+t: 19.378845
+epoch 127, minibatch 234/234:
+  train err: 11.132812 %
+  valid err: 0.580929 %
+  test  err: 1.031651 %
+t: 19.331022
+epoch 128, minibatch 234/234:
+  train err: 3.385417 %
+  valid err: 0.584268 %
+  test  err: 1.031651 %
+t: 19.399819
+epoch 129, minibatch 234/234:
+  train err: 3.203459 %
+  valid err: 0.582599 %
+  test  err: 1.011619 %
+t: 19.617427
+epoch 130, minibatch 234/234:
+  train err: 6.265024 %
+  valid err: 0.580929 %
+  test  err: 0.991587 %
+t: 19.741143
+epoch 131, minibatch 234/234:
+  train err: 10.690438 %
+  valid err: 0.592615 %
+  test  err: 0.971554 %
+t: 20.1364
+epoch 132, minibatch 234/234:
+  train err: 2.752738 %
+  valid err: 0.589276 %
+  test  err: 0.971554 %
+t: 20.13303
+epoch 133, minibatch 234/234:
+  train err: 2.801149 %
+  valid err: 0.592615 %
+  test  err: 0.971554 %
+t: 18.977123
+epoch 134, minibatch 234/234:
+  train err: 6.360176 %
+  valid err: 0.582599 %
+  test  err: 0.941506 %
+t: 19.74047
+epoch 135, minibatch 234/234:
+  train err: 4.188368 %
+  valid err: 0.579260 %
+  test  err: 0.961538 %
+t: 19.311991
+epoch 136, minibatch 234/234:
+  train err: 3.929621 %
+  valid err: 0.572583 %
+  test  err: 0.971554 %
+t: 19.21829
+epoch 137, minibatch 234/234:
+  train err: 3.869525 %
+  valid err: 0.570913 %
+  test  err: 0.971554 %
+t: 19.322625
+epoch 138, minibatch 234/234:
+  train err: 8.607104 %
+  valid err: 0.559228 %
+  test  err: 0.961538 %
+  current best
+t: 20.411881
+epoch 139, minibatch 234/234:
+  train err: 5.765892 %
+  valid err: 0.562567 %
+  test  err: 0.951522 %
+t: 19.398992
+epoch 140, minibatch 234/234:
+  train err: 10.623664 %
+  valid err: 0.569244 %
+  test  err: 0.951522 %
+t: 19.595982
+epoch 141, minibatch 234/234:
+  train err: 3.528980 %
+  valid err: 0.564236 %
+  test  err: 0.941506 %
+t: 19.800307
+epoch 142, minibatch 234/234:
+  train err: 2.559095 %
+  valid err: 0.570913 %
+  test  err: 0.971554 %
+t: 19.428539
+epoch 143, minibatch 234/234:
+  train err: 5.527177 %
+  valid err: 0.567575 %
+  test  err: 0.961538 %
+t: 19.7469
+epoch 144, minibatch 234/234:
+  train err: 6.679020 %
+  valid err: 0.574252 %
+  test  err: 0.971554 %
+t: 19.731953
+epoch 145, minibatch 234/234:
+  train err: 11.992522 %
+  valid err: 0.564236 %
+  test  err: 0.951522 %
+t: 19.263449
+epoch 146, minibatch 234/234:
+  train err: 2.258614 %
+  valid err: 0.572583 %
+  test  err: 0.951522 %
+t: 20.040192
+epoch 147, minibatch 234/234:
+  train err: 6.099760 %
+  valid err: 0.565905 %
+  test  err: 0.951522 %
+t: 19.304409
+epoch 148, minibatch 234/234:
+  train err: 3.794404 %
+  valid err: 0.575921 %
+  test  err: 0.961538 %
+t: 19.487848
+epoch 149, minibatch 234/234:
+  train err: 6.555489 %
+  valid err: 0.575921 %
+  test  err: 0.971554 %
+t: 20.215391
+epoch 150, minibatch 234/234:
+  train err: 6.088074 %
+  valid err: 0.580929 %
+  test  err: 0.971554 %
+t: 19.501029
+epoch 151, minibatch 234/234:
+  train err: 4.512220 %
+  valid err: 0.574252 %
+  test  err: 0.971554 %
+t: 19.65879
+epoch 152, minibatch 234/234:
+  train err: 2.372129 %
+  valid err: 0.570913 %
+  test  err: 0.971554 %
+t: 19.725422
+epoch 153, minibatch 234/234:
+  train err: 9.513555 %
+  valid err: 0.570913 %
+  test  err: 0.961538 %
+t: 19.430294
+epoch 154, minibatch 234/234:
+  train err: 4.238448 %
+  valid err: 0.572583 %
+  test  err: 1.001603 %
+t: 19.401124
+epoch 155, minibatch 234/234:
+  train err: 2.916333 %
+  valid err: 0.574252 %
+  test  err: 0.971554 %
+t: 19.649528
+epoch 156, minibatch 234/234:
+  train err: 4.323585 %
+  valid err: 0.569244 %
+  test  err: 0.961538 %
+t: 19.771565
+epoch 157, minibatch 234/234:
+  train err: 5.250067 %
+  valid err: 0.574252 %
+  test  err: 0.981571 %
+t: 19.249164
+epoch 158, minibatch 234/234:
+  train err: 2.614183 %
+  valid err: 0.575921 %
+  test  err: 0.971554 %
+t: 19.722881
+epoch 159, minibatch 234/234:
+  train err: 4.966279 %
+  valid err: 0.580929 %
+  test  err: 0.961538 %
+t: 19.5403
+epoch 160, minibatch 234/234:
+  train err: 8.238181 %
+  valid err: 0.585938 %
+  test  err: 1.001603 %
+t: 19.670063
+epoch 161, minibatch 234/234:
+  train err: 4.627404 %
+  valid err: 0.575921 %
+  test  err: 0.961538 %
+t: 19.608794
+epoch 162, minibatch 234/234:
+  train err: 2.721020 %
+  valid err: 0.572583 %
+  test  err: 0.961538 %
+t: 19.860479
+epoch 163, minibatch 234/234:
+  train err: 2.968082 %
+  valid err: 0.574252 %
+  test  err: 0.971554 %
+t: 19.702657
+epoch 164, minibatch 234/234:
+  train err: 3.525641 %
+  valid err: 0.569244 %
+  test  err: 0.971554 %
+t: 20.137726
+epoch 165, minibatch 234/234:
+  train err: 5.592281 %
+  valid err: 0.570913 %
+  test  err: 0.981571 %
+t: 20.101187
+epoch 166, minibatch 234/234:
+  train err: 9.091213 %
+  valid err: 0.569244 %
+  test  err: 0.991587 %
+t: 20.112123
+epoch 167, minibatch 234/234:
+  train err: 3.891226 %
+  valid err: 0.572583 %
+  test  err: 0.961538 %
+t: 20.21077
+epoch 168, minibatch 234/234:
+  train err: 2.498998 %
+  valid err: 0.572583 %
+  test  err: 0.941506 %
+t: 20.183491
+epoch 169, minibatch 234/234:
+  train err: 5.104835 %
+  valid err: 0.564236 %
+  test  err: 0.951522 %
+t: 19.307174
+epoch 170, minibatch 234/234:
+  train err: 6.355168 %
+  valid err: 0.569244 %
+  test  err: 0.971554 %
+t: 19.590819
+epoch 171, minibatch 234/234:
+  train err: 2.657585 %
+  valid err: 0.575921 %
+  test  err: 0.971554 %
+t: 19.51685
+epoch 172, minibatch 234/234:
+  train err: 5.605636 %
+  valid err: 0.570913 %
+  test  err: 0.981571 %
+t: 19.618338
+epoch 173, minibatch 234/234:
+  train err: 8.016159 %
+  valid err: 0.577591 %
+  test  err: 0.981571 %
+t: 19.39068
+epoch 174, minibatch 234/234:
+  train err: 2.781116 %
+  valid err: 0.575921 %
+  test  err: 1.001603 %
+t: 19.462247
+epoch 175, minibatch 234/234:
+  train err: 9.359976 %
+  valid err: 0.575921 %
+  test  err: 1.001603 %
+t: 19.738415
+epoch 176, minibatch 234/234:
+  train err: 7.103032 %
+  valid err: 0.572583 %
+  test  err: 0.991587 %
+t: 19.531792
+epoch 177, minibatch 234/234:
+  train err: 3.715945 %
+  valid err: 0.572583 %
+  test  err: 0.991587 %
+t: 19.734538
+epoch 178, minibatch 234/234:
+  train err: 2.407185 %
+  valid err: 0.579260 %
+  test  err: 1.011619 %
+t: 20.336263
+epoch 179, minibatch 234/234:
+  train err: 11.680355 %
+  valid err: 0.600962 %
+  test  err: 0.991587 %
+t: 19.580804
+epoch 180, minibatch 234/234:
+  train err: 4.999666 %
+  valid err: 0.589276 %
+  test  err: 1.021635 %
+t: 19.509545
+epoch 181, minibatch 234/234:
+  train err: 3.420473 %
+  valid err: 0.584268 %
+  test  err: 1.021635 %
+t: 20.024517
+epoch 182, minibatch 234/234:
+  train err: 4.946247 %
+  valid err: 0.572583 %
+  test  err: 1.001603 %
+t: 20.29461
+epoch 183, minibatch 234/234:
+  train err: 6.440304 %
+  valid err: 0.582599 %
+  test  err: 1.011619 %
+t: 19.909981
+epoch 184, minibatch 234/234:
+  train err: 4.589009 %
+  valid err: 0.582599 %
+  test  err: 1.001603 %
+t: 20.321933
+epoch 185, minibatch 234/234:
+  train err: 14.576656 %
+  valid err: 0.589276 %
+  test  err: 0.991587 %
+t: 19.62751
+epoch 186, minibatch 234/234:
+  train err: 13.518296 %
+  valid err: 0.584268 %
+  test  err: 1.021635 %
+t: 20.131971
+epoch 187, minibatch 234/234:
+  train err: 10.326523 %
+  valid err: 0.587607 %
+  test  err: 1.001603 %
+t: 19.831315
+epoch 188, minibatch 234/234:
+  train err: 3.782719 %
+  valid err: 0.577591 %
+  test  err: 1.011619 %
+t: 19.956305
+epoch 189, minibatch 234/234:
+  train err: 6.881010 %
+  valid err: 0.567575 %
+  test  err: 1.001603 %
+t: 20.029773
+epoch 190, minibatch 234/234:
+  train err: 5.341880 %
+  valid err: 0.559228 %
+  test  err: 0.981571 %
+t: 20.19371
+epoch 191, minibatch 234/234:
+  train err: 2.355435 %
+  valid err: 0.559228 %
+  test  err: 0.991587 %
+t: 19.536329
+epoch 192, minibatch 234/234:
+  train err: 8.380075 %
+  valid err: 0.564236 %
+  test  err: 0.981571 %
+t: 19.917304
+epoch 193, minibatch 234/234:
+  train err: 5.620660 %
+  valid err: 0.569244 %
+  test  err: 1.021635 %
+t: 19.692307
+epoch 194, minibatch 234/234:
+  train err: 9.403379 %
+  valid err: 0.572583 %
+  test  err: 1.001603 %
+t: 19.626902
+epoch 195, minibatch 234/234:
+  train err: 5.323518 %
+  valid err: 0.572583 %
+  test  err: 0.981571 %
+t: 20.541547
+epoch 196, minibatch 234/234:
+  train err: 2.569111 %
+  valid err: 0.579260 %
+  test  err: 0.991587 %
+t: 20.47442
+epoch 197, minibatch 234/234:
+  train err: 2.998130 %
+  valid err: 0.580929 %
+  test  err: 1.001603 %
+t: 19.715164
+epoch 198, minibatch 234/234:
+  train err: 4.251803 %
+  valid err: 0.570913 %
+  test  err: 1.001603 %
+t: 19.758585
+epoch 199, minibatch 234/234:
+  train err: 4.932893 %
+  valid err: 0.570913 %
+  test  err: 1.021635 %
+t: 20.461692
+epoch 200, minibatch 234/234:
+  train err: 13.065906 %
+  valid err: 0.565905 %
+  test  err: 1.011619 %
+t: 20.672204
+epoch 201, minibatch 234/234:
+  train err: 5.013021 %
+  valid err: 0.560897 %
+  test  err: 1.001603 %
+t: 20.033882
+epoch 202, minibatch 234/234:
+  train err: 10.091146 %
+  valid err: 0.562567 %
+  test  err: 0.971554 %
+t: 20.485955
+epoch 203, minibatch 234/234:
+  train err: 7.383480 %
+  valid err: 0.564236 %
+  test  err: 0.961538 %
+t: 19.721497
+epoch 204, minibatch 234/234:
+  train err: 10.950854 %
+  valid err: 0.559228 %
+  test  err: 0.991587 %
+t: 20.529871
+epoch 205, minibatch 234/234:
+  train err: 6.597222 %
+  valid err: 0.562567 %
+  test  err: 1.031651 %
+t: 20.625377
+epoch 206, minibatch 234/234:
+  train err: 4.068176 %
+  valid err: 0.567575 %
+  test  err: 1.041667 %
+t: 19.967386
+epoch 207, minibatch 234/234:
+  train err: 4.916199 %
+  valid err: 0.562567 %
+  test  err: 1.031651 %
+t: 19.944392
+epoch 208, minibatch 234/234:
+  train err: 3.827791 %
+  valid err: 0.567575 %
+  test  err: 1.021635 %
+t: 19.820326
+epoch 209, minibatch 234/234:
+  train err: 3.978032 %
+  valid err: 0.559228 %
+  test  err: 1.021635 %
+t: 19.994133
+epoch 210, minibatch 234/234:
+  train err: 2.897970 %
+  valid err: 0.569244 %
+  test  err: 1.011619 %
+t: 20.147962
+epoch 211, minibatch 234/234:
+  train err: 7.368456 %
+  valid err: 0.574252 %
+  test  err: 1.021635 %
+t: 20.575768
+epoch 212, minibatch 234/234:
+  train err: 3.286926 %
+  valid err: 0.567575 %
+  test  err: 0.991587 %
+t: 20.074843
+epoch 213, minibatch 234/234:
+  train err: 2.423878 %
+  valid err: 0.567575 %
+  test  err: 1.021635 %
+t: 19.791704
+epoch 214, minibatch 234/234:
+  train err: 5.029714 %
+  valid err: 0.560897 %
+  test  err: 1.011619 %
+t: 20.3452
+epoch 215, minibatch 234/234:
+  train err: 4.522236 %
+  valid err: 0.564236 %
+  test  err: 0.951522 %
+t: 20.121886
+epoch 216, minibatch 234/234:
+  train err: 3.056557 %
+  valid err: 0.554220 %
+  test  err: 0.951522 %
+  current best
+t: 20.206107
+epoch 217, minibatch 234/234:
+  train err: 5.149907 %
+  valid err: 0.552551 %
+  test  err: 0.941506 %
+  current best
+t: 20.385504
+epoch 218, minibatch 234/234:
+  train err: 2.766092 %
+  valid err: 0.549212 %
+  test  err: 0.941506 %
+  current best
+t: 20.430436
+epoch 219, minibatch 234/234:
+  train err: 5.508814 %
+  valid err: 0.539196 %
+  test  err: 0.941506 %
+  current best
+t: 20.619307
+epoch 220, minibatch 234/234:
+  train err: 4.976295 %
+  valid err: 0.539196 %
+  test  err: 0.951522 %
+t: 20.029722
+epoch 221, minibatch 234/234:
+  train err: 5.528846 %
+  valid err: 0.542535 %
+  test  err: 0.941506 %
+t: 20.409427
+epoch 222, minibatch 234/234:
+  train err: 3.493924 %
+  valid err: 0.545873 %
+  test  err: 0.951522 %
+t: 19.807436
+epoch 223, minibatch 234/234:
+  train err: 4.170005 %
+  valid err: 0.545873 %
+  test  err: 0.971554 %
+t: 19.510487
+epoch 224, minibatch 234/234:
+  train err: 5.598958 %
+  valid err: 0.560897 %
+  test  err: 1.001603 %
+t: 20.28691
+epoch 225, minibatch 234/234:
+  train err: 4.502204 %
+  valid err: 0.559228 %
+  test  err: 0.981571 %
+t: 20.237341
+epoch 226, minibatch 234/234:
+  train err: 8.703926 %
+  valid err: 0.555889 %
+  test  err: 0.981571 %
+t: 19.856516
+epoch 227, minibatch 234/234:
+  train err: 4.265158 %
+  valid err: 0.555889 %
+  test  err: 0.981571 %
+t: 20.796834
+epoch 228, minibatch 234/234:
+  train err: 4.852764 %
+  valid err: 0.557559 %
+  test  err: 0.991587 %
+t: 20.218297
+epoch 229, minibatch 234/234:
+  train err: 20.183961 %
+  valid err: 0.565905 %
+  test  err: 0.991587 %
+t: 20.925965
+epoch 230, minibatch 234/234:
+  train err: 4.657452 %
+  valid err: 0.569244 %
+  test  err: 1.001603 %
+t: 20.529016
+epoch 231, minibatch 234/234:
+  train err: 6.558827 %
+  valid err: 0.575921 %
+  test  err: 1.011619 %
+t: 19.721477
+epoch 232, minibatch 234/234:
+  train err: 7.545406 %
+  valid err: 0.585938 %
+  test  err: 1.001603 %
+t: 20.561823
+epoch 233, minibatch 234/234:
+  train err: 5.385283 %
+  valid err: 0.575921 %
+  test  err: 0.981571 %
+t: 19.696108
+epoch 234, minibatch 234/234:
+  train err: 6.794204 %
+  valid err: 0.562567 %
+  test  err: 0.971554 %
+t: 19.888187
+epoch 235, minibatch 234/234:
+  train err: 4.053152 %
+  valid err: 0.572583 %
+  test  err: 1.001603 %
+t: 19.980013
+epoch 236, minibatch 234/234:
+  train err: 4.817708 %
+  valid err: 0.569244 %
+  test  err: 1.011619 %
+t: 20.334982
+epoch 237, minibatch 234/234:
+  train err: 5.909455 %
+  valid err: 0.567575 %
+  test  err: 1.001603 %
+t: 20.56675
+epoch 238, minibatch 234/234:
+  train err: 4.011418 %
+  valid err: 0.570913 %
+  test  err: 1.001603 %
+t: 20.943517
+epoch 239, minibatch 234/234:
+  train err: 3.689236 %
+  valid err: 0.567575 %
+  test  err: 1.001603 %
+t: 20.124977
+epoch 240, minibatch 234/234:
+  train err: 4.537260 %
+  valid err: 0.569244 %
+  test  err: 1.001603 %
+t: 20.260093
+epoch 241, minibatch 234/234:
+  train err: 11.052684 %
+  valid err: 0.569244 %
+  test  err: 0.981571 %
+t: 19.871327
+epoch 242, minibatch 234/234:
+  train err: 11.152845 %
+  valid err: 0.577591 %
+  test  err: 0.951522 %
+t: 19.930518
+epoch 243, minibatch 234/234:
+  train err: 5.121528 %
+  valid err: 0.567575 %
+  test  err: 0.951522 %
+t: 20.393564
+epoch 244, minibatch 234/234:
+  train err: 3.188435 %
+  valid err: 0.562567 %
+  test  err: 0.951522 %
+t: 19.757886
+epoch 245, minibatch 234/234:
+  train err: 3.981370 %
+  valid err: 0.567575 %
+  test  err: 0.971554 %
+t: 20.283627
+epoch 246, minibatch 234/234:
+  train err: 4.325254 %
+  valid err: 0.562567 %
+  test  err: 0.951522 %
+t: 20.813181
+epoch 247, minibatch 234/234:
+  train err: 7.365117 %
+  valid err: 0.565905 %
+  test  err: 0.921474 %
+t: 20.130989
+epoch 248, minibatch 234/234:
+  train err: 3.505609 %
+  valid err: 0.562567 %
+  test  err: 0.931490 %
+t: 20.572549
+epoch 249, minibatch 234/234:
+  train err: 5.398638 %
+  valid err: 0.562567 %
+  test  err: 0.941506 %
+t: 20.652926
+epoch 250, minibatch 234/234:
+  train err: 3.094952 %
+  valid err: 0.560897 %
+  test  err: 0.961538 %
+t: 20.205006
+epoch 251, minibatch 234/234:
+  train err: 4.750935 %
+  valid err: 0.552551 %
+  test  err: 0.961538 %
+t: 21.06232
+epoch 252, minibatch 234/234:
+  train err: 4.839410 %
+  valid err: 0.554220 %
+  test  err: 0.971554 %
+t: 20.114634
+epoch 253, minibatch 234/234:
+  train err: 5.356904 %
+  valid err: 0.552551 %
+  test  err: 0.941506 %
+t: 20.363322
+epoch 254, minibatch 234/234:
+  train err: 6.658988 %
+  valid err: 0.559228 %
+  test  err: 0.951522 %
+t: 20.309189
+epoch 255, minibatch 234/234:
+  train err: 3.271902 %
+  valid err: 0.559228 %
+  test  err: 0.951522 %
+t: 20.010041
+epoch 256, minibatch 234/234:
+  train err: 2.228566 %
+  valid err: 0.557559 %
+  test  err: 0.941506 %
+t: 19.989128
+epoch 257, minibatch 234/234:
+  train err: 7.461939 %
+  valid err: 0.559228 %
+  test  err: 0.951522 %
+t: 20.028821
+epoch 258, minibatch 234/234:
+  train err: 4.826055 %
+  valid err: 0.554220 %
+  test  err: 0.941506 %
+t: 20.804651
+epoch 259, minibatch 234/234:
+  train err: 4.609041 %
+  valid err: 0.557559 %
+  test  err: 0.951522 %
+t: 20.679757
+epoch 260, minibatch 234/234:
+  train err: 5.124867 %
+  valid err: 0.554220 %
+  test  err: 0.941506 %
+t: 20.767018
+epoch 261, minibatch 234/234:
+  train err: 3.629140 %
+  valid err: 0.550881 %
+  test  err: 0.931490 %
+t: 20.056649
+epoch 262, minibatch 234/234:
+  train err: 6.333467 %
+  valid err: 0.554220 %
+  test  err: 0.911458 %
+t: 20.01412
+epoch 263, minibatch 234/234:
+  train err: 8.945980 %
+  valid err: 0.552551 %
+  test  err: 0.891426 %
+t: 20.279531
+epoch 264, minibatch 234/234:
+  train err: 3.852831 %
+  valid err: 0.549212 %
+  test  err: 0.891426 %
+t: 20.452097
+epoch 265, minibatch 234/234:
+  train err: 2.293670 %
+  valid err: 0.545873 %
+  test  err: 0.901442 %
+t: 20.388994
+epoch 266, minibatch 234/234:
+  train err: 2.993122 %
+  valid err: 0.547543 %
+  test  err: 0.911458 %
+t: 20.906334
+epoch 267, minibatch 234/234:
+  train err: 13.928953 %
+  valid err: 0.544204 %
+  test  err: 0.931490 %
+t: 20.483021
+epoch 268, minibatch 234/234:
+  train err: 5.001336 %
+  valid err: 0.555889 %
+  test  err: 0.911458 %
+t: 20.58961
+epoch 269, minibatch 234/234:
+  train err: 7.466947 %
+  valid err: 0.552551 %
+  test  err: 0.901442 %
+t: 20.490421
+epoch 270, minibatch 234/234:
+  train err: 2.876269 %
+  valid err: 0.552551 %
+  test  err: 0.911458 %
+t: 20.064366
+epoch 271, minibatch 234/234:
+  train err: 2.901309 %
+  valid err: 0.560897 %
+  test  err: 0.911458 %
+t: 20.555841
+epoch 272, minibatch 234/234:
+  train err: 3.627471 %
+  valid err: 0.554220 %
+  test  err: 0.921474 %
+t: 20.902395
+epoch 273, minibatch 234/234:
+  train err: 2.968082 %
+  valid err: 0.552551 %
+  test  err: 0.911458 %
+t: 20.815728
+epoch 274, minibatch 234/234:
+  train err: 5.996261 %
+  valid err: 0.565905 %
+  test  err: 0.941506 %
+t: 20.110544
+epoch 275, minibatch 234/234:
+  train err: 4.377003 %
+  valid err: 0.557559 %
+  test  err: 0.931490 %
+t: 19.901149
+epoch 276, minibatch 234/234:
+  train err: 6.002938 %
+  valid err: 0.552551 %
+  test  err: 0.941506 %
+t: 21.132725
+epoch 277, minibatch 234/234:
+  train err: 4.283520 %
+  valid err: 0.560897 %
+  test  err: 0.951522 %
+t: 19.812008
+epoch 278, minibatch 234/234:
+  train err: 15.988916 %
+  valid err: 0.567575 %
+  test  err: 0.921474 %
+t: 20.819366
+epoch 279, minibatch 234/234:
+  train err: 6.934428 %
+  valid err: 0.570913 %
+  test  err: 0.921474 %
+t: 20.398984
+epoch 280, minibatch 234/234:
+  train err: 6.288395 %
+  valid err: 0.565905 %
+  test  err: 0.951522 %
+t: 20.275081
+epoch 281, minibatch 234/234:
+  train err: 9.685497 %
+  valid err: 0.567575 %
+  test  err: 0.931490 %
+t: 21.228248
+epoch 282, minibatch 234/234:
+  train err: 3.076589 %
+  valid err: 0.572583 %
+  test  err: 0.941506 %
+t: 21.488598
+epoch 283, minibatch 234/234:
+  train err: 7.450254 %
+  valid err: 0.567575 %
+  test  err: 0.951522 %
+t: 20.022468
+epoch 284, minibatch 234/234:
+  train err: 3.582399 %
+  valid err: 0.552551 %
+  test  err: 0.961538 %
+t: 20.480366
+epoch 285, minibatch 234/234:
+  train err: 7.969417 %
+  valid err: 0.559228 %
+  test  err: 0.951522 %
+t: 20.636873
+epoch 286, minibatch 234/234:
+  train err: 4.775975 %
+  valid err: 0.564236 %
+  test  err: 0.961538 %
+t: 20.603629
+epoch 287, minibatch 234/234:
+  train err: 4.318576 %
+  valid err: 0.564236 %
+  test  err: 0.961538 %
+t: 20.307619
+epoch 288, minibatch 234/234:
+  train err: 3.156717 %
+  valid err: 0.569244 %
+  test  err: 0.961538 %
+t: 21.266423
+epoch 289, minibatch 234/234:
+  train err: 3.029848 %
+  valid err: 0.565905 %
+  test  err: 0.941506 %
+t: 20.640628
+epoch 290, minibatch 234/234:
+  train err: 3.861178 %
+  valid err: 0.564236 %
+  test  err: 0.961538 %
+t: 20.871641
+epoch 291, minibatch 234/234:
+  train err: 4.123264 %
+  valid err: 0.572583 %
+  test  err: 0.961538 %
+t: 20.545146
+epoch 292, minibatch 234/234:
+  train err: 4.702524 %
+  valid err: 0.564236 %
+  test  err: 0.911458 %
+t: 20.670237
+epoch 293, minibatch 234/234:
+  train err: 6.929421 %
+  valid err: 0.557559 %
+  test  err: 0.931490 %
+t: 20.744692
+epoch 294, minibatch 234/234:
+  train err: 13.231170 %
+  valid err: 0.577591 %
+  test  err: 0.931490 %
+t: 20.944706
+epoch 295, minibatch 234/234:
+  train err: 5.018029 %
+  valid err: 0.565905 %
+  test  err: 0.951522 %
+t: 20.176833
+epoch 296, minibatch 234/234:
+  train err: 3.058226 %
+  valid err: 0.564236 %
+  test  err: 0.941506 %
+t: 20.985948
+epoch 297, minibatch 234/234:
+  train err: 3.261886 %
+  valid err: 0.565905 %
+  test  err: 0.931490 %
+t: 20.059728
+epoch 298, minibatch 234/234:
+  train err: 1.567508 %
+  valid err: 0.572583 %
+  test  err: 0.931490 %
+t: 20.767767
+epoch 299, minibatch 234/234:
+  train err: 2.802818 %
+  valid err: 0.560897 %
+  test  err: 0.961538 %
+t: 20.799604
+epoch 300, minibatch 234/234:
+  train err: 5.747529 %
+  valid err: 0.547543 %
+  test  err: 0.961538 %
+t: 20.796506
+epoch 301, minibatch 234/234:
+  train err: 7.568777 %
+  valid err: 0.557559 %
+  test  err: 0.941506 %
+t: 20.579221
+epoch 302, minibatch 234/234:
+  train err: 8.301616 %
+  valid err: 0.557559 %
+  test  err: 0.931490 %
+t: 20.785993
+epoch 303, minibatch 234/234:
+  train err: 2.153446 %
+  valid err: 0.564236 %
+  test  err: 0.921474 %
+t: 20.948779
+epoch 304, minibatch 234/234:
+  train err: 4.205061 %
+  valid err: 0.555889 %
+  test  err: 0.931490 %
+t: 20.37134
+epoch 305, minibatch 234/234:
+  train err: 4.470486 %
+  valid err: 0.552551 %
+  test  err: 0.931490 %
+t: 20.709782
+epoch 306, minibatch 234/234:
+  train err: 3.809429 %
+  valid err: 0.549212 %
+  test  err: 0.921474 %
+t: 22.074435
+epoch 307, minibatch 234/234:
+  train err: 14.962272 %
+  valid err: 0.552551 %
+  test  err: 0.931490 %
+t: 20.705143
+epoch 308, minibatch 234/234:
+  train err: 4.699185 %
+  valid err: 0.564236 %
+  test  err: 0.921474 %
+t: 20.137498
+epoch 309, minibatch 234/234:
+  train err: 10.935830 %
+  valid err: 0.572583 %
+  test  err: 0.911458 %
+t: 20.423839
+epoch 310, minibatch 234/234:
+  train err: 3.475561 %
+  valid err: 0.569244 %
+  test  err: 0.921474 %
+t: 20.570771
+epoch 311, minibatch 234/234:
+  train err: 14.064169 %
+  valid err: 0.570913 %
+  test  err: 0.941506 %
+t: 21.523301
+epoch 312, minibatch 234/234:
+  train err: 14.748597 %
+  valid err: 0.574252 %
+  test  err: 0.951522 %
+t: 21.664025
+epoch 313, minibatch 234/234:
+  train err: 3.692575 %
+  valid err: 0.574252 %
+  test  err: 0.951522 %
+t: 20.583095
+epoch 314, minibatch 234/234:
+  train err: 6.989516 %
+  valid err: 0.569244 %
+  test  err: 0.941506 %
+t: 21.866418
+epoch 315, minibatch 234/234:
+  train err: 3.305288 %
+  valid err: 0.565905 %
+  test  err: 0.931490 %
+t: 21.299721
+epoch 316, minibatch 234/234:
+  train err: 3.163395 %
+  valid err: 0.562567 %
+  test  err: 0.931490 %
+t: 20.535415
+epoch 317, minibatch 234/234:
+  train err: 4.038128 %
+  valid err: 0.562567 %
+  test  err: 0.931490 %
+t: 20.559276
+epoch 318, minibatch 234/234:
+  train err: 8.071247 %
+  valid err: 0.569244 %
+  test  err: 0.941506 %
+t: 21.296336
+epoch 319, minibatch 234/234:
+  train err: 8.276576 %
+  valid err: 0.572583 %
+  test  err: 0.941506 %
+t: 21.391982
+epoch 320, minibatch 234/234:
+  train err: 3.762687 %
+  valid err: 0.560897 %
+  test  err: 0.941506 %
+t: 21.440586
+epoch 321, minibatch 234/234:
+  train err: 4.099893 %
+  valid err: 0.557559 %
+  test  err: 0.921474 %
+t: 20.14061
+epoch 322, minibatch 234/234:
+  train err: 7.144765 %
+  valid err: 0.557559 %
+  test  err: 0.921474 %
+t: 20.781026
+epoch 323, minibatch 234/234:
+  train err: 5.911124 %
+  valid err: 0.545873 %
+  test  err: 0.921474 %
+t: 20.976002
+epoch 324, minibatch 234/234:
+  train err: 2.939704 %
+  valid err: 0.544204 %
+  test  err: 0.921474 %
+t: 21.06285
+epoch 325, minibatch 234/234:
+  train err: 4.775975 %
+  valid err: 0.555889 %
+  test  err: 0.921474 %
+t: 20.581755
+epoch 326, minibatch 234/234:
+  train err: 2.866253 %
+  valid err: 0.555889 %
+  test  err: 0.931490 %
+t: 21.277339
+epoch 327, minibatch 234/234:
+  train err: 4.861111 %
+  valid err: 0.549212 %
+  test  err: 0.931490 %
+t: 20.253557
+epoch 328, minibatch 234/234:
+  train err: 3.253539 %
+  valid err: 0.545873 %
+  test  err: 0.931490 %
+t: 21.111684
+epoch 329, minibatch 234/234:
+  train err: 3.949653 %
+  valid err: 0.545873 %
+  test  err: 0.941506 %
+t: 20.50724
+epoch 330, minibatch 234/234:
+  train err: 4.428753 %
+  valid err: 0.545873 %
+  test  err: 0.951522 %
+t: 21.997846
+epoch 331, minibatch 234/234:
+  train err: 3.235176 %
+  valid err: 0.545873 %
+  test  err: 0.941506 %
+t: 21.34215
+epoch 332, minibatch 234/234:
+  train err: 4.647436 %
+  valid err: 0.550881 %
+  test  err: 0.941506 %
+t: 21.386773
+epoch 333, minibatch 234/234:
+  train err: 3.044872 %
+  valid err: 0.554220 %
+  test  err: 0.931490 %
+t: 20.140812
+epoch 334, minibatch 234/234:
+  train err: 3.081597 %
+  valid err: 0.547543 %
+  test  err: 0.941506 %
+t: 20.178503
+epoch 335, minibatch 234/234:
+  train err: 5.752537 %
+  valid err: 0.547543 %
+  test  err: 0.971554 %
+t: 20.260281
+epoch 336, minibatch 234/234:
+  train err: 5.086472 %
+  valid err: 0.562567 %
+  test  err: 0.971554 %
+t: 21.736114
+epoch 337, minibatch 234/234:
+  train err: 2.924679 %
+  valid err: 0.555889 %
+  test  err: 0.971554 %
+t: 20.906017
+epoch 338, minibatch 234/234:
+  train err: 3.452190 %
+  valid err: 0.569244 %
+  test  err: 0.971554 %
+t: 21.177344
+epoch 339, minibatch 234/234:
+  train err: 9.114584 %
+  valid err: 0.555889 %
+  test  err: 0.961538 %
+t: 21.741052
+epoch 340, minibatch 234/234:
+  train err: 5.627337 %
+  valid err: 0.564236 %
+  test  err: 0.971554 %
+t: 21.939121
+epoch 341, minibatch 234/234:
+  train err: 18.506277 %
+  valid err: 0.572583 %
+  test  err: 0.971554 %
+t: 21.33149
+epoch 342, minibatch 234/234:
+  train err: 5.033053 %
+  valid err: 0.569244 %
+  test  err: 0.971554 %
+t: 20.924812
+epoch 343, minibatch 234/234:
+  train err: 1.884682 %
+  valid err: 0.567575 %
+  test  err: 0.971554 %
+t: 21.055816
+epoch 344, minibatch 234/234:
+  train err: 5.126536 %
+  valid err: 0.559228 %
+  test  err: 0.971554 %
+t: 21.813997
+epoch 345, minibatch 234/234:
+  train err: 11.486712 %
+  valid err: 0.560897 %
+  test  err: 0.981571 %
+t: 20.566507
+epoch 346, minibatch 234/234:
+  train err: 4.288528 %
+  valid err: 0.555889 %
+  test  err: 0.971554 %
+t: 21.321957
+epoch 347, minibatch 234/234:
+  train err: 3.331998 %
+  valid err: 0.560897 %
+  test  err: 0.971554 %
+t: 20.829616
+epoch 348, minibatch 234/234:
+  train err: 1.802885 %
+  valid err: 0.554220 %
+  test  err: 0.961538 %
+t: 20.959376
+epoch 349, minibatch 234/234:
+  train err: 5.607305 %
+  valid err: 0.559228 %
+  test  err: 0.961538 %
+t: 21.161404
+epoch 350, minibatch 234/234:
+  train err: 9.480168 %
+  valid err: 0.570913 %
+  test  err: 0.971554 %
+t: 21.146081
+epoch 351, minibatch 234/234:
+  train err: 5.710804 %
+  valid err: 0.587607 %
+  test  err: 0.981571 %
+t: 20.990336
+epoch 352, minibatch 234/234:
+  train err: 5.655716 %
+  valid err: 0.585938 %
+  test  err: 0.981571 %
+t: 22.03342
+epoch 353, minibatch 234/234:
+  train err: 4.208400 %
+  valid err: 0.572583 %
+  test  err: 0.981571 %
+t: 21.168801
+epoch 354, minibatch 234/234:
+  train err: 3.283587 %
+  valid err: 0.570913 %
+  test  err: 0.981571 %
+t: 20.845274
+epoch 355, minibatch 234/234:
+  train err: 3.238515 %
+  valid err: 0.575921 %
+  test  err: 0.971554 %
+t: 21.571511
+epoch 356, minibatch 234/234:
+  train err: 4.462139 %
+  valid err: 0.569244 %
+  test  err: 0.961538 %
+t: 21.563474
+epoch 357, minibatch 234/234:
+  train err: 19.185697 %
+  valid err: 0.572583 %
+  test  err: 0.951522 %
+t: 21.161577
+epoch 358, minibatch 234/234:
+  train err: 3.415465 %
+  valid err: 0.565905 %
+  test  err: 0.951522 %
+t: 21.892317
+epoch 359, minibatch 234/234:
+  train err: 3.513956 %
+  valid err: 0.567575 %
+  test  err: 0.961538 %
+t: 21.112937
+epoch 360, minibatch 234/234:
+  train err: 6.547142 %
+  valid err: 0.565905 %
+  test  err: 0.981571 %
+t: 20.973767
+epoch 361, minibatch 234/234:
+  train err: 9.446782 %
+  valid err: 0.564236 %
+  test  err: 0.981571 %
+t: 20.67548
+epoch 362, minibatch 234/234:
+  train err: 2.338742 %
+  valid err: 0.564236 %
+  test  err: 0.991587 %
+t: 20.752024
+epoch 363, minibatch 234/234:
+  train err: 4.869458 %
+  valid err: 0.565905 %
+  test  err: 0.991587 %
+t: 21.781752
+epoch 364, minibatch 234/234:
+  train err: 3.528980 %
+  valid err: 0.567575 %
+  test  err: 0.971554 %
+t: 22.095954
+epoch 365, minibatch 234/234:
+  train err: 6.221621 %
+  valid err: 0.565905 %
+  test  err: 0.991587 %
+t: 21.338851
+epoch 366, minibatch 234/234:
+  train err: 4.864450 %
+  valid err: 0.560897 %
+  test  err: 0.961538 %
+t: 21.173975
+epoch 367, minibatch 234/234:
+  train err: 12.645233 %
+  valid err: 0.570913 %
+  test  err: 0.971554 %
+t: 21.678226
+epoch 368, minibatch 234/234:
+  train err: 8.056223 %
+  valid err: 0.575921 %
+  test  err: 0.971554 %
+t: 21.26298
+epoch 369, minibatch 234/234:
+  train err: 5.635684 %
+  valid err: 0.569244 %
+  test  err: 0.961538 %
+t: 22.006604
+epoch 370, minibatch 234/234:
+  train err: 5.982906 %
+  valid err: 0.560897 %
+  test  err: 0.981571 %
+t: 21.058791
+epoch 371, minibatch 234/234:
+  train err: 4.879474 %
+  valid err: 0.559228 %
+  test  err: 0.971554 %
+t: 21.211086
+epoch 372, minibatch 234/234:
+  train err: 2.842882 %
+  valid err: 0.564236 %
+  test  err: 0.961538 %
+t: 20.87643
+epoch 373, minibatch 234/234:
+  train err: 4.124933 %
+  valid err: 0.562567 %
+  test  err: 0.951522 %
+t: 21.767119
+epoch 374, minibatch 234/234:
+  train err: 3.871194 %
+  valid err: 0.555889 %
+  test  err: 0.961538 %
+t: 20.776651
+epoch 375, minibatch 234/234:
+  train err: 5.024706 %
+  valid err: 0.555889 %
+  test  err: 0.961538 %
+t: 21.609431
+epoch 376, minibatch 234/234:
+  train err: 4.370326 %
+  valid err: 0.559228 %
+  test  err: 0.961538 %
+t: 21.794161
+epoch 377, minibatch 234/234:
+  train err: 2.766092 %
+  valid err: 0.554220 %
+  test  err: 0.961538 %
+t: 21.034905
+epoch 378, minibatch 234/234:
+  train err: 6.074720 %
+  valid err: 0.562567 %
+  test  err: 0.961538 %
+t: 21.571377
+epoch 379, minibatch 234/234:
+  train err: 2.867922 %
+  valid err: 0.557559 %
+  test  err: 0.961538 %
+t: 21.084424
+epoch 380, minibatch 234/234:
+  train err: 3.178419 %
+  valid err: 0.552551 %
+  test  err: 0.961538 %
+t: 21.11697
+epoch 381, minibatch 234/234:
+  train err: 2.963074 %
+  valid err: 0.552551 %
+  test  err: 0.961538 %
+t: 20.777272
+epoch 382, minibatch 234/234:
+  train err: 15.135884 %
+  valid err: 0.547543 %
+  test  err: 0.961538 %
+t: 20.889155
+epoch 383, minibatch 234/234:
+  train err: 5.966213 %
+  valid err: 0.545873 %
+  test  err: 0.951522 %
+t: 21.334742
+epoch 384, minibatch 234/234:
+  train err: 5.739183 %
+  valid err: 0.552551 %
+  test  err: 0.961538 %
+t: 21.387996
+epoch 385, minibatch 234/234:
+  train err: 4.557292 %
+  valid err: 0.552551 %
+  test  err: 0.951522 %
+t: 21.176241
+epoch 386, minibatch 234/234:
+  train err: 5.794271 %
+  valid err: 0.550881 %
+  test  err: 0.961538 %
+t: 21.577677
+epoch 387, minibatch 234/234:
+  train err: 4.857773 %
+  valid err: 0.559228 %
+  test  err: 0.961538 %
+t: 21.196308
+epoch 388, minibatch 234/234:
+  train err: 6.637286 %
+  valid err: 0.567575 %
+  test  err: 0.951522 %
+t: 20.673069
+epoch 389, minibatch 234/234:
+  train err: 3.629140 %
+  valid err: 0.562567 %
+  test  err: 0.951522 %
+t: 21.036153
+epoch 390, minibatch 234/234:
+  train err: 6.265024 %
+  valid err: 0.569244 %
+  test  err: 0.951522 %
+t: 21.12007
+epoch 391, minibatch 234/234:
+  train err: 5.261752 %
+  valid err: 0.560897 %
+  test  err: 0.971554 %
+t: 21.524115
+epoch 392, minibatch 234/234:
+  train err: 4.144965 %
+  valid err: 0.560897 %
+  test  err: 0.961538 %
+t: 22.096622
+epoch 393, minibatch 234/234:
+  train err: 8.233173 %
+  valid err: 0.575921 %
+  test  err: 0.971554 %
+t: 21.490365
+epoch 394, minibatch 234/234:
+  train err: 4.605702 %
+  valid err: 0.575921 %
+  test  err: 0.971554 %
+t: 21.674261
+epoch 395, minibatch 234/234:
+  train err: 10.269765 %
+  valid err: 0.570913 %
+  test  err: 0.931490 %
+t: 21.604831
+epoch 396, minibatch 234/234:
+  train err: 6.547142 %
+  valid err: 0.565905 %
+  test  err: 0.921474 %
+t: 22.818476
+epoch 397, minibatch 234/234:
+  train err: 4.645767 %
+  valid err: 0.565905 %
+  test  err: 0.951522 %
+t: 21.027288
+epoch 398, minibatch 234/234:
+  train err: 1.846287 %
+  valid err: 0.562567 %
+  test  err: 0.941506 %
+t: 21.427936
+epoch 399, minibatch 234/234:
+  train err: 10.328192 %
+  valid err: 0.564236 %
+  test  err: 0.941506 %
+t: 21.40397
+epoch 400, minibatch 234/234:
+  train err: 3.737647 %
+  valid err: 0.564236 %
+  test  err: 0.931490 %
+t: 21.435481
+epoch 401, minibatch 234/234:
+  train err: 8.293270 %
+  valid err: 0.567575 %
+  test  err: 0.941506 %
+t: 21.527987
+epoch 402, minibatch 234/234:
+  train err: 7.451923 %
+  valid err: 0.565905 %
+  test  err: 0.921474 %
+t: 21.768394
+epoch 403, minibatch 234/234:
+  train err: 3.787727 %
+  valid err: 0.567575 %
+  test  err: 0.931490 %
+t: 21.615058
+epoch 404, minibatch 234/234:
+  train err: 28.477231 %
+  valid err: 0.562567 %
+  test  err: 0.931490 %
+t: 21.397686
+epoch 405, minibatch 234/234:
+  train err: 8.041199 %
+  valid err: 0.564236 %
+  test  err: 0.951522 %
+t: 21.024199
+epoch 406, minibatch 234/234:
+  train err: 5.962874 %
+  valid err: 0.565905 %
+  test  err: 0.931490 %
+t: 21.967448
+epoch 407, minibatch 234/234:
+  train err: 5.437033 %
+  valid err: 0.559228 %
+  test  err: 0.911458 %
+t: 21.386804
+epoch 408, minibatch 234/234:
+  train err: 5.470419 %
+  valid err: 0.555889 %
+  test  err: 0.931490 %
+t: 21.927759
+epoch 409, minibatch 234/234:
+  train err: 2.544071 %
+  valid err: 0.557559 %
+  test  err: 0.901442 %
+t: 21.860325
+epoch 410, minibatch 234/234:
+  train err: 2.251936 %
+  valid err: 0.554220 %
+  test  err: 0.921474 %
+t: 21.39444
+epoch 411, minibatch 234/234:
+  train err: 6.376870 %
+  valid err: 0.545873 %
+  test  err: 0.921474 %
+t: 21.289503
+epoch 412, minibatch 234/234:
+  train err: 1.739450 %
+  valid err: 0.545873 %
+  test  err: 0.911458 %
+t: 21.466433
+epoch 413, minibatch 234/234:
+  train err: 4.250133 %
+  valid err: 0.544204 %
+  test  err: 0.931490 %
+t: 20.935881
+epoch 414, minibatch 234/234:
+  train err: 5.830996 %
+  valid err: 0.547543 %
+  test  err: 0.921474 %
+t: 21.587492
+epoch 415, minibatch 234/234:
+  train err: 15.810296 %
+  valid err: 0.545873 %
+  test  err: 0.931490 %
+t: 21.854403
+epoch 416, minibatch 234/234:
+  train err: 5.992922 %
+  valid err: 0.549212 %
+  test  err: 0.921474 %
+t: 23.263469
+epoch 417, minibatch 234/234:
+  train err: 4.734242 %
+  valid err: 0.544204 %
+  test  err: 0.921474 %
+t: 21.453182
+epoch 418, minibatch 234/234:
+  train err: 11.823918 %
+  valid err: 0.544204 %
+  test  err: 0.901442 %
+t: 21.792028
+epoch 419, minibatch 234/234:
+  train err: 3.675881 %
+  valid err: 0.544204 %
+  test  err: 0.901442 %
+t: 21.532211
+epoch 420, minibatch 234/234:
+  train err: 4.268496 %
+  valid err: 0.545873 %
+  test  err: 0.891426 %
+t: 21.491882
+epoch 421, minibatch 234/234:
+  train err: 7.203192 %
+  valid err: 0.552551 %
+  test  err: 0.901442 %
+t: 22.410382
+epoch 422, minibatch 234/234:
+  train err: 4.902845 %
+  valid err: 0.552551 %
+  test  err: 0.911458 %
+t: 21.949812
+epoch 423, minibatch 234/234:
+  train err: 8.316640 %
+  valid err: 0.547543 %
+  test  err: 0.891426 %
+t: 21.75089
+epoch 424, minibatch 234/234:
+  train err: 7.623865 %
+  valid err: 0.549212 %
+  test  err: 0.901442 %
+t: 22.162575
+epoch 425, minibatch 234/234:
+  train err: 6.909388 %
+  valid err: 0.550881 %
+  test  err: 0.891426 %
+t: 21.234961
+epoch 426, minibatch 234/234:
+  train err: 4.609041 %
+  valid err: 0.545873 %
+  test  err: 0.891426 %
+t: 21.639243
+epoch 427, minibatch 234/234:
+  train err: 3.266894 %
+  valid err: 0.554220 %
+  test  err: 0.901442 %
+t: 21.178607
+epoch 428, minibatch 234/234:
+  train err: 6.096421 %
+  valid err: 0.552551 %
+  test  err: 0.931490 %
+t: 22.115562
+epoch 429, minibatch 234/234:
+  train err: 16.810229 %
+  valid err: 0.557559 %
+  test  err: 0.891426 %
+t: 21.078311
+epoch 430, minibatch 234/234:
+  train err: 7.463609 %
+  valid err: 0.557559 %
+  test  err: 0.911458 %
+t: 22.495921
+epoch 431, minibatch 234/234:
+  train err: 3.700921 %
+  valid err: 0.557559 %
+  test  err: 0.961538 %
+t: 21.570427
+epoch 432, minibatch 234/234:
+  train err: 2.986445 %
+  valid err: 0.567575 %
+  test  err: 0.981571 %
+t: 22.398577
+epoch 433, minibatch 234/234:
+  train err: 2.986445 %
+  valid err: 0.565905 %
+  test  err: 0.971554 %
+t: 21.133254
+epoch 434, minibatch 234/234:
+  train err: 3.018162 %
+  valid err: 0.559228 %
+  test  err: 0.941506 %
+t: 21.52236
+epoch 435, minibatch 234/234:
+  train err: 3.937967 %
+  valid err: 0.559228 %
+  test  err: 0.951522 %
+t: 22.027722
+epoch 436, minibatch 234/234:
+  train err: 19.577992 %
+  valid err: 0.557559 %
+  test  err: 0.951522 %
+t: 21.827592
+epoch 437, minibatch 234/234:
+  train err: 4.139957 %
+  valid err: 0.554220 %
+  test  err: 0.961538 %
+t: 21.137855
+epoch 438, minibatch 234/234:
+  train err: 5.959535 %
+  valid err: 0.554220 %
+  test  err: 0.961538 %
+t: 22.119209
+epoch 439, minibatch 234/234:
+  train err: 12.942374 %
+  valid err: 0.569244 %
+  test  err: 0.961538 %
+t: 22.218396
+epoch 440, minibatch 234/234:
+  train err: 10.339877 %
+  valid err: 0.565905 %
+  test  err: 0.951522 %
+t: 21.731186
+epoch 441, minibatch 234/234:
+  train err: 5.331864 %
+  valid err: 0.562567 %
+  test  err: 0.961538 %
+t: 21.787569
+epoch 442, minibatch 234/234:
+  train err: 7.298344 %
+  valid err: 0.559228 %
+  test  err: 0.951522 %
+t: 21.91202
+epoch 443, minibatch 234/234:
+  train err: 5.627337 %
+  valid err: 0.555889 %
+  test  err: 0.941506 %
+t: 21.621749
+epoch 444, minibatch 234/234:
+  train err: 3.345352 %
+  valid err: 0.559228 %
+  test  err: 0.951522 %
+t: 22.180846
+epoch 445, minibatch 234/234:
+  train err: 6.887687 %
+  valid err: 0.559228 %
+  test  err: 0.941506 %
+t: 21.927174
+epoch 446, minibatch 234/234:
+  train err: 5.557225 %
+  valid err: 0.562567 %
+  test  err: 0.961538 %
+t: 22.219386
+epoch 447, minibatch 234/234:
+  train err: 3.939637 %
+  valid err: 0.570913 %
+  test  err: 0.971554 %
+t: 21.815318
+epoch 448, minibatch 234/234:
+  train err: 2.968082 %
+  valid err: 0.567575 %
+  test  err: 0.981571 %
+t: 21.743849
+epoch 449, minibatch 234/234:
+  train err: 4.737580 %
+  valid err: 0.564236 %
+  test  err: 0.961538 %
+t: 21.231295
+epoch 450, minibatch 234/234:
+  train err: 3.804420 %
+  valid err: 0.560897 %
+  test  err: 0.961538 %
+t: 22.767386
+epoch 451, minibatch 234/234:
+  train err: 3.584068 %
+  valid err: 0.562567 %
+  test  err: 0.961538 %
+t: 21.706747
+epoch 452, minibatch 234/234:
+  train err: 2.554087 %
+  valid err: 0.549212 %
+  test  err: 0.951522 %
+t: 22.233397
+epoch 453, minibatch 234/234:
+  train err: 7.847556 %
+  valid err: 0.555889 %
+  test  err: 0.941506 %
+t: 21.644011
+epoch 454, minibatch 234/234:
+  train err: 3.208467 %
+  valid err: 0.565905 %
+  test  err: 0.951522 %
+t: 21.899366
+epoch 455, minibatch 234/234:
+  train err: 4.462139 %
+  valid err: 0.564236 %
+  test  err: 0.961538 %
+t: 21.956775
+epoch 456, minibatch 234/234:
+  train err: 3.462206 %
+  valid err: 0.575921 %
+  test  err: 0.951522 %
+t: 21.416201
+epoch 457, minibatch 234/234:
+  train err: 10.605302 %
+  valid err: 0.575921 %
+  test  err: 0.921474 %
+t: 22.051524
+epoch 458, minibatch 234/234:
+  train err: 4.048144 %
+  valid err: 0.569244 %
+  test  err: 0.911458 %
+t: 22.447448
+epoch 459, minibatch 234/234:
+  train err: 4.068176 %
+  valid err: 0.572583 %
+  test  err: 0.931490 %
+t: 22.014211
+epoch 460, minibatch 234/234:
+  train err: 8.037861 %
+  valid err: 0.554220 %
+  test  err: 0.921474 %
+t: 21.790088
+epoch 461, minibatch 234/234:
+  train err: 7.548745 %
+  valid err: 0.559228 %
+  test  err: 0.921474 %
+t: 22.15486
+epoch 462, minibatch 234/234:
+  train err: 3.392094 %
+  valid err: 0.560897 %
+  test  err: 0.911458 %
+t: 21.971517
+epoch 463, minibatch 234/234:
+  train err: 7.745726 %
+  valid err: 0.552551 %
+  test  err: 0.931490 %
+t: 21.630395
+epoch 464, minibatch 234/234:
+  train err: 4.260150 %
+  valid err: 0.562567 %
+  test  err: 0.931490 %
+t: 22.912958
+epoch 465, minibatch 234/234:
+  train err: 2.447249 %
+  valid err: 0.564236 %
+  test  err: 0.931490 %
+t: 21.937292
+epoch 466, minibatch 234/234:
+  train err: 4.345286 %
+  valid err: 0.567575 %
+  test  err: 0.941506 %
+t: 22.668766
+epoch 467, minibatch 234/234:
+  train err: 11.857305 %
+  valid err: 0.570913 %
+  test  err: 0.931490 %
+t: 21.315803
+epoch 468, minibatch 234/234:
+  train err: 2.931357 %
+  valid err: 0.565905 %
+  test  err: 0.911458 %
+t: 21.97696
+epoch 469, minibatch 234/234:
+  train err: 5.797610 %
+  valid err: 0.572583 %
+  test  err: 0.931490 %
+t: 21.909259
+epoch 470, minibatch 234/234:
+  train err: 4.136619 %
+  valid err: 0.572583 %
+  test  err: 0.931490 %
+t: 23.041712
+epoch 471, minibatch 234/234:
+  train err: 3.704260 %
+  valid err: 0.574252 %
+  test  err: 0.931490 %
+t: 21.893613
+epoch 472, minibatch 234/234:
+  train err: 5.265091 %
+  valid err: 0.574252 %
+  test  err: 0.931490 %
+t: 22.752856
+epoch 473, minibatch 234/234:
+  train err: 4.248464 %
+  valid err: 0.569244 %
+  test  err: 0.931490 %
+t: 22.377013
+epoch 474, minibatch 234/234:
+  train err: 6.849292 %
+  valid err: 0.575921 %
+  test  err: 0.931490 %
+t: 21.633181
+epoch 475, minibatch 234/234:
+  train err: 36.316440 %
+  valid err: 0.579260 %
+  test  err: 0.941506 %
+t: 21.855457
+epoch 476, minibatch 234/234:
+  train err: 5.977898 %
+  valid err: 0.575921 %
+  test  err: 0.941506 %
+t: 24.157229
+epoch 477, minibatch 234/234:
+  train err: 5.333534 %
+  valid err: 0.580929 %
+  test  err: 0.941506 %
+t: 21.945659
+epoch 478, minibatch 234/234:
+  train err: 4.338608 %
+  valid err: 0.579260 %
+  test  err: 0.961538 %
+t: 22.436524
+epoch 479, minibatch 234/234:
+  train err: 4.341947 %
+  valid err: 0.574252 %
+  test  err: 0.931490 %
+t: 22.452978
+epoch 480, minibatch 234/234:
+  train err: 8.340011 %
+  valid err: 0.579260 %
+  test  err: 0.941506 %
+t: 22.274517
+epoch 481, minibatch 234/234:
+  train err: 12.962407 %
+  valid err: 0.582599 %
+  test  err: 0.931490 %
+t: 22.635192
+epoch 482, minibatch 234/234:
+  train err: 2.667601 %
+  valid err: 0.575921 %
+  test  err: 0.931490 %
+t: 22.155146
+epoch 483, minibatch 234/234:
+  train err: 15.895432 %
+  valid err: 0.580929 %
+  test  err: 0.941506 %
+t: 22.030143
+epoch 484, minibatch 234/234:
+  train err: 3.398771 %
+  valid err: 0.575921 %
+  test  err: 0.961538 %
+t: 22.587735
+epoch 485, minibatch 234/234:
+  train err: 4.819378 %
+  valid err: 0.577591 %
+  test  err: 0.931490 %
+t: 21.694726
+epoch 486, minibatch 234/234:
+  train err: 2.478966 %
+  valid err: 0.569244 %
+  test  err: 0.931490 %
+t: 22.280614
+epoch 487, minibatch 234/234:
+  train err: 2.121728 %
+  valid err: 0.562567 %
+  test  err: 0.941506 %
+t: 21.919008
+epoch 488, minibatch 234/234:
+  train err: 1.737780 %
+  valid err: 0.567575 %
+  test  err: 0.941506 %
+t: 22.728887
+epoch 489, minibatch 234/234:
+  train err: 5.401976 %
+  valid err: 0.557559 %
+  test  err: 0.931490 %
+t: 22.337248
+epoch 490, minibatch 234/234:
+  train err: 5.844351 %
+  valid err: 0.552551 %
+  test  err: 0.921474 %
+t: 22.607784
+epoch 491, minibatch 234/234:
+  train err: 2.797810 %
+  valid err: 0.557559 %
+  test  err: 0.931490 %
+t: 22.193922
+epoch 492, minibatch 234/234:
+  train err: 4.328592 %
+  valid err: 0.559228 %
+  test  err: 0.931490 %
+t: 22.284897
+epoch 493, minibatch 234/234:
+  train err: 6.700721 %
+  valid err: 0.550881 %
+  test  err: 0.931490 %
+t: 21.603801
+epoch 494, minibatch 234/234:
+  train err: 7.742388 %
+  valid err: 0.555889 %
+  test  err: 0.901442 %
+t: 22.280823
+epoch 495, minibatch 234/234:
+  train err: 3.427150 %
+  valid err: 0.564236 %
+  test  err: 0.921474 %
+t: 22.189673
+epoch 496, minibatch 234/234:
+  train err: 14.795339 %
+  valid err: 0.565905 %
+  test  err: 0.911458 %
+t: 23.157652
+epoch 497, minibatch 234/234:
+  train err: 6.832599 %
+  valid err: 0.565905 %
+  test  err: 0.931490 %
+t: 22.03844
+epoch 498, minibatch 234/234:
+  train err: 12.501669 %
+  valid err: 0.559228 %
+  test  err: 0.921474 %
+t: 22.366296
+epoch 499, minibatch 234/234:
+  train err: 4.176683 %
+  valid err: 0.555889 %
+  test  err: 0.911458 %
+t: 22.339146
+epoch 500, minibatch 234/234:
+  train err: 3.687567 %
+  valid err: 0.547543 %
+  test  err: 0.901442 %
+t: 22.563971
+epoch 501, minibatch 234/234:
+  train err: 3.781050 %
+  valid err: 0.552551 %
+  test  err: 0.901442 %
+t: 23.37202
+epoch 502, minibatch 234/234:
+  train err: 9.553619 %
+  valid err: 0.557559 %
+  test  err: 0.911458 %
+t: 22.94117
+epoch 503, minibatch 234/234:
+  train err: 5.562233 %
+  valid err: 0.554220 %
+  test  err: 0.911458 %
+t: 22.537205
+epoch 504, minibatch 234/234:
+  train err: 5.610644 %
+  valid err: 0.557559 %
+  test  err: 0.901442 %
+t: 23.256985
+epoch 505, minibatch 234/234:
+  train err: 4.727564 %
+  valid err: 0.549212 %
+  test  err: 0.881410 %
+t: 22.676395
+epoch 506, minibatch 234/234:
+  train err: 3.891226 %
+  valid err: 0.542535 %
+  test  err: 0.871394 %
+t: 22.655071
+epoch 507, minibatch 234/234:
+  train err: 6.674012 %
+  valid err: 0.545873 %
+  test  err: 0.881410 %
+t: 22.13782
+epoch 508, minibatch 234/234:
+  train err: 2.749399 %
+  valid err: 0.547543 %
+  test  err: 0.871394 %
+t: 22.308887
+epoch 509, minibatch 234/234:
+  train err: 3.113315 %
+  valid err: 0.550881 %
+  test  err: 0.891426 %
+t: 22.708782
+epoch 510, minibatch 234/234:
+  train err: 30.126536 %
+  valid err: 0.545873 %
+  test  err: 0.891426 %
+t: 22.097517
+epoch 511, minibatch 234/234:
+  train err: 4.096555 %
+  valid err: 0.547543 %
+  test  err: 0.881410 %
+t: 23.281064
+epoch 512, minibatch 234/234:
+  train err: 3.166733 %
+  valid err: 0.537527 %
+  test  err: 0.901442 %
+  current best
+t: 23.839865
+epoch 513, minibatch 234/234:
+  train err: 4.740919 %
+  valid err: 0.552551 %
+  test  err: 0.911458 %
+t: 21.764993
+epoch 514, minibatch 234/234:
+  train err: 2.322049 %
+  valid err: 0.542535 %
+  test  err: 0.901442 %
+t: 24.350681
+epoch 515, minibatch 234/234:
+  train err: 5.849359 %
+  valid err: 0.534188 %
+  test  err: 0.891426 %
+  current best
+t: 22.743253
+epoch 516, minibatch 234/234:
+  train err: 4.902845 %
+  valid err: 0.534188 %
+  test  err: 0.911458 %
+t: 23.265393
+epoch 517, minibatch 234/234:
+  train err: 3.892895 %
+  valid err: 0.547543 %
+  test  err: 0.931490 %
+t: 22.494551
+epoch 518, minibatch 234/234:
+  train err: 3.872863 %
+  valid err: 0.552551 %
+  test  err: 0.921474 %
+t: 21.798584
+epoch 519, minibatch 234/234:
+  train err: 3.957999 %
+  valid err: 0.544204 %
+  test  err: 0.931490 %
+t: 22.579381
+epoch 520, minibatch 234/234:
+  train err: 2.485644 %
+  valid err: 0.542535 %
+  test  err: 0.901442 %
+t: 22.999284
+epoch 521, minibatch 234/234:
+  train err: 3.488915 %
+  valid err: 0.535857 %
+  test  err: 0.881410 %
+t: 21.854882
+epoch 522, minibatch 234/234:
+  train err: 4.846087 %
+  valid err: 0.524172 %
+  test  err: 0.891426 %
+  current best
+t: 24.326346
+epoch 523, minibatch 234/234:
+  train err: 6.944445 %
+  valid err: 0.527511 %
+  test  err: 0.891426 %
+t: 23.115889
+epoch 524, minibatch 234/234:
+  train err: 4.211739 %
+  valid err: 0.529180 %
+  test  err: 0.871394 %
+t: 22.230189
+epoch 525, minibatch 234/234:
+  train err: 5.507145 %
+  valid err: 0.524172 %
+  test  err: 0.881410 %
+t: 22.210144
+epoch 526, minibatch 234/234:
+  train err: 11.989183 %
+  valid err: 0.522503 %
+  test  err: 0.871394 %
+  current best
+t: 22.527097
+epoch 527, minibatch 234/234:
+  train err: 12.593482 %
+  valid err: 0.530849 %
+  test  err: 0.871394 %
+t: 22.589654
+epoch 528, minibatch 234/234:
+  train err: 3.109976 %
+  valid err: 0.524172 %
+  test  err: 0.861378 %
+t: 22.553213
+epoch 529, minibatch 234/234:
+  train err: 9.441774 %
+  valid err: 0.527511 %
+  test  err: 0.881410 %
+t: 22.563671
+epoch 530, minibatch 234/234:
+  train err: 5.296808 %
+  valid err: 0.532519 %
+  test  err: 0.891426 %
+t: 22.37521
+epoch 531, minibatch 234/234:
+  train err: 4.657452 %
+  valid err: 0.534188 %
+  test  err: 0.891426 %
+t: 21.844239
+epoch 532, minibatch 234/234:
+  train err: 3.345352 %
+  valid err: 0.532519 %
+  test  err: 0.881410 %
+t: 22.105359
+epoch 533, minibatch 234/234:
+  train err: 5.288462 %
+  valid err: 0.535857 %
+  test  err: 0.881410 %
+t: 21.723883
+epoch 534, minibatch 234/234:
+  train err: 6.820913 %
+  valid err: 0.539196 %
+  test  err: 0.891426 %
+t: 22.462218
+epoch 535, minibatch 234/234:
+  train err: 6.545473 %
+  valid err: 0.537527 %
+  test  err: 0.901442 %
+t: 22.928214
+epoch 536, minibatch 234/234:
+  train err: 9.358307 %
+  valid err: 0.542535 %
+  test  err: 0.911458 %
+t: 22.774484
+epoch 537, minibatch 234/234:
+  train err: 3.557358 %
+  valid err: 0.549212 %
+  test  err: 0.931490 %
+t: 23.473759
+epoch 538, minibatch 234/234:
+  train err: 5.044738 %
+  valid err: 0.550881 %
+  test  err: 0.941506 %
+t: 23.020297
+epoch 539, minibatch 234/234:
+  train err: 8.867522 %
+  valid err: 0.564236 %
+  test  err: 0.931490 %
+t: 23.550825
+epoch 540, minibatch 234/234:
+  train err: 5.059762 %
+  valid err: 0.564236 %
+  test  err: 0.931490 %
+t: 24.039287
+epoch 541, minibatch 234/234:
+  train err: 3.964677 %
+  valid err: 0.575921 %
+  test  err: 0.921474 %
+t: 23.184234
+epoch 542, minibatch 234/234:
+  train err: 5.178285 %
+  valid err: 0.570913 %
+  test  err: 0.941506 %
+t: 22.414004
+epoch 543, minibatch 234/234:
+  train err: 5.126536 %
+  valid err: 0.567575 %
+  test  err: 0.931490 %
+t: 23.556409
+epoch 544, minibatch 234/234:
+  train err: 3.512286 %
+  valid err: 0.575921 %
+  test  err: 0.961538 %
+t: 23.482864
+epoch 545, minibatch 234/234:
+  train err: 9.238114 %
+  valid err: 0.567575 %
+  test  err: 0.961538 %
+t: 23.799933
+epoch 546, minibatch 234/234:
+  train err: 18.436165 %
+  valid err: 0.587607 %
+  test  err: 0.931490 %
+t: 23.268489
+epoch 547, minibatch 234/234:
+  train err: 2.115051 %
+  valid err: 0.579260 %
+  test  err: 0.951522 %
+t: 22.167941
+epoch 548, minibatch 234/234:
+  train err: 3.635817 %
+  valid err: 0.582599 %
+  test  err: 0.951522 %
+t: 22.894124
+epoch 549, minibatch 234/234:
+  train err: 3.574052 %
+  valid err: 0.590946 %
+  test  err: 0.941506 %
+t: 22.425217
+epoch 550, minibatch 234/234:
+  train err: 6.613915 %
+  valid err: 0.592615 %
+  test  err: 0.941506 %
+t: 23.263851
+epoch 551, minibatch 234/234:
+  train err: 3.375401 %
+  valid err: 0.594284 %
+  test  err: 0.951522 %
+t: 22.050348
+epoch 552, minibatch 234/234:
+  train err: 3.817775 %
+  valid err: 0.577591 %
+  test  err: 0.951522 %
+t: 22.786347
+epoch 553, minibatch 234/234:
+  train err: 3.822783 %
+  valid err: 0.585938 %
+  test  err: 0.951522 %
+t: 22.921176
+epoch 554, minibatch 234/234:
+  train err: 4.173344 %
+  valid err: 0.572583 %
+  test  err: 0.931490 %
+t: 22.75733
+epoch 555, minibatch 234/234:
+  train err: 4.457131 %
+  valid err: 0.579260 %
+  test  err: 0.941506 %
+t: 22.030372
+epoch 556, minibatch 234/234:
+  train err: 6.363515 %
+  valid err: 0.564236 %
+  test  err: 0.951522 %
+t: 23.145285
+epoch 557, minibatch 234/234:
+  train err: 3.852831 %
+  valid err: 0.577591 %
+  test  err: 0.961538 %
+t: 22.614526
+epoch 558, minibatch 234/234:
+  train err: 3.604100 %
+  valid err: 0.555889 %
+  test  err: 0.931490 %
+t: 23.196742
+epoch 559, minibatch 234/234:
+  train err: 9.375000 %
+  valid err: 0.560897 %
+  test  err: 0.951522 %
+t: 22.375847
+epoch 560, minibatch 234/234:
+  train err: 17.384481 %
+  valid err: 0.564236 %
+  test  err: 0.941506 %
+t: 22.961534
+epoch 561, minibatch 234/234:
+  train err: 8.880876 %
+  valid err: 0.560897 %
+  test  err: 0.951522 %
+t: 22.539137
+epoch 562, minibatch 234/234:
+  train err: 7.722355 %
+  valid err: 0.555889 %
+  test  err: 0.931490 %
+t: 22.924463
+epoch 563, minibatch 234/234:
+  train err: 4.629073 %
+  valid err: 0.564236 %
+  test  err: 0.941506 %
+t: 22.139812
+epoch 564, minibatch 234/234:
+  train err: 8.331664 %
+  valid err: 0.557559 %
+  test  err: 0.941506 %
+t: 22.949238
+epoch 565, minibatch 234/234:
+  train err: 3.846154 %
+  valid err: 0.562567 %
+  test  err: 0.941506 %
+t: 22.787869
+epoch 566, minibatch 234/234:
+  train err: 7.657252 %
+  valid err: 0.555889 %
+  test  err: 0.951522 %
+t: 24.251277
+epoch 567, minibatch 234/234:
+  train err: 4.689169 %
+  valid err: 0.560897 %
+  test  err: 0.951522 %
+t: 23.77362
+epoch 568, minibatch 234/234:
+  train err: 6.002938 %
+  valid err: 0.560897 %
+  test  err: 0.951522 %
+t: 23.532537
+epoch 569, minibatch 234/234:
+  train err: 3.944645 %
+  valid err: 0.562567 %
+  test  err: 0.951522 %
+t: 23.134734
+epoch 570, minibatch 234/234:
+  train err: 7.106370 %
+  valid err: 0.560897 %
+  test  err: 0.941506 %
+t: 23.885906
+epoch 571, minibatch 234/234:
+  train err: 2.056624 %
+  valid err: 0.564236 %
+  test  err: 0.941506 %
+t: 22.874858
+epoch 572, minibatch 234/234:
+  train err: 13.349693 %
+  valid err: 0.562567 %
+  test  err: 0.941506 %
+t: 22.545283
+epoch 573, minibatch 234/234:
+  train err: 3.370393 %
+  valid err: 0.570913 %
+  test  err: 0.931490 %
+t: 22.795615
+epoch 574, minibatch 234/234:
+  train err: 4.114917 %
+  valid err: 0.569244 %
+  test  err: 0.931490 %
+t: 22.694236
+epoch 575, minibatch 234/234:
+  train err: 2.857906 %
+  valid err: 0.562567 %
+  test  err: 0.941506 %
+t: 23.317763
+epoch 576, minibatch 234/234:
+  train err: 8.433493 %
+  valid err: 0.564236 %
+  test  err: 0.931490 %
+t: 24.087856
+epoch 577, minibatch 234/234:
+  train err: 4.333600 %
+  valid err: 0.570913 %
+  test  err: 0.941506 %
+t: 23.878855
+epoch 578, minibatch 234/234:
+  train err: 4.433761 %
+  valid err: 0.577591 %
+  test  err: 0.941506 %
+t: 23.918035
+epoch 579, minibatch 234/234:
+  train err: 4.727564 %
+  valid err: 0.590946 %
+  test  err: 0.941506 %
+t: 23.348841
+epoch 580, minibatch 234/234:
+  train err: 5.759215 %
+  valid err: 0.574252 %
+  test  err: 0.931490 %
+t: 24.40011
+epoch 581, minibatch 234/234:
+  train err: 5.902778 %
+  valid err: 0.569244 %
+  test  err: 0.941506 %
+t: 22.868064
+epoch 582, minibatch 234/234:
+  train err: 5.927818 %
+  valid err: 0.559228 %
+  test  err: 0.941506 %
+t: 23.344433
+epoch 583, minibatch 234/234:
+  train err: 3.306958 %
+  valid err: 0.559228 %
+  test  err: 0.941506 %
+t: 23.634181
+epoch 584, minibatch 234/234:
+  train err: 4.660790 %
+  valid err: 0.559228 %
+  test  err: 0.911458 %
+t: 23.293059
+epoch 585, minibatch 234/234:
+  train err: 3.288595 %
+  valid err: 0.555889 %
+  test  err: 0.921474 %
+t: 23.59775
+epoch 586, minibatch 234/234:
+  train err: 3.018162 %
+  valid err: 0.560897 %
+  test  err: 0.921474 %
+t: 23.699548
+epoch 587, minibatch 234/234:
+  train err: 6.128138 %
+  valid err: 0.555889 %
+  test  err: 0.921474 %
+t: 23.49661
+epoch 588, minibatch 234/234:
+  train err: 6.201589 %
+  valid err: 0.557559 %
+  test  err: 0.921474 %
+t: 23.466522
+epoch 589, minibatch 234/234:
+  train err: 3.882879 %
+  valid err: 0.567575 %
+  test  err: 0.931490 %
+t: 22.478382
+epoch 590, minibatch 234/234:
+  train err: 4.563969 %
+  valid err: 0.572583 %
+  test  err: 0.971554 %
+t: 23.793527
+epoch 591, minibatch 234/234:
+  train err: 5.188301 %
+  valid err: 0.565905 %
+  test  err: 0.921474 %
+t: 22.832834
+epoch 592, minibatch 234/234:
+  train err: 7.148103 %
+  valid err: 0.569244 %
+  test  err: 0.941506 %
+t: 23.866353
+epoch 593, minibatch 234/234:
+  train err: 2.625868 %
+  valid err: 0.584268 %
+  test  err: 0.951522 %
+t: 22.977773
+epoch 594, minibatch 234/234:
+  train err: 8.348358 %
+  valid err: 0.572583 %
+  test  err: 0.951522 %
+t: 23.300143
+epoch 595, minibatch 234/234:
+  train err: 8.531985 %
+  valid err: 0.577591 %
+  test  err: 0.971554 %
+t: 23.17202
+epoch 596, minibatch 234/234:
+  train err: 9.887487 %
+  valid err: 0.565905 %
+  test  err: 0.971554 %
+t: 23.159464
+epoch 597, minibatch 234/234:
+  train err: 9.839076 %
+  valid err: 0.557559 %
+  test  err: 0.961538 %
+t: 23.661638
+epoch 598, minibatch 234/234:
+  train err: 4.014757 %
+  valid err: 0.562567 %
+  test  err: 0.961538 %
+t: 24.695574
+epoch 599, minibatch 234/234:
+  train err: 3.552350 %
+  valid err: 0.550881 %
+  test  err: 0.941506 %
+t: 22.788607
+epoch 600, minibatch 234/234:
+  train err: 5.649038 %
+  valid err: 0.572583 %
+  test  err: 0.941506 %
+t: 23.13929
+Optimization complete. Best valid score of 0.522503 % obtained at iteration 123084, epoch 526, with test performance 0.871394 %
