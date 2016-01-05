@@ -8,7 +8,7 @@ title=$5
 first_label=$6
 second_label=$7
 
-dumped_dir=/var/www/dumped/graphs
+dumped_dir=/var/www/html/dumped/graphs
 
 echo "
 #set style line 1 lc rgb '#8b1a0e' lw 2 # --- red
