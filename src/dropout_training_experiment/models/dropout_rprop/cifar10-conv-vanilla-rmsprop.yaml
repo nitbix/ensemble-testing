@@ -9,9 +9,10 @@ L2_reg: 0.0
 n_epochs: 100
 pretraining: !!null
 pretraining_passes: 2
+center_and_normalise: true
 training_method: normal
-learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-4, stop: 1.0e-5, multiplier: 0.9 }
-update_rule: !RMSProp { momentum: 0.9 }
+learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-5, multiplier: 0.95 }
+update_rule: !RMSProp { momentum: 0.3 }
 batch_size: 128
 cost_function: !CrossEntropy { }
 n_hidden: [
@@ -24,9 +25,9 @@ n_hidden: [
                 [3,32,32],
                 [64,2,2],
                 [2,2],
-                0.,
+                0.25,
                 'c1',
-                !TanH { },
+                !ReLU { },
                 'max',
                 !GlorotWeightInit { }
             ]],
@@ -34,9 +35,9 @@ n_hidden: [
                 !!null ,
                 [128,4,4],
                 [2,2],
-                0.,
+                0.25,
                 'c2',
-                !TanH { },
+                !ReLU { },
                 'max',
                 !GlorotWeightInit { }
             ]],
@@ -44,13 +45,12 @@ n_hidden: [
                 !!null ,
                 [256,5,5],
                 [2,2],
-                0.,
+                0.25,
                 'c3',
-                !TanH { },
+                !ReLU { },
                 'max',
                 !GlorotWeightInit { }
             ]],
-            ['flat', [4096, 0.5, 'f1', !ReLU { }, !GlorotWeightInit { } ]],
             ['flat', [2048, 0.5, 'f2', !ReLU { }, !GlorotWeightInit { } ]]
           ]
 n_in: 3072
