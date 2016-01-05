@@ -41,10 +41,10 @@ if __name__ == '__main__':
 
     params = config.load_parameters(sys.argv[1])
     dataset = data.load_data(params.dataset,
-                              resize_to = params.resize_data_to,
-                              shared = True,
-                              subtract_mean = params.subtract_mean,
-                              pickled = params.pickled)
+                             resize_to = params.resize_data_to,
+                             shared = True,
+                             pickled = params.pickled,
+                             center_and_normalise = params.center_and_normalise)
     pretraining_set = data.make_pretraining_set(dataset,params.pretraining)
     if not search:
         mlp = test_mlp(dataset, params, pretraining_set = pretraining_set)
