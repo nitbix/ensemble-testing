@@ -1,0 +1,532 @@
+training samples: 40000
+... normal training
+.... generating models
+.... started
+epoch 1, minibatch 312/312:
+  train err: 83.696413 %
+  valid err: 84.675479 %
+  test  err: 83.934295 %
+  current best
+t: 13.274886
+epoch 2, minibatch 312/312:
+  train err: 74.722058 %
+  valid err: 77.483976 %
+  test  err: 76.822919 %
+  current best
+t: 13.256644
+epoch 3, minibatch 312/312:
+  train err: 67.896134 %
+  valid err: 72.125399 %
+  test  err: 71.243989 %
+  current best
+t: 13.26222
+epoch 4, minibatch 312/312:
+  train err: 62.417370 %
+  valid err: 68.990386 %
+  test  err: 67.798477 %
+  current best
+t: 13.266903
+epoch 5, minibatch 312/312:
+  train err: 57.787460 %
+  valid err: 66.806889 %
+  test  err: 65.745193 %
+  current best
+t: 13.268638
+epoch 6, minibatch 312/312:
+  train err: 53.382915 %
+  valid err: 65.264422 %
+  test  err: 64.092547 %
+  current best
+t: 13.273394
+epoch 7, minibatch 312/312:
+  train err: 49.243790 %
+  valid err: 64.172679 %
+  test  err: 62.970752 %
+  current best
+t: 13.275974
+epoch 8, minibatch 312/312:
+  train err: 45.355067 %
+  valid err: 63.151044 %
+  test  err: 62.149441 %
+  current best
+t: 13.279391
+epoch 9, minibatch 312/312:
+  train err: 41.937098 %
+  valid err: 62.760419 %
+  test  err: 61.528444 %
+  current best
+t: 13.280236
+epoch 10, minibatch 312/312:
+  train err: 38.519129 %
+  valid err: 62.700319 %
+  test  err: 61.177886 %
+  current best
+t: 13.280757
+epoch 11, minibatch 312/312:
+  train err: 35.524338 %
+  valid err: 62.640226 %
+  test  err: 61.418271 %
+  current best
+t: 13.281234
+epoch 12, minibatch 312/312:
+  train err: 32.507011 %
+  valid err: 62.520033 %
+  test  err: 61.578524 %
+  current best
+t: 13.285132
+epoch 13, minibatch 312/312:
+  train err: 29.584837 %
+  valid err: 62.680286 %
+  test  err: 61.868989 %
+t: 13.170347
+epoch 14, minibatch 312/312:
+  train err: 26.825422 %
+  valid err: 62.730366 %
+  test  err: 61.368191 %
+t: 13.169533
+epoch 15, minibatch 312/312:
+  train err: 23.725460 %
+  valid err: 62.900639 %
+  test  err: 61.418271 %
+t: 13.174342
+epoch 16, minibatch 312/312:
+  train err: 21.081230 %
+  valid err: 62.820512 %
+  test  err: 61.348158 %
+t: 13.170779
+epoch 17, minibatch 312/312:
+  train err: 18.847656 %
+  valid err: 62.630206 %
+  test  err: 61.378205 %
+t: 13.17189
+epoch 18, minibatch 312/312:
+  train err: 16.483875 %
+  valid err: 62.449920 %
+  test  err: 61.358172 %
+  current best
+t: 13.291589
+epoch 19, minibatch 312/312:
+  train err: 14.350460 %
+  valid err: 62.279648 %
+  test  err: 61.167866 %
+  current best
+t: 13.291165
+epoch 20, minibatch 312/312:
+  train err: 12.414864 %
+  valid err: 62.259614 %
+  test  err: 61.057693 %
+  current best
+t: 13.295153
+epoch 21, minibatch 312/312:
+  train err: 10.541867 %
+  valid err: 62.069309 %
+  test  err: 60.887420 %
+  current best
+t: 13.296449
+epoch 22, minibatch 312/312:
+  train err: 8.989383 %
+  valid err: 62.059295 %
+  test  err: 60.727161 %
+  current best
+t: 13.300333
+epoch 23, minibatch 312/312:
+  train err: 7.409355 %
+  valid err: 61.838943 %
+  test  err: 60.677081 %
+  current best
+t: 13.302069
+epoch 24, minibatch 312/312:
+  train err: 6.154848 %
+  valid err: 61.778843 %
+  test  err: 60.616988 %
+  current best
+t: 13.301469
+epoch 25, minibatch 312/312:
+  train err: 4.980469 %
+  valid err: 61.588544 %
+  test  err: 60.516828 %
+  current best
+t: 13.301342
+epoch 26, minibatch 312/312:
+  train err: 3.998898 %
+  valid err: 61.398238 %
+  test  err: 60.446715 %
+  current best
+t: 13.300418
+epoch 27, minibatch 312/312:
+  train err: 3.132512 %
+  valid err: 61.498398 %
+  test  err: 60.296476 %
+t: 13.178422
+epoch 28, minibatch 312/312:
+  train err: 2.498998 %
+  valid err: 61.448318 %
+  test  err: 60.246396 %
+t: 13.175716
+epoch 29, minibatch 312/312:
+  train err: 1.938101 %
+  valid err: 61.408252 %
+  test  err: 60.196316 %
+t: 13.182603
+epoch 30, minibatch 312/312:
+  train err: 1.527444 %
+  valid err: 61.268032 %
+  test  err: 60.016024 %
+  current best
+t: 13.302253
+epoch 31, minibatch 312/312:
+  train err: 1.254507 %
+  valid err: 61.127806 %
+  test  err: 59.985977 %
+  current best
+t: 13.311873
+epoch 32, minibatch 312/312:
+  train err: 1.014123 %
+  valid err: 60.977566 %
+  test  err: 59.925884 %
+  current best
+t: 13.302505
+epoch 33, minibatch 312/312:
+  train err: 0.783754 %
+  valid err: 60.907453 %
+  test  err: 60.046071 %
+  current best
+t: 13.310898
+epoch 34, minibatch 312/312:
+  train err: 0.608474 %
+  valid err: 61.007613 %
+  test  err: 60.036057 %
+t: 13.180873
+epoch 35, minibatch 312/312:
+  train err: 0.503305 %
+  valid err: 61.077726 %
+  test  err: 59.975964 %
+t: 13.185482
+epoch 36, minibatch 312/312:
+  train err: 0.410657 %
+  valid err: 61.057693 %
+  test  err: 59.925884 %
+t: 13.178486
+epoch 37, minibatch 312/312:
+  train err: 0.353065 %
+  valid err: 60.977566 %
+  test  err: 60.066104 %
+t: 13.1862
+epoch 38, minibatch 312/312:
+  train err: 0.290465 %
+  valid err: 60.997593 %
+  test  err: 60.086137 %
+t: 13.182047
+epoch 39, minibatch 312/312:
+  train err: 0.262921 %
+  valid err: 60.937500 %
+  test  err: 60.066104 %
+t: 13.189473
+epoch 40, minibatch 312/312:
+  train err: 0.207833 %
+  valid err: 60.937500 %
+  test  err: 60.086137 %
+t: 13.194532
+epoch 41, minibatch 312/312:
+  train err: 0.172776 %
+  valid err: 60.927486 %
+  test  err: 60.166264 %
+t: 13.197081
+epoch 42, minibatch 312/312:
+  train err: 0.152744 %
+  valid err: 60.927486 %
+  test  err: 60.196316 %
+t: 13.194887
+epoch 43, minibatch 312/312:
+  train err: 0.127704 %
+  valid err: 60.897434 %
+  test  err: 60.196316 %
+  current best
+t: 13.307845
+epoch 44, minibatch 312/312:
+  train err: 0.125200 %
+  valid err: 60.837340 %
+  test  err: 60.176283 %
+  current best
+t: 13.311135
+epoch 45, minibatch 312/312:
+  train err: 0.120192 %
+  valid err: 60.897434 %
+  test  err: 60.106170 %
+t: 13.188516
+epoch 46, minibatch 312/312:
+  train err: 0.112680 %
+  valid err: 60.897434 %
+  test  err: 60.046071 %
+t: 13.197192
+epoch 47, minibatch 312/312:
+  train err: 0.112680 %
+  valid err: 60.897434 %
+  test  err: 60.026044 %
+t: 13.185129
+epoch 48, minibatch 312/312:
+  train err: 0.112680 %
+  valid err: 60.907453 %
+  test  err: 60.036057 %
+t: 13.207675
+epoch 49, minibatch 312/312:
+  train err: 0.107672 %
+  valid err: 60.887420 %
+  test  err: 60.066104 %
+t: 13.192179
+epoch 50, minibatch 312/312:
+  train err: 0.107672 %
+  valid err: 60.887420 %
+  test  err: 60.066104 %
+t: 13.203548
+epoch 51, minibatch 312/312:
+  train err: 0.107672 %
+  valid err: 60.877407 %
+  test  err: 60.046071 %
+t: 13.191858
+epoch 52, minibatch 312/312:
+  train err: 0.105168 %
+  valid err: 60.867387 %
+  test  err: 60.006011 %
+t: 13.18611
+epoch 53, minibatch 312/312:
+  train err: 0.100160 %
+  valid err: 60.907453 %
+  test  err: 60.026044 %
+t: 13.187995
+epoch 54, minibatch 312/312:
+  train err: 0.097656 %
+  valid err: 60.917467 %
+  test  err: 60.016024 %
+t: 13.184014
+epoch 55, minibatch 312/312:
+  train err: 0.097656 %
+  valid err: 60.957533 %
+  test  err: 60.056090 %
+t: 13.197926
+epoch 56, minibatch 312/312:
+  train err: 0.095152 %
+  valid err: 60.967547 %
+  test  err: 60.026044 %
+t: 13.198655
+epoch 57, minibatch 312/312:
+  train err: 0.095152 %
+  valid err: 60.977566 %
+  test  err: 59.995991 %
+t: 13.197848
+epoch 58, minibatch 312/312:
+  train err: 0.095152 %
+  valid err: 60.997593 %
+  test  err: 59.965944 %
+t: 13.209357
+epoch 59, minibatch 312/312:
+  train err: 0.095152 %
+  valid err: 61.007613 %
+  test  err: 59.985977 %
+t: 13.188764
+epoch 60, minibatch 312/312:
+  train err: 0.095152 %
+  valid err: 61.017627 %
+  test  err: 59.985977 %
+t: 13.194467
+epoch 61, minibatch 312/312:
+  train err: 0.092648 %
+  valid err: 61.027646 %
+  test  err: 59.965944 %
+t: 13.184182
+epoch 62, minibatch 312/312:
+  train err: 0.092648 %
+  valid err: 61.027646 %
+  test  err: 59.965944 %
+t: 13.185008
+epoch 63, minibatch 312/312:
+  train err: 0.092648 %
+  valid err: 61.037660 %
+  test  err: 59.975964 %
+t: 13.190023
+epoch 64, minibatch 312/312:
+  train err: 0.092648 %
+  valid err: 61.027646 %
+  test  err: 60.006011 %
+t: 13.18766
+epoch 65, minibatch 312/312:
+  train err: 0.092648 %
+  valid err: 61.027646 %
+  test  err: 59.995991 %
+t: 13.208882
+epoch 66, minibatch 312/312:
+  train err: 0.092648 %
+  valid err: 61.047679 %
+  test  err: 59.995991 %
+t: 13.187013
+epoch 67, minibatch 312/312:
+  train err: 0.092648 %
+  valid err: 61.047679 %
+  test  err: 59.995991 %
+t: 13.201583
+epoch 68, minibatch 312/312:
+  train err: 0.092648 %
+  valid err: 61.047679 %
+  test  err: 59.995991 %
+t: 13.186786
+epoch 69, minibatch 312/312:
+  train err: 0.092648 %
+  valid err: 61.057693 %
+  test  err: 59.995991 %
+t: 13.183391
+epoch 70, minibatch 312/312:
+  train err: 0.092648 %
+  valid err: 61.047679 %
+  test  err: 59.995991 %
+t: 13.184702
+epoch 71, minibatch 312/312:
+  train err: 0.092648 %
+  valid err: 61.057693 %
+  test  err: 59.995991 %
+t: 13.17829
+epoch 72, minibatch 312/312:
+  train err: 0.092648 %
+  valid err: 61.047679 %
+  test  err: 59.995991 %
+t: 13.188516
+epoch 73, minibatch 312/312:
+  train err: 0.090144 %
+  valid err: 61.047679 %
+  test  err: 59.995991 %
+t: 13.187168
+epoch 74, minibatch 312/312:
+  train err: 0.087640 %
+  valid err: 61.037660 %
+  test  err: 59.995991 %
+t: 13.187328
+epoch 75, minibatch 312/312:
+  train err: 0.087640 %
+  valid err: 61.037660 %
+  test  err: 59.995991 %
+t: 13.191277
+epoch 76, minibatch 312/312:
+  train err: 0.087640 %
+  valid err: 61.027646 %
+  test  err: 59.995991 %
+t: 13.182171
+epoch 77, minibatch 312/312:
+  train err: 0.087640 %
+  valid err: 61.027646 %
+  test  err: 59.995991 %
+t: 13.182776
+epoch 78, minibatch 312/312:
+  train err: 0.087640 %
+  valid err: 61.027646 %
+  test  err: 60.016024 %
+t: 13.179615
+epoch 79, minibatch 312/312:
+  train err: 0.087640 %
+  valid err: 61.027646 %
+  test  err: 60.016024 %
+t: 13.186671
+epoch 80, minibatch 312/312:
+  train err: 0.087640 %
+  valid err: 61.007613 %
+  test  err: 60.016024 %
+t: 13.192167
+epoch 81, minibatch 312/312:
+  train err: 0.087640 %
+  valid err: 61.017627 %
+  test  err: 60.016024 %
+t: 13.181095
+epoch 82, minibatch 312/312:
+  train err: 0.087640 %
+  valid err: 61.017627 %
+  test  err: 60.006011 %
+t: 13.187128
+epoch 83, minibatch 312/312:
+  train err: 0.087640 %
+  valid err: 61.017627 %
+  test  err: 60.026044 %
+t: 13.182427
+epoch 84, minibatch 312/312:
+  train err: 0.082632 %
+  valid err: 61.027646 %
+  test  err: 60.026044 %
+t: 13.178365
+epoch 85, minibatch 312/312:
+  train err: 0.082632 %
+  valid err: 61.027646 %
+  test  err: 60.026044 %
+t: 13.181762
+epoch 86, minibatch 312/312:
+  train err: 0.082632 %
+  valid err: 61.037660 %
+  test  err: 60.026044 %
+t: 13.180648
+epoch 87, minibatch 312/312:
+  train err: 0.082632 %
+  valid err: 61.027646 %
+  test  err: 60.026044 %
+t: 13.190925
+epoch 88, minibatch 312/312:
+  train err: 0.082632 %
+  valid err: 61.037660 %
+  test  err: 60.036057 %
+t: 13.186784
+epoch 89, minibatch 312/312:
+  train err: 0.082632 %
+  valid err: 61.027646 %
+  test  err: 60.036057 %
+t: 13.186841
+epoch 90, minibatch 312/312:
+  train err: 0.082632 %
+  valid err: 61.027646 %
+  test  err: 60.046071 %
+t: 13.187156
+epoch 91, minibatch 312/312:
+  train err: 0.082632 %
+  valid err: 61.027646 %
+  test  err: 60.046071 %
+t: 13.179546
+epoch 92, minibatch 312/312:
+  train err: 0.082632 %
+  valid err: 61.017627 %
+  test  err: 60.046071 %
+t: 13.181296
+epoch 93, minibatch 312/312:
+  train err: 0.082632 %
+  valid err: 61.017627 %
+  test  err: 60.046071 %
+t: 13.181839
+epoch 94, minibatch 312/312:
+  train err: 0.080128 %
+  valid err: 61.017627 %
+  test  err: 60.046071 %
+t: 13.182461
+epoch 95, minibatch 312/312:
+  train err: 0.080128 %
+  valid err: 60.987580 %
+  test  err: 60.046071 %
+t: 13.190439
+epoch 96, minibatch 312/312:
+  train err: 0.080128 %
+  valid err: 60.987580 %
+  test  err: 60.046071 %
+t: 13.18538
+epoch 97, minibatch 312/312:
+  train err: 0.080128 %
+  valid err: 60.987580 %
+  test  err: 60.046071 %
+t: 13.182922
+epoch 98, minibatch 312/312:
+  train err: 0.080128 %
+  valid err: 60.987580 %
+  test  err: 60.046071 %
+t: 13.189588
+epoch 99, minibatch 312/312:
+  train err: 0.080128 %
+  valid err: 60.987580 %
+  test  err: 60.046071 %
+t: 13.184581
+epoch 100, minibatch 312/312:
+  train err: 0.080128 %
+  valid err: 60.987580 %
+  test  err: 60.046071 %
+t: 13.188496
+Optimization complete. Best valid score of 60.837340 % obtained at iteration 13728, epoch 44, with test performance 60.176283 %
