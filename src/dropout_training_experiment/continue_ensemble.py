@@ -30,8 +30,14 @@ if __name__ == '__main__':
     shared_dataset = [train_set,valid_set,test_set]
     continuations = dill.load(open(sys.argv[2]))
     members = []
+    i = 0
     for c in continuations:
+        print "training member {0}".format(i)
         m = test_mlp(shared_dataset, params, continuation = c, x=x, y=y,
                      index=index)
         members.append(m.get_weights())
+        m.clear()
+        del m
+        gc.collect()
+        i += 1
     dill.dump(members,open(sys.argv[3],"wb"))
