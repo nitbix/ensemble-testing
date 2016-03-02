@@ -11,7 +11,7 @@ table = db[results_table]
 
 
 pipeline = [
-    { "$group": 
+    {   "$group": 
         { "_id":
             {   "params_update_rule" : "$params.update_rule",
                 "params_n_hidden":"$params.n_hidden",
@@ -23,7 +23,15 @@ pipeline = [
             "avg_best_epoch": {"$avg": "$best_epoch"},
             "avg_best_valid": {"$avg": "$best_valid"},
             "avg_best_test": {"$avg": "$best_test"}
-        }  
+        },
+    },
+    {
+        "$sort":
+        {
+            #"params_dataset": 1,
+            #"params_n_hidden": 1,
+            "params.update_rule": 1,
+        }
     }
 ]
 
