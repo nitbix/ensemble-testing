@@ -12,7 +12,7 @@ pretraining_passes: 2
 center_and_normalise: true
 training_method: normal
 learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-5, multiplier: 0.95 }
-update_rule: !RMSProp { }
+update_rule: !RMSProp { momentum: 0.3 }
 batch_size: 128
 cost_function: !CrossEntropy { }
 n_hidden: [
