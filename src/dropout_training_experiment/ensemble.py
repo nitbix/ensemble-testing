@@ -109,13 +109,15 @@ if __name__ == '__main__':
                   }
         def serialize(o):
             if isinstance(o, numpy.float32):
-                raise "foo"
                 return float(o)
             else:
                 try:
                     return numpy.asfarray(o).tolist()
                 except:
                     if isinstance(o, object):
+                        if 'serialize' in dir(o) and callable(getattr(o,'serialize')):
+                            print "found serializer"
+                            return o.serialize()
                         if 'tolist' in dir(o) and callable(getattr(o,'tolist')):
                             return o.tolist()
                         try:
