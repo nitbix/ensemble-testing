@@ -24,6 +24,7 @@ def clean_update_rule(r):
     rule_name = re.sub(r"\s*{.*",'',r).lower()
     params_str = re.sub(r".*{\s*",'',r)
     params_str = re.sub(r"\s*}.*",'',params_str)
+    params_str = re.sub(r",",' ',params_str)
     params = yaml.load(params_str)
     if 'momentum' in params and params['momentum'] != 0:
         return rule_name + "-mom"
