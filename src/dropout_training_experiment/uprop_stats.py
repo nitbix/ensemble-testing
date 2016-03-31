@@ -53,18 +53,23 @@ for r in cursor['result']:
     #print r
     print "-----------"
     dataset = "{0}-{1}".format(x['params_dataset'], x['params_online_transform'])
+    method = x['params_update_rule']
     if dataset not in datasets:
         datasets.append(dataset)
     if method not in methods:
         methods.append(method)
     if dataset not in means:
         means[dataset] = {}
-    if mehtod not in means[dataset]:
+    if method not in means[dataset]:
         means[dataset][method] = {}
+    means[dataset][method]['test'] = r['avg_best_test']
 
+print " & " + " & ".join(methods)
 for dataset in datasets:
-    print " & " + " & ".join(methods)
     line = []
     for method in methods:
-        line.append(means[dataset][method])
+        if method in means[dataset]:
+            line.append(str(means[dataset][method]['test']))
+        else:
+            line.append("missing")
     print dataset + " & " + " & ".join(line)
