@@ -1,8 +1,34 @@
 #!/usr/bin/python
 
+import re
+import yaml
+
 results_table="uprop_paper"
 results_db="amosca02"                                                                                                                                                                            
 results_host="gpuvm1"  
+
+def clean_dataset(d):
+    d = re.sub(r"/$",'',d)
+    no_path = re.sub(r".*/",'',d)
+    no_extension = re.sub(r".pkl$",'',no_path)
+    return no_extension
+
+
+def clean_transform(t):
+    if t is None:
+        return ""
+    else:
+        return "-trans"
+
+def clean_update_rule(r):
+    rule_name = re.sub(r"\s*{.*",'',r).lower()
+    params_str = re.sub(r".*{\s*",'',r)
+    params_str = re.sub(r"\s*}.*",'',params_str)
+    params = yaml.load(params_str)
+    if 'momentum' in params and params['momentum'] != 0:
+        return rule_name + "-mom"
+    else:
+        return rule_name
 
 from pymongo import MongoClient
 conn = MongoClient(host=results_host)
@@ -40,6 +66,7 @@ means  = {}
 stdevs = {}
 methods = []
 datasets = []
+
 for r in cursor['result']:
     x = r['_id']
     print "dataset: {0}".format(x['params_dataset'])
@@ -52,8 +79,10 @@ for r in cursor['result']:
     print "  avg_best_test: {0}".format(r['avg_best_test'])
     #print r
     print "-----------"
-    dataset = "{0}-{1}".format(x['params_dataset'], x['params_online_transform'])
-    method = x['params_update_rule']
+    dataset = "{0}{1}".format(
+            clean_dataset(x['params_dataset']),
+            clean_transform(x['params_online_transform']))
+    method = clean_update_rule(x['params_update_rule'])
     if dataset not in datasets:
         datasets.append(dataset)
     if method not in methods:
