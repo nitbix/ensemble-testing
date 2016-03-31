@@ -10,7 +10,7 @@ results_host="gpuvm1"
 def clean_dataset(d):
     d = re.sub(r"/$",'',d)
     no_path = re.sub(r".*/",'',d)
-    no_extension = re.sub(r".pkl$",'',no_path)
+    no_extension = re.sub(r".pkl.gz$",'',no_path)
     return no_extension
 
 
@@ -24,7 +24,8 @@ def clean_update_rule(r):
     rule_name = re.sub(r"\s*{.*",'',r).lower()
     params_str = re.sub(r".*{\s*",'',r)
     params_str = re.sub(r"\s*}.*",'',params_str)
-    params_str = re.sub(r",",' ',params_str)
+    params_str = re.sub(r"\s*,\s*","\n",params_str)
+    print params_str
     params = yaml.load(params_str)
     if 'momentum' in params and params['momentum'] != 0:
         return rule_name + "-mom"
