@@ -1,44 +1,47 @@
 ---
+save_images: false
+detailed_stats: false
 dataset: /local/mnist.pkl.gz
 pickled: true
+random_seed: 42
 L1_reg: 0.0
 L2_reg: 0.0
-n_epochs: 30
-learning_rate: 0.01
-pretraining: reverse
-pretraining_passes: 1
+n_epochs: 20
+pretraining: !!null 
+pretraining_passes: 5
 training_method: normal
-learning_rate: 0.001
-update_rule: !SGD {}
-batch_size: 100
-cost_function: !NegLogLikelihood {}
+batch_size: 256
+cost_function: !NegLogLikelihood { }
+learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-7, multiplier: 0.9}
+update_rule: !RMSProp { }
 n_hidden: [
-    #              ['flat',[2500,0.5,'h0',!!python/name:activations.tanh ]],
-    #              ['flat',[2000,0.5,'h1',!!python/name:activations.tanh ]],
-    #              ['flat',[1500,0.5,'h2',!!python/name:activations.tanh ]],
-              ['flat',[1000,0.5,'h2',!!python/name:activations.tanh ]],
-              ['flat',[ 500,0.5,'h3',!!python/name:activations.tanh ]]
+            ['conv', [
+                [1,28,28],
+                [64,5,5],
+                [2,2],
+                0.0,
+                'c1',
+                !ReLU { },
+                'max',
+                !GlorotWeightInit { }
+            ]],
+            ['conv', [
+                !!null ,
+                [128,5,5],
+                [2,2],
+                0.0,
+                'c2',
+                !ReLU { },
+                'max',
+                !GlorotWeightInit { }
+            ]],
+            ['flat', [1024, 0.5, 'f1', !ReLU { }, !GlorotWeightInit { }]],
+            ['flat', [1024, 0.5, 'f2', !ReLU { }, !GlorotWeightInit { }]]
           ]
 n_in: 784
 n_out: 10
 
 #Ensemble params
-resample_size: 60000
-    
-#method: !Bagging {}
-method: !DropStacking {
-    dropstack_prob: 0.5,
-    n_hidden: [
-                  ['flat',[100,0.,'s1',!!python/name:activations.tanh ]],
-              ],
-    update_rule: !RProp {eta_minus: 0.1, eta_plus: 1.01, max_delta: 5, min_delta: 0.001},
-    n_epochs: 300,
-    batch_size: 300,
-    learning_rate: 0.01,
-    pretraining: !!null ,
-    pretraining_passes: 1,
-    training_method: greedy,
-    L1_reg: 0.0,
-    L2_reg: 0.0
-}
+resample_size: 50000
+method: !AdaBoostM1 {}
 ensemble_size: 10
