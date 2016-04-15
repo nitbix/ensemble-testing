@@ -25,7 +25,6 @@ def clean_update_rule(r):
     params_str = re.sub(r".*{\s*",'',r)
     params_str = re.sub(r"\s*}.*",'',params_str)
     params_str = re.sub(r"\s*,\s*","\n",params_str)
-    print params_str
     params = yaml.load(params_str)
     if 'momentum' in params and params['momentum'] != 0:
         return rule_name + "-mom"
@@ -63,7 +62,7 @@ pipeline = [
     }
 ]
 
-cursor = db.uprop_paper.aggregate(pipeline=pipeline)
+cursor = table.aggregate(pipeline=pipeline)
 means  = {}
 stdevs = {}
 methods = []
@@ -71,16 +70,17 @@ datasets = []
 
 for r in cursor['result']:
     x = r['_id']
-    print "dataset: {0}".format(x['params_dataset'])
-    print "arch: {0}".format(x['params_n_hidden'][0][0])
-    print "update_rule: {0}".format(x['params_update_rule'])
-    print "transform: {0}".format(x['params_online_transform'])
-    print "  count: {0}".format(r['count'])
-    print "  avg_best_epoch: {0}".format(r['avg_best_epoch'])
-    print "  avg_best_valid: {0}".format(r['avg_best_valid'])
-    print "  avg_best_test: {0}".format(r['avg_best_test'])
-    #print r
-    print "-----------"
+    if r['count'] < 100:
+        print "dataset: {0}".format(x['params_dataset'])
+        print "arch: {0}".format(x['params_n_hidden'][0][0])
+        print "update_rule: {0}".format(x['params_update_rule'])
+        print "transform: {0}".format(x['params_online_transform'])
+        print "  count: {0}".format(r['count'])
+        print "  avg_best_epoch: {0}".format(r['avg_best_epoch'])
+        print "  avg_best_valid: {0}".format(r['avg_best_valid'])
+        print "  avg_best_test: {0}".format(r['avg_best_test'])
+        #print r
+        print "-----------"
     dataset = "{0}{1}".format(
             clean_dataset(x['params_dataset']),
             clean_transform(x['params_online_transform']))
@@ -95,6 +95,10 @@ for r in cursor['result']:
         means[dataset][method] = {}
     means[dataset][method]['test'] = r['avg_best_test']
 
+print """
+\begin{table}
+"""
+
 print " & " + " & ".join(methods)
 for dataset in datasets:
     line = []
@@ -104,3 +108,7 @@ for dataset in datasets:
         else:
             line.append("missing")
     print dataset + " & " + " & ".join(line)
+
+print """
+\end{table}
+"""
