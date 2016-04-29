@@ -81,10 +81,13 @@ for r in cursor['result']:
         print "  avg_best_test: {0}".format(r['avg_best_test'])
         #print r
         print "-----------"
-    dataset = "{0}{1}".format(
+    dataset = "{0}{1}-{2}".format(
             clean_dataset(x['params_dataset']),
-            clean_transform(x['params_online_transform']))
-    method = clean_update_rule(x['params_update_rule'])
+            clean_transform(x['params_online_transform']),
+            x['params_n_hidden'][0][0])
+    method = "{0}".format(
+            clean_update_rule(x['params_update_rule']),
+            )
     if dataset not in datasets:
         datasets.append(dataset)
     if method not in methods:
@@ -94,21 +97,76 @@ for r in cursor['result']:
     if method not in means[dataset]:
         means[dataset][method] = {}
     means[dataset][method]['test'] = r['avg_best_test']
+    means[dataset][method]['valid'] = r['avg_best_valid']
+    means[dataset][method]['epoch'] = r['avg_best_epoch']
 
-print """
-\begin{table}
-"""
+hsep = " & "
+vsep = " \\\\"
+def make_line(first,items,min_bold = False):
+    it = []
+    for x in items:
+        if isinstance(x,float):
+            it.append("{0:.2f}".format(x))
+        else:
+            it.append(str(x))
+    items = it
+    if min_bold:
+        str_items = []
+        for x in items:
+            if x == min(items):
+                str_items.append("$\\mathbf{{ {0} }} $".format(x))
+            else:
+                str_items.append("$ {0} $".format(x))
+    else:
+        str_items = ["$ {0} $".format(x) for x in items]
+    if first is not None:
+        return first + hsep + hsep.join(str_items) + vsep
+    else:
+        return hsep.join(str_items) + vsep
 
-print " & " + " & ".join(methods)
-for dataset in datasets:
+#MIDDLE TABLES
+for dataset in sorted(datasets):
+    print "\n"
+    print dataset
+    print """
+\\begin{table}[h]
+\\centering
+\\begin{tabular}
+    """
+    print make_line("",["Mean Test Error (%)", "Mean Best Validation Error (%)", "Mean Best Epoch"])
+    print "\\hline"
     line = []
-    for method in methods:
-        if method in means[dataset]:
-            line.append(str(means[dataset][method]['test']))
+    for method in sorted(methods):
+        if dataset in means and method in means[dataset]:
+            x = means[dataset][method]
+            print make_line(method,[x['test'],x['valid'],x['epoch']])
+        else:
+            print "missing \\"
+    print """
+\\hline
+\\end{tabular}
+\\end{table}
+    """
+
+#FINAL TABLE
+print """
+\\begin{table}[h]
+\\centering
+\\begin{tabular}
+"""
+print make_line("",sorted(methods))
+print "\\hline"
+for dataset in sorted(datasets):
+    line = []
+    for method in sorted(methods):
+        if dataset in means and method in means[dataset]:
+            line.append(means[dataset][method]['test'])
         else:
             line.append("missing")
-    print dataset + " & " + " & ".join(line)
+    print make_line(dataset,line,True)
 
 print """
-\end{table}
+\\hline
+\\end{tabular}
+\\end{table}
 """
