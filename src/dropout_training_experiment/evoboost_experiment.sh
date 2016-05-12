@@ -1,6 +1,6 @@
 #!/bin/bash
 
-results_table="evoboost_paper"
+results_table="compboost_paper"
 results_db="amosca02"
 results_host="gpuvm1"
 
