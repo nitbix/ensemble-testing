@@ -22,6 +22,8 @@ if __name__ == '__main__':
                         help='the file where the trained MLP is to be saved')
     parser.add_argument('--seed', type=int, nargs='?',
                         help='random seed to use for this sim')
+    parser.add_argument('--epochs', type=int, nargs='?',
+                        help='number of epochs to run')
     parser.add_argument('--results-db', nargs='?',
                         help='mongodb db name for storing results')
     parser.add_argument('--results-host', nargs='?',
@@ -47,6 +49,7 @@ if __name__ == '__main__':
         (args.results_db, 'results_db'),
         (args.results_host, 'results_host'),
         (args.results_table, 'results_table'),
+        (args.epochs, 'n_epochs'),
     ]
     from toupee import config
     params = config.load_parameters(args.params_file)
