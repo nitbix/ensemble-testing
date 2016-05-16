@@ -26,8 +26,8 @@ set xlabel \"Training Epoch\"
 set ylabel \"${error_name} Error (%)\"
 set terminal postscript eps enhanced color size 4,2.5
 set out \"${out_file}.eps\"
-plot \"${first_file}\"  using 1:2 lw 2 title \"${first_label}\" with lines,\
-     \"${second_file}\" using 1:2 lw 2 title \"${second_label}\" with lines
+plot \"${first_file}\"  every ::0::200 using 1:2 lw 2 title \"${first_label}\" with lines,\
+     \"${second_file}\" every ::0::200 using 1:2 lw 2 title \"${second_label}\" with lines
 set terminal png
 set out \"${out_file}.png\"
 replot

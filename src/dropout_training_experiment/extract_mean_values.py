@@ -49,7 +49,10 @@ pipeline = [
             "count": {"$sum": 1},
             "avg_best_epoch": {"$avg": "$best_epoch"},
             "avg_best_valid": {"$avg": "$best_valid"},
-            "avg_best_test": {"$avg": "$best_test"}
+            "avg_best_test": {"$avg": "$best_test"},
+            "train_history": {"$push": "train_history"},
+            "valid_history": {"$push": "validation_history"},
+            "test_history": {"$push": "test_history"}
         },
     },
     {
@@ -65,8 +68,12 @@ pipeline = [
 cursor = table.aggregate(pipeline=pipeline)
 means  = {}
 stdevs = {}
+hist_means = {}
 methods = []
 datasets = []
+
+def make_mean_history(matrix,mode):
+    hist_means[dataset][method][mode] = numpy.mean(matrix,axis=0)
 
 for r in cursor['result']:
     x = r['_id']
@@ -81,13 +88,10 @@ for r in cursor['result']:
         print "  avg_best_test: {0}".format(r['avg_best_test'])
         #print r
         print "-----------"
-    dataset = "{0}{1}-{2}".format(
+    dataset = "{0}{1}".format(
             clean_dataset(x['params_dataset']),
-            clean_transform(x['params_online_transform']),
-            x['params_n_hidden'][0][0])
-    method = "{0}".format(
-            clean_update_rule(x['params_update_rule']),
-            )
+            clean_transform(x['params_online_transform']))
+    method = clean_update_rule(x['params_update_rule'])
     if dataset not in datasets:
         datasets.append(dataset)
     if method not in methods:
@@ -96,77 +100,16 @@ for r in cursor['result']:
         means[dataset] = {}
     if method not in means[dataset]:
         means[dataset][method] = {}
+    if dataset not in hist_means:
+        hist_means[dataset] = {}
+    if method not in hist_means[dataset]:
+        hist_means[dataset][method] = {}
     means[dataset][method]['test'] = r['avg_best_test']
-    means[dataset][method]['valid'] = r['avg_best_valid']
-    means[dataset][method]['epoch'] = r['avg_best_epoch']
+    make_mean_history(r['train_history'],'train')
+    make_mean_history(r['valid_history'],'valid')
+    make_mean_history(r['test_history'],'test')
 
-hsep = " & "
-vsep = " \\\\"
-def make_line(first,items,min_bold = False):
-    it = []
-    for x in items:
-        if isinstance(x,float):
-            it.append("{0:.2f}".format(x))
-        else:
-            it.append(str(x))
-    items = it
-    if min_bold:
-        str_items = []
-        for x in items:
-            if x == min(items):
-                str_items.append("$\\mathbf{{ {0} }} $".format(x))
-            else:
-                str_items.append("$ {0} $".format(x))
-    else:
-        str_items = ["$ {0} $".format(x) for x in items]
-    if first is not None:
-        return first + hsep + hsep.join(str_items) + vsep
-    else:
-        return hsep.join(str_items) + vsep
-
-#MIDDLE TABLES
-for dataset in sorted(datasets):
-    print "\n"
-    print dataset
-    print """
-\\begin{table}[h]
-\\centering
-\\begin{tabular}
-    """
-    print make_line("",["Mean Test Error (%)", "Mean Best Validation Error (%)", "Mean Best Epoch"])
-    print "\\hline"
-    line = []
-    for method in sorted(methods):
-        if dataset in means and method in means[dataset]:
-            x = means[dataset][method]
-            print make_line(method,[x['test'],x['valid'],x['epoch']])
-        else:
-            print "missing \\"
-    print """
-\\hline
-\\end{tabular}
-\\end{table}
-    """
-
-#FINAL TABLE
-print """
-\\begin{table}[h]
-\\centering
-\\begin{tabular}
-"""
-print make_line("",sorted(methods))
-print "\\hline"
-for dataset in sorted(datasets):
-    line = []
-    for method in sorted(methods):
-        if dataset in means and method in means[dataset]:
-            line.append(means[dataset][method]['test'])
-        else:
-            line.append("missing")
-    print make_line(dataset,line,True)
-
-print """
-\\hline
-\\end{tabular}
-\\end{table}
-"""
+print " & " + " & ".join(methods)
+for dataset in datasets:
+    for method in methods:
+        print mean_hist[dataset][method]
