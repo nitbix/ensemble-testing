@@ -11,6 +11,7 @@ pretraining: !!null
 pretraining_passes: 2
 center_and_normalise: true
 training_method: normal
+shuffle_dataset: true
 learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-7, multiplier: 0.85 }
 update_rule: !Adam { }
 batch_size: 128
