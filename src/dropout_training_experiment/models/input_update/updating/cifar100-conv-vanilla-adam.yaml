@@ -1,0 +1,67 @@
+---
+save_images: false
+detailed_stats: false
+dataset: /local/cifar100/
+pickled: false
+random_seed: 42
+L1_reg: 0.0
+L2_reg: 0.0
+n_epochs: 100
+pretraining: !!null
+pretraining_passes: 2
+center_and_normalise: true
+training_method: normal
+update_inputs: true
+learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-7, multiplier: 0.85 }
+update_rule: !Adam { }
+batch_size: 128
+cost_function: !CrossEntropy { }
+n_hidden: [
+            #input_shape,filter_shape,pool_size,drop_this,name_this,activation_this
+            #input_shape needs to be defined only for 1st layer
+            #input_shape:  [levels,x,y]
+            #filter_shape: [count,x,y]
+            #pool_size: [x,y]
+            ['conv', [
+                [3,32,32],
+                [64,3,3],
+                [2,2],
+                0.,
+                'c1',
+                !ReLU { },
+                'max',
+                !GlorotWeightInit { },
+                'same'
+            ]],
+            ['conv', [
+                !!null ,
+                [128,4,4],
+                [2,2],
+                0.,
+                'c2',
+                !ReLU { },
+                'max',
+                !GlorotWeightInit { },
+                'same'
+            ]],
+            ['conv', [
+                !!null ,
+                [256,5,5],
+                [2,2],
+                0.,
+                'c3',
+                !ReLU { },
+                'max',
+                !GlorotWeightInit { },
+                'same'
+            ]],
+            ['flat', [2048, 0.5, 'f2', !ReLU { }, !GlorotWeightInit { } ]]
+          ]
+n_in: 3072
+RGB: True
+n_out: 100
+
+#Ensemble params
+resample_size: 40000
+method: !Bagging {}
+ensemble_size: 30
