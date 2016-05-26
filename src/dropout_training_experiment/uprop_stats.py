@@ -25,7 +25,11 @@ def clean_update_rule(r):
     params_str = re.sub(r".*{\s*",'',r)
     params_str = re.sub(r"\s*}.*",'',params_str)
     params_str = re.sub(r"\s*,\s*","\n",params_str)
-    params = yaml.load(params_str)
+    try:
+        params = yaml.load(params_str)
+    except:
+        print "{0} has broken params: {1}".format(rule_name,params_str)
+        exit(1)
     if 'momentum' in params and params['momentum'] != 0:
         return rule_name + "-mom"
     else:
@@ -70,7 +74,7 @@ datasets = []
 
 for r in cursor['result']:
     x = r['_id']
-    if r['count'] < 100:
+    if r['count'] < 10000:
         print "dataset: {0}".format(x['params_dataset'])
         print "arch: {0}".format(x['params_n_hidden'][0][0])
         print "update_rule: {0}".format(x['params_update_rule'])
@@ -133,7 +137,7 @@ for dataset in sorted(datasets):
 \\centering
 \\begin{tabular}
     """
-    print make_line("",["Mean Test Error (%)", "Mean Best Validation Error (%)", "Mean Best Epoch"])
+    print make_line("",["Mean Test Err (%)", "Mean Best Valid Err (%)", "Epochs"])
     print "\\hline"
     line = []
     for method in sorted(methods):
