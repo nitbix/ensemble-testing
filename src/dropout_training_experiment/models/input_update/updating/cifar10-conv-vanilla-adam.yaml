@@ -23,8 +23,17 @@ n_hidden: [
             #input_shape:  [levels,x,y]
             #filter_shape: [count,x,y]
             #pool_size: [x,y]
-            ['conv', [
+            ['convfilter', [
                 [3,32,32],
+                [64,3,3],
+                0.25,
+                'c1',
+                !ReLU { },
+                !GlorotWeightInit { },
+                'same'
+            ]],
+            ['conv', [
+                !!null ,
                 [64,3,3],
                 [2,2],
                 0.25,
@@ -33,9 +42,18 @@ n_hidden: [
                 'max',
                 !GlorotWeightInit { }
             ]],
+            ['convfilter', [
+                !!null ,
+                [128,3,3],
+                0.25,
+                'c1',
+                !ReLU { },
+                !GlorotWeightInit { },
+                'same'
+            ]],
             ['conv', [
                 !!null ,
-                [128,4,4],
+                [128,3,3],
                 [2,2],
                 0.25,
                 'c2',
@@ -43,9 +61,18 @@ n_hidden: [
                 'max',
                 !GlorotWeightInit { }
             ]],
+            ['convfilter', [
+                !!null ,
+                [256,3,3],
+                0.25,
+                'c1',
+                !ReLU { },
+                !GlorotWeightInit { },
+                'same'
+            ]],
             ['conv', [
                 !!null ,
-                [256,5,5],
+                [256,3,3],
                 [2,2],
                 0.25,
                 'c3',
