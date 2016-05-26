@@ -2,6 +2,7 @@
 
 import re
 import yaml
+import numpy
 
 results_table="uprop_paper"
 results_db="amosca02"                                                                                                                                                                            
@@ -50,9 +51,9 @@ pipeline = [
             "avg_best_epoch": {"$avg": "$best_epoch"},
             "avg_best_valid": {"$avg": "$best_valid"},
             "avg_best_test": {"$avg": "$best_test"},
-            "train_history": {"$push": "train_history"},
-            "valid_history": {"$push": "validation_history"},
-            "test_history": {"$push": "test_history"}
+            #"train_history": {"$push": "$train_history"},
+            "valid_history": {"$push": "$validation_history"},
+            "test_history": {"$push": "$test_history"}
         },
     },
     {
@@ -73,7 +74,8 @@ methods = []
 datasets = []
 
 def make_mean_history(matrix,mode):
-    hist_means[dataset][method][mode] = numpy.mean(matrix,axis=0)
+    m = [x for x in matrix if len(x) == len(matrix[0])]
+    hist_means[dataset][method][mode] = numpy.mean(numpy.asarray(m),axis=0)
 
 for r in cursor['result']:
     x = r['_id']
@@ -88,10 +90,13 @@ for r in cursor['result']:
         print "  avg_best_test: {0}".format(r['avg_best_test'])
         #print r
         print "-----------"
-    dataset = "{0}{1}".format(
+    dataset = "{0}{1}-{2}".format(
             clean_dataset(x['params_dataset']),
-            clean_transform(x['params_online_transform']))
-    method = clean_update_rule(x['params_update_rule'])
+            clean_transform(x['params_online_transform']),
+            x['params_n_hidden'][0][0])
+    method = "{0}".format(
+            clean_update_rule(x['params_update_rule']),
+            )
     if dataset not in datasets:
         datasets.append(dataset)
     if method not in methods:
@@ -105,11 +110,28 @@ for r in cursor['result']:
     if method not in hist_means[dataset]:
         hist_means[dataset][method] = {}
     means[dataset][method]['test'] = r['avg_best_test']
-    make_mean_history(r['train_history'],'train')
-    make_mean_history(r['valid_history'],'valid')
-    make_mean_history(r['test_history'],'test')
+    if 'train_history' in r:
+        make_mean_history(r['train_history'],'train')
+    if 'valid_history' in r:
+        make_mean_history(r['valid_history'],'valid')
+    if 'test_history' in r:
+        make_mean_history(r['test_history'],'test')
+
+def write_hist_file(data,name):
+    with open(name,'w') as f:
+        i = 0
+        for x in data:
+            f.write(str(i) + " " + str(x * 100) + "\n")
+            i+=1
 
 print " & " + " & ".join(methods)
 for dataset in datasets:
     for method in methods:
-        print mean_hist[dataset][method]
+        print "\n{0}-{1}".format(dataset,method)
+        if dataset in hist_means and method in hist_means[dataset]:
+            for t in hist_means[dataset][method]:
+                filename = "history_data/{0}-{1}-{2}.dat".format(dataset,method,t)
+                write_hist_file(hist_means[dataset][method][t],filename)
+                print filename
+        else:
+            print "missing"
