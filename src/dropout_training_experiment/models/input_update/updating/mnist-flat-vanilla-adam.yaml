@@ -12,7 +12,7 @@ pretraining_passes: 5
 training_method: normal
 batch_size: 128
 cost_function: !NegLogLikelihood { }
-update_inputs: true
+update_input: true
 learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-7, multiplier: 0.85}
 update_rule: !Adam { }
 n_hidden: [
