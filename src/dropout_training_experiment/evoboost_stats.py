@@ -3,7 +3,7 @@
 import re
 import yaml
 
-results_table="evoboost_paper"
+results_table="compboost_paper"
 results_db="amosca02"                                                                                                                                                                            
 results_host="gpuvm1"  
 
@@ -38,6 +38,9 @@ table = db[results_table]
 
 
 pipeline = [
+    {   "$match":
+        { "test_score": { "$exists": "true"} }
+    },
     {   "$group": 
         { "_id":
             {   "params_update_rule" : "$params.update_rule",
@@ -45,12 +48,10 @@ pipeline = [
                 "params_dataset" : "$params.dataset",
                 "params_online_transform": "$params.online_transform",
                 "params_learning_rate": "$params.learning_rate",
-                "method" : "$method"
+                "method" : "$params.method"
             },
             "count": {"$sum": 1},
-            "avg_best_epoch": {"$avg": "$best_epoch"},
-            "avg_best_valid": {"$avg": "$best_valid"},
-            "avg_best_test": {"$avg": "$best_test"}
+            "avg_test_score": {"$avg": "$test_score"},
         },
     },
     {
@@ -75,17 +76,16 @@ for r in cursor['result']:
         print "dataset: {0}".format(x['params_dataset'])
         print "arch: {0}".format(x['params_n_hidden'][0][0])
         print "update_rule: {0}".format(x['params_update_rule'])
+        print "method: {0}".format(x['method'])
         print "transform: {0}".format(x['params_online_transform'])
         print "  count: {0}".format(r['count'])
-        print "  avg_best_epoch: {0}".format(r['avg_best_epoch'])
-        print "  avg_best_valid: {0}".format(r['avg_best_valid'])
-        print "  avg_best_test: {0}".format(r['avg_best_test'])
+        print "  avg_test_score: {0}".format(r['avg_test_score'])
         #print r
         print "-----------"
     dataset = "{0}{1}".format(
             clean_dataset(x['params_dataset']),
             clean_transform(x['params_online_transform']))
-    method = clean_update_rule(x['params_update_rule'])
+    method = x['method']
     if dataset not in datasets:
         datasets.append(dataset)
     if method not in methods:
@@ -94,10 +94,10 @@ for r in cursor['result']:
         means[dataset] = {}
     if method not in means[dataset]:
         means[dataset][method] = {}
-    means[dataset][method]['test'] = r['avg_best_test']
+    means[dataset][method]['test'] = r['avg_test_score']
 
 print """
-\begin{table}
+\\begin{table}
 """
 
 print " & " + " & ".join(methods)
@@ -111,5 +111,5 @@ for dataset in datasets:
     print dataset + " & " + " & ".join(line)
 
 print """
-\end{table}
+\\end{table}
 """
