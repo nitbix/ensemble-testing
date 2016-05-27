@@ -12,6 +12,7 @@ pretraining_passes: 2
 center_and_normalise: true
 training_method: normal
 shuffle_dataset: true
+output_layer_options: { batch_normalization: true }
 learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-5, multiplier: 0.85 }
 update_rule: !Adam { }
 batch_size: 128
@@ -29,7 +30,8 @@ n_hidden: [
                 'c1',
                 !ReLU { },
                 !GlorotWeightInit { },
-                'same'
+                'same',
+                { batch_normalization: true }
             ]],
             ['conv', [
                 !!null ,
@@ -39,7 +41,10 @@ n_hidden: [
                 'c1',
                 !ReLU { },
                 'max',
-                !GlorotWeightInit { }
+                !GlorotWeightInit { },
+                'same',
+                { batch_normalization: true }
+
             ]],
             ['convfilter', [
                 !!null ,
@@ -48,7 +53,8 @@ n_hidden: [
                 'c1',
                 !ReLU { },
                 !GlorotWeightInit { },
-                'same'
+                'same',
+                { batch_normalization: true }
             ]],
             ['conv', [
                 !!null ,
@@ -58,7 +64,9 @@ n_hidden: [
                 'c2',
                 !ReLU { },
                 'max',
-                !GlorotWeightInit { }
+                !GlorotWeightInit { },
+                'same',
+                { batch_normalization: true }
             ]],
             ['convfilter', [
                 !!null ,
@@ -67,7 +75,8 @@ n_hidden: [
                 'c1',
                 !ReLU { },
                 !GlorotWeightInit { },
-                'same'
+                'same',
+                { batch_normalization: true }
             ]],
             ['conv', [
                 !!null ,
@@ -77,9 +86,11 @@ n_hidden: [
                 'c3',
                 !ReLU { },
                 'max',
-                !GlorotWeightInit { }
+                !GlorotWeightInit { },
+                'same',
+                { batch_normalization: true }
             ]],
-            ['flat', [2048, 0.5, 'f2', !ReLU { }, !GlorotWeightInit { } ]]
+            ['flat', [1024, 0.5, 'f2', !ReLU { }, !GlorotWeightInit { }, { batch_normalization: true } ]]
           ]
 n_in: 3072
 RGB: True
