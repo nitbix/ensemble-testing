@@ -11,10 +11,12 @@ pretraining: !!null
 pretraining_passes: 5
 training_method: normal
 batch_size: 128
+output_layer_options: { batch_normalization: true }
+shuffle_dataset: true
 cost_function: !NegLogLikelihood { }
-update_input: true
 learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-7, multiplier: 0.85 }
 update_rule: !Adam { }
+update_input: true
 n_hidden: [
             ['conv', [
                 [1,28,28],
@@ -24,7 +26,9 @@ n_hidden: [
                 'c1',
                 !ReLU { },
                 'max',
-                !GlorotWeightInit { }
+                !GlorotWeightInit { },
+                'valid',
+                { batch_normalization: true }
             ]],
             ['conv', [
                 !!null ,
@@ -34,10 +38,13 @@ n_hidden: [
                 'c2',
                 !ReLU { },
                 'max',
-                !GlorotWeightInit { }
+                !GlorotWeightInit { },
+                'valid',
+                { batch_normalization: true }
+
             ]],
-            ['flat', [1024, 0.5, 'f1', !ReLU { }, !GlorotWeightInit { }]],
-            ['flat', [1024, 0.5, 'f2', !ReLU { }, !GlorotWeightInit { }]]
+            ['flat', [1024, 0.5, 'f1', !ReLU { }, !GlorotWeightInit { }, { batch_normalization: true } ]],
+            ['flat', [1024, 0.5, 'f2', !ReLU { }, !GlorotWeightInit { }, { batch_normalization: true } ]]
           ]
 n_in: 784
 n_out: 10
