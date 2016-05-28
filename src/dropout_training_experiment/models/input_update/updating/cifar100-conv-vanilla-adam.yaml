@@ -11,10 +11,11 @@ pretraining: !!null
 pretraining_passes: 2
 center_and_normalise: true
 training_method: normal
-update_input: true
 shuffle_dataset: true
-learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-7, multiplier: 0.85 }
+output_layer_options: { batch_normalization: true }
+learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-7, multiplier: 0.95 }
 update_rule: !Adam { }
+update_input: true
 batch_size: 128
 cost_function: !CrossEntropy { }
 n_hidden: [
@@ -23,40 +24,96 @@ n_hidden: [
             #input_shape:  [levels,x,y]
             #filter_shape: [count,x,y]
             #pool_size: [x,y]
-            ['conv', [
+            ['convfilter', [
                 [3,32,32],
                 [64,3,3],
-                [2,2],
                 0.,
+                'c1',
+                !ReLU { },
+                !GlorotWeightInit { },
+                'same',
+                { batch_normalization: true }
+            ]],
+            ['conv', [
+                !!null ,
+                [64,3,3],
+                [2,2],
+                0.25,
                 'c1',
                 !ReLU { },
                 'max',
                 !GlorotWeightInit { },
-                'same'
+                'same',
+                { batch_normalization: true }
+
+            ]],
+            ['convfilter', [
+                !!null ,
+                [128,3,3],
+                0.,
+                'c1',
+                !ReLU { },
+                !GlorotWeightInit { },
+                'same',
+                { batch_normalization: true }
             ]],
             ['conv', [
                 !!null ,
-                [128,4,4],
+                [128,3,3],
                 [2,2],
-                0.,
+                0.25,
                 'c2',
                 !ReLU { },
                 'max',
                 !GlorotWeightInit { },
-                'same'
+                'same',
+                { batch_normalization: true }
+            ]],
+            ['convfilter', [
+                !!null ,
+                [256,3,3],
+                0.25,
+                'c1',
+                !ReLU { },
+                !GlorotWeightInit { },
+                'same',
+                { batch_normalization: true }
             ]],
             ['conv', [
                 !!null ,
-                [256,5,5],
+                [256,3,3],
                 [2,2],
-                0.,
+                0.25,
                 'c3',
                 !ReLU { },
                 'max',
                 !GlorotWeightInit { },
-                'same'
+                'same',
+                { batch_normalization: true }
             ]],
-            ['flat', [2048, 0.5, 'f2', !ReLU { }, !GlorotWeightInit { } ]]
+            ['convfilter', [
+                !!null ,
+                [512,3,3],
+                0.25,
+                'c1',
+                !ReLU { },
+                !GlorotWeightInit { },
+                'same',
+                { batch_normalization: true }
+            ]],
+            ['conv', [
+                !!null ,
+                [512,3,3],
+                [2,2],
+                0.25,
+                'c3',
+                !ReLU { },
+                'max',
+                !GlorotWeightInit { },
+                'same',
+                { batch_normalization: true }
+            ]],
+            ['flat', [1024, 0.5, 'f2', !ReLU { }, !GlorotWeightInit { } ]]
           ]
 n_in: 3072
 RGB: True
