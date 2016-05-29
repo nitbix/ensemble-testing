@@ -3,8 +3,9 @@
 import re
 import yaml
 import numpy
+import os
 
-results_table="uprop_paper"
+results_table="input_update"
 results_db="amosca02"                                                                                                                                                                            
 results_host="gpuvm1"  
 
@@ -21,16 +22,18 @@ def clean_transform(t):
     else:
         return "-trans"
 
-def clean_update_rule(r):
+def clean_update_rule(r,update_input=False):
     rule_name = re.sub(r"\s*{.*",'',r).lower()
     params_str = re.sub(r".*{\s*",'',r)
     params_str = re.sub(r"\s*}.*",'',params_str)
     params_str = re.sub(r"\s*,\s*","\n",params_str)
     params = yaml.load(params_str)
+    append = ''
+    if update_input:
+        append='-update_input'
     if 'momentum' in params and params['momentum'] != 0:
-        return rule_name + "-mom"
-    else:
-        return rule_name
+        append = append + "-momentum"
+    return rule_name + append
 
 from pymongo import MongoClient
 conn = MongoClient(host=results_host)
@@ -45,14 +48,15 @@ pipeline = [
                 "params_n_hidden":"$params.n_hidden",
                 "params_dataset" : "$params.dataset",
                 "params_online_transform": "$params.online_transform",
-                "params_learning_rate": "$params.learning_rate"
+                "params_learning_rate": "$params.learning_rate",
+                "params_update_input": "$params.update_input"
             },
             "count": {"$sum": 1},
             "avg_best_epoch": {"$avg": "$best_epoch"},
             "avg_best_valid": {"$avg": "$best_valid"},
             "avg_best_test": {"$avg": "$best_test"},
-            #"train_history": {"$push": "$train_history"},
-            "valid_history": {"$push": "$validation_history"},
+            "train_history": {"$push": "$train_history"},
+            #"valid_history": {"$push": "$validation_history"},
             "test_history": {"$push": "$test_history"}
         },
     },
@@ -95,7 +99,7 @@ for r in cursor['result']:
             clean_transform(x['params_online_transform']),
             x['params_n_hidden'][0][0])
     method = "{0}".format(
-            clean_update_rule(x['params_update_rule']),
+            clean_update_rule(x['params_update_rule'],x['params_update_input']),
             )
     if dataset not in datasets:
         datasets.append(dataset)
@@ -130,7 +134,11 @@ for dataset in datasets:
         print "\n{0}-{1}".format(dataset,method)
         if dataset in hist_means and method in hist_means[dataset]:
             for t in hist_means[dataset][method]:
-                filename = "history_data/{0}-{1}-{2}.dat".format(dataset,method,t)
+                d = "history_data/{0}/{1}/{2}".format(results_table,
+                        dataset,method)
+                if not os.path.exists(d):
+                    os.makedirs(d)
+                filename = "{0}/{1}.dat".format(d,t)
                 write_hist_file(hist_means[dataset][method][t],filename)
                 print filename
         else:
