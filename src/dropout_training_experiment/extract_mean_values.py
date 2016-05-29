@@ -5,7 +5,7 @@ import yaml
 import numpy
 import os
 
-results_table="input_update"
+results_table="uprop_paper"
 results_db="amosca02"                                                                                                                                                                            
 results_host="gpuvm1"  
 
@@ -56,8 +56,8 @@ pipeline = [
             "avg_best_valid": {"$avg": "$best_valid"},
             "avg_best_test": {"$avg": "$best_test"},
             "train_history": {"$push": "$train_history"},
-            #"valid_history": {"$push": "$validation_history"},
-            "test_history": {"$push": "$test_history"}
+            "valid_history": {"$push": "$validation_history"},
+            #"test_history": {"$push": "$test_history"}
         },
     },
     {
@@ -98,9 +98,12 @@ for r in cursor['result']:
             clean_dataset(x['params_dataset']),
             clean_transform(x['params_online_transform']),
             x['params_n_hidden'][0][0])
-    method = "{0}".format(
-            clean_update_rule(x['params_update_rule'],x['params_update_input']),
-            )
+    if 'params_update_input' in x:
+        method = "{0}".format(
+                clean_update_rule(x['params_update_rule'],x['params_update_input']),
+                )
+    else:
+        method = "{0}".format( clean_update_rule(x['params_update_rule']))
     if dataset not in datasets:
         datasets.append(dataset)
     if method not in methods:
