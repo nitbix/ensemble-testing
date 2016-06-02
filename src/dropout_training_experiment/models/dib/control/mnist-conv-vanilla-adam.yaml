@@ -42,7 +42,6 @@ n_hidden: [
                 { batch_normalization: true }
 
             ]],
-            ['flat', [1024, 0.5, 'f1', !ReLU { }, !GlorotWeightInit { }, { batch_normalization: true } ]],
             ['flat', [1024, 0.5, 'f2', !ReLU { }, !GlorotWeightInit { }, { batch_normalization: true } ]]
           ]
 n_in: 784
