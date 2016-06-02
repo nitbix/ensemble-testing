@@ -5,7 +5,7 @@ import yaml
 import numpy
 import os
 
-results_table="uprop_paper"
+results_table="input_update"
 results_db="amosca02"                                                                                                                                                                            
 results_host="gpuvm1"  
 
@@ -57,7 +57,7 @@ pipeline = [
             "avg_best_test": {"$avg": "$best_test"},
             "train_history": {"$push": "$train_history"},
             "valid_history": {"$push": "$validation_history"},
-            #"test_history": {"$push": "$test_history"}
+            "test_history": {"$push": "$test_history"}
         },
     },
     {
