@@ -3,7 +3,7 @@
 import re
 import yaml
 
-results_table="compboost_paper"
+results_table="dib"
 results_db="amosca02"                                                                                                                                                                            
 results_host="gpuvm1"  
 
