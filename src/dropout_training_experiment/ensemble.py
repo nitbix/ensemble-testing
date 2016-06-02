@@ -74,7 +74,7 @@ if __name__ == '__main__':
         members.append(new_member)
         gc.collect()
     ensemble = params.method.create_aggregator(params,members,x,y,train_set,valid_set)
-    if len(sys.argv) > 2:
+    if args.save_file is not None:
         dill.dump(method.members,open(sys.argv[2],"wb"))
     test_set_x, test_set_y = method.resampler.get_test()
     test_model = theano.function(inputs=[index],
