@@ -10,6 +10,7 @@ n_epochs: 20
 pretraining: !!null 
 pretraining_passes: 5
 training_method: normal
+join_train_and_valid: true
 batch_size: 128
 output_layer_options: { batch_normalization: true }
 shuffle_dataset: true
@@ -47,6 +48,6 @@ n_hidden: [
 n_in: 784
 n_out: 10
 
-resample_size: 40000
+resample_size: 60000
 method: !AdaBoostM1 {}
 ensemble_size: 10

@@ -11,6 +11,7 @@ pretraining: !!null
 pretraining_passes: 2
 center_and_normalise: true
 training_method: normal
+join_train_and_valid: true
 shuffle_dataset: true
 output_layer_options: { batch_normalization: true }
 learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-5, multiplier: 0.85 }
@@ -97,6 +98,6 @@ RGB: True
 n_out: 10
 
 #Ensemble params
-resample_size: 40000
+resample_size: 50000
 method: !AdaBoostM1 {}
 ensemble_size: 10
