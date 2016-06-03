@@ -10,7 +10,6 @@ n_epochs: 20
 pretraining: !!null 
 pretraining_passes: 5
 training_method: normal
-join_train_and_valid: true
 batch_size: 128
 output_layer_options: { batch_normalization: true }
 shuffle_dataset: true
