@@ -71,7 +71,7 @@ n_hidden: [
             ['convfilter', [
                 !!null ,
                 [256,3,3],
-                0.25,
+                0.,
                 'c1',
                 !ReLU { },
                 !GlorotWeightInit { },
@@ -81,28 +81,6 @@ n_hidden: [
             ['conv', [
                 !!null ,
                 [256,3,3],
-                [2,2],
-                0.25,
-                'c3',
-                !ReLU { },
-                'max',
-                !GlorotWeightInit { },
-                'same',
-                { batch_normalization: true }
-            ]],
-            ['convfilter', [
-                !!null ,
-                [512,3,3],
-                0.25,
-                'c1',
-                !ReLU { },
-                !GlorotWeightInit { },
-                'same',
-                { batch_normalization: true }
-            ]],
-            ['conv', [
-                !!null ,
-                [512,3,3],
                 [2,2],
                 0.25,
                 'c3',
