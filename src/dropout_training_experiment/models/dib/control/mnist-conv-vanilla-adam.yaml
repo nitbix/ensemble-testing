@@ -48,6 +48,6 @@ n_hidden: [
 n_in: 784
 n_out: 10
 
-resample_size: 60000
+resample_size: 50000
 method: !AdaBoostM1 {}
 ensemble_size: 10

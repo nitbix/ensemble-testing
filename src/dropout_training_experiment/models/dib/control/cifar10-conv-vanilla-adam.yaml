@@ -98,6 +98,6 @@ RGB: True
 n_out: 10
 
 #Ensemble params
-resample_size: 50000
+resample_size: 40000
 method: !AdaBoostM1 {}
 ensemble_size: 10
