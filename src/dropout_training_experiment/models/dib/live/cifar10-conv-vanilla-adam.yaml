@@ -98,5 +98,20 @@ n_out: 10
 
 #Ensemble params
 resample_size: 40000
-method: !AdaBoostM1 {}
+method: !DIB {
+    n_epochs_after_first: 10 ,
+    grow_forward: true,
+    incremental_index: 2,
+    incremental_layer: ['convfilter', [
+                            !!null ,
+                            [128,3,3],
+                            0.0,
+                            'c_add',
+                            !ReLU { },
+                            !GlorotWeightInit { },
+                            'same',
+                            { batch_normalization: true }
+
+                        ]],
+}
 ensemble_size: 10
