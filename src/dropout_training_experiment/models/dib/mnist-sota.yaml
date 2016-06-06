@@ -31,18 +31,56 @@ n_hidden: [
                 !!null ,
                 [128,3,3],
                 0.0,
-                'c1',
+                'c2',
                 !ReLU { },
                 !GlorotWeightInit { },
                 'valid',
                 { batch_normalization: true }
             ]],
-            ['pool', [
-               'max',
-               [2,2],
-               'c2p'
+            ['mlpconv' [ 128, 0., 'mlpconv1']],
+            ['convfilter', [
+                !!null ,
+                [192,3,3],
+                0.0,
+                'c3',
+                !ReLU { },
+                !GlorotWeightInit { },
+                'valid',
+                { batch_normalization: true }
             ]],
-            ['flat', [1024, 0.5, 'f2', !ReLU { }, !GlorotWeightInit { }, { batch_normalization: true } ]]
+            ['convfilter', [
+                !!null ,
+                [192,3,3],
+                0.0,
+                'c4',
+                !ReLU { },
+                !GlorotWeightInit { },
+                'valid',
+                { batch_normalization: true }
+            ]],
+            ['mlpconv' [ 192, 0., 'mlpconv2']],
+            ['convfilter', [
+                !!null ,
+                [256,3,3],
+                0.0,
+                'c5',
+                !ReLU { },
+                !GlorotWeightInit { },
+                'valid',
+                { batch_normalization: true }
+            ]],
+            ['convfilter', [
+                !!null ,
+                [256,3,3],
+                0.0,
+                'c6',
+                !ReLU { },
+                !GlorotWeightInit { },
+                'valid',
+                { batch_normalization: true }
+            ]],
+            ['mlpconv' [ 256, 0., 'mlpconv3']],
+            ['mlpconv' [ 10, 0., 'mlpconv4']]
           ]
 n_in: 784
 n_out: 10
