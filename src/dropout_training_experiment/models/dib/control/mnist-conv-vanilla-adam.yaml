@@ -17,31 +17,29 @@ cost_function: !NegLogLikelihood { }
 learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-7, multiplier: 0.85 }
 update_rule: !Adam { }
 n_hidden: [
-            ['conv', [
+            ['convfilter', [
                 [1,28,28],
                 [64,5,5],
-                [2,2],
                 0.0,
                 'c1',
                 !ReLU { },
-                'max',
                 !GlorotWeightInit { },
                 'valid',
                 { batch_normalization: true }
             ]],
-            ['conv', [
+            ['pool2d', ['max', [2,2], 'pool3' ]],
+            ['convfilter', [
                 !!null ,
                 [128,5,5],
-                [2,2],
                 0.0,
                 'c2',
                 !ReLU { },
-                'max',
                 !GlorotWeightInit { },
                 'valid',
                 { batch_normalization: true }
 
             ]],
+            ['pool2d', ['max', [2,2], 'pool3' ]],
             ['flat', [1024, 0.5, 'f2', !ReLU { }, !GlorotWeightInit { }, { batch_normalization: true } ]]
           ]
 n_in: 784

@@ -33,14 +33,12 @@ n_hidden: [
                 'same',
                 { batch_normalization: true }
             ]],
-            ['conv', [
+            ['convfilter', [
                 !!null ,
                 [64,3,3],
-                [2,2],
                 0.25,
                 'c1',
                 !ReLU { },
-                'max',
                 !GlorotWeightInit { },
                 'same',
                 { batch_normalization: true }
@@ -57,7 +55,7 @@ n_hidden: [
                 'same',
                 { batch_normalization: true }
             ]],
-            ['conv', [
+            ['convfilter', [
                 !!null ,
                 [128,3,3],
                 0.25,
