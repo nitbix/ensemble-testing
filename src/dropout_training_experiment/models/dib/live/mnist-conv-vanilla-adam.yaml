@@ -48,10 +48,10 @@ resample_size: 50000
 method: !DIB {
     n_epochs_after_first: 10 ,
     grow_forward: true,
-    incremental_index: 2,
+    incremental_index: 4,
     incremental_layer: ['convfilter', [
                             !!null ,
-                            [63,3,3],
+                            [64,3,3],
                             0.0,
                             'c_add',
                             !ReLU { },
