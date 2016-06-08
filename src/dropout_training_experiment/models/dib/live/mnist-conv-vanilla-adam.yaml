@@ -27,7 +27,7 @@ n_hidden: [
                 'valid',
                 { batch_normalization: true }
             ]],
-            ['pool2d', ['max', [2,2], 'pool3' ]],
+            ['pool2d', ['max', [2,2], 'pool1']],
             ['convfilter', [
                 !!null ,
                 [128,5,5],
@@ -37,10 +37,9 @@ n_hidden: [
                 !GlorotWeightInit { },
                 'valid',
                 { batch_normalization: true }
-
             ]],
-            ['pool2d', ['max', [2,2], 'pool3' ]],
-            ['flat', [1024, 0.5, 'f2', !ReLU { }, !GlorotWeightInit { }, { batch_normalization: true } ]]
+            ['pool2d', ['max', [2,2], 'pool2']],
+            ['flat', [1024, 0.5, 'f1', !ReLU { }, !GlorotWeightInit { }, { batch_normalization: true } ]]
           ]
 n_in: 784
 n_out: 10
