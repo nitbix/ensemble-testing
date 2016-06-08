@@ -33,19 +33,18 @@ n_hidden: [
                 'same',
                 { batch_normalization: true }
             ]],
-            ['conv', [
+            ['convfilter', [
                 !!null ,
                 [64,3,3],
-                [2,2],
                 0.25,
                 'c1',
                 !ReLU { },
-                'max',
                 !GlorotWeightInit { },
                 'same',
                 { batch_normalization: true }
 
             ]],
+            ['pool2d', ['max', [2,2], 'pool1' ]],
             ['convfilter', [
                 !!null ,
                 [128,3,3],
@@ -56,18 +55,17 @@ n_hidden: [
                 'same',
                 { batch_normalization: true }
             ]],
-            ['conv', [
+            ['convfilter', [
                 !!null ,
                 [128,3,3],
-                [2,2],
                 0.25,
                 'c2',
                 !ReLU { },
-                'max',
                 !GlorotWeightInit { },
                 'same',
                 { batch_normalization: true }
             ]],
+            ['pool2d', ['max', [2,2], 'pool2' ]],
             ['convfilter', [
                 !!null ,
                 [256,3,3],
@@ -78,18 +76,17 @@ n_hidden: [
                 'same',
                 { batch_normalization: true }
             ]],
-            ['conv', [
+            ['convfilter', [
                 !!null ,
                 [256,3,3],
-                [2,2],
                 0.25,
                 'c3',
                 !ReLU { },
-                'max',
                 !GlorotWeightInit { },
                 'same',
                 { batch_normalization: true }
             ]],
+            ['pool2d', ['max', [2,2], 'pool3' ]],
             ['flat', [1024, 0.5, 'f2', !ReLU { }, !GlorotWeightInit { } ]]
           ]
 n_in: 3072
