@@ -6,7 +6,7 @@ pickled: true
 random_seed: 42
 L1_reg: 0.0
 L2_reg: 0.0
-n_epochs: 20
+n_epochs: 100
 pretraining: !!null 
 pretraining_passes: 5
 training_method: normal
@@ -14,33 +14,42 @@ batch_size: 128
 output_layer_options: { batch_normalization: true }
 shuffle_dataset: true
 cost_function: !NegLogLikelihood { }
-learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-7, multiplier: 0.85 }
+learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-7, multiplier: 0.8 }
 update_rule: !Adam { }
 n_hidden: [
             ['convfilter', [
                 [1,28,28],
-                [128,3,3],
+                [64,5,5],
                 0.0,
                 'c1',
                 !ReLU { },
                 !GlorotWeightInit { },
-                'valid',
+                'same',
                 { batch_normalization: true }
             ]],
+            ['mlpconv', [ 64, 0., 'mlpconv1a']],
+            ['mlpconv', [ 48, 0., 'mlpconv1b']],
+            ['pool2d', ['max', [3,3], 'pool1' , { strides: [2,2] } ]],
+            ['linear', [ 0.5, 'dropout1' ]],
+
             ['convfilter', [
                 !!null ,
-                [128,3,3],
+                [128,5,5],
                 0.0,
                 'c2',
                 !ReLU { },
                 !GlorotWeightInit { },
-                'valid',
+                'same',
                 { batch_normalization: true }
             ]],
-            ['mlpconv' [ 128, 0., 'mlpconv1']],
+            ['mlpconv', [ 96, 0., 'mlpconv2a']],
+            ['mlpconv', [ 48, 0., 'mlpconv2b']],
+            ['pool2d', ['max', [3,3], 'pool2', { strides: [2,2] } ]],
+            ['linear', [ 0.5, 'dropout2' ]],
+
             ['convfilter', [
                 !!null ,
-                [192,3,3],
+                [128,5,5],
                 0.0,
                 'c3',
                 !ReLU { },
@@ -48,39 +57,9 @@ n_hidden: [
                 'valid',
                 { batch_normalization: true }
             ]],
-            ['convfilter', [
-                !!null ,
-                [192,3,3],
-                0.0,
-                'c4',
-                !ReLU { },
-                !GlorotWeightInit { },
-                'valid',
-                { batch_normalization: true }
-            ]],
-            ['mlpconv' [ 192, 0., 'mlpconv2']],
-            ['convfilter', [
-                !!null ,
-                [256,3,3],
-                0.0,
-                'c5',
-                !ReLU { },
-                !GlorotWeightInit { },
-                'valid',
-                { batch_normalization: true }
-            ]],
-            ['convfilter', [
-                !!null ,
-                [256,3,3],
-                0.0,
-                'c6',
-                !ReLU { },
-                !GlorotWeightInit { },
-                'valid',
-                { batch_normalization: true }
-            ]],
-            ['mlpconv' [ 256, 0., 'mlpconv3']],
-            ['mlpconv' [ 10, 0., 'mlpconv4']]
+            ['mlpconv', [ 96, 0., 'mlpconv3a']],
+            ['mlpconv', [ 10, 0., 'mlpconv3b']],
+            ['global_pooling', ['average']]
           ]
 n_in: 784
 n_out: 10
