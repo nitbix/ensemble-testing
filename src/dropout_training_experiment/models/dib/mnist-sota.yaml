@@ -5,8 +5,8 @@ dataset: /local/mnist.pkl.gz
 pickled: true
 random_seed: 42
 L1_reg: 0.0
-L2_reg: 0.0
-n_epochs: 100
+L2_reg: 0.0001
+n_epochs: 50
 pretraining: !!null 
 pretraining_passes: 5
 training_method: normal
@@ -14,18 +14,18 @@ batch_size: 128
 output_layer_options: { batch_normalization: true }
 shuffle_dataset: true
 cost_function: !NegLogLikelihood { }
-learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-7, multiplier: 0.8 }
+learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-7, multiplier: 0.9 }
 update_rule: !Adam { }
 n_hidden: [
             ['convfilter', [
                 [1,28,28],
-                [64,5,5],
+                [96,5,5],
                 0.0,
                 'c1',
                 !ReLU { },
                 !GlorotWeightInit { },
                 'same',
-                { batch_normalization: true }
+                { batch_normalization: true , pad: [2,2] }
             ]],
             ['mlpconv', [ 64, 0., 'mlpconv1a']],
             ['mlpconv', [ 48, 0., 'mlpconv1b']],
@@ -40,7 +40,7 @@ n_hidden: [
                 !ReLU { },
                 !GlorotWeightInit { },
                 'same',
-                { batch_normalization: true }
+                { batch_normalization: true , pad: [2,2] }
             ]],
             ['mlpconv', [ 96, 0., 'mlpconv2a']],
             ['mlpconv', [ 48, 0., 'mlpconv2b']],
@@ -55,7 +55,7 @@ n_hidden: [
                 !ReLU { },
                 !GlorotWeightInit { },
                 'valid',
-                { batch_normalization: true }
+                { batch_normalization: true , pad: [2,2] }
             ]],
             ['mlpconv', [ 96, 0., 'mlpconv3a']],
             ['mlpconv', [ 10, 0., 'mlpconv3b']],
