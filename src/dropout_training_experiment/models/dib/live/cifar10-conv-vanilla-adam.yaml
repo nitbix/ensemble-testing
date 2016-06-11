@@ -11,18 +11,12 @@ pretraining: !!null
 pretraining_passes: 2
 center_and_normalise: true
 training_method: normal
-shuffle_dataset: true
 output_layer_options: { batch_normalization: true }
 learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-5, multiplier: 0.85 }
 update_rule: !Adam { }
 batch_size: 128
 cost_function: !CrossEntropy { }
 n_hidden: [
-            #input_shape,filter_shape,pool_size,drop_this,name_this,activation_this
-            #input_shape needs to be defined only for 1st layer
-            #input_shape:  [levels,x,y]
-            #filter_shape: [count,x,y]
-            #pool_size: [x,y]
             ['convfilter', [
                 [3,32,32],
                 [64,3,3],
@@ -95,5 +89,20 @@ n_out: 10
 
 #Ensemble params
 resample_size: 40000
-method: !AdaBoostM1 {}
+method: !DIB {
+    n_epochs_after_first: 10,
+    grow_forward: true,
+    incremental_index: 6,
+    incremental_layer: ['convfilter', [
+                            !!null ,
+                            [128,3,3],
+                            0.0,
+                            'c_add',
+                            !ReLU { },
+                            !GlorotWeightInit { },
+                            'same',
+                            { batch_normalization: true }
+
+                        ]],
+}
 ensemble_size: 10

@@ -54,6 +54,7 @@ if __name__ == '__main__':
 
     from toupee.data import *
     from toupee.mlp import MLP, test_mlp
+    from toupee import common
     import theano
     import theano.tensor as T
     dataset = load_data(params.dataset,
@@ -107,23 +108,4 @@ if __name__ == '__main__':
                     "test_losses" : test_losses,
                     "test_score" : test_score,
                   }
-        def serialize(o):
-            if isinstance(o, numpy.float32):
-                return float(o)
-            else:
-                try:
-                    return numpy.asfarray(o).tolist()
-                except:
-                    if isinstance(o, object):
-                        if 'serialize' in dir(o) and callable(getattr(o,'serialize')):
-                            return o.serialize()
-                        if 'tolist' in dir(o) and callable(getattr(o,'tolist')):
-                            return o.tolist()
-                        try:
-                            return json.loads(json.dumps(o.__dict__,default=serialize))
-                        except:
-                            return str(o)
-                    else:
-                        raise Exception("don't know how to save {0}".format(type(o)))
-
-        table.insert(json.loads(json.dumps(results,default=serialize)))
+        table.insert(json.loads(json.dumps(results,default=common.serialize)))

@@ -1,19 +1,19 @@
 ---
 save_images: false
 detailed_stats: false
-dataset: /local/cifar10/
+dataset: /local/cifar100/
 pickled: false
 random_seed: 42
 L1_reg: 0.0
 L2_reg: 0.0
-n_epochs: 20
+n_epochs: 40
 pretraining: !!null
 pretraining_passes: 2
 center_and_normalise: true
 training_method: normal
 shuffle_dataset: true
 output_layer_options: { batch_normalization: true }
-learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-5, multiplier: 0.85 }
+learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-7, multiplier: 0.95 }
 update_rule: !Adam { }
 batch_size: 128
 cost_function: !CrossEntropy { }
@@ -26,74 +26,80 @@ n_hidden: [
             ['convfilter', [
                 [3,32,32],
                 [64,3,3],
-                0.25,
+                0.,
                 'c1',
                 !ReLU { },
                 !GlorotWeightInit { },
                 'same',
                 { batch_normalization: true }
             ]],
-            ['convfilter', [
+            ['conv', [
                 !!null ,
                 [64,3,3],
+                [2,2],
                 0.25,
                 'c1',
                 !ReLU { },
+                'max',
                 !GlorotWeightInit { },
                 'same',
                 { batch_normalization: true }
 
             ]],
-            ['pool2d', ['max', [2,2], 'pool3' ]],
             ['convfilter', [
                 !!null ,
                 [128,3,3],
-                0.25,
+                0.,
                 'c1',
                 !ReLU { },
                 !GlorotWeightInit { },
                 'same',
                 { batch_normalization: true }
             ]],
-            ['convfilter', [
+            ['conv', [
                 !!null ,
                 [128,3,3],
+                [2,2],
                 0.25,
                 'c2',
                 !ReLU { },
+                'max',
                 !GlorotWeightInit { },
                 'same',
                 { batch_normalization: true }
             ]],
-            ['pool2d', ['max', [2,2], 'pool3' ]],
             ['convfilter', [
                 !!null ,
                 [256,3,3],
-                0.25,
+                0.,
                 'c1',
                 !ReLU { },
                 !GlorotWeightInit { },
                 'same',
                 { batch_normalization: true }
             ]],
-            ['convfilter', [
+            ['conv', [
                 !!null ,
                 [256,3,3],
+                [2,2],
                 0.25,
                 'c3',
                 !ReLU { },
+                'max',
                 !GlorotWeightInit { },
                 'same',
                 { batch_normalization: true }
             ]],
-            ['pool2d', ['max', [2,2], 'pool3' ]],
-            ['flat', [1024, 0.5, 'f2', !ReLU { }, !GlorotWeightInit { }, { batch_normalization: true } ]]
+            ['flat', [1024, 0.5, 'f2', !ReLU { }, !GlorotWeightInit { } ]]
           ]
 n_in: 3072
 RGB: True
-n_out: 10
+n_out: 100
 
 #Ensemble params
 resample_size: 40000
-method: !AdaBoostM1 {}
+method: !DIB {
+    n_epochs_after_first: 20 ,
+    incremental_layer: ['flat' [512, 0., 'a', !ReLU { }, !GlorotWeightInit { } ]]
+}
 ensemble_size: 10
