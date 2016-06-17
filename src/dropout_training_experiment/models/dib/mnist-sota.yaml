@@ -23,7 +23,7 @@ n_hidden: [
                 0.0,
                 'c1',
                 !ReLU { },
-                !GlorotWeightInit { },
+                !GaussianWeightInit { std: 0.01 },
                 'same',
                 { batch_normalization: true , pad: [2,2] }
             ]],
@@ -38,7 +38,7 @@ n_hidden: [
                 0.0,
                 'c2',
                 !ReLU { },
-                !GlorotWeightInit { },
+                !GaussianWeightInit { std: 0.01 },
                 'same',
                 { batch_normalization: true , pad: [2,2] }
             ]],
@@ -53,7 +53,7 @@ n_hidden: [
                 0.0,
                 'c3',
                 !ReLU { },
-                !GlorotWeightInit { },
+                !GaussianWeightInit { std: 0.01 },
                 'valid',
                 { batch_normalization: true , pad: [2,2] }
             ]],
