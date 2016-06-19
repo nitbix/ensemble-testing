@@ -1,0 +1,48 @@
+---
+save_images: false
+detailed_stats: false
+dataset: /local/mnist.pkl.gz
+pickled: true
+random_seed: 42
+L1_reg: 0.0
+L2_reg: 0.0
+n_epochs: 20
+training_method: normal
+batch_size: 128
+output_layer_options: { batch_normalization: true }
+shuffle_dataset: true
+cost_function: !NegLogLikelihood { }
+learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-7, multiplier: 0.85 }
+update_rule: !Adam { }
+n_hidden: [
+            ['convfilter', [
+                [1,28,28],
+                [64,5,5],
+                0.0,
+                'c1',
+                !ReLU { },
+                !GlorotWeightInit { },
+                'valid',
+                { batch_normalization: true }
+            ]],
+            ['pool2d', ['max', [2,2], 'pool3' ]],
+            ['convfilter', [
+                !!null ,
+                [128,5,5],
+                0.0,
+                'c2',
+                !ReLU { },
+                !GlorotWeightInit { },
+                'valid',
+                { batch_normalization: true }
+
+            ]],
+            ['pool2d', ['max', [2,2], 'pool3' ]],
+            ['flat', [1024, 0.5, 'f2', !ReLU { }, !GlorotWeightInit { }, { batch_normalization: true } ]]
+          ]
+n_in: 784
+n_out: 10
+
+resample_size: 50000
+method: !Bagging {}
+ensemble_size: 3
