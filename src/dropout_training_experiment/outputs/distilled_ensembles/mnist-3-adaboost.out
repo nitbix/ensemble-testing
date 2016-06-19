@@ -1,0 +1,392 @@
+... loading data
+training member 0
+training samples: 50000
+... normal training
+.... generating models
+.... started
+epoch 1, minibatch 390/390:
+  train err: 0.434696 %
+  valid err: 1.081731 %
+  current best
+t: 17.74
+epoch 2, minibatch 390/390:
+  train err: 0.100160 %
+  valid err: 0.701122 %
+  current best
+t: 17.63
+epoch 3, minibatch 390/390:
+  train err: 0.034054 %
+  valid err: 0.651042 %
+  current best
+t: 17.65
+epoch 4, minibatch 390/390:
+  train err: 0.006010 %
+  valid err: 0.600962 %
+  current best
+t: 17.59
+epoch 5, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.600962 %
+t: 16.73
+epoch 6, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.560897 %
+  current best
+t: 18.84
+epoch 7, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.590946 %
+t: 16.79
+epoch 8, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.580929 %
+t: 17.81
+epoch 9, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.600962 %
+t: 17.16
+epoch 10, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.560897 %
+t: 18.02
+epoch 11, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.560897 %
+t: 16.97
+epoch 12, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.580929 %
+t: 18.63
+epoch 13, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.600962 %
+t: 16.99
+epoch 14, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.570913 %
+t: 18.68
+epoch 15, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.590946 %
+t: 18.28
+epoch 16, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.590946 %
+t: 17.0
+epoch 17, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.560897 %
+t: 18.38
+epoch 18, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.570913 %
+t: 17.17
+epoch 19, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.580929 %
+t: 18.5
+epoch 20, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.570913 %
+t: 17.11
+Selection : Best valid score of 0.560897449031 %
+training member 1
+training samples: 50000
+... normal training
+.... generating models
+.... started
+epoch 1, minibatch 390/390:
+  train err: 0.172276 %
+  valid err: 1.221955 %
+  current best
+t: 19.21
+epoch 2, minibatch 390/390:
+  train err: 0.026042 %
+  valid err: 0.961538 %
+  current best
+t: 18.3
+epoch 3, minibatch 390/390:
+  train err: 0.004006 %
+  valid err: 0.891426 %
+  current best
+t: 18.3
+epoch 4, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.961538 %
+t: 17.35
+epoch 5, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.901442 %
+t: 18.43
+epoch 6, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.831330 %
+  current best
+t: 18.74
+epoch 7, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.811298 %
+  current best
+t: 18.58
+epoch 8, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.841346 %
+t: 17.56
+epoch 9, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.801282 %
+  current best
+t: 19.62
+epoch 10, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.771234 %
+  current best
+t: 18.68
+epoch 11, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.751202 %
+  current best
+t: 18.53
+epoch 12, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.751202 %
+t: 17.67
+epoch 13, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.781250 %
+t: 18.76
+epoch 14, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.751202 %
+t: 17.83
+epoch 15, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.761218 %
+t: 18.99
+epoch 16, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.761218 %
+t: 17.84
+epoch 17, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.751202 %
+t: 19.19
+epoch 18, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.761218 %
+t: 17.9
+epoch 19, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.751202 %
+t: 19.27
+epoch 20, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.761218 %
+t: 17.97
+Selection : Best valid score of 0.751201901585 %
+training member 2
+training samples: 50000
+... normal training
+.... generating models
+.... started
+epoch 1, minibatch 390/390:
+  train err: 0.066106 %
+  valid err: 1.512420 %
+  current best
+t: 19.97
+epoch 2, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 1.131811 %
+  current best
+t: 18.85
+epoch 3, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 1.021635 %
+  current best
+t: 19.14
+epoch 4, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.991587 %
+  current best
+t: 18.98
+epoch 5, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.891426 %
+  current best
+t: 19.15
+epoch 6, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.921474 %
+t: 17.97
+epoch 7, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.921474 %
+t: 19.32
+epoch 8, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.911458 %
+t: 18.07
+epoch 9, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.871394 %
+  current best
+t: 20.84
+epoch 10, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.921474 %
+t: 18.07
+epoch 11, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.901442 %
+t: 19.45
+epoch 12, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.941506 %
+t: 18.12
+epoch 13, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.901442 %
+t: 19.71
+epoch 14, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.931490 %
+t: 18.43
+epoch 15, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.881410 %
+t: 19.85
+epoch 16, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.891426 %
+t: 18.28
+epoch 17, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.921474 %
+t: 19.94
+epoch 18, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.911458 %
+t: 18.35
+epoch 19, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.901442 %
+t: 20.03
+epoch 20, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.901442 %
+t: 18.36
+Selection : Best valid score of 0.871394202113 %
+Final Ensemble error: 0.631009601057 %
+training samples: 50000
+... normal training
+.... generating models
+.... started
+epoch 1, minibatch 390/390:
+  train err: 0.667067 %
+  valid err: 1.021635 %
+  test  err: 0.941506 %
+  current best
+t: 19.91
+epoch 2, minibatch 390/390:
+  train err: 0.312500 %
+  valid err: 0.761218 %
+  test  err: 0.731170 %
+  current best
+t: 20.29
+epoch 3, minibatch 390/390:
+  train err: 0.122196 %
+  valid err: 0.661058 %
+  test  err: 0.671074 %
+  current best
+t: 20.11
+epoch 4, minibatch 390/390:
+  train err: 0.038061 %
+  valid err: 0.570913 %
+  test  err: 0.560897 %
+  current best
+t: 20.23
+epoch 5, minibatch 390/390:
+  train err: 0.008013 %
+  valid err: 0.560897 %
+  test  err: 0.580929 %
+  current best
+t: 20.12
+epoch 6, minibatch 390/390:
+  train err: 0.002003 %
+  valid err: 0.520833 %
+  test  err: 0.570913 %
+  current best
+t: 20.26
+epoch 7, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.550881 %
+  test  err: 0.560897 %
+t: 18.95
+epoch 8, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.520833 %
+  test  err: 0.550881 %
+t: 20.42
+epoch 9, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.500801 %
+  test  err: 0.550881 %
+  current best
+t: 20.4
+epoch 10, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.490785 %
+  test  err: 0.520833 %
+  current best
+t: 20.41
+epoch 11, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.510817 %
+  test  err: 0.500801 %
+t: 19.1
+epoch 12, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.500801 %
+  test  err: 0.510817 %
+t: 20.59
+epoch 13, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.490785 %
+  test  err: 0.500801 %
+t: 19.16
+epoch 14, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.500801 %
+  test  err: 0.540865 %
+t: 20.78
+epoch 15, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.540865 %
+  test  err: 0.520833 %
+t: 19.27
+epoch 16, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.510817 %
+  test  err: 0.500801 %
+t: 20.81
+epoch 17, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.500801 %
+  test  err: 0.530849 %
+t: 19.34
+epoch 18, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.490785 %
+  test  err: 0.500801 %
+t: 20.96
+epoch 19, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.510817 %
+  test  err: 0.540865 %
+t: 19.42
+epoch 20, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.510817 %
+  test  err: 0.530849 %
+t: 19.4
+Optimization complete. Best valid score of 0.490785 % obtained at iteration 3900, epoch 10, with test performance 0.520833 %
