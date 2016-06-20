@@ -1,0 +1,113 @@
+... loading data
+training member 0
+training samples: 50000
+... normal training
+.... generating models
+.... started
+epoch 1, minibatch 390/390:
+  train err: 0.518830 %
+  valid err: 1.011619 %
+  test  err: 1.001603 %
+  current best
+t: 19.41
+epoch 2, minibatch 390/390:
+  train err: 0.144231 %
+  valid err: 0.761218 %
+  test  err: 0.731170 %
+  current best
+t: 17.82
+epoch 3, minibatch 390/390:
+  train err: 0.034054 %
+  valid err: 0.731170 %
+  test  err: 0.631010 %
+  current best
+t: 18.0
+epoch 4, minibatch 390/390:
+  train err: 0.004006 %
+  valid err: 0.731170 %
+  test  err: 0.691106 %
+t: 16.96
+epoch 5, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.620994 %
+  test  err: 0.691106 %
+  current best
+t: 19.26
+epoch 6, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.691106 %
+  test  err: 0.641026 %
+t: 16.96
+epoch 7, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.641026 %
+  test  err: 0.651042 %
+t: 18.29
+epoch 8, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.620994 %
+  test  err: 0.631010 %
+t: 17.05
+epoch 9, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.620994 %
+  test  err: 0.600962 %
+t: 18.76
+epoch 10, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.651042 %
+  test  err: 0.620994 %
+t: 17.08
+epoch 11, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.610978 %
+  test  err: 0.600962 %
+  current best
+t: 19.81
+epoch 12, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.590946 %
+  test  err: 0.580929 %
+  current best
+t: 18.3
+epoch 13, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.600962 %
+  test  err: 0.600962 %
+t: 17.37
+epoch 14, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.600962 %
+  test  err: 0.580929 %
+t: 18.34
+epoch 15, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.580929 %
+  test  err: 0.610978 %
+  current best
+t: 18.48
+epoch 16, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.590946 %
+  test  err: 0.631010 %
+t: 17.25
+epoch 17, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.620994 %
+  test  err: 0.631010 %
+t: 18.58
+epoch 18, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.610978 %
+  test  err: 0.631010 %
+t: 17.34
+epoch 19, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.590946 %
+  test  err: 0.620994 %
+t: 18.76
+epoch 20, minibatch 390/390:
+  train err: 0.000000 %
+  valid err: 0.590946 %
+  test  err: 0.631010 %
+t: 17.4
