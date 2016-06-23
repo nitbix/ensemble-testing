@@ -1,0 +1,30 @@
+---
+save_images: false
+detailed_stats: false
+dataset: /local/uci/adult/
+pickled: false
+random_seed: 42
+L1_reg: 0.0
+L2_reg: 0.0
+n_epochs: 20
+training_method: normal
+batch_size: 128
+#output_layer_options: { batch_normalization: true }
+shuffle_dataset: true
+cost_function: !NegLogLikelihood { }
+join_train_and_valid: true
+learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-7, multiplier: 0.95 }
+update_rule: !SGD { momentum: 0.9 }
+n_hidden: [
+            ['flat', [128, 0., 'f1', !ReLU { }, !GlorotWeightInit { } ]],
+            ['flat', [128, 0., 'f2', !ReLU { }, !GlorotWeightInit { } ]],
+            ['flat', [128, 0., 'f3', !ReLU { }, !GlorotWeightInit { } ]],
+            ['flat', [128, 0., 'f4', !ReLU { }, !GlorotWeightInit { } ]]
+#, { batch_normalization: true } ]]
+          ]
+n_in: 14
+n_out: 2
+
+resample_size: 32559
+method: !Bagging {}
+ensemble_size: 3

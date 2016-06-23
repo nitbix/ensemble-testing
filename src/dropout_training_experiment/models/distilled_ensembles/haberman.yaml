@@ -1,0 +1,28 @@
+---
+save_images: false
+detailed_stats: false
+dataset: /local/uci/haberman/
+pickled: false
+random_seed: 42
+L1_reg: 0.0
+L2_reg: 0.0
+n_epochs: 10
+training_method: normal
+batch_size: 1
+#output_layer_options: { batch_normalization: true }
+shuffle_dataset: true
+join_train_and_valid: true
+cost_function: !NegLogLikelihood { }
+learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-7, stop: 1.0e-7, multiplier: 0.95 }
+update_rule: !SGD { }
+n_hidden: [
+            ['flat', [30, 0., 'f1', !Sigmoid { }, !GlorotWeightInit { } ]],
+            ['flat', [30, 0., 'f6', !Sigmoid { }, !GlorotWeightInit { } ]]
+#, { batch_normalization: true } ]]
+          ]
+n_in: 3
+n_out: 2
+
+resample_size: 50000
+method: !Bagging {}
+ensemble_size: 3
