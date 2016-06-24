@@ -72,5 +72,5 @@ n_out: 10
 
 #Ensemble params
 resample_size: 40000
-method: !AdaBoostM1 {}
+method: !Bagging {}
 ensemble_size: 3
