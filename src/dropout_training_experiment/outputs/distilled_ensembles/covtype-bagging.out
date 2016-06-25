@@ -1,0 +1,2541 @@
+58102
+training member 0
+training examples: 464808
+validation examples: 58101
+test examples: 58102
+... normal training
+.... generating models
+.... started
+epoch 1, minibatch 453/453:
+  last cost: 0.688800 %
+  train err: 27.831492 %
+  valid err: 28.214661 %
+  test  err: 27.978383 %
+  current best
+t: 22.5
+epoch 2, minibatch 453/453:
+  last cost: 0.637303 %
+  train err: 25.680496 %
+  valid err: 26.013322 %
+  test  err: 25.811504 %
+  current best
+t: 22.12
+epoch 3, minibatch 453/453:
+  last cost: 0.608195 %
+  train err: 24.613819 %
+  valid err: 24.872205 %
+  test  err: 24.801212 %
+  current best
+t: 22.29
+epoch 4, minibatch 453/453:
+  last cost: 0.515296 %
+  train err: 23.418056 %
+  valid err: 23.803377 %
+  test  err: 23.627414 %
+  current best
+t: 22.79
+epoch 5, minibatch 453/453:
+  last cost: 0.541002 %
+  train err: 23.128044 %
+  valid err: 23.632984 %
+  test  err: 23.333104 %
+  current best
+t: 22.78
+epoch 6, minibatch 453/453:
+  last cost: 0.530641 %
+  train err: 22.230684 %
+  valid err: 22.682914 %
+  test  err: 22.446732 %
+  current best
+t: 23.13
+epoch 7, minibatch 453/453:
+  last cost: 0.499079 %
+  train err: 21.747044 %
+  valid err: 22.271562 %
+  test  err: 21.976868 %
+  current best
+t: 22.38
+epoch 8, minibatch 453/453:
+  last cost: 0.507053 %
+  train err: 21.070420 %
+  valid err: 21.648509 %
+  test  err: 21.539706 %
+  current best
+t: 22.24
+epoch 9, minibatch 453/453:
+  last cost: 0.499662 %
+  train err: 20.560317 %
+  valid err: 21.034061 %
+  test  err: 21.007883 %
+  current best
+t: 22.13
+epoch 10, minibatch 453/453:
+  last cost: 0.518386 %
+  train err: 20.602916 %
+  valid err: 21.201012 %
+  test  err: 21.049189 %
+t: 21.03
+epoch 11, minibatch 453/453:
+  last cost: 0.451314 %
+  train err: 20.001807 %
+  valid err: 20.491902 %
+  test  err: 20.350418 %
+  current best
+t: 22.42
+epoch 12, minibatch 453/453:
+  last cost: 0.467591 %
+  train err: 19.728361 %
+  valid err: 20.278481 %
+  test  err: 20.200682 %
+  current best
+t: 22.91
+epoch 13, minibatch 453/453:
+  last cost: 0.484599 %
+  train err: 19.537529 %
+  valid err: 20.154558 %
+  test  err: 19.928746 %
+  current best
+t: 26.54
+epoch 14, minibatch 453/453:
+  last cost: 0.467412 %
+  train err: 19.243214 %
+  valid err: 19.996213 %
+  test  err: 19.658532 %
+  current best
+t: 26.78
+epoch 15, minibatch 453/453:
+  last cost: 0.461341 %
+  train err: 19.126607 %
+  valid err: 19.824099 %
+  test  err: 19.555265 %
+  current best
+t: 26.64
+epoch 16, minibatch 453/453:
+  last cost: 0.484263 %
+  train err: 18.887799 %
+  valid err: 19.466102 %
+  test  err: 19.359058 %
+  current best
+t: 27.6
+epoch 17, minibatch 453/453:
+  last cost: 0.419805 %
+  train err: 18.912971 %
+  valid err: 19.548717 %
+  test  err: 19.295377 %
+t: 26.55
+epoch 18, minibatch 453/453:
+  last cost: 0.421081 %
+  train err: 18.639309 %
+  valid err: 19.226864 %
+  test  err: 19.155967 %
+  current best
+t: 26.72
+epoch 19, minibatch 453/453:
+  last cost: 0.423914 %
+  train err: 18.514311 %
+  valid err: 19.140807 %
+  test  err: 19.099170 %
+  current best
+t: 26.3
+epoch 20, minibatch 453/453:
+  last cost: 0.411622 %
+  train err: 18.534965 %
+  valid err: 19.116711 %
+  test  err: 19.044095 %
+  current best
+t: 26.29
+epoch 21, minibatch 453/453:
+  last cost: 0.432278 %
+  train err: 18.483116 %
+  valid err: 19.090893 %
+  test  err: 18.990740 %
+  current best
+t: 26.3
+epoch 22, minibatch 453/453:
+  last cost: 0.415059 %
+  train err: 18.383935 %
+  valid err: 18.980740 %
+  test  err: 18.982135 %
+  current best
+t: 26.38
+epoch 23, minibatch 453/453:
+  last cost: 0.448350 %
+  train err: 18.314014 %
+  valid err: 18.992788 %
+  test  err: 18.889195 %
+t: 25.15
+epoch 24, minibatch 453/453:
+  last cost: 0.442798 %
+  train err: 18.220857 %
+  valid err: 18.813790 %
+  test  err: 18.887474 %
+  current best
+t: 26.7
+epoch 25, minibatch 453/453:
+  last cost: 0.421330 %
+  train err: 18.143405 %
+  valid err: 18.884357 %
+  test  err: 18.775602 %
+t: 25.16
+epoch 26, minibatch 453/453:
+  last cost: 0.395423 %
+  train err: 18.212036 %
+  valid err: 18.882635 %
+  test  err: 18.847888 %
+t: 25.4
+epoch 27, minibatch 453/453:
+  last cost: 0.463098 %
+  train err: 18.124688 %
+  valid err: 18.727733 %
+  test  err: 18.825514 %
+  current best
+t: 26.67
+epoch 28, minibatch 453/453:
+  last cost: 0.402578 %
+  train err: 18.093923 %
+  valid err: 18.784530 %
+  test  err: 18.658566 %
+t: 25.18
+epoch 29, minibatch 453/453:
+  last cost: 0.404295 %
+  train err: 18.047667 %
+  valid err: 18.712242 %
+  test  err: 18.679219 %
+  current best
+t: 26.71
+epoch 30, minibatch 453/453:
+  last cost: 0.424219 %
+  train err: 17.989578 %
+  valid err: 18.782809 %
+  test  err: 18.627586 %
+t: 25.21
+epoch 31, minibatch 453/453:
+  last cost: 0.449579 %
+  train err: 18.011523 %
+  valid err: 18.746665 %
+  test  err: 18.606933 %
+t: 25.54
+epoch 32, minibatch 453/453:
+  last cost: 0.393843 %
+  train err: 18.023786 %
+  valid err: 18.650281 %
+  test  err: 18.689546 %
+  current best
+t: 26.69
+epoch 33, minibatch 453/453:
+  last cost: 0.374004 %
+  train err: 17.981403 %
+  valid err: 18.621022 %
+  test  err: 18.569068 %
+  current best
+t: 26.56
+epoch 34, minibatch 453/453:
+  last cost: 0.433641 %
+  train err: 17.974949 %
+  valid err: 18.634791 %
+  test  err: 18.591443 %
+t: 25.27
+epoch 35, minibatch 453/453:
+  last cost: 0.380039 %
+  train err: 17.964407 %
+  valid err: 18.662329 %
+  test  err: 18.629307 %
+t: 25.56
+epoch 36, minibatch 453/453:
+  last cost: 0.423692 %
+  train err: 17.997108 %
+  valid err: 18.626185 %
+  test  err: 18.606933 %
+t: 25.57
+epoch 37, minibatch 453/453:
+  last cost: 0.418329 %
+  train err: 17.970861 %
+  valid err: 18.646839 %
+  test  err: 18.601769 %
+t: 25.19
+epoch 38, minibatch 453/453:
+  last cost: 0.392749 %
+  train err: 17.942247 %
+  valid err: 18.602089 %
+  test  err: 18.620702 %
+  current best
+t: 26.68
+epoch 39, minibatch 453/453:
+  last cost: 0.423577 %
+  train err: 17.944399 %
+  valid err: 18.617580 %
+  test  err: 18.610375 %
+t: 25.37
+epoch 40, minibatch 453/453:
+  last cost: 0.433363 %
+  train err: 17.975809 %
+  valid err: 18.615859 %
+  test  err: 18.610375 %
+t: 25.76
+epoch 41, minibatch 453/453:
+  last cost: 0.412968 %
+  train err: 17.943538 %
+  valid err: 18.576272 %
+  test  err: 18.627586 %
+  current best
+t: 26.56
+epoch 42, minibatch 453/453:
+  last cost: 0.428038 %
+  train err: 17.962040 %
+  valid err: 18.614137 %
+  test  err: 18.646518 %
+t: 25.53
+epoch 43, minibatch 453/453:
+  last cost: 0.391816 %
+  train err: 17.928048 %
+  valid err: 18.615859 %
+  test  err: 18.594885 %
+t: 25.25
+epoch 44, minibatch 453/453:
+  last cost: 0.422184 %
+  train err: 17.932566 %
+  valid err: 18.607253 %
+  test  err: 18.618980 %
+t: 25.61
+epoch 45, minibatch 453/453:
+  last cost: 0.400643 %
+  train err: 17.935147 %
+  valid err: 18.588320 %
+  test  err: 18.589722 %
+t: 25.47
+epoch 46, minibatch 453/453:
+  last cost: 0.421305 %
+  train err: 17.934932 %
+  valid err: 18.583157 %
+  test  err: 18.625865 %
+t: 26.79
+epoch 47, minibatch 453/453:
+  last cost: 0.410731 %
+  train err: 17.933857 %
+  valid err: 18.596926 %
+  test  err: 18.600048 %
+t: 25.49
+epoch 48, minibatch 453/453:
+  last cost: 0.409408 %
+  train err: 17.938590 %
+  valid err: 18.602089 %
+  test  err: 18.591443 %
+t: 25.75
+epoch 49, minibatch 453/453:
+  last cost: 0.425329 %
+  train err: 17.928478 %
+  valid err: 18.602089 %
+  test  err: 18.588000 %
+t: 25.5
+epoch 50, minibatch 453/453:
+  last cost: 0.417857 %
+  train err: 17.929984 %
+  valid err: 18.608974 %
+  test  err: 18.577674 %
+t: 25.54
+epoch 51, minibatch 453/453:
+  last cost: 0.394247 %
+  train err: 17.931705 %
+  valid err: 18.598647 %
+  test  err: 18.582837 %
+t: 27.06
+epoch 52, minibatch 453/453:
+  last cost: 0.415614 %
+  train err: 17.932135 %
+  valid err: 18.596926 %
+  test  err: 18.605212 %
+t: 25.52
+epoch 53, minibatch 453/453:
+  last cost: 0.394503 %
+  train err: 17.938375 %
+  valid err: 18.584878 %
+  test  err: 18.606933 %
+t: 25.9
+epoch 54, minibatch 453/453:
+  last cost: 0.390575 %
+  train err: 17.931275 %
+  valid err: 18.596926 %
+  test  err: 18.589722 %
+t: 25.56
+epoch 55, minibatch 453/453:
+  last cost: 0.421532 %
+  train err: 17.929769 %
+  valid err: 18.602089 %
+  test  err: 18.591443 %
+t: 26.71
+epoch 56, minibatch 453/453:
+  last cost: 0.392728 %
+  train err: 17.933857 %
+  valid err: 18.591763 %
+  test  err: 18.593164 %
+t: 25.48
+epoch 57, minibatch 453/453:
+  last cost: 0.404855 %
+  train err: 17.931705 %
+  valid err: 18.591763 %
+  test  err: 18.591443 %
+t: 25.76
+epoch 58, minibatch 453/453:
+  last cost: 0.418534 %
+  train err: 17.929984 %
+  valid err: 18.596926 %
+  test  err: 18.591443 %
+t: 25.42
+epoch 59, minibatch 453/453:
+  last cost: 0.415239 %
+  train err: 17.928908 %
+  valid err: 18.595205 %
+  test  err: 18.593164 %
+t: 26.94
+epoch 60, minibatch 453/453:
+  last cost: 0.453126 %
+  train err: 17.928478 %
+  valid err: 18.591763 %
+  test  err: 18.588000 %
+t: 25.76
+epoch 61, minibatch 453/453:
+  last cost: 0.362407 %
+  train err: 17.928693 %
+  valid err: 18.596926 %
+  test  err: 18.589722 %
+t: 25.73
+epoch 62, minibatch 453/453:
+  last cost: 0.434972 %
+  train err: 17.926327 %
+  valid err: 18.595205 %
+  test  err: 18.589722 %
+t: 25.56
+epoch 63, minibatch 453/453:
+  last cost: 0.428813 %
+  train err: 17.926327 %
+  valid err: 18.593484 %
+  test  err: 18.591443 %
+t: 26.81
+epoch 64, minibatch 453/453:
+  last cost: 0.436074 %
+  train err: 17.928478 %
+  valid err: 18.591763 %
+  test  err: 18.591443 %
+t: 25.65
+epoch 65, minibatch 453/453:
+  last cost: 0.416898 %
+  train err: 17.927833 %
+  valid err: 18.602089 %
+  test  err: 18.594885 %
+t: 25.72
+epoch 66, minibatch 453/453:
+  last cost: 0.406367 %
+  train err: 17.926757 %
+  valid err: 18.602089 %
+  test  err: 18.593164 %
+t: 25.53
+epoch 67, minibatch 453/453:
+  last cost: 0.379581 %
+  train err: 17.924821 %
+  valid err: 18.596926 %
+  test  err: 18.593164 %
+t: 27.01
+epoch 68, minibatch 453/453:
+  last cost: 0.418140 %
+  train err: 17.926542 %
+  valid err: 18.598647 %
+  test  err: 18.593164 %
+t: 25.53
+epoch 69, minibatch 453/453:
+  last cost: 0.409363 %
+  train err: 17.925036 %
+  valid err: 18.600368 %
+  test  err: 18.593164 %
+t: 25.49
+epoch 70, minibatch 453/453:
+  last cost: 0.380131 %
+  train err: 17.928263 %
+  valid err: 18.602089 %
+  test  err: 18.591443 %
+t: 25.52
+epoch 71, minibatch 453/453:
+  last cost: 0.403301 %
+  train err: 17.925681 %
+  valid err: 18.600368 %
+  test  err: 18.589722 %
+t: 26.79
+epoch 72, minibatch 453/453:
+  last cost: 0.436904 %
+  train err: 17.926327 %
+  valid err: 18.600368 %
+  test  err: 18.589722 %
+t: 25.18
+epoch 73, minibatch 453/453:
+  last cost: 0.433819 %
+  train err: 17.926542 %
+  valid err: 18.596926 %
+  test  err: 18.588000 %
+t: 25.7
+epoch 74, minibatch 453/453:
+  last cost: 0.390943 %
+  train err: 17.925681 %
+  valid err: 18.595205 %
+  test  err: 18.588000 %
+t: 25.49
+epoch 75, minibatch 453/453:
+  last cost: 0.440642 %
+  train err: 17.925251 %
+  valid err: 18.595205 %
+  test  err: 18.586279 %
+t: 26.94
+epoch 76, minibatch 453/453:
+  last cost: 0.416619 %
+  train err: 17.926111 %
+  valid err: 18.595205 %
+  test  err: 18.586279 %
+t: 25.83
+epoch 77, minibatch 453/453:
+  last cost: 0.432385 %
+  train err: 17.926327 %
+  valid err: 18.595205 %
+  test  err: 18.584558 %
+t: 25.9
+epoch 78, minibatch 453/453:
+  last cost: 0.432790 %
+  train err: 17.925466 %
+  valid err: 18.595205 %
+  test  err: 18.586279 %
+t: 25.68
+epoch 79, minibatch 453/453:
+  last cost: 0.425601 %
+  train err: 17.926111 %
+  valid err: 18.596926 %
+  test  err: 18.588000 %
+t: 26.97
+epoch 80, minibatch 453/453:
+  last cost: 0.420881 %
+  train err: 17.927187 %
+  valid err: 18.598647 %
+  test  err: 18.586279 %
+t: 26.13
+epoch 81, minibatch 453/453:
+  last cost: 0.407280 %
+  train err: 17.927402 %
+  valid err: 18.600368 %
+  test  err: 18.589722 %
+t: 26.16
+epoch 82, minibatch 453/453:
+  last cost: 0.415798 %
+  train err: 17.926327 %
+  valid err: 18.596926 %
+  test  err: 18.586279 %
+t: 26.61
+epoch 83, minibatch 453/453:
+  last cost: 0.398757 %
+  train err: 17.927402 %
+  valid err: 18.598647 %
+  test  err: 18.591443 %
+t: 25.92
+epoch 84, minibatch 453/453:
+  last cost: 0.418779 %
+  train err: 17.926757 %
+  valid err: 18.600368 %
+  test  err: 18.591443 %
+t: 25.5
+epoch 85, minibatch 453/453:
+  last cost: 0.376835 %
+  train err: 17.926327 %
+  valid err: 18.596926 %
+  test  err: 18.586279 %
+t: 25.32
+epoch 86, minibatch 453/453:
+  last cost: 0.398564 %
+  train err: 17.926972 %
+  valid err: 18.598647 %
+  test  err: 18.588000 %
+t: 25.49
+epoch 87, minibatch 453/453:
+  last cost: 0.442202 %
+  train err: 17.926111 %
+  valid err: 18.595205 %
+  test  err: 18.584558 %
+t: 27.16
+epoch 88, minibatch 453/453:
+  last cost: 0.415226 %
+  train err: 17.928048 %
+  valid err: 18.598647 %
+  test  err: 18.584558 %
+t: 25.66
+epoch 89, minibatch 453/453:
+  last cost: 0.416948 %
+  train err: 17.927617 %
+  valid err: 18.598647 %
+  test  err: 18.586279 %
+t: 25.34
+epoch 90, minibatch 453/453:
+  last cost: 0.420340 %
+  train err: 17.928048 %
+  valid err: 18.596926 %
+  test  err: 18.588000 %
+t: 25.35
+epoch 91, minibatch 453/453:
+  last cost: 0.429960 %
+  train err: 17.927617 %
+  valid err: 18.595205 %
+  test  err: 18.584558 %
+t: 26.56
+epoch 92, minibatch 453/453:
+  last cost: 0.409455 %
+  train err: 17.926972 %
+  valid err: 18.595205 %
+  test  err: 18.584558 %
+t: 25.44
+epoch 93, minibatch 453/453:
+  last cost: 0.422187 %
+  train err: 17.927617 %
+  valid err: 18.596926 %
+  test  err: 18.584558 %
+t: 25.61
+epoch 94, minibatch 453/453:
+  last cost: 0.420360 %
+  train err: 17.928048 %
+  valid err: 18.596926 %
+  test  err: 18.586279 %
+t: 25.47
+epoch 95, minibatch 453/453:
+  last cost: 0.435341 %
+  train err: 17.927617 %
+  valid err: 18.600368 %
+  test  err: 18.586279 %
+t: 26.89
+epoch 96, minibatch 453/453:
+  last cost: 0.425193 %
+  train err: 17.927833 %
+  valid err: 18.600368 %
+  test  err: 18.586279 %
+t: 25.44
+epoch 97, minibatch 453/453:
+  last cost: 0.417335 %
+  train err: 17.925896 %
+  valid err: 18.595205 %
+  test  err: 18.584558 %
+t: 25.49
+epoch 98, minibatch 453/453:
+  last cost: 0.392372 %
+  train err: 17.927187 %
+  valid err: 18.600368 %
+  test  err: 18.584558 %
+t: 25.64
+epoch 99, minibatch 453/453:
+  last cost: 0.398486 %
+  train err: 17.927617 %
+  valid err: 18.598647 %
+  test  err: 18.584558 %
+t: 26.9
+epoch 100, minibatch 453/453:
+  last cost: 0.429242 %
+  train err: 17.926972 %
+  valid err: 18.600368 %
+  test  err: 18.584558 %
+t: 25.46
+Optimization complete. Best valid score of 18.576272 % obtained at iteration 18573, epoch 41, with test performance 18.627586 %
+training member 1
+training examples: 464808
+validation examples: 58101
+test examples: 58102
+... normal training
+.... generating models
+.... started
+epoch 1, minibatch 453/453:
+  last cost: 0.628981 %
+  train err: 30.200427 %
+  valid err: 30.545085 %
+  test  err: 30.436130 %
+  current best
+t: 26.12
+epoch 2, minibatch 453/453:
+  last cost: 0.586223 %
+  train err: 25.823351 %
+  valid err: 26.194041 %
+  test  err: 25.801177 %
+  current best
+t: 26.07
+epoch 3, minibatch 453/453:
+  last cost: 0.537505 %
+  train err: 23.752173 %
+  valid err: 24.028846 %
+  test  err: 24.035317 %
+  current best
+t: 26.4
+epoch 4, minibatch 453/453:
+  last cost: 0.545448 %
+  train err: 23.010361 %
+  valid err: 23.386861 %
+  test  err: 23.209184 %
+  current best
+t: 26.21
+epoch 5, minibatch 453/453:
+  last cost: 0.531403 %
+  train err: 21.921740 %
+  valid err: 22.378272 %
+  test  err: 22.152422 %
+  current best
+t: 26.2
+epoch 6, minibatch 453/453:
+  last cost: 0.464453 %
+  train err: 21.970577 %
+  valid err: 22.268119 %
+  test  err: 22.319369 %
+  current best
+t: 26.23
+epoch 7, minibatch 453/453:
+  last cost: 0.485322 %
+  train err: 20.564190 %
+  valid err: 20.994475 %
+  test  err: 20.698083 %
+  current best
+t: 26.22
+epoch 8, minibatch 453/453:
+  last cost: 0.475648 %
+  train err: 20.587210 %
+  valid err: 21.063321 %
+  test  err: 20.851262 %
+t: 25.15
+epoch 9, minibatch 453/453:
+  last cost: 0.473048 %
+  train err: 19.629826 %
+  valid err: 20.083992 %
+  test  err: 19.878834 %
+  current best
+t: 27.35
+epoch 10, minibatch 453/453:
+  last cost: 0.434651 %
+  train err: 19.381336 %
+  valid err: 19.851638 %
+  test  err: 19.519122 %
+  current best
+t: 26.32
+epoch 11, minibatch 453/453:
+  last cost: 0.483391 %
+  train err: 18.912110 %
+  valid err: 19.343901 %
+  test  err: 19.042374 %
+  current best
+t: 26.3
+epoch 12, minibatch 453/453:
+  last cost: 0.427951 %
+  train err: 18.683198 %
+  valid err: 19.250960 %
+  test  err: 18.896079 %
+  current best
+t: 26.34
+epoch 13, minibatch 453/453:
+  last cost: 0.412149 %
+  train err: 18.701055 %
+  valid err: 19.263008 %
+  test  err: 19.064748 %
+t: 25.19
+epoch 14, minibatch 453/453:
+  last cost: 0.390513 %
+  train err: 18.238498 %
+  valid err: 18.908453 %
+  test  err: 18.658566 %
+  current best
+t: 27.29
+epoch 15, minibatch 453/453:
+  last cost: 0.397612 %
+  train err: 17.900725 %
+  valid err: 18.428254 %
+  test  err: 18.250663 %
+  current best
+t: 26.43
+epoch 16, minibatch 453/453:
+  last cost: 0.405101 %
+  train err: 17.799823 %
+  valid err: 18.442023 %
+  test  err: 18.254105 %
+t: 25.24
+epoch 17, minibatch 453/453:
+  last cost: 0.388954 %
+  train err: 17.557142 %
+  valid err: 18.209669 %
+  test  err: 17.856528 %
+  current best
+t: 27.53
+epoch 18, minibatch 453/453:
+  last cost: 0.419082 %
+  train err: 17.425044 %
+  valid err: 18.159756 %
+  test  err: 17.861692 %
+  current best
+t: 26.47
+epoch 19, minibatch 453/453:
+  last cost: 0.386460 %
+  train err: 17.269711 %
+  valid err: 17.966989 %
+  test  err: 17.565660 %
+  current best
+t: 26.51
+epoch 20, minibatch 453/453:
+  last cost: 0.421824 %
+  train err: 17.309298 %
+  valid err: 18.003132 %
+  test  err: 17.841038 %
+t: 25.38
+epoch 21, minibatch 453/453:
+  last cost: 0.415768 %
+  train err: 17.088776 %
+  valid err: 17.800038 %
+  test  err: 17.441740 %
+  current best
+t: 27.52
+epoch 22, minibatch 453/453:
+  last cost: 0.372226 %
+  train err: 17.029612 %
+  valid err: 17.827576 %
+  test  err: 17.374617 %
+t: 25.34
+epoch 23, minibatch 453/453:
+  last cost: 0.378495 %
+  train err: 16.980775 %
+  valid err: 17.712260 %
+  test  err: 17.378059 %
+  current best
+t: 27.81
+epoch 24, minibatch 453/453:
+  last cost: 0.391313 %
+  train err: 16.953452 %
+  valid err: 17.715702 %
+  test  err: 17.357406 %
+t: 25.48
+epoch 25, minibatch 453/453:
+  last cost: 0.371061 %
+  train err: 16.919244 %
+  valid err: 17.784548 %
+  test  err: 17.309215 %
+t: 26.67
+epoch 26, minibatch 453/453:
+  last cost: 0.412650 %
+  train err: 16.862446 %
+  valid err: 17.631366 %
+  test  err: 17.293725 %
+  current best
+t: 26.66
+epoch 27, minibatch 453/453:
+  last cost: 0.355917 %
+  train err: 16.823936 %
+  valid err: 17.595222 %
+  test  err: 17.264466 %
+  current best
+t: 26.57
+epoch 28, minibatch 453/453:
+  last cost: 0.390392 %
+  train err: 16.814039 %
+  valid err: 17.534982 %
+  test  err: 17.236928 %
+  current best
+t: 26.66
+epoch 29, minibatch 453/453:
+  last cost: 0.388176 %
+  train err: 16.770796 %
+  valid err: 17.598664 %
+  test  err: 17.180131 %
+t: 25.55
+epoch 30, minibatch 453/453:
+  last cost: 0.385168 %
+  train err: 16.763696 %
+  valid err: 17.557357 %
+  test  err: 17.185295 %
+t: 26.88
+epoch 31, minibatch 453/453:
+  last cost: 0.395914 %
+  train err: 16.777465 %
+  valid err: 17.653741 %
+  test  err: 17.181853 %
+t: 25.54
+epoch 32, minibatch 453/453:
+  last cost: 0.410873 %
+  train err: 16.745194 %
+  valid err: 17.510886 %
+  test  err: 17.169805 %
+  current best
+t: 28.07
+epoch 33, minibatch 453/453:
+  last cost: 0.401827 %
+  train err: 16.729488 %
+  valid err: 17.524655 %
+  test  err: 17.188737 %
+t: 25.83
+epoch 34, minibatch 453/453:
+  last cost: 0.390848 %
+  train err: 16.735727 %
+  valid err: 17.529819 %
+  test  err: 17.152594 %
+t: 26.77
+epoch 35, minibatch 453/453:
+  last cost: 0.397330 %
+  train err: 16.706898 %
+  valid err: 17.510886 %
+  test  err: 17.143988 %
+t: 25.56
+epoch 36, minibatch 453/453:
+  last cost: 0.357561 %
+  train err: 16.724970 %
+  valid err: 17.500559 %
+  test  err: 17.154315 %
+  current best
+t: 28.17
+epoch 37, minibatch 453/453:
+  last cost: 0.408990 %
+  train err: 16.712492 %
+  valid err: 17.536703 %
+  test  err: 17.173247 %
+t: 25.72
+epoch 38, minibatch 453/453:
+  last cost: 0.403785 %
+  train err: 16.679575 %
+  valid err: 17.517771 %
+  test  err: 17.149151 %
+t: 26.99
+epoch 39, minibatch 453/453:
+  last cost: 0.428752 %
+  train err: 16.707329 %
+  valid err: 17.510886 %
+  test  err: 17.125056 %
+t: 25.42
+epoch 40, minibatch 453/453:
+  last cost: 0.421620 %
+  train err: 16.692053 %
+  valid err: 17.521213 %
+  test  err: 17.125056 %
+t: 26.79
+epoch 41, minibatch 453/453:
+  last cost: 0.376179 %
+  train err: 16.694850 %
+  valid err: 17.490233 %
+  test  err: 17.126777 %
+  current best
+t: 27.94
+epoch 42, minibatch 453/453:
+  last cost: 0.383786 %
+  train err: 16.684954 %
+  valid err: 17.474742 %
+  test  err: 17.114729 %
+  current best
+t: 27.02
+epoch 43, minibatch 453/453:
+  last cost: 0.390472 %
+  train err: 16.681942 %
+  valid err: 17.486790 %
+  test  err: 17.113008 %
+t: 25.82
+epoch 44, minibatch 453/453:
+  last cost: 0.404790 %
+  train err: 16.695496 %
+  valid err: 17.516050 %
+  test  err: 17.128498 %
+t: 26.95
+epoch 45, minibatch 453/453:
+  last cost: 0.373437 %
+  train err: 16.679145 %
+  valid err: 17.466137 %
+  test  err: 17.099239 %
+  current best
+t: 26.85
+epoch 46, minibatch 453/453:
+  last cost: 0.396404 %
+  train err: 16.683663 %
+  valid err: 17.509165 %
+  test  err: 17.100960 %
+t: 25.8
+epoch 47, minibatch 453/453:
+  last cost: 0.404791 %
+  train err: 16.669679 %
+  valid err: 17.479906 %
+  test  err: 17.099239 %
+t: 27.1
+epoch 48, minibatch 453/453:
+  last cost: 0.393436 %
+  train err: 16.672476 %
+  valid err: 17.469579 %
+  test  err: 17.068259 %
+t: 25.74
+epoch 49, minibatch 453/453:
+  last cost: 0.392734 %
+  train err: 16.667312 %
+  valid err: 17.500559 %
+  test  err: 17.109566 %
+t: 26.92
+epoch 50, minibatch 453/453:
+  last cost: 0.406969 %
+  train err: 16.676778 %
+  valid err: 17.486790 %
+  test  err: 17.094076 %
+t: 26.89
+epoch 51, minibatch 453/453:
+  last cost: 0.385185 %
+  train err: 16.670970 %
+  valid err: 17.486790 %
+  test  err: 17.078586 %
+t: 25.62
+epoch 52, minibatch 453/453:
+  last cost: 0.384081 %
+  train err: 16.672045 %
+  valid err: 17.490233 %
+  test  err: 17.076865 %
+t: 26.98
+epoch 53, minibatch 453/453:
+  last cost: 0.382313 %
+  train err: 16.673766 %
+  valid err: 17.481627 %
+  test  err: 17.078586 %
+t: 26.9
+epoch 54, minibatch 453/453:
+  last cost: 0.371770 %
+  train err: 16.669679 %
+  valid err: 17.491954 %
+  test  err: 17.099239 %
+t: 25.52
+epoch 55, minibatch 453/453:
+  last cost: 0.405773 %
+  train err: 16.671400 %
+  valid err: 17.490233 %
+  test  err: 17.109566 %
+t: 26.91
+epoch 56, minibatch 453/453:
+  last cost: 0.423799 %
+  train err: 16.672476 %
+  valid err: 17.471300 %
+  test  err: 17.083749 %
+t: 27.03
+epoch 57, minibatch 453/453:
+  last cost: 0.388688 %
+  train err: 16.673336 %
+  valid err: 17.474742 %
+  test  err: 17.078586 %
+t: 26.77
+epoch 58, minibatch 453/453:
+  last cost: 0.402325 %
+  train err: 16.671615 %
+  valid err: 17.483348 %
+  test  err: 17.082028 %
+t: 25.87
+epoch 59, minibatch 453/453:
+  last cost: 0.384296 %
+  train err: 16.672045 %
+  valid err: 17.488511 %
+  test  err: 17.099239 %
+t: 27.06
+epoch 60, minibatch 453/453:
+  last cost: 0.403080 %
+  train err: 16.672260 %
+  valid err: 17.479906 %
+  test  err: 17.078586 %
+t: 26.88
+epoch 61, minibatch 453/453:
+  last cost: 0.406233 %
+  train err: 16.674412 %
+  valid err: 17.474742 %
+  test  err: 17.083749 %
+t: 25.66
+epoch 62, minibatch 453/453:
+  last cost: 0.406130 %
+  train err: 16.668818 %
+  valid err: 17.478185 %
+  test  err: 17.088913 %
+t: 27.3
+epoch 63, minibatch 453/453:
+  last cost: 0.408379 %
+  train err: 16.670539 %
+  valid err: 17.478185 %
+  test  err: 17.088913 %
+t: 26.91
+epoch 64, minibatch 453/453:
+  last cost: 0.365488 %
+  train err: 16.674412 %
+  valid err: 17.476463 %
+  test  err: 17.090634 %
+t: 25.83
+epoch 65, minibatch 453/453:
+  last cost: 0.386611 %
+  train err: 16.673121 %
+  valid err: 17.474742 %
+  test  err: 17.088913 %
+t: 26.91
+epoch 66, minibatch 453/453:
+  last cost: 0.372232 %
+  train err: 16.675272 %
+  valid err: 17.479906 %
+  test  err: 17.085470 %
+t: 27.37
+epoch 67, minibatch 453/453:
+  last cost: 0.411002 %
+  train err: 16.673121 %
+  valid err: 17.478185 %
+  test  err: 17.090634 %
+t: 26.82
+epoch 68, minibatch 453/453:
+  last cost: 0.380370 %
+  train err: 16.673336 %
+  valid err: 17.476463 %
+  test  err: 17.090634 %
+t: 25.65
+epoch 69, minibatch 453/453:
+  last cost: 0.406527 %
+  train err: 16.673982 %
+  valid err: 17.478185 %
+  test  err: 17.090634 %
+t: 26.64
+epoch 70, minibatch 453/453:
+  last cost: 0.408310 %
+  train err: 16.674197 %
+  valid err: 17.476463 %
+  test  err: 17.090634 %
+t: 26.47
+epoch 71, minibatch 453/453:
+  last cost: 0.406456 %
+  train err: 16.673336 %
+  valid err: 17.476463 %
+  test  err: 17.090634 %
+t: 25.71
+epoch 72, minibatch 453/453:
+  last cost: 0.387505 %
+  train err: 16.673121 %
+  valid err: 17.476463 %
+  test  err: 17.090634 %
+t: 26.11
+epoch 73, minibatch 453/453:
+  last cost: 0.393884 %
+  train err: 16.672906 %
+  valid err: 17.478185 %
+  test  err: 17.092355 %
+t: 27.15
+epoch 74, minibatch 453/453:
+  last cost: 0.427405 %
+  train err: 16.673551 %
+  valid err: 17.476463 %
+  test  err: 17.090634 %
+t: 24.93
+epoch 75, minibatch 453/453:
+  last cost: 0.434442 %
+  train err: 16.672906 %
+  valid err: 17.476463 %
+  test  err: 17.090634 %
+t: 26.41
+epoch 76, minibatch 453/453:
+  last cost: 0.419284 %
+  train err: 16.673982 %
+  valid err: 17.478185 %
+  test  err: 17.092355 %
+t: 25.49
+epoch 77, minibatch 453/453:
+  last cost: 0.404827 %
+  train err: 16.673336 %
+  valid err: 17.476463 %
+  test  err: 17.090634 %
+t: 26.26
+epoch 78, minibatch 453/453:
+  last cost: 0.383438 %
+  train err: 16.673336 %
+  valid err: 17.476463 %
+  test  err: 17.092355 %
+t: 25.39
+epoch 79, minibatch 453/453:
+  last cost: 0.402946 %
+  train err: 16.672906 %
+  valid err: 17.476463 %
+  test  err: 17.092355 %
+t: 26.14
+epoch 80, minibatch 453/453:
+  last cost: 0.396696 %
+  train err: 16.673336 %
+  valid err: 17.476463 %
+  test  err: 17.092355 %
+t: 24.85
+epoch 81, minibatch 453/453:
+  last cost: 0.378730 %
+  train err: 16.674197 %
+  valid err: 17.474742 %
+  test  err: 17.092355 %
+t: 26.78
+epoch 82, minibatch 453/453:
+  last cost: 0.392471 %
+  train err: 16.674412 %
+  valid err: 17.474742 %
+  test  err: 17.092355 %
+t: 25.31
+epoch 83, minibatch 453/453:
+  last cost: 0.404804 %
+  train err: 16.674412 %
+  valid err: 17.474742 %
+  test  err: 17.092355 %
+t: 26.72
+epoch 84, minibatch 453/453:
+  last cost: 0.387928 %
+  train err: 16.673982 %
+  valid err: 17.474742 %
+  test  err: 17.092355 %
+t: 24.69
+epoch 85, minibatch 453/453:
+  last cost: 0.373763 %
+  train err: 16.673121 %
+  valid err: 17.474742 %
+  test  err: 17.090634 %
+t: 26.49
+epoch 86, minibatch 453/453:
+  last cost: 0.386873 %
+  train err: 16.673336 %
+  valid err: 17.474742 %
+  test  err: 17.092355 %
+t: 26.33
+epoch 87, minibatch 453/453:
+  last cost: 0.391468 %
+  train err: 16.674842 %
+  valid err: 17.476463 %
+  test  err: 17.092355 %
+t: 25.5
+epoch 88, minibatch 453/453:
+  last cost: 0.395123 %
+  train err: 16.672906 %
+  valid err: 17.474742 %
+  test  err: 17.092355 %
+t: 26.33
+epoch 89, minibatch 453/453:
+  last cost: 0.408861 %
+  train err: 16.671400 %
+  valid err: 17.476463 %
+  test  err: 17.092355 %
+t: 25.53
+epoch 90, minibatch 453/453:
+  last cost: 0.399312 %
+  train err: 16.672906 %
+  valid err: 17.474742 %
+  test  err: 17.088913 %
+t: 26.96
+epoch 91, minibatch 453/453:
+  last cost: 0.428093 %
+  train err: 16.671830 %
+  valid err: 17.476463 %
+  test  err: 17.088913 %
+t: 25.51
+epoch 92, minibatch 453/453:
+  last cost: 0.381192 %
+  train err: 16.673551 %
+  valid err: 17.476463 %
+  test  err: 17.092355 %
+t: 26.68
+epoch 93, minibatch 453/453:
+  last cost: 0.427821 %
+  train err: 16.672260 %
+  valid err: 17.476463 %
+  test  err: 17.088913 %
+t: 25.09
+epoch 94, minibatch 453/453:
+  last cost: 0.397563 %
+  train err: 16.671615 %
+  valid err: 17.476463 %
+  test  err: 17.094076 %
+t: 26.71
+epoch 95, minibatch 453/453:
+  last cost: 0.410009 %
+  train err: 16.673336 %
+  valid err: 17.476463 %
+  test  err: 17.094076 %
+t: 26.47
+epoch 96, minibatch 453/453:
+  last cost: 0.401461 %
+  train err: 16.672691 %
+  valid err: 17.476463 %
+  test  err: 17.094076 %
+t: 25.26
+epoch 97, minibatch 453/453:
+  last cost: 0.390304 %
+  train err: 16.672045 %
+  valid err: 17.476463 %
+  test  err: 17.092355 %
+t: 26.03
+epoch 98, minibatch 453/453:
+  last cost: 0.431990 %
+  train err: 16.672045 %
+  valid err: 17.476463 %
+  test  err: 17.092355 %
+t: 24.95
+epoch 99, minibatch 453/453:
+  last cost: 0.381697 %
+  train err: 16.672260 %
+  valid err: 17.476463 %
+  test  err: 17.092355 %
+t: 26.5
+epoch 100, minibatch 453/453:
+  last cost: 0.404125 %
+  train err: 16.672691 %
+  valid err: 17.476463 %
+  test  err: 17.088913 %
+t: 25.69
+Optimization complete. Best valid score of 17.466137 % obtained at iteration 20385, epoch 45, with test performance 17.099239 %
+training member 2
+training examples: 464808
+validation examples: 58101
+test examples: 58102
+... normal training
+.... generating models
+.... started
+epoch 1, minibatch 453/453:
+  last cost: 0.686105 %
+  train err: 28.343101 %
+  valid err: 28.581264 %
+  test  err: 28.344980 %
+  current best
+t: 29.11
+epoch 2, minibatch 453/453:
+  last cost: 0.630161 %
+  train err: 26.994157 %
+  valid err: 27.347206 %
+  test  err: 27.286496 %
+  current best
+t: 29.17
+epoch 3, minibatch 453/453:
+  last cost: 0.567042 %
+  train err: 26.836457 %
+  valid err: 27.309341 %
+  test  err: 27.081684 %
+  current best
+t: 29.26
+epoch 4, minibatch 453/453:
+  last cost: 0.556462 %
+  train err: 23.322103 %
+  valid err: 23.751743 %
+  test  err: 23.444976 %
+  current best
+t: 29.46
+epoch 5, minibatch 453/453:
+  last cost: 0.574998 %
+  train err: 23.592107 %
+  valid err: 23.968606 %
+  test  err: 23.687653 %
+t: 28.34
+epoch 6, minibatch 453/453:
+  last cost: 0.506879 %
+  train err: 21.357206 %
+  valid err: 21.872257 %
+  test  err: 21.632646 %
+  current best
+t: 30.69
+epoch 7, minibatch 453/453:
+  last cost: 0.459189 %
+  train err: 20.870768 %
+  valid err: 21.331819 %
+  test  err: 21.023373 %
+  current best
+t: 29.51
+epoch 8, minibatch 453/453:
+  last cost: 0.508317 %
+  train err: 20.168758 %
+  valid err: 20.755237 %
+  test  err: 20.372793 %
+  current best
+t: 29.49
+epoch 9, minibatch 453/453:
+  last cost: 0.468185 %
+  train err: 19.641443 %
+  valid err: 20.133905 %
+  test  err: 19.904650 %
+  current best
+t: 29.67
+epoch 10, minibatch 453/453:
+  last cost: 0.486134 %
+  train err: 19.537960 %
+  valid err: 20.042684 %
+  test  err: 19.785894 %
+  current best
+t: 29.38
+epoch 11, minibatch 453/453:
+  last cost: 0.444066 %
+  train err: 19.380260 %
+  valid err: 20.097761 %
+  test  err: 19.880555 %
+t: 28.17
+epoch 12, minibatch 453/453:
+  last cost: 0.433517 %
+  train err: 19.119507 %
+  valid err: 19.743206 %
+  test  err: 19.577639 %
+  current best
+t: 30.61
+epoch 13, minibatch 453/453:
+  last cost: 0.445720 %
+  train err: 18.698473 %
+  valid err: 19.486756 %
+  test  err: 19.178342 %
+  current best
+t: 29.44
+epoch 14, minibatch 453/453:
+  last cost: 0.446003 %
+  train err: 18.467625 %
+  valid err: 18.927385 %
+  test  err: 18.901243 %
+  current best
+t: 29.49
+epoch 15, minibatch 453/453:
+  last cost: 0.406117 %
+  train err: 18.204506 %
+  valid err: 18.891241 %
+  test  err: 18.739458 %
+  current best
+t: 29.48
+epoch 16, minibatch 453/453:
+  last cost: 0.437590 %
+  train err: 18.117158 %
+  valid err: 18.772482 %
+  test  err: 18.627586 %
+  current best
+t: 29.37
+epoch 17, minibatch 453/453:
+  last cost: 0.385789 %
+  train err: 18.128776 %
+  valid err: 18.774204 %
+  test  err: 18.675777 %
+t: 28.31
+epoch 18, minibatch 453/453:
+  last cost: 0.469872 %
+  train err: 17.773145 %
+  valid err: 18.347361 %
+  test  err: 18.180097 %
+  current best
+t: 30.73
+epoch 19, minibatch 453/453:
+  last cost: 0.438977 %
+  train err: 17.543588 %
+  valid err: 18.194179 %
+  test  err: 18.075109 %
+  current best
+t: 29.45
+epoch 20, minibatch 453/453:
+  last cost: 0.410468 %
+  train err: 17.528528 %
+  valid err: 18.242371 %
+  test  err: 18.114695 %
+t: 28.2
+epoch 21, minibatch 453/453:
+  last cost: 0.413591 %
+  train err: 17.584465 %
+  valid err: 18.254419 %
+  test  err: 18.063062 %
+t: 29.38
+epoch 22, minibatch 453/453:
+  last cost: 0.369500 %
+  train err: 17.413642 %
+  valid err: 18.123612 %
+  test  err: 17.890950 %
+  current best
+t: 30.72
+epoch 23, minibatch 453/453:
+  last cost: 0.420959 %
+  train err: 17.434726 %
+  valid err: 18.102959 %
+  test  err: 17.951189 %
+  current best
+t: 30.73
+epoch 24, minibatch 453/453:
+  last cost: 0.406557 %
+  train err: 17.181718 %
+  valid err: 17.894701 %
+  test  err: 17.708513 %
+  current best
+t: 30.79
+epoch 25, minibatch 453/453:
+  last cost: 0.411223 %
+  train err: 17.187527 %
+  valid err: 17.879210 %
+  test  err: 17.751540 %
+  current best
+t: 30.82
+epoch 26, minibatch 453/453:
+  last cost: 0.379671 %
+  train err: 17.210117 %
+  valid err: 17.913633 %
+  test  err: 17.754983 %
+t: 29.63
+epoch 27, minibatch 453/453:
+  last cost: 0.429368 %
+  train err: 17.186236 %
+  valid err: 17.769057 %
+  test  err: 17.772194 %
+  current best
+t: 30.91
+epoch 28, minibatch 453/453:
+  last cost: 0.416287 %
+  train err: 17.105773 %
+  valid err: 17.746683 %
+  test  err: 17.686138 %
+  current best
+t: 30.85
+epoch 29, minibatch 453/453:
+  last cost: 0.382296 %
+  train err: 17.030903 %
+  valid err: 17.712260 %
+  test  err: 17.594919 %
+  current best
+t: 30.65
+epoch 30, minibatch 453/453:
+  last cost: 0.404460 %
+  train err: 17.016919 %
+  valid err: 17.755288 %
+  test  err: 17.612130 %
+t: 29.31
+epoch 31, minibatch 453/453:
+  last cost: 0.399873 %
+  train err: 17.033915 %
+  valid err: 17.700212 %
+  test  err: 17.593198 %
+  current best
+t: 31.47
+epoch 32, minibatch 453/453:
+  last cost: 0.385866 %
+  train err: 17.004225 %
+  valid err: 17.686443 %
+  test  err: 17.620736 %
+  current best
+t: 30.77
+epoch 33, minibatch 453/453:
+  last cost: 0.452126 %
+  train err: 16.961197 %
+  valid err: 17.722587 %
+  test  err: 17.589756 %
+t: 29.89
+epoch 34, minibatch 453/453:
+  last cost: 0.385257 %
+  train err: 17.005731 %
+  valid err: 17.693327 %
+  test  err: 17.586314 %
+t: 29.67
+epoch 35, minibatch 453/453:
+  last cost: 0.421001 %
+  train err: 17.000783 %
+  valid err: 17.720865 %
+  test  err: 17.538123 %
+t: 29.77
+epoch 36, minibatch 453/453:
+  last cost: 0.368404 %
+  train err: 16.977763 %
+  valid err: 17.634808 %
+  test  err: 17.496816 %
+  current best
+t: 31.42
+epoch 37, minibatch 453/453:
+  last cost: 0.385869 %
+  train err: 16.961412 %
+  valid err: 17.658904 %
+  test  err: 17.526075 %
+t: 29.82
+epoch 38, minibatch 453/453:
+  last cost: 0.401784 %
+  train err: 16.946997 %
+  valid err: 17.621039 %
+  test  err: 17.501979 %
+  current best
+t: 30.97
+epoch 39, minibatch 453/453:
+  last cost: 0.392599 %
+  train err: 16.933228 %
+  valid err: 17.607270 %
+  test  err: 17.493374 %
+  current best
+t: 31.21
+epoch 40, minibatch 453/453:
+  last cost: 0.413282 %
+  train err: 16.924192 %
+  valid err: 17.653741 %
+  test  err: 17.493374 %
+t: 29.51
+epoch 41, minibatch 453/453:
+  last cost: 0.409273 %
+  train err: 16.945061 %
+  valid err: 17.689885 %
+  test  err: 17.500258 %
+t: 30.25
+epoch 42, minibatch 453/453:
+  last cost: 0.376293 %
+  train err: 16.921611 %
+  valid err: 17.639972 %
+  test  err: 17.503700 %
+t: 30.29
+epoch 43, minibatch 453/453:
+  last cost: 0.384617 %
+  train err: 16.928495 %
+  valid err: 17.643414 %
+  test  err: 17.495095 %
+t: 29.98
+epoch 44, minibatch 453/453:
+  last cost: 0.408814 %
+  train err: 16.919244 %
+  valid err: 17.634808 %
+  test  err: 17.498537 %
+t: 29.82
+epoch 45, minibatch 453/453:
+  last cost: 0.401784 %
+  train err: 16.917738 %
+  valid err: 17.643414 %
+  test  err: 17.484768 %
+t: 30.05
+epoch 46, minibatch 453/453:
+  last cost: 0.381864 %
+  train err: 16.915587 %
+  valid err: 17.636529 %
+  test  err: 17.498537 %
+t: 29.75
+epoch 47, minibatch 453/453:
+  last cost: 0.402226 %
+  train err: 16.920965 %
+  valid err: 17.619318 %
+  test  err: 17.515748 %
+t: 30.2
+epoch 48, minibatch 453/453:
+  last cost: 0.426392 %
+  train err: 16.938822 %
+  valid err: 17.657183 %
+  test  err: 17.505422 %
+t: 30.29
+epoch 49, minibatch 453/453:
+  last cost: 0.382847 %
+  train err: 16.938177 %
+  valid err: 17.658904 %
+  test  err: 17.515748 %
+t: 29.6
+epoch 50, minibatch 453/453:
+  last cost: 0.369542 %
+  train err: 16.925913 %
+  valid err: 17.619318 %
+  test  err: 17.515748 %
+t: 30.01
+epoch 51, minibatch 453/453:
+  last cost: 0.385212 %
+  train err: 16.930431 %
+  valid err: 17.667510 %
+  test  err: 17.520912 %
+t: 30.24
+epoch 52, minibatch 453/453:
+  last cost: 0.410723 %
+  train err: 16.926344 %
+  valid err: 17.643414 %
+  test  err: 17.501979 %
+t: 30.15
+epoch 53, minibatch 453/453:
+  last cost: 0.410587 %
+  train err: 16.928280 %
+  valid err: 17.634808 %
+  test  err: 17.515748 %
+t: 29.95
+epoch 54, minibatch 453/453:
+  last cost: 0.396118 %
+  train err: 16.923117 %
+  valid err: 17.607270 %
+  test  err: 17.507143 %
+t: 30.39
+epoch 55, minibatch 453/453:
+  last cost: 0.423344 %
+  train err: 16.918814 %
+  valid err: 17.598664 %
+  test  err: 17.496816 %
+  current best
+t: 31.51
+epoch 56, minibatch 453/453:
+  last cost: 0.377235 %
+  train err: 16.922686 %
+  valid err: 17.617597 %
+  test  err: 17.503700 %
+t: 30.2
+epoch 57, minibatch 453/453:
+  last cost: 0.437137 %
+  train err: 16.920535 %
+  valid err: 17.643414 %
+  test  err: 17.505422 %
+t: 29.62
+epoch 58, minibatch 453/453:
+  last cost: 0.390249 %
+  train err: 16.918168 %
+  valid err: 17.648577 %
+  test  err: 17.507143 %
+t: 30.19
+epoch 59, minibatch 453/453:
+  last cost: 0.393387 %
+  train err: 16.920535 %
+  valid err: 17.624482 %
+  test  err: 17.496816 %
+t: 30.24
+epoch 60, minibatch 453/453:
+  last cost: 0.391967 %
+  train err: 16.918599 %
+  valid err: 17.631366 %
+  test  err: 17.501979 %
+t: 30.57
+epoch 61, minibatch 453/453:
+  last cost: 0.446119 %
+  train err: 16.918168 %
+  valid err: 17.629645 %
+  test  err: 17.503700 %
+t: 30.09
+epoch 62, minibatch 453/453:
+  last cost: 0.389946 %
+  train err: 16.918384 %
+  valid err: 17.626203 %
+  test  err: 17.501979 %
+t: 30.68
+epoch 63, minibatch 453/453:
+  last cost: 0.388596 %
+  train err: 16.917093 %
+  valid err: 17.624482 %
+  test  err: 17.501979 %
+t: 30.14
+epoch 64, minibatch 453/453:
+  last cost: 0.395626 %
+  train err: 16.921611 %
+  valid err: 17.624482 %
+  test  err: 17.495095 %
+t: 30.45
+epoch 65, minibatch 453/453:
+  last cost: 0.395654 %
+  train err: 16.917953 %
+  valid err: 17.627924 %
+  test  err: 17.496816 %
+t: 30.27
+epoch 66, minibatch 453/453:
+  last cost: 0.402454 %
+  train err: 16.917738 %
+  valid err: 17.638251 %
+  test  err: 17.500258 %
+t: 30.51
+epoch 67, minibatch 453/453:
+  last cost: 0.370012 %
+  train err: 16.916662 %
+  valid err: 17.631366 %
+  test  err: 17.501979 %
+t: 30.55
+epoch 68, minibatch 453/453:
+  last cost: 0.430826 %
+  train err: 16.916662 %
+  valid err: 17.633087 %
+  test  err: 17.501979 %
+t: 30.81
+epoch 69, minibatch 453/453:
+  last cost: 0.375562 %
+  train err: 16.918168 %
+  valid err: 17.621039 %
+  test  err: 17.496816 %
+t: 30.5
+epoch 70, minibatch 453/453:
+  last cost: 0.406179 %
+  train err: 16.917738 %
+  valid err: 17.624482 %
+  test  err: 17.498537 %
+t: 30.4
+epoch 71, minibatch 453/453:
+  last cost: 0.401382 %
+  train err: 16.919029 %
+  valid err: 17.624482 %
+  test  err: 17.493374 %
+t: 29.69
+epoch 72, minibatch 453/453:
+  last cost: 0.413347 %
+  train err: 16.919674 %
+  valid err: 17.622760 %
+  test  err: 17.493374 %
+t: 29.65
+epoch 73, minibatch 453/453:
+  last cost: 0.387008 %
+  train err: 16.918814 %
+  valid err: 17.622760 %
+  test  err: 17.496816 %
+t: 28.89
+epoch 74, minibatch 453/453:
+  last cost: 0.379036 %
+  train err: 16.916232 %
+  valid err: 17.629645 %
+  test  err: 17.500258 %
+t: 30.1
+epoch 75, minibatch 453/453:
+  last cost: 0.423034 %
+  train err: 16.917523 %
+  valid err: 17.629645 %
+  test  err: 17.500258 %
+t: 27.62
+epoch 76, minibatch 453/453:
+  last cost: 0.372369 %
+  train err: 16.916662 %
+  valid err: 17.629645 %
+  test  err: 17.503700 %
+t: 29.5
+epoch 77, minibatch 453/453:
+  last cost: 0.383116 %
+  train err: 16.917093 %
+  valid err: 17.627924 %
+  test  err: 17.503700 %
+t: 29.93
+epoch 78, minibatch 453/453:
+  last cost: 0.406850 %
+  train err: 16.917093 %
+  valid err: 17.624482 %
+  test  err: 17.500258 %
+t: 30.18
+epoch 79, minibatch 453/453:
+  last cost: 0.422139 %
+  train err: 16.918384 %
+  valid err: 17.627924 %
+  test  err: 17.501979 %
+t: 29.88
+epoch 80, minibatch 453/453:
+  last cost: 0.398709 %
+  train err: 16.920750 %
+  valid err: 17.626203 %
+  test  err: 17.503700 %
+t: 29.97
+epoch 81, minibatch 453/453:
+  last cost: 0.397377 %
+  train err: 16.918599 %
+  valid err: 17.626203 %
+  test  err: 17.501979 %
+t: 29.69
+epoch 82, minibatch 453/453:
+  last cost: 0.384005 %
+  train err: 16.918168 %
+  valid err: 17.626203 %
+  test  err: 17.501979 %
+t: 28.86
+epoch 83, minibatch 453/453:
+  last cost: 0.450303 %
+  train err: 16.918599 %
+  valid err: 17.626203 %
+  test  err: 17.500258 %
+t: 27.48
+epoch 84, minibatch 453/453:
+  last cost: 0.394148 %
+  train err: 16.916878 %
+  valid err: 17.627924 %
+  test  err: 17.500258 %
+t: 29.17
+epoch 85, minibatch 453/453:
+  last cost: 0.391829 %
+  train err: 16.920535 %
+  valid err: 17.622760 %
+  test  err: 17.495095 %
+t: 30.41
+epoch 86, minibatch 453/453:
+  last cost: 0.423339 %
+  train err: 16.919459 %
+  valid err: 17.622760 %
+  test  err: 17.495095 %
+t: 29.3
+epoch 87, minibatch 453/453:
+  last cost: 0.427682 %
+  train err: 16.918599 %
+  valid err: 17.624482 %
+  test  err: 17.500258 %
+t: 29.64
+epoch 88, minibatch 453/453:
+  last cost: 0.366448 %
+  train err: 16.918168 %
+  valid err: 17.626203 %
+  test  err: 17.500258 %
+t: 27.78
+epoch 89, minibatch 453/453:
+  last cost: 0.376505 %
+  train err: 16.919029 %
+  valid err: 17.622760 %
+  test  err: 17.496816 %
+t: 28.5
+epoch 90, minibatch 453/453:
+  last cost: 0.370547 %
+  train err: 16.919244 %
+  valid err: 17.626203 %
+  test  err: 17.501979 %
+t: 29.11
+epoch 91, minibatch 453/453:
+  last cost: 0.382072 %
+  train err: 16.916447 %
+  valid err: 17.622760 %
+  test  err: 17.496816 %
+t: 29.3
+epoch 92, minibatch 453/453:
+  last cost: 0.403298 %
+  train err: 16.918384 %
+  valid err: 17.622760 %
+  test  err: 17.496816 %
+t: 27.9
+epoch 93, minibatch 453/453:
+  last cost: 0.399743 %
+  train err: 16.918599 %
+  valid err: 17.622760 %
+  test  err: 17.495095 %
+t: 29.46
+epoch 94, minibatch 453/453:
+  last cost: 0.387833 %
+  train err: 16.918814 %
+  valid err: 17.622760 %
+  test  err: 17.495095 %
+t: 29.14
+epoch 95, minibatch 453/453:
+  last cost: 0.378426 %
+  train err: 16.918599 %
+  valid err: 17.622760 %
+  test  err: 17.495095 %
+t: 29.38
+epoch 96, minibatch 453/453:
+  last cost: 0.441901 %
+  train err: 16.919244 %
+  valid err: 17.622760 %
+  test  err: 17.496816 %
+t: 27.43
+epoch 97, minibatch 453/453:
+  last cost: 0.377957 %
+  train err: 16.917308 %
+  valid err: 17.624482 %
+  test  err: 17.500258 %
+t: 29.33
+epoch 98, minibatch 453/453:
+  last cost: 0.389412 %
+  train err: 16.919029 %
+  valid err: 17.626203 %
+  test  err: 17.501979 %
+t: 29.15
+epoch 99, minibatch 453/453:
+  last cost: 0.410704 %
+  train err: 16.917738 %
+  valid err: 17.627924 %
+  test  err: 17.501979 %
+t: 27.99
+epoch 100, minibatch 453/453:
+  last cost: 0.428588 %
+  train err: 16.916662 %
+  valid err: 17.622760 %
+  test  err: 17.500258 %
+t: 28.89
+Optimization complete. Best valid score of 17.598664 % obtained at iteration 24915, epoch 55, with test performance 17.496816 %
+Final Ensemble error: 16.4725169539 %
+training examples: 464808
+validation examples: 58101
+test examples: 58102
+... normal training
+.... generating models
+.... started
+epoch 1, minibatch 453/453:
+  last cost: 0.562575 %
+  train err: 18.604241 %
+  valid err: 28.102787 %
+  test  err: 27.916423 %
+  current best
+t: 30.71
+epoch 2, minibatch 453/453:
+  last cost: 0.346417 %
+  train err: 12.989234 %
+  valid err: 24.488391 %
+  test  err: 24.277994 %
+  current best
+t: 30.83
+epoch 3, minibatch 453/453:
+  last cost: 0.318456 %
+  train err: 12.316268 %
+  valid err: 23.534879 %
+  test  err: 23.759939 %
+  current best
+t: 30.9
+epoch 4, minibatch 453/453:
+  last cost: 0.273613 %
+  train err: 10.397842 %
+  valid err: 22.509079 %
+  test  err: 22.463943 %
+  current best
+t: 30.75
+epoch 5, minibatch 453/453:
+  last cost: 0.236710 %
+  train err: 9.345579 %
+  valid err: 21.836113 %
+  test  err: 21.751403 %
+  current best
+t: 30.79
+epoch 6, minibatch 453/453:
+  last cost: 0.223415 %
+  train err: 8.573217 %
+  valid err: 21.140772 %
+  test  err: 21.114592 %
+  current best
+t: 30.8
+epoch 7, minibatch 453/453:
+  last cost: 0.198756 %
+  train err: 8.081401 %
+  valid err: 20.929072 %
+  test  err: 20.656776 %
+  current best
+t: 30.94
+epoch 8, minibatch 453/453:
+  last cost: 0.196807 %
+  train err: 7.424141 %
+  valid err: 20.443710 %
+  test  err: 20.193797 %
+  current best
+t: 30.96
+epoch 9, minibatch 453/453:
+  last cost: 0.199199 %
+  train err: 7.561187 %
+  valid err: 20.510835 %
+  test  err: 20.400330 %
+t: 29.67
+epoch 10, minibatch 453/453:
+  last cost: 0.182991 %
+  train err: 6.930819 %
+  valid err: 20.161443 %
+  test  err: 19.921862 %
+  current best
+t: 30.75
+epoch 11, minibatch 453/453:
+  last cost: 0.185759 %
+  train err: 6.684050 %
+  valid err: 19.984166 %
+  test  err: 19.813432 %
+  current best
+t: 31.34
+epoch 12, minibatch 453/453:
+  last cost: 0.161789 %
+  train err: 7.386060 %
+  valid err: 20.102924 %
+  test  err: 20.102578 %
+t: 29.66
+epoch 13, minibatch 453/453:
+  last cost: 0.185636 %
+  train err: 6.380054 %
+  valid err: 19.677802 %
+  test  err: 19.558707 %
+  current best
+t: 30.82
+epoch 14, minibatch 453/453:
+  last cost: 0.145631 %
+  train err: 6.102089 %
+  valid err: 19.447170 %
+  test  err: 19.347010 %
+  current best
+t: 31.45
+epoch 15, minibatch 453/453:
+  last cost: 0.170380 %
+  train err: 6.110265 %
+  valid err: 19.455775 %
+  test  err: 19.260955 %
+t: 29.69
+epoch 16, minibatch 453/453:
+  last cost: 0.157405 %
+  train err: 5.836604 %
+  valid err: 19.431679 %
+  test  err: 19.161130 %
+  current best
+t: 30.97
+epoch 17, minibatch 453/453:
+  last cost: 0.120182 %
+  train err: 5.778945 %
+  valid err: 19.355949 %
+  test  err: 19.102613 %
+  current best
+t: 31.48
+epoch 18, minibatch 453/453:
+  last cost: 0.146702 %
+  train err: 5.722148 %
+  valid err: 19.278498 %
+  test  err: 19.069912 %
+  current best
+t: 31.03
+epoch 19, minibatch 453/453:
+  last cost: 0.136731 %
+  train err: 5.656314 %
+  valid err: 19.249238 %
+  test  err: 18.927059 %
+  current best
+t: 30.92
+epoch 20, minibatch 453/453:
+  last cost: 0.127193 %
+  train err: 5.545946 %
+  valid err: 19.245796 %
+  test  err: 18.992462 %
+  current best
+t: 30.95
+epoch 21, minibatch 453/453:
+  last cost: 0.161279 %
+  train err: 5.472797 %
+  valid err: 19.164902 %
+  test  err: 18.823793 %
+  current best
+t: 31.14
+epoch 22, minibatch 453/453:
+  last cost: 0.151913 %
+  train err: 5.420087 %
+  valid err: 19.120153 %
+  test  err: 18.871984 %
+  current best
+t: 31.14
+epoch 23, minibatch 453/453:
+  last cost: 0.131944 %
+  train err: 5.371895 %
+  valid err: 19.159739 %
+  test  err: 18.871984 %
+t: 29.68
+epoch 24, minibatch 453/453:
+  last cost: 0.126615 %
+  train err: 5.364581 %
+  valid err: 19.085730 %
+  test  err: 18.779044 %
+  current best
+t: 31.02
+epoch 25, minibatch 453/453:
+  last cost: 0.120170 %
+  train err: 5.558639 %
+  valid err: 19.190720 %
+  test  err: 18.873705 %
+t: 30.23
+epoch 26, minibatch 453/453:
+  last cost: 0.129253 %
+  train err: 5.379856 %
+  valid err: 19.118432 %
+  test  err: 18.835840 %
+t: 30.16
+epoch 27, minibatch 453/453:
+  last cost: 0.130847 %
+  train err: 5.307998 %
+  valid err: 19.089172 %
+  test  err: 18.732574 %
+t: 30.22
+epoch 28, minibatch 453/453:
+  last cost: 0.132809 %
+  train err: 5.220650 %
+  valid err: 19.010000 %
+  test  err: 18.699873 %
+  current best
+t: 32.68
+epoch 29, minibatch 453/453:
+  last cost: 0.135492 %
+  train err: 5.242595 %
+  valid err: 19.071961 %
+  test  err: 18.773880 %
+t: 29.76
+epoch 30, minibatch 453/453:
+  last cost: 0.137448 %
+  train err: 5.242380 %
+  valid err: 18.984183 %
+  test  err: 18.729132 %
+  current best
+t: 31.1
+epoch 31, minibatch 453/453:
+  last cost: 0.121830 %
+  train err: 5.171813 %
+  valid err: 18.985904 %
+  test  err: 18.675777 %
+t: 30.27
+epoch 32, minibatch 453/453:
+  last cost: 0.136626 %
+  train err: 5.179128 %
+  valid err: 18.982462 %
+  test  err: 18.698152 %
+  current best
+t: 31.04
+epoch 33, minibatch 453/453:
+  last cost: 0.126513 %
+  train err: 5.187518 %
+  valid err: 19.032375 %
+  test  err: 18.698152 %
+t: 30.23
+epoch 34, minibatch 453/453:
+  last cost: 0.129748 %
+  train err: 5.172458 %
+  valid err: 18.961808 %
+  test  err: 18.711920 %
+  current best
+t: 31.37
+epoch 35, minibatch 453/453:
+  last cost: 0.122707 %
+  train err: 5.158904 %
+  valid err: 18.989346 %
+  test  err: 18.723968 %
+t: 30.33
+epoch 36, minibatch 453/453:
+  last cost: 0.133304 %
+  train err: 5.154386 %
+  valid err: 18.972135 %
+  test  err: 18.705036 %
+t: 30.46
+epoch 37, minibatch 453/453:
+  last cost: 0.124818 %
+  train err: 5.169661 %
+  valid err: 18.996231 %
+  test  err: 18.689546 %
+t: 30.23
+epoch 38, minibatch 453/453:
+  last cost: 0.119113 %
+  train err: 5.165359 %
+  valid err: 19.008279 %
+  test  err: 18.668893 %
+t: 31.57
+epoch 39, minibatch 453/453:
+  last cost: 0.129028 %
+  train err: 5.146426 %
+  valid err: 19.016884 %
+  test  err: 18.696430 %
+t: 30.38
+epoch 40, minibatch 453/453:
+  last cost: 0.122632 %
+  train err: 5.144705 %
+  valid err: 18.975577 %
+  test  err: 18.698152 %
+t: 30.51
+epoch 41, minibatch 453/453:
+  last cost: 0.117354 %
+  train err: 5.170952 %
+  valid err: 18.977298 %
+  test  err: 18.682662 %
+t: 31.93
+epoch 42, minibatch 453/453:
+  last cost: 0.114700 %
+  train err: 5.141478 %
+  valid err: 18.953202 %
+  test  err: 18.677498 %
+  current best
+t: 31.46
+epoch 43, minibatch 453/453:
+  last cost: 0.160720 %
+  train err: 5.143629 %
+  valid err: 18.966971 %
+  test  err: 18.672335 %
+t: 30.08
+epoch 44, minibatch 453/453:
+  last cost: 0.149416 %
+  train err: 5.136745 %
+  valid err: 18.960087 %
+  test  err: 18.674056 %
+t: 30.53
+epoch 45, minibatch 453/453:
+  last cost: 0.124031 %
+  train err: 5.134593 %
+  valid err: 18.960087 %
+  test  err: 18.674056 %
+t: 30.05
+epoch 46, minibatch 453/453:
+  last cost: 0.143749 %
+  train err: 5.141263 %
+  valid err: 18.934270 %
+  test  err: 18.662008 %
+  current best
+t: 32.75
+epoch 47, minibatch 453/453:
+  last cost: 0.131112 %
+  train err: 5.130505 %
+  valid err: 18.960087 %
+  test  err: 18.672335 %
+t: 29.91
+epoch 48, minibatch 453/453:
+  last cost: 0.124886 %
+  train err: 5.135023 %
+  valid err: 18.951481 %
+  test  err: 18.675777 %
+t: 30.51
+epoch 49, minibatch 453/453:
+  last cost: 0.135091 %
+  train err: 5.131796 %
+  valid err: 18.953202 %
+  test  err: 18.670614 %
+t: 30.39
+epoch 50, minibatch 453/453:
+  last cost: 0.149711 %
+  train err: 5.131796 %
+  valid err: 18.954923 %
+  test  err: 18.677498 %
+t: 31.26
+epoch 51, minibatch 453/453:
+  last cost: 0.123643 %
+  train err: 5.127494 %
+  valid err: 18.968692 %
+  test  err: 18.667172 %
+t: 30.75
+epoch 52, minibatch 453/453:
+  last cost: 0.129972 %
+  train err: 5.129860 %
+  valid err: 18.942875 %
+  test  err: 18.668893 %
+t: 31.79
+epoch 53, minibatch 453/453:
+  last cost: 0.148854 %
+  train err: 5.133517 %
+  valid err: 18.949760 %
+  test  err: 18.670614 %
+t: 30.21
+epoch 54, minibatch 453/453:
+  last cost: 0.127065 %
+  train err: 5.128569 %
+  valid err: 18.961808 %
+  test  err: 18.665450 %
+t: 30.58
+epoch 55, minibatch 453/453:
+  last cost: 0.122450 %
+  train err: 5.129000 %
+  valid err: 18.961808 %
+  test  err: 18.670614 %
+t: 31.65
+epoch 56, minibatch 453/453:
+  last cost: 0.133727 %
+  train err: 5.130075 %
+  valid err: 18.961808 %
+  test  err: 18.674056 %
+t: 30.09
+epoch 57, minibatch 453/453:
+  last cost: 0.111762 %
+  train err: 5.129645 %
+  valid err: 18.956644 %
+  test  err: 18.668893 %
+t: 30.51
+epoch 58, minibatch 453/453:
+  last cost: 0.110528 %
+  train err: 5.128784 %
+  valid err: 18.954923 %
+  test  err: 18.670614 %
+t: 31.52
+epoch 59, minibatch 453/453:
+  last cost: 0.136468 %
+  train err: 5.128784 %
+  valid err: 18.949760 %
+  test  err: 18.670614 %
+t: 30.46
+epoch 60, minibatch 453/453:
+  last cost: 0.129086 %
+  train err: 5.130721 %
+  valid err: 18.958366 %
+  test  err: 18.674056 %
+t: 30.69
+epoch 61, minibatch 453/453:
+  last cost: 0.119186 %
+  train err: 5.131581 %
+  valid err: 18.942875 %
+  test  err: 18.679219 %
+t: 31.58
+epoch 62, minibatch 453/453:
+  last cost: 0.120519 %
+  train err: 5.130721 %
+  valid err: 18.949760 %
+  test  err: 18.667172 %
+t: 30.13
+epoch 63, minibatch 453/453:
+  last cost: 0.140214 %
+  train err: 5.129860 %
+  valid err: 18.953202 %
+  test  err: 18.672335 %
+t: 31.76
+epoch 64, minibatch 453/453:
+  last cost: 0.106445 %
+  train err: 5.130075 %
+  valid err: 18.954923 %
+  test  err: 18.677498 %
+t: 30.1
+epoch 65, minibatch 453/453:
+  last cost: 0.127532 %
+  train err: 5.131366 %
+  valid err: 18.954923 %
+  test  err: 18.665450 %
+t: 30.58
+epoch 66, minibatch 453/453:
+  last cost: 0.139677 %
+  train err: 5.128139 %
+  valid err: 18.954923 %
+  test  err: 18.663729 %
+t: 31.94
+epoch 67, minibatch 453/453:
+  last cost: 0.127211 %
+  train err: 5.130075 %
+  valid err: 18.954923 %
+  test  err: 18.663729 %
+t: 28.72
+epoch 68, minibatch 453/453:
+  last cost: 0.120849 %
+  train err: 5.130936 %
+  valid err: 18.960087 %
+  test  err: 18.663729 %
+t: 30.24
+epoch 69, minibatch 453/453:
+  last cost: 0.114674 %
+  train err: 5.130505 %
+  valid err: 18.960087 %
+  test  err: 18.665450 %
+t: 29.49
+epoch 70, minibatch 453/453:
+  last cost: 0.140340 %
+  train err: 5.129430 %
+  valid err: 18.954923 %
+  test  err: 18.665450 %
+t: 28.76
+epoch 71, minibatch 453/453:
+  last cost: 0.126643 %
+  train err: 5.131366 %
+  valid err: 18.961808 %
+  test  err: 18.665450 %
+t: 29.67
+epoch 72, minibatch 453/453:
+  last cost: 0.121942 %
+  train err: 5.130936 %
+  valid err: 18.960087 %
+  test  err: 18.667172 %
+t: 30.59
+epoch 73, minibatch 453/453:
+  last cost: 0.139574 %
+  train err: 5.131151 %
+  valid err: 18.960087 %
+  test  err: 18.665450 %
+t: 28.54
+epoch 74, minibatch 453/453:
+  last cost: 0.115679 %
+  train err: 5.130936 %
+  valid err: 18.960087 %
+  test  err: 18.665450 %
+t: 28.47
+epoch 75, minibatch 453/453:
+  last cost: 0.113097 %
+  train err: 5.130721 %
+  valid err: 18.958366 %
+  test  err: 18.667172 %
+t: 29.51
+epoch 76, minibatch 453/453:
+  last cost: 0.141439 %
+  train err: 5.131151 %
+  valid err: 18.961808 %
+  test  err: 18.665450 %
+t: 28.49
+epoch 77, minibatch 453/453:
+  last cost: 0.142777 %
+  train err: 5.130505 %
+  valid err: 18.960087 %
+  test  err: 18.667172 %
+t: 29.59
+epoch 78, minibatch 453/453:
+  last cost: 0.128516 %
+  train err: 5.130936 %
+  valid err: 18.956644 %
+  test  err: 18.667172 %
+t: 29.48
+epoch 79, minibatch 453/453:
+  last cost: 0.107278 %
+  train err: 5.130505 %
+  valid err: 18.958366 %
+  test  err: 18.665450 %
+t: 28.41
+epoch 80, minibatch 453/453:
+  last cost: 0.122080 %
+  train err: 5.130936 %
+  valid err: 18.961808 %
+  test  err: 18.665450 %
+t: 28.5
+epoch 81, minibatch 453/453:
+  last cost: 0.126999 %
+  train err: 5.131151 %
+  valid err: 18.956644 %
+  test  err: 18.667172 %
+t: 28.69
+epoch 82, minibatch 453/453:
+  last cost: 0.129197 %
+  train err: 5.130075 %
+  valid err: 18.956644 %
+  test  err: 18.667172 %
+t: 28.62
+epoch 83, minibatch 453/453:
+  last cost: 0.142232 %
+  train err: 5.130505 %
+  valid err: 18.956644 %
+  test  err: 18.667172 %
+t: 28.76
+epoch 84, minibatch 453/453:
+  last cost: 0.133184 %
+  train err: 5.130290 %
+  valid err: 18.956644 %
+  test  err: 18.667172 %
+t: 29.02
+epoch 85, minibatch 453/453:
+  last cost: 0.124090 %
+  train err: 5.130505 %
+  valid err: 18.956644 %
+  test  err: 18.667172 %
+t: 28.64
+epoch 86, minibatch 453/453:
+  last cost: 0.114335 %
+  train err: 5.130936 %
+  valid err: 18.956644 %
+  test  err: 18.667172 %
+t: 28.38
+epoch 87, minibatch 453/453:
+  last cost: 0.104545 %
+  train err: 5.130505 %
+  valid err: 18.958366 %
+  test  err: 18.667172 %
+t: 29.37
+epoch 88, minibatch 453/453:
+  last cost: 0.135130 %
+  train err: 5.131366 %
+  valid err: 18.956644 %
+  test  err: 18.667172 %
+t: 28.59
+epoch 89, minibatch 453/453:
+  last cost: 0.126698 %
+  train err: 5.130721 %
+  valid err: 18.958366 %
+  test  err: 18.667172 %
+t: 28.8
+epoch 90, minibatch 453/453:
+  last cost: 0.120016 %
+  train err: 5.130290 %
+  valid err: 18.960087 %
+  test  err: 18.665450 %
+t: 28.5
+epoch 91, minibatch 453/453:
+  last cost: 0.124127 %
+  train err: 5.131581 %
+  valid err: 18.958366 %
+  test  err: 18.667172 %
+t: 29.42
+epoch 92, minibatch 453/453:
+  last cost: 0.119847 %
+  train err: 5.131366 %
+  valid err: 18.960087 %
+  test  err: 18.667172 %
+t: 29.56
+epoch 93, minibatch 453/453:
+  last cost: 0.125974 %
+  train err: 5.130721 %
+  valid err: 18.958366 %
+  test  err: 18.663729 %
+t: 30.74
+epoch 94, minibatch 453/453:
+  last cost: 0.133917 %
+  train err: 5.130290 %
+  valid err: 18.958366 %
+  test  err: 18.663729 %
+t: 28.63
+epoch 95, minibatch 453/453:
+  last cost: 0.187427 %
+  train err: 5.130290 %
+  valid err: 18.960087 %
+  test  err: 18.667172 %
+t: 28.66
+epoch 96, minibatch 453/453:
+  last cost: 0.133818 %
+  train err: 5.130936 %
+  valid err: 18.958366 %
+  test  err: 18.667172 %
+t: 29.75
+epoch 97, minibatch 453/453:
+  last cost: 0.146170 %
+  train err: 5.131366 %
+  valid err: 18.960087 %
+  test  err: 18.667172 %
+t: 30.9
+epoch 98, minibatch 453/453:
+  last cost: 0.132038 %
+  train err: 5.130936 %
+  valid err: 18.958366 %
+  test  err: 18.667172 %
+t: 29.75
+epoch 99, minibatch 453/453:
+  last cost: 0.130748 %
+  train err: 5.131151 %
+  valid err: 18.960087 %
+  test  err: 18.667172 %
+t: 30.03
+epoch 100, minibatch 453/453:
+  last cost: 0.150389 %
+  train err: 5.130505 %
+  valid err: 18.958366 %
+  test  err: 18.667172 %
+t: 29.04
+Optimization complete. Best valid score of 18.934270 % obtained at iteration 20838, epoch 46, with test performance 18.662008 %
