@@ -1,0 +1,134 @@
+---
+save_images: false
+detailed_stats: false
+dataset: /local/cifar10-gcn-whitened/
+pickled: false
+random_seed: 42
+L1_reg: 0.0
+L2_reg: 0.001
+n_epochs: 350
+center_and_normalise: true
+training_method: normal
+join_train_and_valid: true
+shuffle_dataset: true
+#learning_rate: !MultiplicativeDecayLearningRate { start: 0.05, stop: 1.0e-5, multiplier: 0.95 }
+learning_rate: !CompositeLearningRate { schedule: {
+          1: !FixedLearningRate { rate: 1.0e-2 },
+         40: !FixedLearningRate { rate: 1.0e-3 },
+         60: !FixedLearningRate { rate: 1.0e-4 },
+         80: !FixedLearningRate { rate: 1.0e-5 }
+    }
+}
+update_rule: !Adam { } 
+#learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-5, multiplier: 0.9 }
+#update_rule: !Adam { }
+#learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-4, stop: 1.0e-6, multiplier: 0.95 }
+#update_rule: !RMSProp { momentum: 0.9 }
+batch_size: 128
+cost_function: !CrossEntropy { }
+output_layer_options: { has_weights: false }
+n_hidden: [
+            ['linear', [ 0.2, 'dropout1' ]],
+            ['convfilter', [
+                [3,32,32],
+                [96,3,3],
+                0.,
+                'c1',
+                !ReLU { },
+                !GaussianWeightInit { std: 0.05 },
+                'same',
+                { pad: [1,1] }
+            ]],
+            ['convfilter', [
+                !!null ,
+                [96,3,3],
+                0.,
+                'c2',
+                !ReLU { },
+                !GaussianWeightInit { std: 0.05 },
+                'same',
+                { pad: [1,1] }
+            ]],
+            ['convfilter', [
+                !!null ,
+                [96,3,3],
+                0.,
+                'c3',
+                !ReLU { },
+                !GaussianWeightInit { std: 0.05 },
+                'same',
+                { pad: [1,1], strides: [2,2] }
+            ]],
+
+            ['convfilter', [
+                !!null ,
+                [192,3,3],
+                0.,
+                'c4',
+                !ReLU { },
+                !GaussianWeightInit { std: 0.05 },
+                'same',
+                { pad: [1,1] }
+            ]],
+            ['convfilter', [
+                !!null ,
+                [192,3,3],
+                0.,
+                'c5',
+                !ReLU { },
+                !GaussianWeightInit { std: 0.05 },
+                'same',
+                { pad: [1,1] }
+            ]],
+            ['convfilter', [
+                !!null ,
+                [192,3,3],
+                0.,
+                'c6',
+                !ReLU { },
+                !GaussianWeightInit { std: 0.05 },
+                'same',
+                { pad: [1,1], strides: [2,2] }
+            ]],
+
+            ['convfilter', [
+                !!null ,
+                [192,3,3],
+                0.,
+                'c7',
+                !ReLU { },
+                !GaussianWeightInit { std: 0.05 },
+                'same',
+                { pad: [1,1] }
+            ]],
+            ['convfilter', [
+                !!null ,
+                [192,1,1],
+                0.,
+                'c8',
+                !ReLU { },
+                !GaussianWeightInit { std: 0.05 },
+                'same',
+                { }
+            ]],
+            ['convfilter', [
+                !!null ,
+                [10,1,1],
+                0.,
+                'c9',
+                !ReLU { },
+                !GaussianWeightInit { std: 0.05 },
+                'same',
+                { }
+#{ batch_normalization: true }
+            ]],
+            ['pool2d', ['average_exc_pad', [8,8], 'pool1' , { strides: [1,1] } ]],
+          ]
+n_in: 3072
+RGB: True
+n_out: 10
+
+#Ensemble params
+resample_size: 50000
+method: !AdaBoostM1 {}
+ensemble_size: 10
