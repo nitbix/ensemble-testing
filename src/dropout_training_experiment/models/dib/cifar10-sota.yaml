@@ -6,7 +6,7 @@ pickled: false
 random_seed: 42
 L1_reg: 0.0
 L2_reg: 0.001
-n_epochs: 100
+n_epochs: 40
 center_and_normalise: true
 training_method: normal
 join_train_and_valid: true
@@ -47,38 +47,28 @@ n_hidden: [
                 !!null ,
                 [128,3,3],
                 0.,
-                'c1',
-                !ReLU { },
-                !GlorotWeightInit { },
-                'same',
-                { batch_normalization: true , pad: [1,1] }
-            ]],
-            ['convfilter', [
-                !!null ,
-                [128,3,3],
-                0.,
                 'c2',
                 !ReLU { },
                 !GlorotWeightInit { },
                 'same',
                 { batch_normalization: true , pad: [1,1] }
             ]],
-            ['convfilter', [
-                !!null ,
-                [128,3,3],
-                0.25,
-                'c2',
-                !ReLU { },
-                !GlorotWeightInit { },
-                'same',
-                { batch_normalization: true , pad: [1,1], strides: [2,2]  }
-            ]],
-            #['pool2d', ['max', [3,3], 'pool1', { strides: [2,2] } ]],
+            #['convfilter', [
+            #    !!null ,
+            #    [128,3,3],
+            #    0.25,
+            #    'c2',
+            #    !ReLU { },
+            #    !GlorotWeightInit { },
+            #    'same',
+            #    { batch_normalization: true , pad: [1,1], strides: [2,2]  }
+            #]],
+            ['pool2d', ['max', [3,3], 'pool1', { strides: [2,2] } ]],
             ['convfilter', [
                 !!null ,
                 [256,3,3],
                 0.25,
-                'c3',
+                'c4',
                 !ReLU { },
                 !GlorotWeightInit { },
                 'same',
@@ -94,27 +84,17 @@ n_hidden: [
                 'same',
                 { batch_normalization: true , pad: [1,1] }
             ]],
-            ['convfilter', [
-                !!null ,
-                [256,3,3],
-                0.25,
-                'c2',
-                !ReLU { },
-                !GlorotWeightInit { },
-                'same',
-                { batch_normalization: true , pad: [1,1], strides: [2,2]  }
-            ]],
-            #['pool2d', ['max', [3,3], 'pool2', { strides: [2,2] } ]],
-            ['convfilter', [
-                !!null ,
-                [512,3,3],
-                0.25,
-                'c5',
-                !ReLU { },
-                !GlorotWeightInit { },
-                'same',
-                { batch_normalization: true , pad: [1,1] }
-            ]],
+            #['convfilter', [
+            #    !!null ,
+            #    [256,3,3],
+            #    0.25,
+            #    'c2',
+            #    !ReLU { },
+            #    !GlorotWeightInit { },
+            #    'same',
+            #    { batch_normalization: true , pad: [1,1], strides: [2,2]  }
+            #]],
+            ['pool2d', ['max', [3,3], 'pool2', { strides: [2,2] } ]],
             ['convfilter', [
                 !!null ,
                 [512,3,3],
@@ -125,20 +105,10 @@ n_hidden: [
                 'same',
                 { batch_normalization: true , pad: [1,1] }
             ]],
-            ['convfilter', [
-                !!null ,
-                [512,3,3],
-                0.25,
-                'c2',
-                !ReLU { },
-                !GlorotWeightInit { },
-                'same',
-                { batch_normalization: true , pad: [1,1], strides: [2,2]  }
-            ]],
             #['convfilter', [
             #    !!null ,
-            #    [512,1,1],
-            #    0.,
+            #    [512,3,3],
+            #    0.25,
             #    'c6',
             #    !ReLU { },
             #    !GlorotWeightInit { },
@@ -147,15 +117,15 @@ n_hidden: [
             #]],
             #['convfilter', [
             #    !!null ,
-            #    [10,1,1],
-            #    0.,
-            #    'c6',
+            #    [512,3,3],
+            #    0.25,
+            #    'c2',
             #    !ReLU { },
             #    !GlorotWeightInit { },
             #    'same',
-            #    { batch_normalization: true , pad: [1,1] }
+            #    { batch_normalization: true , pad: [1,1], strides: [2,2]  }
             #]],
-            #['pool2d', ['max', [3,3], 'pool3', { strides: [2,2] } ]],
+            ['pool2d', ['max', [3,3], 'pool3', { strides: [2,2] } ]],
             ['flat', [1024, 0.5, 'f1', !ReLU { }, !GlorotWeightInit { }, { batch_normalization: true } ]],
             #['pool2d', ['average_exc_pad', [8,8], 'pool1' , { strides: [1,1], batch_normalization: true } ]],
             ['flat', [10, 0., 'f2', !ReLU { }, !GlorotWeightInit { }, { batch_normalization: true } ]]
@@ -167,4 +137,4 @@ n_out: 10
 #Ensemble params
 resample_size: 50000
 method: !AdaBoostM1 {}
-ensemble_size: 10
+ensemble_size: 3
