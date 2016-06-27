@@ -60,7 +60,9 @@ if __name__ == '__main__':
     dataset = load_data(params.dataset,
                               resize_to = params.resize_data_to,
                               shared = False,
-                              pickled = params.pickled)
+                              pickled = params.pickled,
+                              join_train_and_valid = params.join_train_and_valid
+                              )
     x = T.matrix('x')
     y = T.ivector('y')
     index = T.lscalar('index')

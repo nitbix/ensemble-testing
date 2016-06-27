@@ -5,13 +5,13 @@ dataset: /local/cifar10/
 pickled: false
 L1_reg: 0.0
 L2_reg: 0.0
-n_epochs: 300
+n_epochs: 200
 transform: false
 pretraining: !!null
 pretraining_passes: 2
 training_method: normal
 #update_rule: !RProp {eta_minus: 0.5, eta_plus: 1.2, max_delta: 50, min_delta: 0.001} 
-update_rule: !SGD { momentum: 0.5 }
+update_rule: !SGD { momentum: 0.3 }
 learning_rate: !LinearDecayLearningRate { start: 0.01, stop: 0.001, steps: 100 }
 batch_size: 100
 cost_function: !CrossEntropy { }
@@ -48,7 +48,8 @@ n_hidden: [
                 !TanH { },
                 'max'
             ]],
-            ['flat', [100, 0.5, 'f3', !ReLU { } ]]
+            ['flat', [100, 0.5, 'f1', !ReLU { } ]],
+            ['flat', [100, 0.5, 'f2', !ReLU { } ]]
           ]
 n_in: 3072
 n_out: 10
