@@ -65,7 +65,7 @@ if __name__ == '__main__':
     from toupee.mlp import MLP, test_mlp
     dataset = data.load_data(params.dataset,
                              resize_to = params.resize_data_to,
-                             shared = True,
+                             shared = False,
                              pickled = params.pickled,
                              center_and_normalise = params.center_and_normalise)
     pretraining_set = data.make_pretraining_set(dataset,params.pretraining)
