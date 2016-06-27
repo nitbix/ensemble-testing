@@ -80,6 +80,8 @@ if __name__ == '__main__':
     if args.save_file is not None:
         dill.dump(method.members,open(sys.argv[2],"wb"))
     test_set_x, test_set_y = method.resampler.get_test()
+    test_set_x = sharedX(test_set_x)
+    test_set_y = sharedX(test_set_y, dtype='int32')
     test_model = theano.function(inputs=[index],
             outputs=ensemble.errors,
             givens={
