@@ -67,7 +67,8 @@ if __name__ == '__main__':
                              resize_to = params.resize_data_to,
                              shared = False,
                              pickled = params.pickled,
-                             center_and_normalise = params.center_and_normalise)
+                             center_and_normalise = params.center_and_normalise,
+                             join_train_and_valid = params.join_train_and_valid)
     pretraining_set = data.make_pretraining_set(dataset,params.pretraining)
     mlp = test_mlp(dataset, params, pretraining_set = pretraining_set)
     if args.save_file is not None:
