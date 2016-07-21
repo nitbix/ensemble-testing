@@ -1,0 +1,110 @@
+training member 0
+training samples: 40000
+... normal training
+.... generating models
+.... started
+epoch 1, minibatch 312/312:
+  train err: 25.858873 %
+  valid err: 33.042869 %
+  test  err: 33.133012 %
+  current best
+t: 85.92
+epoch 2, minibatch 312/312:
+  train err: 10.293970 %
+  valid err: 27.704328 %
+  test  err: 28.505608 %
+  current best
+t: 86.35
+epoch 3, minibatch 312/312:
+  train err: 3.317808 %
+  valid err: 26.983172 %
+  test  err: 27.864584 %
+  current best
+t: 86.49
+epoch 4, minibatch 312/312:
+  train err: 0.868890 %
+  valid err: 26.963142 %
+  test  err: 27.463943 %
+  current best
+t: 86.58
+epoch 5, minibatch 312/312:
+  train err: 0.172776 %
+  valid err: 26.201922 %
+  test  err: 26.772836 %
+  current best
+t: 86.59
+epoch 6, minibatch 312/312:
+  train err: 0.052584 %
+  valid err: 26.462340 %
+  test  err: 27.033255 %
+t: 85.61
+epoch 7, minibatch 312/312:
+  train err: 0.020032 %
+  valid err: 26.262018 %
+  test  err: 26.883012 %
+t: 85.64
+epoch 8, minibatch 312/312:
+  train err: 0.012520 %
+  valid err: 26.252005 %
+  test  err: 26.702723 %
+t: 85.73
+epoch 9, minibatch 312/312:
+  train err: 0.005008 %
+  valid err: 26.322114 %
+  test  err: 26.652643 %
+t: 86.2
+epoch 10, minibatch 312/312:
+  train err: 0.000000 %
+  valid err: 26.422277 %
+  test  err: 26.582533 %
+t: 86.17
+epoch 11, minibatch 312/312:
+  train err: 0.000000 %
+  valid err: 26.362181 %
+  test  err: 26.492387 %
+t: 86.22
+epoch 12, minibatch 312/312:
+  train err: 0.000000 %
+  valid err: 26.342148 %
+  test  err: 26.542467 %
+t: 86.19
+epoch 13, minibatch 312/312:
+  train err: 0.000000 %
+  valid err: 26.322114 %
+  test  err: 26.582533 %
+t: 86.2
+epoch 14, minibatch 312/312:
+  train err: 0.000000 %
+  valid err: 26.312098 %
+  test  err: 26.612580 %
+t: 86.21
+epoch 15, minibatch 312/312:
+  train err: 0.000000 %
+  valid err: 26.322114 %
+  test  err: 26.632613 %
+t: 86.2
+epoch 16, minibatch 312/312:
+  train err: 0.000000 %
+  valid err: 26.402244 %
+  test  err: 26.602563 %
+t: 86.2
+epoch 17, minibatch 312/312:
+  train err: 0.000000 %
+  valid err: 26.462340 %
+  test  err: 26.642630 %
+t: 86.21
+epoch 18, minibatch 312/312:
+  train err: 0.000000 %
+  valid err: 26.382211 %
+  test  err: 26.612580 %
+t: 86.21
+epoch 19, minibatch 312/312:
+  train err: 0.000000 %
+  valid err: 26.302084 %
+  test  err: 26.662660 %
+t: 86.22
+epoch 20, minibatch 312/312:
+  train err: 0.000000 %
+  valid err: 26.352164 %
+  test  err: 26.672676 %
+t: 86.2

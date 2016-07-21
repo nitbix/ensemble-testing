@@ -1,0 +1,511 @@
+16280
+training member 0
+training examples: 35815
+validation examples: 35815
+test examples: 16280
+... normal training
+.... generating models
+.... started
+epoch 1, minibatch 279/279:
+  last cost: 0.189418 %
+  train err: 24.294290 %
+  valid err: 24.294290 %
+  test  err: 23.624079 %
+  current best
+t: 4.04
+epoch 2, minibatch 279/279:
+  last cost: 0.201694 %
+  train err: 24.294290 %
+  valid err: 24.294290 %
+  test  err: 23.624079 %
+t: 2.35
+epoch 3, minibatch 279/279:
+  last cost: 0.205425 %
+  train err: 24.294290 %
+  valid err: 24.294290 %
+  test  err: 23.624079 %
+t: 2.39
+epoch 4, minibatch 279/279:
+  last cost: 0.171308 %
+  train err: 24.294290 %
+  valid err: 24.294290 %
+  test  err: 23.624079 %
+t: 2.44
+epoch 5, minibatch 279/279:
+  last cost: 0.182588 %
+  train err: 24.294290 %
+  valid err: 24.294290 %
+  test  err: 23.624079 %
+t: 2.48
+epoch 6, minibatch 279/279:
+  last cost: 0.179161 %
+  train err: 24.294290 %
+  valid err: 24.294290 %
+  test  err: 23.624079 %
+t: 2.35
+epoch 7, minibatch 279/279:
+  last cost: 0.170832 %
+  train err: 24.294290 %
+  valid err: 24.294290 %
+  test  err: 23.624079 %
+t: 2.35
+epoch 8, minibatch 279/279:
+  last cost: 0.159224 %
+  train err: 24.294290 %
+  valid err: 24.294290 %
+  test  err: 23.624079 %
+t: 2.38
+epoch 9, minibatch 279/279:
+  last cost: 0.190516 %
+  train err: 24.294290 %
+  valid err: 24.294290 %
+  test  err: 23.624079 %
+t: 2.45
+epoch 10, minibatch 279/279:
+  last cost: 0.186626 %
+  train err: 24.294290 %
+  valid err: 24.294290 %
+  test  err: 23.624079 %
+t: 2.43
+epoch 11, minibatch 279/279:
+  last cost: 0.158827 %
+  train err: 24.294290 %
+  valid err: 24.294290 %
+  test  err: 23.624079 %
+t: 2.37
+epoch 12, minibatch 279/279:
+  last cost: 0.193315 %
+  train err: 24.294290 %
+  valid err: 24.294290 %
+  test  err: 23.624079 %
+t: 2.38
+epoch 13, minibatch 279/279:
+  last cost: 0.186137 %
+  train err: 24.294290 %
+  valid err: 24.294290 %
+  test  err: 23.624079 %
+t: 2.36
+epoch 14, minibatch 279/279:
+  last cost: 0.197744 %
+  train err: 24.294290 %
+  valid err: 24.294290 %
+  test  err: 23.624079 %
+t: 2.47
+epoch 15, minibatch 279/279:
+  last cost: 0.197330 %
+  train err: 24.294290 %
+  valid err: 24.294290 %
+  test  err: 23.624079 %
+t: 2.45
+epoch 16, minibatch 279/279:
+  last cost: 0.210840 %
+  train err: 24.294290 %
+  valid err: 24.294290 %
+  test  err: 23.624079 %
+t: 2.38
+epoch 17, minibatch 279/279:
+  last cost: 0.185553 %
+  train err: 24.294290 %
+  valid err: 24.294290 %
+  test  err: 23.624079 %
+t: 2.32
+epoch 18, minibatch 279/279:
+  last cost: 0.185600 %
+  train err: 24.294290 %
+  valid err: 24.294290 %
+  test  err: 23.624079 %
+t: 2.34
+epoch 19, minibatch 279/279:
+  last cost: 0.178852 %
+  train err: 24.294290 %
+  valid err: 24.294290 %
+  test  err: 23.624079 %
+t: 2.42
+epoch 20, minibatch 279/279:
+  last cost: 0.205587 %
+  train err: 24.294290 %
+  valid err: 24.294290 %
+  test  err: 23.624079 %
+t: 2.34
+Optimization complete. Best valid score of 24.294290 % obtained at iteration 279, epoch 1, with test performance 23.624079 %
+training member 1
+training examples: 68374
+validation examples: 68374
+test examples: 16280
+... normal training
+.... generating models
+.... started
+epoch 1, minibatch 534/534:
+  last cost: 0.165001 %
+  train err: 24.205107 %
+  valid err: 24.205107 %
+  test  err: 23.624079 %
+  current best
+t: 7.79
+epoch 2, minibatch 534/534:
+  last cost: 0.179234 %
+  train err: 24.205107 %
+  valid err: 24.205107 %
+  test  err: 23.624079 %
+t: 5.27
+epoch 3, minibatch 534/534:
+  last cost: 0.162613 %
+  train err: 24.205107 %
+  valid err: 24.205107 %
+  test  err: 23.624079 %
+t: 5.28
+epoch 4, minibatch 534/534:
+  last cost: 0.153992 %
+  train err: 24.205107 %
+  valid err: 24.205107 %
+  test  err: 23.624079 %
+t: 5.84
+epoch 5, minibatch 534/534:
+  last cost: 0.158665 %
+  train err: 24.205107 %
+  valid err: 24.205107 %
+  test  err: 23.624079 %
+t: 5.32
+epoch 6, minibatch 534/534:
+  last cost: 0.158567 %
+  train err: 24.205107 %
+  valid err: 24.205107 %
+  test  err: 23.624079 %
+t: 5.31
+epoch 7, minibatch 534/534:
+  last cost: 0.175216 %
+  train err: 24.205107 %
+  valid err: 24.205107 %
+  test  err: 23.624079 %
+t: 5.26
+epoch 8, minibatch 534/534:
+  last cost: 0.169184 %
+  train err: 24.205107 %
+  valid err: 24.205107 %
+  test  err: 23.624079 %
+t: 5.64
+epoch 9, minibatch 534/534:
+  last cost: 0.200359 %
+  train err: 24.205107 %
+  valid err: 24.205107 %
+  test  err: 23.624079 %
+t: 5.92
+epoch 10, minibatch 534/534:
+  last cost: 0.171000 %
+  train err: 24.205107 %
+  valid err: 24.205107 %
+  test  err: 23.624079 %
+t: 5.28
+epoch 11, minibatch 534/534:
+  last cost: 0.185414 %
+  train err: 24.205107 %
+  valid err: 24.205107 %
+  test  err: 23.624079 %
+t: 5.23
+epoch 12, minibatch 534/534:
+  last cost: 0.200827 %
+  train err: 24.205107 %
+  valid err: 24.205107 %
+  test  err: 23.624079 %
+t: 5.6
+epoch 13, minibatch 534/534:
+  last cost: 0.183789 %
+  train err: 24.205107 %
+  valid err: 24.205107 %
+  test  err: 23.624079 %
+t: 5.85
+epoch 14, minibatch 534/534:
+  last cost: 0.195984 %
+  train err: 24.205107 %
+  valid err: 24.205107 %
+  test  err: 23.624079 %
+t: 5.44
+epoch 15, minibatch 534/534:
+  last cost: 0.207894 %
+  train err: 24.205107 %
+  valid err: 24.205107 %
+  test  err: 23.624079 %
+t: 5.28
+epoch 16, minibatch 534/534:
+  last cost: 0.172624 %
+  train err: 24.205107 %
+  valid err: 24.205107 %
+  test  err: 23.624079 %
+t: 6.85
+epoch 17, minibatch 534/534:
+  last cost: 0.163418 %
+  train err: 24.205107 %
+  valid err: 24.205107 %
+  test  err: 23.624079 %
+t: 5.35
+epoch 18, minibatch 534/534:
+  last cost: 0.174473 %
+  train err: 24.205107 %
+  valid err: 24.205107 %
+  test  err: 23.624079 %
+t: 5.47
+epoch 19, minibatch 534/534:
+  last cost: 0.193262 %
+  train err: 24.205107 %
+  valid err: 24.205107 %
+  test  err: 23.624079 %
+t: 5.3
+finished patience
+t: 3.03
+Optimization complete. Best valid score of 24.205107 % obtained at iteration 534, epoch 1, with test performance 23.624079 %
+training member 2
+training examples: 100933
+validation examples: 100933
+test examples: 16280
+... normal training
+.... generating models
+.... started
+epoch 1, minibatch 788/788:
+  last cost: 0.149909 %
+  train err: 24.215073 %
+  valid err: 24.215073 %
+  test  err: 23.624079 %
+  current best
+t: 9.57
+epoch 2, minibatch 788/788:
+  last cost: 0.194159 %
+  train err: 24.215073 %
+  valid err: 24.215073 %
+  test  err: 23.624079 %
+t: 7.29
+epoch 3, minibatch 788/788:
+  last cost: 0.158792 %
+  train err: 24.215073 %
+  valid err: 24.215073 %
+  test  err: 23.624079 %
+t: 7.35
+epoch 4, minibatch 788/788:
+  last cost: 0.190637 %
+  train err: 24.215073 %
+  valid err: 24.215073 %
+  test  err: 23.624079 %
+t: 7.35
+epoch 5, minibatch 788/788:
+  last cost: 0.190717 %
+  train err: 24.215073 %
+  valid err: 24.215073 %
+  test  err: 23.624079 %
+t: 7.38
+epoch 6, minibatch 788/788:
+  last cost: 0.209478 %
+  train err: 24.215073 %
+  valid err: 24.215073 %
+  test  err: 23.624079 %
+t: 7.34
+epoch 7, minibatch 788/788:
+  last cost: 0.194366 %
+  train err: 24.215073 %
+  valid err: 24.215073 %
+  test  err: 23.624079 %
+t: 7.31
+epoch 8, minibatch 788/788:
+  last cost: 0.154242 %
+  train err: 24.215073 %
+  valid err: 24.215073 %
+  test  err: 23.624079 %
+t: 7.41
+epoch 9, minibatch 788/788:
+  last cost: 0.198433 %
+  train err: 24.215073 %
+  valid err: 24.215073 %
+  test  err: 23.624079 %
+t: 7.29
+epoch 10, minibatch 788/788:
+  last cost: 0.149868 %
+  train err: 24.215073 %
+  valid err: 24.215073 %
+  test  err: 23.624079 %
+t: 7.31
+epoch 11, minibatch 788/788:
+  last cost: 0.145618 %
+  train err: 24.215073 %
+  valid err: 24.215073 %
+  test  err: 23.624079 %
+t: 8.73
+epoch 12, minibatch 788/788:
+  last cost: 0.172442 %
+  train err: 24.215073 %
+  valid err: 24.215073 %
+  test  err: 23.624079 %
+t: 7.45
+epoch 13, minibatch 788/788:
+  last cost: 0.181226 %
+  train err: 24.215073 %
+  valid err: 24.215073 %
+  test  err: 23.624079 %
+t: 7.41
+epoch 14, minibatch 788/788:
+  last cost: 0.230403 %
+  train err: 24.215073 %
+  valid err: 24.215073 %
+  test  err: 23.624079 %
+t: 7.38
+epoch 15, minibatch 788/788:
+  last cost: 0.195117 %
+  train err: 24.215073 %
+  valid err: 24.215073 %
+  test  err: 23.624079 %
+t: 7.32
+epoch 16, minibatch 788/788:
+  last cost: 0.166084 %
+  train err: 24.215073 %
+  valid err: 24.215073 %
+  test  err: 23.624079 %
+t: 7.57
+epoch 17, minibatch 788/788:
+  last cost: 0.198424 %
+  train err: 24.215073 %
+  valid err: 24.215073 %
+  test  err: 23.624079 %
+t: 7.34
+epoch 18, minibatch 788/788:
+  last cost: 0.203387 %
+  train err: 24.163554 %
+  valid err: 24.163554 %
+  test  err: 23.525799 %
+  current best
+t: 10.57
+epoch 19, minibatch 788/788:
+  last cost: 0.184429 %
+  train err: 24.157610 %
+  valid err: 24.157610 %
+  test  err: 23.507371 %
+  current best
+t: 10.48
+finished patience
+t: 4.57
+Optimization complete. Best valid score of 24.157610 % obtained at iteration 14972, epoch 19, with test performance 23.507371 %
+Final Ensemble error: 23.6281991005 %
+training examples: 32559
+validation examples: 32559
+test examples: 16280
+... normal training
+.... generating models
+.... started
+epoch 1, minibatch 254/254:
+  last cost: 0.113711 %
+  train err: 2.398722 %
+  valid err: 2.398722 %
+  test  err: 23.624079 %
+  current best
+t: 4.01
+epoch 2, minibatch 254/254:
+  last cost: 0.077496 %
+  train err: 2.398722 %
+  valid err: 2.398722 %
+  test  err: 23.624079 %
+t: 2.39
+epoch 3, minibatch 254/254:
+  last cost: 0.071002 %
+  train err: 2.398722 %
+  valid err: 2.398722 %
+  test  err: 23.624079 %
+t: 2.73
+epoch 4, minibatch 254/254:
+  last cost: 0.053131 %
+  train err: 2.398722 %
+  valid err: 2.398722 %
+  test  err: 23.624079 %
+t: 2.71
+epoch 5, minibatch 254/254:
+  last cost: 0.031449 %
+  train err: 2.398722 %
+  valid err: 2.398722 %
+  test  err: 23.624079 %
+t: 2.61
+epoch 6, minibatch 254/254:
+  last cost: 0.027567 %
+  train err: 2.398722 %
+  valid err: 2.398722 %
+  test  err: 23.624079 %
+t: 2.71
+epoch 7, minibatch 254/254:
+  last cost: 0.024828 %
+  train err: 2.398722 %
+  valid err: 2.398722 %
+  test  err: 23.624079 %
+t: 2.45
+epoch 8, minibatch 254/254:
+  last cost: 0.029031 %
+  train err: 2.398722 %
+  valid err: 2.398722 %
+  test  err: 23.624079 %
+t: 2.49
+epoch 9, minibatch 254/254:
+  last cost: 0.034091 %
+  train err: 2.398722 %
+  valid err: 2.398722 %
+  test  err: 23.624079 %
+t: 2.42
+epoch 10, minibatch 254/254:
+  last cost: 0.026717 %
+  train err: 2.398722 %
+  valid err: 2.398722 %
+  test  err: 23.624079 %
+t: 2.34
+epoch 11, minibatch 254/254:
+  last cost: 0.025815 %
+  train err: 2.398722 %
+  valid err: 2.398722 %
+  test  err: 23.624079 %
+t: 2.32
+epoch 12, minibatch 254/254:
+  last cost: 0.038662 %
+  train err: 2.398722 %
+  valid err: 2.398722 %
+  test  err: 23.624079 %
+t: 2.33
+epoch 13, minibatch 254/254:
+  last cost: 0.038342 %
+  train err: 2.398722 %
+  valid err: 2.398722 %
+  test  err: 23.624079 %
+t: 2.38
+epoch 14, minibatch 254/254:
+  last cost: 0.038112 %
+  train err: 2.398722 %
+  valid err: 2.398722 %
+  test  err: 23.624079 %
+t: 2.73
+epoch 15, minibatch 254/254:
+  last cost: 0.037941 %
+  train err: 2.398722 %
+  valid err: 2.398722 %
+  test  err: 23.624079 %
+t: 2.7
+epoch 16, minibatch 254/254:
+  last cost: 0.023908 %
+  train err: 2.398722 %
+  valid err: 2.398722 %
+  test  err: 23.624079 %
+t: 2.73
+epoch 17, minibatch 254/254:
+  last cost: 0.030709 %
+  train err: 2.398722 %
+  valid err: 2.398722 %
+  test  err: 23.624079 %
+t: 2.51
+epoch 18, minibatch 254/254:
+  last cost: 0.023545 %
+  train err: 2.398722 %
+  valid err: 2.398722 %
+  test  err: 23.624079 %
+t: 2.39
+epoch 19, minibatch 254/254:
+  last cost: 0.030500 %
+  train err: 2.398722 %
+  valid err: 2.398722 %
+  test  err: 23.624079 %
+t: 2.44
+epoch 20, minibatch 254/254:
+  last cost: 0.023308 %
+  train err: 2.398722 %
+  valid err: 2.398722 %
+  test  err: 23.624079 %
+t: 2.38
+Optimization complete. Best valid score of 2.398722 % obtained at iteration 254, epoch 1, with test performance 23.624079 %

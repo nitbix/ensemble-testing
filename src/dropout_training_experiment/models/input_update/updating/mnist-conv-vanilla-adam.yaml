@@ -1,5 +1,5 @@
 ---
-save_images: false
+save_images: true
 detailed_stats: false
 dataset: /local/mnist.pkl.gz
 pickled: true
@@ -12,7 +12,6 @@ pretraining_passes: 5
 training_method: normal
 batch_size: 128
 output_layer_options: { batch_normalization: true }
-shuffle_dataset: true
 cost_function: !NegLogLikelihood { }
 learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-7, multiplier: 0.85 }
 update_rule: !Adam { }

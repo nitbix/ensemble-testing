@@ -11,9 +11,11 @@ pretraining: !!null
 pretraining_passes: 5
 training_method: normal
 batch_size: 256
+update_input: true
+detailed_stats: false
 cost_function: !NegLogLikelihood { }
-learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-7, multiplier: 0.9}
-update_rule: !RMSProp { }
+learning_rate: !MultiplicativeDecayLearningRate { start: 1.0e-3, stop: 1.0e-7, multiplier: 0.8}
+update_rule: !RMSProp { momentum: 0.7 }
 n_hidden: [
             ['conv', [
                 [1,28,28],
