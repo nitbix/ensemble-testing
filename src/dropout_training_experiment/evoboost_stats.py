@@ -31,6 +31,10 @@ def clean_update_rule(r):
     else:
         return rule_name
 
+def clean_method(m):
+    method_name = re.sub(r"\s*{.*",'',m).lower()
+    return method_name
+
 from pymongo import MongoClient
 conn = MongoClient(host=results_host)
 db = conn[results_db]
@@ -39,7 +43,9 @@ table = db[results_table]
 
 pipeline = [
     {   "$match":
-        { "test_score": { "$exists": "true"} }
+        { #"test_score": { "$exists": "false"},
+          "$params.member_number": 1
+        }
     },
     {   "$group": 
         { "_id":
@@ -48,7 +54,7 @@ pipeline = [
                 "params_dataset" : "$params.dataset",
                 "params_online_transform": "$params.online_transform",
                 "params_learning_rate": "$params.learning_rate",
-                "method" : "$params.method"
+                "method" : {"$substr": ["$params.method", 0, 10]}
             },
             "count": {"$sum": 1},
             "avg_test_score": {"$avg": "$test_score"},
@@ -85,7 +91,7 @@ for r in cursor['result']:
     dataset = "{0}{1}".format(
             clean_dataset(x['params_dataset']),
             clean_transform(x['params_online_transform']))
-    method = x['method']
+    method = clean_method(x['method'])
     if dataset not in datasets:
         datasets.append(dataset)
     if method not in methods:
