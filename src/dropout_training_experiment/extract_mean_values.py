@@ -16,8 +16,8 @@ means, stdevs, methods, datasets, hist_means, hist_stdevs = extract_results(resu
 def write_hist_file(means, stdevs, name):
     assert len(means) == len(stdevs)
     with open(name,'w') as f:
-        for i in len(means):
-            f.write(str(i) + " " + str(means[i] * 100) + " " + str(stdevs[i]) + "\n")
+        for i in range(len(means)):
+            f.write(str(i) + " " + str(means[i] * 100) + " " + str(stdevs[i] * 100) + "\n")
 
 print " & " + " & ".join(methods)
 for dataset in datasets:

@@ -1,6 +1,7 @@
 import re
 import yaml
 import math
+import numpy
 
 from pymongo import MongoClient
 
@@ -24,6 +25,9 @@ pipeline = [
             "sq_best_epoch": {"$sum": {"$multiply":["$best_epoch", "$best_epoch"]}},
             "sq_best_valid": {"$sum": {"$multiply":["$best_valid", "$best_valid"]}},
             "sq_best_test": {"$sum": {"$multiply":["$best_test", "$best_test"]}},
+            "train_history": {"$push": "$train_history"},
+            "valid_history": {"$push": "$validation_history"},
+            "test_history": {"$push": "$test_history"}
         },
     },
     {
@@ -58,7 +62,6 @@ def extract_results(results_host,results_db,results_table):
     datasets = []
 
     for r in cursor['result']:
-        print r
         x = r['_id']
         if r['count'] < 10000:
             print "dataset: {0}".format(x['params_dataset'])
@@ -156,7 +159,6 @@ def clean_update_rule(r):
         return rule_name
 
 def clean_update_input(b):
-    print b
     if b:
         return 'update'
     else:
