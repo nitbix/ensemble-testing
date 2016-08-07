@@ -14,6 +14,7 @@ import dill
 import argparse
 import os
 import re
+import numpy
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Train a single MLP')
